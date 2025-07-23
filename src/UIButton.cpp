@@ -1,0 +1,44 @@
+#include "UIButton.hpp"
+#include <iostream>
+
+UIButton::UIButton(raylib::Rectangle r, Anchor2 a, UIStylebox normalStylebox, UIStylebox selectedStylebox, UIStylebox hoveredStylebox, UIStylebox downStylebox) : UISelectablePanel(r, a, normalStylebox, selectedStylebox), 
+    hoveredStylebox(hoveredStylebox),
+    downStylebox(downStylebox),
+    pressed(false),
+    hovered(false),
+    down(false){};
+
+void UIButton::update(raylib::Rectangle boundingBox) {
+    UISelectablePanel::update(boundingBox);
+    this->hovered = false;
+
+    if (UISelectablePanel::getMouseCollision(boundingBox)) {
+        this->hovered = true;
+        
+        if (raylib::Mouse::IsButtonPressed(MOUSE_BUTTON_LEFT)) {
+            this->down = true;
+        }
+        if (raylib::Mouse::IsButtonReleased(MOUSE_BUTTON_LEFT) && this->down) {
+            this->down = false; 
+            this->pressed = true; // activates when user releases button
+        }
+
+    } else {
+        this->down = false;
+    }
+    
+}
+void UIButton::draw(raylib::Rectangle boundingBox) {
+    UISelectablePanel::draw(boundingBox);
+    
+    if (this->down) {
+        downStylebox.draw(rect, anchor, boundingBox);
+    } else if (this->hovered) {
+        
+        hoveredStylebox.draw(rect, anchor, boundingBox);
+    }
+    
+    
+        
+}
+
