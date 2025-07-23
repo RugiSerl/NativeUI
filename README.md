@@ -23,14 +23,7 @@ $ make
 > mingw32-make
 ```
 
-The first command will clone in the lastest C++ bindings and targeted version of raylib, copy across any relevant header files into `/includes`, and build a static library file from them, placing it in `/lib`. The second command then compiles, runs and cleans up your project using the source code in `/src/main.cpp`.
-
-*If a window pops up, congratulations, you've successfully built the project and you can now start programming your game!*
-
-## Using This Template
-Now that you have the project setup and compiling on your system, it's time to start programming! If you aren't already familliar with [raylib](https://github.com/raysan5/raylib), we recommend looking over [this awesome cheatsheet](https://www.raylib.com/cheatsheet/cheatsheet.html) which lists every function, struct and macro available in the raylib C library. If you want specifics on how to use the C++ bindings, then you should check out the [raylib-cpp](https://github.com/robloach/raylib-cpp) repo, which nicely explains how the bindings work and contains [raylib's examples ported to C++](https://github.com/RobLoach/raylib-cpp/tree/master/examples).
-
-Once you're up and running, we first of all recommend that all your code for the game should go into the `/src` directory, which is automatically included in the compile process when you run Make. The default entry point for the program is `/src/main.cpp` (which is pretty standard). If you wish to change the program entry point, add more libraries, or really anything about your project, all build instructions are specified in the [`Makefile`](Makefile) - no smoke and mirrors!
+The first command will clone in the lastest C++ bindings and targeted version of raylib, copy across any relevant header files into `/includes`, and build a static library file from them, placing it in `/lib`. The second command then compiles, runs and cleans up your project.
 
 ### Making Use of Separate Compilation
 When building compiled applications from scratch, *each* source file needs to be compiled into an object file in order for them all to be linked together as a full program. This can become rather time-consuming and inefficient as your codebase expands to use tens or even hundreds of files that recompile each time you build. Fortunately, with a few clever rules in our [`Makefile`](Makefile), we can be sure to only have to recompile files affected by our changes.
@@ -49,59 +42,6 @@ $ make bin/app; make execute
 > mingw32-make bin/app && mingw32-make execute
 ```
 
-Using this method can save you a huge amount of time compiling *(in reality, just a few seconds)* each time you make a small change to your code! If you want to know more about how it works, you should have a read through [the docs entry explaining the Makefile](docs/MakefileExplanation.md).
-
-While separate compilation works quite well in most scenarios, it's not magic, and there are a few caveats to take note of here:
-
-1. Changing `.h` files will often result in longer compile times by causing all files that include them to recompile
-2. Constant changes to files included by many others in your program (like a base-class) will also cause all of those dependent to recompile
-3. Including widely-scoped files (like the whole of `raylib-cpp.hpp`) will add all of its own includes as dependent and increase the build time
-4. Placing includes in `.h` files instead of forward-declarations will also increase recursive includes and therefore the build time
-
-### Passing Args to the Executable
-For working with some projects, you may want to pass arguments to the program once it's been built. This can be achieved by assigning values to the `ARGS` flag in the Makefile like below:
-
-#### macOS & Linux
-
-```console
-$ make ARGS="--somearg"
-```
-
-#### Windows
-
-```console
-> mingw32-make ARGS="--somearg"
-```
-
-### Specifying Custom Macro Definitions
-You may also want to pass in your own macro definitions for certain configurations (such as setting log levels). You can pass in your definitions using `CXXFLAGS`:
-
-#### macOS & Linux
-
-```console
-$ make CXXFLAGS=-DMY_MACRO=1
-```
-
-#### Windows
-
-```console
-> mingw32-make CXXFLAGS=-DMY_MACRO=1
-```
-
-### Specifying a Non-Default Compiler
-If you want to use a compiler for your platform that isn't the default for your system (or potentially you would like to explicitly state it), you can make use of the system-implicit `CXX` variable like so:
-
-#### macOS & Linux
-
-```console
-$ make CXX=g++
-```
-
-#### Windows
-
-```console
-> mingw32-make CXX=g++
-```
 ## Licence
 
 This project is licenced under an unmodified zlib/libpng licence, which is an OSI-certified, BSD-like licence that allows static linking with closed source software. Check [`LICENCE`](LICENCE) for further details.
