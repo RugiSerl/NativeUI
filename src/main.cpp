@@ -26,7 +26,7 @@ int main() {
 
     raylib::Window w(screenWidth, screenHeight, "Raylib C++ Starter Kit Example");
     
-    SetTargetFPS(20);
+    SetTargetFPS(-1);
     // Main game loop
     while (!w.ShouldClose()) // Detect window close button or ESC key
     {
