@@ -10,7 +10,7 @@ UIStylebox::UIStylebox(float borderSize, float edgeRadius, Color fillColor, Colo
 void UIStylebox::draw(raylib::Rectangle rect, Anchor2 anchor, raylib::Rectangle boundingBox) {
     BeginScissorMode(boundingBox.x, boundingBox.y, boundingBox.width, boundingBox.height);
     DrawRectangleRounded(GetAnchoredRect(rect, anchor, boundingBox), edgeRadius, 5, fillColor);
-    DrawRectangleRoundedLines(GetAnchoredRect(rect, anchor, boundingBox), edgeRadius, 5, borderSize, borderColor);
+    DrawRectangleRoundedLinesEx(GetAnchoredRect(rect, anchor, boundingBox), edgeRadius, 5, borderSize, borderColor);
     EndScissorMode();
 
 }
