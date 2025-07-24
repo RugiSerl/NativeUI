@@ -12,7 +12,7 @@ class UIComponent {
         Anchor2 anchor;
         void Hide();
         void Show();
-        void UpdateAndDraw(raylib::Rectangle BoundingBox = GetScreenBoundingbox());
+        virtual void UpdateAndDraw(raylib::Rectangle BoundingBox = GetScreenBoundingbox());
         void RemoveChild(UIComponent* component);
         void RemoveChild(int index);
         int GetChildrenCount();
