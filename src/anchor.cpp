@@ -1,5 +1,6 @@
 #include "anchor.hpp"
 #include <iostream>
+#include <stdexcept>
 
 raylib::Rectangle GetScreenBoundingbox() {
     return raylib::Rectangle(0, 0, GetScreenWidth(), GetScreenHeight());
@@ -23,7 +24,8 @@ raylib::Rectangle GetAnchoredRect(raylib::Rectangle rect, Anchor2 anchor, raylib
         res.width = boundingBox.width;
         break;
     default:
-        std::cerr << "Incorrect value for horizontal anchor" << std::endl;
+        throw std::invalid_argument("incorrect value for horizontal anchor");
+
     }
 
     switch (anchor.vertical)
@@ -43,11 +45,7 @@ raylib::Rectangle GetAnchoredRect(raylib::Rectangle rect, Anchor2 anchor, raylib
         break;
         
     default:
-        std::cerr << "Incorrect value for vertical anchor" << std::endl;
+        throw std::invalid_argument("incorrect value for vertical anchor");
     }
     return res;
-}
-
-raylib::Rectangle GetAnchoredRect(raylib::Rectangle rect, Anchor2 anchor) {
-    return GetAnchoredRect(rect, anchor, GetScreenBoundingbox());
 }

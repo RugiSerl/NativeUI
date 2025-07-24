@@ -2,7 +2,9 @@
 #define __UITRANSLATABLEPANEL__H__
 #include "UISelectablePanel.hpp"
 
-
+/**
+ * A Panel allowing translation with mouse movement, when holding left mouse button
+ */
 class UITranslatablePanel : public UISelectablePanel {
     public:
         UITranslatablePanel(raylib::Rectangle r, Anchor2 a, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX) : UISelectablePanel(r, a, normalStylebox, selectedStylebox), translating(false){};

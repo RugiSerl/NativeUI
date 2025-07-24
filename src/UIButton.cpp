@@ -1,12 +1,15 @@
 #include "UIButton.hpp"
 #include <iostream>
 
-UIButton::UIButton(raylib::Rectangle r, Anchor2 a, UIStylebox normalStylebox, UIStylebox selectedStylebox, UIStylebox hoveredStylebox, UIStylebox downStylebox) : UISelectablePanel(r, a, normalStylebox, selectedStylebox), 
+
+UIButton::UIButton(raylib::Rectangle r, Anchor2 a, std::function<void (void)> callback, UIStylebox normalStylebox, UIStylebox selectedStylebox, UIStylebox hoveredStylebox, UIStylebox downStylebox) :
+    UISelectablePanel(r, a, normalStylebox, selectedStylebox), 
     hoveredStylebox(hoveredStylebox),
     downStylebox(downStylebox),
     pressed(false),
     hovered(false),
-    down(false){};
+    down(false),
+    onClick(callback){};
 
 void UIButton::update(raylib::Rectangle boundingBox) {
     UISelectablePanel::update(boundingBox);
@@ -21,6 +24,7 @@ void UIButton::update(raylib::Rectangle boundingBox) {
         if (raylib::Mouse::IsButtonReleased(MOUSE_BUTTON_LEFT) && this->down) {
             this->down = false; 
             this->pressed = true; // activates when user releases button
+            this->onClick();
         }
 
     } else {

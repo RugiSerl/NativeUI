@@ -17,8 +17,11 @@ class Anchor2 {
 };
 
 raylib::Rectangle GetScreenBoundingbox();
-raylib::Rectangle GetAnchoredRect(raylib::Rectangle rect, Anchor2 anchor, raylib::Rectangle BoundingBox);
-raylib::Rectangle GetAnchoredRect(raylib::Rectangle rect, Anchor2 anchor);
+
+/**
+ * Get the screen coordinates of the rectangle
+ */
+raylib::Rectangle GetAnchoredRect(raylib::Rectangle rect, Anchor2 anchor, raylib::Rectangle BoundingBox = GetScreenBoundingbox());
 
 
 #endif

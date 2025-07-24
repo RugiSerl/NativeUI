@@ -3,6 +3,9 @@
 #include "UIStylebox.hpp"
 #include "UIPanel.hpp"
 
+/**
+ * A Panel selectable when clicked upon, and handling overlapping with other selectable panels.
+ */
 class UISelectablePanel : public UIPanel {
     public:
         UISelectablePanel(raylib::Rectangle r, Anchor2 a, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX);

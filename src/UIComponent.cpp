@@ -4,7 +4,7 @@
 #include <algorithm>
 
 
-UIComponent::UIComponent(raylib::Rectangle r, Anchor2 a) {
+UIComponent::UIComponent(raylib::Rectangle r, Anchor2 a, UIComponent* parent, UIComponent* root) {
     rect = r;
     anchor = a;
     parent = NULL;
@@ -16,8 +16,8 @@ void UIComponent::AddChild(UIComponent* child) {
     child->parent = this;
     child->root = this->root;
     this->children.push_back(child);
-    
 }
+
 void UIComponent::RemoveChild(UIComponent* child) {
     children.erase(std::remove(children.begin(), children.end(), child), children.end());
 }
@@ -29,7 +29,7 @@ int UIComponent::GetChildrenCount() {
 UIComponent* UIComponent::GetChild(int index) {
     return this->children.at(index);
 }
-
+// Recursively call update and draw for the component and its children. Call this once.
 void UIComponent::UpdateAndDraw(raylib::Rectangle boundingBox) {
     if (visible) {
         update(boundingBox);

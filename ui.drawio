@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="Page-1" id="61QQNYsOokvxHtRcwMJi">
-        <mxGraphModel dx="1595" dy="432" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1634" dy="455" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -279,6 +279,9 @@
                 </mxCell>
                 <mxCell id="9" value="UIComponent secondSide" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="6">
                     <mxGeometry y="78" width="240" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="NativeUI relies a lot on boundingBox.&lt;div&gt;BoundingBox define a rectangle&lt;/div&gt;&lt;div&gt;in the space in which a component&lt;/div&gt;&lt;div&gt;and its children will be restrained.&lt;/div&gt;&lt;div&gt;Every component is inside the&lt;/div&gt;&lt;div&gt;parent&#39;s rectangle&lt;/div&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-620" y="380" width="280" height="230" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

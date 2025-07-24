@@ -8,7 +8,9 @@ enum splitType {
     VERTICAL_SPLIT,
     HORIZONTAL_SPLIT,
 };
-
+/**
+ * A panel dividing its content in two part, either left and right or top and bottom.
+ */
 class UISplit : public UISelectablePanel {
     public:
         UISplit(raylib::Rectangle r, Anchor2 a, splitType type, Anchor barAnchor, float barOffset, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX);
@@ -22,8 +24,8 @@ class UISplit : public UISelectablePanel {
         // One of Anchor's member will be FILL. It will depend on the split type.
         Anchor2 barAnchor;
 
-        UIComponent firstSide;
-        UIComponent secondSide;
+        UISelectablePanel* firstSide;
+        UISelectablePanel* secondSide;
         
 };
 
