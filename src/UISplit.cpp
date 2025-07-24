@@ -11,8 +11,6 @@ UISplit::UISplit(raylib::Rectangle r, Anchor2 a, splitType type, Anchor barAncho
     }
     firstSide = new UISelectablePanel(raylib::Rectangle(0), Anchor2{FILL, FILL});
     secondSide = new UISelectablePanel(raylib::Rectangle(0), Anchor2{FILL, FILL});
-    firstSide->SetAsChild(this);
-    secondSide->SetAsChild(this);
 
 }
 void UISplit::AddChild(UIComponent* child, int side) {
