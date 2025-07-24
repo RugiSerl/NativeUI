@@ -4,6 +4,7 @@
 
 enum Anchor {
     CENTER,
+    FILL,
     LEFT,
     RIGHT,
     TOP,

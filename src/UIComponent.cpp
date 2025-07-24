@@ -34,12 +34,9 @@ void UIComponent::UpdateAndDraw(raylib::Rectangle boundingBox) {
         update(boundingBox);
         draw(boundingBox);
         raylib::Rectangle componentRect = GetAnchoredRect(rect, anchor, boundingBox);
-        //BeginScissorMode(componentRect.GetX(), componentRect.GetY(), componentRect.GetWidth(), componentRect.GetHeight());
         for (UIComponent* child : children) {
             child->UpdateAndDraw(componentRect);
         }
-        //EndScissorMode();
-        
         
     }
 }

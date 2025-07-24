@@ -6,7 +6,7 @@ raylib::Rectangle GetScreenBoundingbox() {
 }
 
 raylib::Rectangle GetAnchoredRect(raylib::Rectangle rect, Anchor2 anchor, raylib::Rectangle boundingBox) {
-    raylib::Rectangle res(rect.GetSize()); // size doesn't change
+    raylib::Rectangle res(rect.GetSize());
     switch (anchor.horizontal)
     {
     case LEFT:
@@ -17,7 +17,10 @@ raylib::Rectangle GetAnchoredRect(raylib::Rectangle rect, Anchor2 anchor, raylib
         break;
     case CENTER:
         res.x = boundingBox.x + boundingBox.width/2.0f - rect.width/2.0f + rect.x;
-
+        break;
+    case FILL:
+        res.x = boundingBox.x; 
+        res.width = boundingBox.width;
         break;
     default:
         std::cerr << "Incorrect value for horizontal anchor" << std::endl;
@@ -34,6 +37,11 @@ raylib::Rectangle GetAnchoredRect(raylib::Rectangle rect, Anchor2 anchor, raylib
     case CENTER:
         res.y = boundingBox.y + boundingBox.height/2.0f - rect.height/2.0f + rect.y;
         break;
+    case FILL:
+        res.y = boundingBox.y; 
+        res.height = boundingBox.height;
+        break;
+        
     default:
         std::cerr << "Incorrect value for vertical anchor" << std::endl;
     }

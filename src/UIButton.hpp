@@ -7,7 +7,7 @@ class UIButton : public UISelectablePanel {
         UIButton(raylib::Rectangle r, Anchor2 a, UIStylebox normalStylebox, UIStylebox selectedStylebox, UIStylebox hoveredStylebox, UIStylebox downStylebox);
         bool pressed, hovered, down;
         UIStylebox hoveredStylebox, downStylebox;
-        static void OnClickCallback(UIButton* thisPointer);
+        static void OnClickCallback(UIButton* thisPointer); // TODO
     protected:
         virtual void update(raylib::Rectangle boundingBox) override;
         virtual void draw(raylib::Rectangle boundingBox) override;
