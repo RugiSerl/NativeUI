@@ -35,9 +35,11 @@ int main() {
         // Draw
         BeginDrawing();
         ClearBackground(RAYWHITE);
-        selectable.UpdateAndDraw();
+	    selectable.UpdateAndDraw();
+        DrawFPS(0, 0);
         EndDrawing();
     }
+    CloseWindow();
 
     return 0;
 }

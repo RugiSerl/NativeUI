@@ -21,7 +21,7 @@ void UISplit::UpdateAndDraw(raylib::Rectangle boundingBox) {
         raylib::Rectangle firstCategoryRect();
         raylib::Rectangle secondCategoryRect();
 
-
+        
 
         for (UIComponent* child: this->children) {
             child->UpdateAndDraw(boundingBox);

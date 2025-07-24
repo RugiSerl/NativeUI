@@ -5,7 +5,7 @@
 
 class UITranslatablePanel : public UISelectablePanel {
     public:
-        UITranslatablePanel(raylib::Rectangle r, Anchor2 a, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX) : UISelectablePanel(r, a, normalStylebox, selectedStylebox) {};
+        UITranslatablePanel(raylib::Rectangle r, Anchor2 a, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX) : UISelectablePanel(r, a, normalStylebox, selectedStylebox), translating(false){};
 
     protected:
         bool translating;

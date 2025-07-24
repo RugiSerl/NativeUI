@@ -70,5 +70,6 @@
         "variant": "cpp",
         "format": "cpp",
         "stdfloat": "cpp"
-    }
+    },
+    "cmake.ignoreCMakeListsMissing": true
 }

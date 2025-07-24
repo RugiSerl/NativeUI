@@ -8,18 +8,18 @@ void UITranslatablePanel::update(raylib::Rectangle boundingBox) {
         this->translating = false;
     }
     if (this->translating) {
-        this->rect.x += raylib::Mouse::GetDelta().x;
-        this->rect.y -= raylib::Mouse::GetDelta().y;
+        this->rect.x += GetMouseDelta().x;
+        this->rect.y -= GetMouseDelta().y;
     }
     
 }
 
 void UITranslatablePanel::draw(raylib::Rectangle boundingBox) {
-    if (UISelectablePanel::getMouseCollision(boundingBox)) {
+    /*if (UISelectablePanel::getMouseCollision(boundingBox)) {
         SetMouseCursor(MOUSE_CURSOR_RESIZE_ALL);
     } else {
         SetMouseCursor(MOUSE_CURSOR_DEFAULT);
-    }
+    }*/
 
     UISelectablePanel::draw(boundingBox);
 }
