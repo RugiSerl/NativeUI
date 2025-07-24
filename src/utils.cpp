@@ -9,3 +9,7 @@ template<class T> std::vector<T> rotateVector(std::vector<T> vector, unsigned in
     }
     return newVector;
 }
+
+raylib::Rectangle getInnerRect(raylib::Rectangle rect, float width) {
+    return raylib::Rectangle(rect.x+width, rect.y+width, rect.width-2*width, rect.height-2*width);
+}

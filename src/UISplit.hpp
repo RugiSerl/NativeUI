@@ -2,7 +2,7 @@
 #define __UISPLIT_H__
 #include "UISelectablePanel.hpp"
 
-#define BAR_WIDTH 2 // px
+#define BAR_WIDTH 1 // px
 
 enum splitType {
     VERTICAL_SPLIT,
@@ -13,6 +13,7 @@ class UISplit : public UISelectablePanel {
     public:
         UISplit(raylib::Rectangle r, Anchor2 a, splitType type, Anchor barAnchor, float barOffset, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX);
         void UpdateAndDraw(raylib::Rectangle BoundingBox = GetScreenBoundingbox()) override;
+        void AddChild(UIComponent* child, int side);
     protected:
         splitType type;
 
@@ -20,11 +21,10 @@ class UISplit : public UISelectablePanel {
         float barOffset;
         // One of Anchor's member will be FILL. It will depend on the split type.
         Anchor2 barAnchor;
+
+        UIComponent firstSide;
+        UIComponent secondSide;
         
-        // we already have UIComponent's children, so by adding this we have now two category.
-        // For horizontal split, thoses categories will be left and right
-        // For vertical split, thoses categories will be top and bottom
-        std::vector<UIComponent*> secondCategoryChildren;
 };
 
 
