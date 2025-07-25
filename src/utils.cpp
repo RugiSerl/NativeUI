@@ -14,6 +14,5 @@ std::vector<T> rotateVector(std::vector<T> vector, unsigned int offset) {
 }
 
 raylib::Rectangle getInnerRect(raylib::Rectangle rect, float width) {
-    return raylib::Rectangle(rect.x + width, rect.y + width,
-                             rect.width - 2 * width, rect.height - 2 * width);
+    return raylib::Rectangle(rect.x + width, rect.y + width, rect.width - 2 * width, rect.height - 2 * width);
 }

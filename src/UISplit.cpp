@@ -5,8 +5,7 @@
 UISplit::UISplit(raylib::Rectangle r, Anchor2 a, splitType type,
                  Anchor barAnchor, float barOffset, UIStylebox normalStylebox,
                  UIStylebox selectedStylebox)
-    : UISelectablePanel(r, a, normalStylebox, selectedStylebox), type(type),
-      barOffset(barOffset) {
+    : UISelectablePanel(r, a, normalStylebox, selectedStylebox), type(type), barOffset(barOffset) {
 
     this->barAnchor = Anchor2{barAnchor, barAnchor};
 
@@ -19,6 +18,7 @@ UISplit::UISplit(raylib::Rectangle r, Anchor2 a, splitType type,
 
     firstSide = new UISelectablePanel(raylib::Rectangle(0), Anchor2{FILL, FILL});
     secondSide = new UISelectablePanel(raylib::Rectangle(0), Anchor2{FILL, FILL});
+
 }
 void UISplit::AddChild(UIComponent *child, int side) {
     if (side == 0) {
@@ -42,18 +42,12 @@ void UISplit::UpdateAndDraw(raylib::Rectangle boundingBox) {
         raylib::Rectangle secondSideRect;
 
         if (type == VERTICAL_SPLIT) {
-            firstSideRect = raylib::Rectangle(anchoredRect.x, anchoredRect.y,
-                                              anchoredRect.width, barOffset);
-            secondSideRect = raylib::Rectangle(
-                                 anchoredRect.x, anchoredRect.y + barOffset, anchoredRect.width,
-                                 anchoredRect.height - barOffset);
+            firstSideRect = raylib::Rectangle(anchoredRect.x, anchoredRect.y, anchoredRect.width, barOffset);
+            secondSideRect = raylib::Rectangle(anchoredRect.x, anchoredRect.y + barOffset, anchoredRect.width, anchoredRect.height - barOffset);
 
         } else {
-            firstSideRect = raylib::Rectangle(anchoredRect.x, anchoredRect.y,
-                                              barOffset, anchoredRect.height);
-            secondSideRect = raylib::Rectangle(
-                                 anchoredRect.x + barOffset, anchoredRect.y,
-                                 anchoredRect.width - barOffset, anchoredRect.height);
+            firstSideRect = raylib::Rectangle(anchoredRect.x, anchoredRect.y, barOffset, anchoredRect.height);
+            secondSideRect = raylib::Rectangle( anchoredRect.x + barOffset, anchoredRect.y, anchoredRect.width - barOffset, anchoredRect.height);
         }
 
         firstSide->UpdateAndDraw(firstSideRect);

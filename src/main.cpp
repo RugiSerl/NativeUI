@@ -6,6 +6,7 @@
 #include <iostream>
 #include <raylib-cpp.hpp>
 #include <string>
+#include "graphics.hpp"
 
 void test(void) {
     std::cout << "clicked !" << std::endl;
@@ -19,33 +20,22 @@ int main() {
     SetConfigFlags(FLAG_MSAA_4X_HINT);
 
     // Testing
-    UIPanel selectable(raylib::Rectangle(0.0),
-                       Anchor2{Anchor::FILL, Anchor::FILL});
-    UISplit menusplit(raylib::Rectangle(0), Anchor2{Anchor::FILL, Anchor::FILL},
-                      VERTICAL_SPLIT, Anchor::TOP, 30);
+    UIPanel selectable(raylib::Rectangle(0.0), Anchor2{Anchor::FILL, Anchor::FILL});
+    UISplit menusplit(raylib::Rectangle(0), Anchor2{Anchor::FILL, Anchor::FILL}, VERTICAL_SPLIT, Anchor::TOP, 30);
     selectable.AddChild(&menusplit);
-    UISplit navigatorSplit(raylib::Rectangle(0),
-                           Anchor2{Anchor::FILL, Anchor::FILL}, HORIZONTAL_SPLIT,
-                           Anchor::LEFT, 400);
+    UISplit navigatorSplit(raylib::Rectangle(0), Anchor2{Anchor::FILL, Anchor::FILL}, HORIZONTAL_SPLIT, Anchor::LEFT, 400);
     menusplit.AddChild(&navigatorSplit, 1);
 
     UITranslatablePanel translatable(raylib::Rectangle(40.0, 40.0, 50.0, 50.0));
     UISelectablePanel selectable2(raylib::Rectangle(-20, 20.0, 50.0, 50.0),
                                   Anchor2{Anchor::CENTER, Anchor::TOP});
     UIStylebox stylebox = UIStylebox(1, 0, WHITE, BLACK);
-    UIButton button(raylib::Rectangle(-20.0, 20.0, 50.0, 50.0),
-                    Anchor2{Anchor::LEFT, Anchor::TOP}, test,
-                    DEFAULT_PANEL_STYLEBOX, DEFAULT_SELECTED_STYLEBOX,
-                    UIStylebox(1, 0, WHITE, GRAY), stylebox);
+    UIButton button(raylib::Rectangle(-20.0, 20.0, 50.0, 50.0), Anchor2{Anchor::LEFT, Anchor::TOP}, test, DEFAULT_PANEL_STYLEBOX, DEFAULT_SELECTED_STYLEBOX, UIStylebox(1, 0, WHITE, GRAY), stylebox);
     navigatorSplit.AddChild(&button, 0);
-    UICheckbox checkbox(raylib::Rectangle(50, 20.0, 50.0, 50.0),
-                        Anchor2{Anchor::LEFT, Anchor::TOP},
-                        DEFAULT_PANEL_STYLEBOX, DEFAULT_SELECTED_STYLEBOX,
-                        UIStylebox(1, 0, WHITE, GRAY), stylebox);
+    UICheckbox checkbox(raylib::Rectangle(50, 20.0, 50.0, 50.0), Anchor2{Anchor::LEFT, Anchor::TOP}, DEFAULT_PANEL_STYLEBOX, DEFAULT_SELECTED_STYLEBOX, UIStylebox(1, 0, WHITE, GRAY), stylebox);
+
     navigatorSplit.AddChild(&checkbox, 0);
-
     navigatorSplit.AddChild(&selectable2, 0);
-
     navigatorSplit.AddChild(&translatable, 0);
 
     raylib::Color textColor(LIGHTGRAY);
@@ -61,6 +51,9 @@ int main() {
         BeginDrawing();
         ClearBackground(RAYWHITE);
         selectable.UpdateAndDraw();
+
+        DrawRoundedRectangle(raylib::Rectangle(100, 200, 200, 100), 7, Color{0, 0, 0, 128});
+        DrawRoundedRectangleLines(raylib::Rectangle(100, 200, 200, 100), 7, Color{0, 0, 0, 255}, 3);
         DrawFPS(0, 0);
         EndDrawing();
     }

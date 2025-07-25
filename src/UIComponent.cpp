@@ -3,8 +3,7 @@
 #include <algorithm>
 #include <iostream>
 
-UIComponent::UIComponent(raylib::Rectangle r, Anchor2 a, UIComponent *parent,
-                         UIComponent *root) {
+UIComponent::UIComponent(raylib::Rectangle r, Anchor2 a, UIComponent *parent, UIComponent *root) {
     rect = r;
     anchor = a;
     parent = NULL;
@@ -19,8 +18,7 @@ void UIComponent::AddChild(UIComponent *child) {
 }
 
 void UIComponent::RemoveChild(UIComponent *child) {
-    children.erase(std::remove(children.begin(), children.end(), child),
-                   children.end());
+    children.erase(std::remove(children.begin(), children.end(), child), children.end());
 }
 
 int UIComponent::GetChildrenCount() {
@@ -37,8 +35,7 @@ void UIComponent::UpdateAndDraw(raylib::Rectangle boundingBox) {
     if (visible) {
         update(boundingBox);
         draw(boundingBox);
-        raylib::Rectangle componentRect =
-            GetAnchoredRect(rect, anchor, boundingBox);
+        raylib::Rectangle componentRect = GetAnchoredRect(rect, anchor, boundingBox);
 
         for (UIComponent *child : children) {
             child->UpdateAndDraw(componentRect);

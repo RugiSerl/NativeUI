@@ -11,8 +11,7 @@ UISelectablePanel::UISelectablePanel(raylib::Rectangle r, Anchor2 a,
 void UISelectablePanel::update(raylib::Rectangle boundingBox) {
     if (parent == NULL) {
         if (raylib::Mouse::IsButtonPressed(MOUSE_BUTTON_LEFT)) {
-            selected = GetAnchoredRect(this->rect, this->anchor, boundingBox)
-                       .CheckCollision(raylib::Mouse::GetPosition());
+            selected = GetAnchoredRect(this->rect, this->anchor, boundingBox).CheckCollision(raylib::Mouse::GetPosition());
         }
 
         return;
@@ -32,7 +31,7 @@ void UISelectablePanel::onSelected() {
         return; // root case
 
     // in case of overlapping, happening only between two siblings because of the
-    // scissor mode restricting area for children put this element at the end - on
+    // scissor mode restricting area for children, put this element at the end - on
     // top
 
     // Removing this object from the parent's childrens (poor guy)
@@ -45,8 +44,7 @@ void UISelectablePanel::onSelected() {
     for (int i = 0; i < this->parent->GetChildrenCount() - 1;
             i++) { // we spare this object, at the back of the vector
         // try downcasting object
-        UISelectablePanel *selectableCasted =
-            dynamic_cast<UISelectablePanel *>(this->parent->GetChild(i));
+        UISelectablePanel *selectableCasted = dynamic_cast<UISelectablePanel *>(this->parent->GetChild(i));
 
         if (selectableCasted) { // is selectable ?
             selectableCasted->selected = false;
@@ -55,8 +53,7 @@ void UISelectablePanel::onSelected() {
 
     // Do this for parents as well
     if (this->parent != NULL) {
-        UISelectablePanel *selectableCasted =
-            dynamic_cast<UISelectablePanel *>(this->parent);
+        UISelectablePanel *selectableCasted = dynamic_cast<UISelectablePanel *>(this->parent);
 
         if (selectableCasted) { // is selectable ?
             selectableCasted->onSelected();
@@ -66,12 +63,9 @@ void UISelectablePanel::onSelected() {
 // Getting mouse collision between component hitbox, but also making sure that
 // the component is not behind another component
 bool UISelectablePanel::getMouseCollision(raylib::Rectangle boundingBox) {
-    for (int i = this->parent->GetChildrenCount() - 1; i >= 0;
-            i--) { // size > 0 btw, since this already counts as a child
+    for (int i = this->parent->GetChildrenCount() - 1; i >= 0; i--) { // size > 0 btw, since this already counts as a child
         UIComponent *sibling = this->parent->GetChild(i);
-        bool siblingColliding =
-            GetAnchoredRect(sibling->rect, sibling->anchor, boundingBox)
-            .CheckCollision(raylib::Mouse::GetPosition());
+        bool siblingColliding = GetAnchoredRect(sibling->rect, sibling->anchor, boundingBox).CheckCollision(raylib::Mouse::GetPosition());
 
         if (siblingColliding) {
             return this->parent->GetChild(i) == this;

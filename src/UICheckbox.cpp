@@ -3,12 +3,9 @@
 UICheckbox::UICheckbox(raylib::Rectangle r, Anchor2 a,
                        UIStylebox normalStylebox, UIStylebox selectedStylebox,
                        UIStylebox hoveredStylebox, UIStylebox downStylebox)
-    : UIButton(
-          r, a, [this]() {
+    : UIButton(r, a, [this]() {
     value = !value;
-}, normalStylebox, selectedStylebox,
-hoveredStylebox, downStylebox),
-value(false) {};
+}, normalStylebox, selectedStylebox, hoveredStylebox, downStylebox), value(false) {};
 
 void UICheckbox::draw(raylib::Rectangle boundingBox) {
     UIButton::draw(boundingBox);

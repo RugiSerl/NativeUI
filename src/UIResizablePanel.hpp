@@ -3,10 +3,10 @@
 #include "UITranslatablePanel.hpp"
 
 enum resizableDirections {
-    RESIZABLE_NORTH,
-    RESIZABLE_SOUTH,
-    RESIZABLE_EAST,
-    RESIZABLE_WEST,
+    RESIZABLE_NORTH = 0,
+    RESIZABLE_SOUTH = 1,
+    RESIZABLE_EAST = 2,
+    RESIZABLE_WEST = 4,
 };
 
 

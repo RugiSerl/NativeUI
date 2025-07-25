@@ -1,10 +1,7 @@
 #include "UIButton.hpp"
 #include <iostream>
 
-UIButton::UIButton(raylib::Rectangle r, Anchor2 a,
-                   std::function<void(void)> callback,
-                   UIStylebox normalStylebox, UIStylebox selectedStylebox,
-                   UIStylebox hoveredStylebox, UIStylebox downStylebox)
+UIButton::UIButton(raylib::Rectangle r, Anchor2 a, std::function<void(void)> callback, UIStylebox normalStylebox, UIStylebox selectedStylebox, UIStylebox hoveredStylebox, UIStylebox downStylebox)
     : UISelectablePanel(r, a, normalStylebox, selectedStylebox),
       hoveredStylebox(hoveredStylebox), downStylebox(downStylebox),
       pressed(false), hovered(false), down(false), onClick(callback) {};

@@ -4,8 +4,8 @@
 #include <string>
 
 class UiTextEntry : public UISelectablePanel {
-public:
-    std::string text;
+    public:
+        std::string text;
 };
 
 

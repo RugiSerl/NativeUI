@@ -6,8 +6,7 @@ raylib::Rectangle GetScreenBoundingbox() {
     return raylib::Rectangle(0, 0, GetScreenWidth(), GetScreenHeight());
 }
 
-raylib::Rectangle GetAnchoredRect(raylib::Rectangle rect, Anchor2 anchor,
-                                  raylib::Rectangle boundingBox) {
+raylib::Rectangle GetAnchoredRect(raylib::Rectangle rect, Anchor2 anchor, raylib::Rectangle boundingBox) {
     raylib::Rectangle res(rect.GetSize());
 
     switch (anchor.horizontal) {
@@ -20,8 +19,7 @@ raylib::Rectangle GetAnchoredRect(raylib::Rectangle rect, Anchor2 anchor,
         break;
 
     case CENTER:
-        res.x =
-            boundingBox.x + boundingBox.width / 2.0f - rect.width / 2.0f + rect.x;
+        res.x = boundingBox.x + boundingBox.width / 2.0f - rect.width / 2.0f + rect.x;
         break;
 
     case FILL:
@@ -43,8 +41,7 @@ raylib::Rectangle GetAnchoredRect(raylib::Rectangle rect, Anchor2 anchor,
         break;
 
     case CENTER:
-        res.y =
-            boundingBox.y + boundingBox.height / 2.0f - rect.height / 2.0f + rect.y;
+        res.y = boundingBox.y + boundingBox.height / 2.0f - rect.height / 2.0f + rect.y;
         break;
 
     case FILL:

@@ -12,20 +12,20 @@ enum splitType {
  * A panel dividing its content in two part, either left and right or top and bottom.
  */
 class UISplit : public UISelectablePanel {
-public:
-    UISplit(raylib::Rectangle r, Anchor2 a, splitType type, Anchor barAnchor, float barOffset, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX);
-    virtual void UpdateAndDraw(raylib::Rectangle BoundingBox = GetScreenBoundingbox()) override;
-    void AddChild(UIComponent* child, int side);
-protected:
-    splitType type;
+    public:
+        UISplit(raylib::Rectangle r, Anchor2 a, splitType type, Anchor barAnchor, float barOffset, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX);
+        virtual void UpdateAndDraw(raylib::Rectangle BoundingBox = GetScreenBoundingbox()) override;
+        void AddChild(UIComponent* child, int side);
+    protected:
+        splitType type;
 
-    // We need to know where the delimitation is
-    float barOffset;
-    // One of Anchor's member will be FILL. It will depend on the split type.
-    Anchor2 barAnchor;
+        // We need to know where the delimitation is
+        float barOffset;
+        // One of Anchor's member will be FILL. It will depend on the split type.
+        Anchor2 barAnchor;
 
-    UISelectablePanel* firstSide;
-    UISelectablePanel* secondSide;
+        UISelectablePanel* firstSide;
+        UISelectablePanel* secondSide;
 
 };
 
