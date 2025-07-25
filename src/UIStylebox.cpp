@@ -1,6 +1,7 @@
 #include "UIStylebox.hpp"
 
-UIStylebox::UIStylebox(float borderSize, float edgeRadius, Color fillColor, Color borderColor, float shadowDistance) {
+UIStylebox::UIStylebox(float borderSize, float edgeRadius, Color fillColor,
+                       Color borderColor, float shadowDistance) {
     this->borderSize = borderSize;
     this->edgeRadius = edgeRadius;
     this->fillColor = fillColor;
@@ -8,14 +9,18 @@ UIStylebox::UIStylebox(float borderSize, float edgeRadius, Color fillColor, Colo
     this->shadowDistance = shadowDistance;
 }
 
-void UIStylebox::draw(raylib::Rectangle rect, Anchor2 anchor, raylib::Rectangle boundingBox) {
-    BeginScissorMode(boundingBox.x, boundingBox.y, boundingBox.width, boundingBox.height);
+void UIStylebox::draw(raylib::Rectangle rect, Anchor2 anchor,
+                      raylib::Rectangle boundingBox) {
+    BeginScissorMode(boundingBox.x, boundingBox.y, boundingBox.width,
+                     boundingBox.height);
     raylib::Rectangle anchoredRect = GetAnchoredRect(rect, anchor, boundingBox);
-    if (shadowDistance>0) {
+
+    if (shadowDistance > 0) {
         DrawRectangleRounded(anchoredRect, edgeRadius, 5, BLACK);
     }
-    DrawRectangleRounded(anchoredRect, edgeRadius, 5, fillColor);
-    DrawRectangleRoundedLinesEx(anchoredRect, edgeRadius, 5, borderSize, borderColor);
-    EndScissorMode();
 
+    DrawRectangleRounded(anchoredRect, edgeRadius, 5, fillColor);
+    DrawRectangleRoundedLinesEx(anchoredRect, edgeRadius, 5, borderSize,
+                                borderColor);
+    EndScissorMode();
 }

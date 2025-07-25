@@ -7,10 +7,10 @@
 /**
  * Draws a rectangle with rounded corners.
  * @param rect rectangle to draw
- * @param cornerRadius size of the 
+ * @param cornerRadius size of the
  */
 void DrawRoundedRectangle(raylib::Rectangle rect, float cornerRadius) {
-    
+
 }
 
 

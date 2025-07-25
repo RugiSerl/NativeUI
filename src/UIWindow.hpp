@@ -3,7 +3,7 @@
 #include "UISelectablePanel.hpp"
 
 class UIWindow : public UISelectablePanel {
-    
+
 };
 
 

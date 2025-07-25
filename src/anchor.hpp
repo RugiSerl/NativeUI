@@ -12,8 +12,8 @@ enum Anchor {
 };
 
 class Anchor2 {
-    public:
-        Anchor horizontal, vertical;
+public:
+    Anchor horizontal, vertical;
 };
 
 raylib::Rectangle GetScreenBoundingbox();
