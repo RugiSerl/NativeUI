@@ -71,5 +71,8 @@
         "format": "cpp",
         "stdfloat": "cpp"
     },
-    "cmake.ignoreCMakeListsMissing": true
+    "cmake.ignoreCMakeListsMissing": true,
+    "docwriter.style": "Javadoc",
+    "docwriter.progress.trackFunctions": true,
+    "docwriter.progress.trackMethods": false
 }

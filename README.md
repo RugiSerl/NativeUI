@@ -1,6 +1,6 @@
 # NativeUI
 
-Wip oop based ui framework written in cpp with raylib and cpp-bindings. Using [this cpp template](https://github.com/CapsCollective/raylib-cpp-starter)
+Wip oop based ui framework written in cpp with raylib and cpp-bindings. Using [this very awesome cpp template](https://github.com/CapsCollective/raylib-cpp-starter)
 
 ## Getting Started
 
