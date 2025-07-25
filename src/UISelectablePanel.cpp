@@ -41,14 +41,16 @@ void UISelectablePanel::onSelected() {
     this->parent->AddChild(this);
 
     // don't forget to unselect siblings (for selectable objects of course)
-    for (int i = 0; i < this->parent->GetChildrenCount() - 1;
-            i++) { // we spare this object, at the back of the vector
-        // try downcasting object
-        UISelectablePanel *selectableCasted = dynamic_cast<UISelectablePanel *>(this->parent->GetChild(i));
+    for (int i = 0; i < this->parent->GetChildrenCount(); i++) {
+        if (this->parent->GetChild(i) != this) { // don't deselect ourself (it's stupid)
+            // try downcasting object
+            UISelectablePanel *selectableCasted = dynamic_cast<UISelectablePanel *>(this->parent->GetChild(i));
 
-        if (selectableCasted) { // is selectable ?
-            selectableCasted->selected = false;
+            if (selectableCasted) { // is selectable ?
+                selectableCasted->selected = false;
+            }
         }
+
     }
 
     // Do this for parents as well

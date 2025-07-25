@@ -9,7 +9,7 @@
 class UIComponent {
 public:
     UIComponent(raylib::Rectangle r, Anchor2 a, UIComponent* parent = NULL, UIComponent* root = NULL);
-    void AddChild(UIComponent*);
+    void AddChild(UIComponent* child);
     void SetAsChild(UIComponent* parent);
 
     raylib::Rectangle rect; // be careful ! always apply anchor before using it
@@ -28,10 +28,18 @@ protected:
     UIComponent* parent; // NULL if root of the tree
     UIComponent* root;
 
+    // When adding or removing a children, we only do it at the end of the frame to avoid interfering with children updates
+    // For that reason I implemented queue based system.
+    std::vector<UIComponent*> childrenToRemove;
+    std::vector<UIComponent*> childrenToAdd;
+
     bool visible;
     virtual void draw(raylib::Rectangle BoundingBox);
     virtual void update(raylib::Rectangle BoundingBox);
 
+private:
+    void addChild(UIComponent* child);
+    void removeChild(UIComponent* child);
 };
 
 

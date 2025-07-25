@@ -39,9 +39,9 @@ int main() {
     raylib::Color textColor(LIGHTGRAY);
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
 
-    raylib::Window w(screenWidth, screenHeight, "Raylib C++ Starter Kit Example");
+    raylib::Window w(screenWidth, screenHeight, "NativeUI Showcase");
 
-    SetTargetFPS(165);
+    SetTargetFPS(15);
 
     // Main game loop
     while (!w.ShouldClose()) { // Detect window close button or ESC key

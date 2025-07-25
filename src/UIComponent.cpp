@@ -12,12 +12,19 @@ UIComponent::UIComponent(raylib::Rectangle r, Anchor2 a, UIComponent *parent, UI
 }
 
 void UIComponent::AddChild(UIComponent *child) {
+    this->childrenToAdd.push_back(child);
+}
+void UIComponent::RemoveChild(UIComponent *child) {
+    this->childrenToRemove.push_back(child);
+}
+
+void UIComponent::addChild(UIComponent *child) {
     child->parent = this;
     child->root = this->root;
     this->children.push_back(child);
 }
 
-void UIComponent::RemoveChild(UIComponent *child) {
+void UIComponent::removeChild(UIComponent *child) {
     children.erase(std::remove(children.begin(), children.end(), child), children.end());
 }
 
@@ -37,9 +44,22 @@ void UIComponent::UpdateAndDraw(raylib::Rectangle boundingBox) {
         draw(boundingBox);
         raylib::Rectangle componentRect = GetAnchoredRect(rect, anchor, boundingBox);
 
+        // Recursively update
         for (UIComponent *child : children) {
             child->UpdateAndDraw(componentRect);
         }
+
+        // Removing / adding new children
+        for (UIComponent* childToRemove : childrenToRemove) {
+            removeChild(childToRemove);
+        }
+
+        for (UIComponent* childToAdd : childrenToAdd) {
+            addChild(childToAdd);
+        }
+
+        childrenToRemove.clear();
+        childrenToAdd.clear();
     }
 }
 

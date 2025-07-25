@@ -17,6 +17,7 @@ void UIStylebox::draw(raylib::Rectangle rect, Anchor2 anchor, raylib::Rectangle 
     if (shadowDistance > 0) {
         DrawRectangleRounded(anchoredRect, cornerRadius, 5, BLACK);
     }
+
     DrawRoundedRectangle(anchoredRect, cornerRadius, fillColor);
     DrawRoundedRectangleLines(anchoredRect, cornerRadius, borderColor, borderThickness);
     EndScissorMode();
