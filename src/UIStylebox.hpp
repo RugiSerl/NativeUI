@@ -5,8 +5,8 @@
 
 class UIStylebox {
 public:
-    UIStylebox(float borderSize, float edgeRadius, Color fillColor, Color borderColor, float shadowDistance = 0);
-    float borderSize, edgeRadius;
+    UIStylebox(float borderThickness, float cornerRadius, Color fillColor, Color borderColor, float shadowDistance = 0);
+    float borderThickness, cornerRadius;
     Color fillColor, borderColor;
     float shadowDistance;
     Texture2D Image; // optionnal
