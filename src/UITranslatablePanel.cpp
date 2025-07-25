@@ -8,8 +8,7 @@ void UITranslatablePanel::update(raylib::Rectangle boundingBox) {
         this->translating = false;
     }
     if (this->translating) {
-        this->rect.x += GetMouseDelta().x;
-        this->rect.y -= GetMouseDelta().y;
+        this->rect.SetPosition(rect.GetPosition() + raylib::Mouse::GetDelta());
     }
     
 }

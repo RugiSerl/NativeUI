@@ -31,7 +31,7 @@ void UISplit::UpdateAndDraw(raylib::Rectangle boundingBox) {
         
         raylib::Rectangle firstSideRect;
         raylib::Rectangle secondSideRect;
-        if (HORIZONTAL_SPLIT) {
+        if (type == VERTICAL_SPLIT) {
             firstSideRect = raylib::Rectangle(anchoredRect.x, anchoredRect.y, anchoredRect.width, barOffset);
             secondSideRect = raylib::Rectangle(anchoredRect.x, anchoredRect.y+barOffset, anchoredRect.width, anchoredRect.height-barOffset);
         } else {
@@ -45,7 +45,6 @@ void UISplit::UpdateAndDraw(raylib::Rectangle boundingBox) {
         // Draws split bar.
         // Can remove
         GetAnchoredRect(raylib::Rectangle((type==HORIZONTAL_SPLIT)*barOffset, (type==VERTICAL_SPLIT)*barOffset, (type==HORIZONTAL_SPLIT)*BAR_WIDTH, (type==VERTICAL_SPLIT)*BAR_WIDTH), barAnchor, anchoredRect).Draw(LIGHTGRAY);
-
         
     }
 }

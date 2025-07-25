@@ -20,19 +20,23 @@ int main() {
     SetConfigFlags(FLAG_MSAA_4X_HINT);
 
     // Testing
-    UIPanel selectable(raylib::Rectangle(0.0, 20.0, 700.0, 700.0), Anchor2{Anchor::CENTER, Anchor::BOTTOM});
-    UITranslatablePanel translatable(raylib::Rectangle(40.0, 40.0, 50.0, 50.0), Anchor2{Anchor::LEFT, Anchor::BOTTOM});
+    UIPanel selectable(raylib::Rectangle(0.0), Anchor2{Anchor::FILL, Anchor::FILL});
+    UISplit menusplit(raylib::Rectangle(0), Anchor2{Anchor::FILL, Anchor::FILL}, VERTICAL_SPLIT, Anchor::TOP, 30);
+    selectable.AddChild(&menusplit);
+    UISplit navigatorSplit(raylib::Rectangle(0), Anchor2{Anchor::FILL, Anchor::FILL}, HORIZONTAL_SPLIT, Anchor::LEFT, 400);
+    menusplit.AddChild(&navigatorSplit, 1);
+    
+    UITranslatablePanel translatable(raylib::Rectangle(40.0, 40.0, 50.0, 50.0), Anchor2{Anchor::CENTER, Anchor::TOP});
     UISelectablePanel selectable2(raylib::Rectangle(-20, 20.0, 50.0, 50.0), Anchor2{Anchor::CENTER, Anchor::BOTTOM});
     UIStylebox stylebox = UIStylebox(1, 0, WHITE, BLACK);
     UIButton button(raylib::Rectangle(-20.0, 20.0, 50.0, 50.0), Anchor2{Anchor::LEFT, Anchor::TOP}, test, DEFAULT_PANEL_STYLEBOX, DEFAULT_SELECTED_STYLEBOX, UIStylebox(1, 0, WHITE, GRAY), stylebox);
-    selectable.AddChild(&button);
+    navigatorSplit.AddChild(&button, 0);
     UICheckbox checkbox(raylib::Rectangle(50, 20.0, 50.0, 50.0), Anchor2{Anchor::LEFT, Anchor::TOP}, DEFAULT_PANEL_STYLEBOX, DEFAULT_SELECTED_STYLEBOX, UIStylebox(1, 0, WHITE, GRAY), stylebox);
-    selectable.AddChild(&checkbox);
+    navigatorSplit.AddChild(&checkbox, 0);
     
-    selectable.AddChild(&selectable2);
-    UISplit split(raylib::Rectangle(10, 10, 400, 400), Anchor2{Anchor::RIGHT, Anchor::TOP}, VERTICAL_SPLIT, Anchor::TOP, 75);
-    selectable.AddChild(&split);
-    split.AddChild(&translatable, 1);
+    navigatorSplit.AddChild(&selectable2, 0);
+    
+    navigatorSplit.AddChild(&translatable, 0);
 
     raylib::Color textColor(LIGHTGRAY);
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);

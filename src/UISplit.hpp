@@ -14,7 +14,7 @@ enum splitType {
 class UISplit : public UISelectablePanel {
     public:
         UISplit(raylib::Rectangle r, Anchor2 a, splitType type, Anchor barAnchor, float barOffset, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX);
-        void UpdateAndDraw(raylib::Rectangle BoundingBox = GetScreenBoundingbox()) override;
+        virtual void UpdateAndDraw(raylib::Rectangle BoundingBox = GetScreenBoundingbox()) override;
         void AddChild(UIComponent* child, int side);
     protected:
         splitType type;
