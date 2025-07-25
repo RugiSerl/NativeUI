@@ -26,8 +26,8 @@ int main() {
     UISplit navigatorSplit(raylib::Rectangle(0), Anchor2{Anchor::FILL, Anchor::FILL}, HORIZONTAL_SPLIT, Anchor::LEFT, 400);
     menusplit.AddChild(&navigatorSplit, 1);
     
-    UITranslatablePanel translatable(raylib::Rectangle(40.0, 40.0, 50.0, 50.0), Anchor2{Anchor::CENTER, Anchor::TOP});
-    UISelectablePanel selectable2(raylib::Rectangle(-20, 20.0, 50.0, 50.0), Anchor2{Anchor::CENTER, Anchor::BOTTOM});
+    UITranslatablePanel translatable(raylib::Rectangle(40.0, 40.0, 50.0, 50.0));
+    UISelectablePanel selectable2(raylib::Rectangle(-20, 20.0, 50.0, 50.0), Anchor2{Anchor::CENTER, Anchor::TOP});
     UIStylebox stylebox = UIStylebox(1, 0, WHITE, BLACK);
     UIButton button(raylib::Rectangle(-20.0, 20.0, 50.0, 50.0), Anchor2{Anchor::LEFT, Anchor::TOP}, test, DEFAULT_PANEL_STYLEBOX, DEFAULT_SELECTED_STYLEBOX, UIStylebox(1, 0, WHITE, GRAY), stylebox);
     navigatorSplit.AddChild(&button, 0);

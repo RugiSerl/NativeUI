@@ -29,6 +29,7 @@ int UIComponent::GetChildrenCount() {
 UIComponent* UIComponent::GetChild(int index) {
     return this->children.at(index);
 }
+
 // Recursively call update and draw for the component and its children. Call this once.
 void UIComponent::UpdateAndDraw(raylib::Rectangle boundingBox) {
     if (visible) {
@@ -37,8 +38,7 @@ void UIComponent::UpdateAndDraw(raylib::Rectangle boundingBox) {
         raylib::Rectangle componentRect = GetAnchoredRect(rect, anchor, boundingBox);
         for (UIComponent* child : children) {
             child->UpdateAndDraw(componentRect);
-        }
-        
+        } 
     }
 }
 

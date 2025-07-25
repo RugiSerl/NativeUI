@@ -8,17 +8,8 @@ void UITranslatablePanel::update(raylib::Rectangle boundingBox) {
         this->translating = false;
     }
     if (this->translating) {
+        // works because the component is anchored to top left.
         this->rect.SetPosition(rect.GetPosition() + raylib::Mouse::GetDelta());
     }
     
-}
-
-void UITranslatablePanel::draw(raylib::Rectangle boundingBox) {
-    /*if (UISelectablePanel::getMouseCollision(boundingBox)) {
-        SetMouseCursor(MOUSE_CURSOR_RESIZE_ALL);
-    } else {
-        SetMouseCursor(MOUSE_CURSOR_DEFAULT);
-    }*/
-
-    UISelectablePanel::draw(boundingBox);
 }
