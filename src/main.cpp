@@ -17,7 +17,7 @@ int main() {
     // Initialization
     int screenWidth = 1280;
     int screenHeight = 720;
-    SetConfigFlags(FLAG_MSAA_4X_HINT);
+    //SetConfigFlags(FLAG_MSAA_4X_HINT);
 
     // Testing
     UIPanel selectable(raylib::Rectangle(0.0), Anchor2{Anchor::FILL, Anchor::FILL});
@@ -27,8 +27,7 @@ int main() {
     menusplit.AddChild(&navigatorSplit, 1);
 
     UITranslatablePanel translatable(raylib::Rectangle(40.0, 40.0, 50.0, 50.0));
-    UISelectablePanel selectable2(raylib::Rectangle(-20, 20.0, 50.0, 50.0),
-                                  Anchor2{Anchor::CENTER, Anchor::TOP});
+    UISelectablePanel selectable2(raylib::Rectangle(-20, 20.0, 50.0, 50.0), Anchor2{Anchor::CENTER, Anchor::TOP});
     UIStylebox stylebox = UIStylebox(1, 0, WHITE, BLACK);
     UIButton button(raylib::Rectangle(-20.0, 20.0, 50.0, 50.0), Anchor2{Anchor::LEFT, Anchor::TOP}, test, DEFAULT_PANEL_STYLEBOX, DEFAULT_SELECTED_STYLEBOX, UIStylebox(1, 0, WHITE, GRAY), stylebox);
     navigatorSplit.AddChild(&button, 0);
@@ -52,8 +51,6 @@ int main() {
         ClearBackground(RAYWHITE);
         selectable.UpdateAndDraw();
 
-        DrawRoundedRectangle(raylib::Rectangle(100, 200, 200, 100), 7, Color{0, 0, 0, 128});
-        DrawRoundedRectangleLines(raylib::Rectangle(100, 200, 200, 100), 7, Color{0, 0, 0, 255}, 3);
         DrawFPS(0, 0);
         EndDrawing();
     }
