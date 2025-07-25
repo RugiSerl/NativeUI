@@ -2,16 +2,26 @@
 #define __UIRESIZABLEPANEL_H__
 #include "UITranslatablePanel.hpp"
 
+#define RESIZE_LENIENCY 10
+
+
 enum resizableDirections {
-    RESIZABLE_NORTH = 0,
-    RESIZABLE_SOUTH = 1,
-    RESIZABLE_EAST = 2,
-    RESIZABLE_WEST = 4,
+    NOT_RESIZABLE = 0,
+    RESIZABLE_NORTH = 1,
+    RESIZABLE_SOUTH = 2,
+    RESIZABLE_EAST = 4,
+    RESIZABLE_WEST = 8,
 };
 
-
+/**
+ * A panel you can resize by dragging the edges.
+ */
 class UIResizablePanel : public UITranslatablePanel {
-
+public:
+    UIResizablePanel(raylib::Rectangle r, resizableDirections resizableState, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX) : UITranslatablePanel(r, normalStylebox, selectedStylebox), resizableState(resizableState) {};
+protected:
+    resizableDirections resizableState;
+    virtual void update(raylib::Rectangle boundingBox) override;
 };
 
 

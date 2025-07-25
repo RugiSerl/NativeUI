@@ -7,6 +7,7 @@
 #include <raylib-cpp.hpp>
 #include <string>
 #include "graphics.hpp"
+#include "UIResizablePanel.hpp"
 
 void test(void) {
     std::cout << "clicked !" << std::endl;
@@ -32,6 +33,9 @@ int main() {
     navigatorSplit.AddChild(&button, 0);
     UICheckbox checkbox(raylib::Rectangle(50, 20.0, 50.0, 50.0), Anchor2{Anchor::LEFT, Anchor::TOP}, DEFAULT_PANEL_STYLEBOX, DEFAULT_SELECTED_STYLEBOX, DEFAULT_HOVER_STYLEBOX, DEFAULT_BUTTON_DOWN_STYLEBOX);
 
+    UIResizablePanel panel(raylib::Rectangle(40.0, 40.0, 50.0, 50.0), RESIZABLE_SOUTH);
+
+    navigatorSplit.AddChild(&panel, 1);
     navigatorSplit.AddChild(&checkbox, 0);
     navigatorSplit.AddChild(&selectable2, 0);
     navigatorSplit.AddChild(&translatable, 0);
