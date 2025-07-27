@@ -1,6 +1,9 @@
 # NativeUI
+<p align="center">
+<img src="icon.svg" height="100" alt="NativeUI icon">
 
 Wip oop based ui framework written in cpp with raylib and cpp-bindings. Using [this very awesome cpp template](https://github.com/CapsCollective/raylib-cpp-starter)
+</p>
 
 ## Getting Started
 

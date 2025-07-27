@@ -15,6 +15,7 @@ void UISelectablePanel::update(raylib::Rectangle boundingBox) {
         }
 
         return;
+        
     }
 
     if (raylib::Mouse::IsButtonPressed(MOUSE_BUTTON_LEFT)) {
