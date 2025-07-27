@@ -15,7 +15,7 @@ void UISelectablePanel::update(raylib::Rectangle boundingBox) {
         }
 
         return;
-        
+
     }
 
     if (raylib::Mouse::IsButtonPressed(MOUSE_BUTTON_LEFT)) {
@@ -68,9 +68,12 @@ void UISelectablePanel::onSelected() {
 bool UISelectablePanel::getMouseCollision(raylib::Rectangle boundingBox) {
     for (int i = this->parent->GetChildrenCount() - 1; i >= 0; i--) { // size > 0 btw, since this already counts as a child
         UIComponent *sibling = this->parent->GetChild(i);
-        bool siblingColliding = GetAnchoredRect(sibling->rect, sibling->anchor, boundingBox).CheckCollision(raylib::Mouse::GetPosition());
 
-        if (siblingColliding) {
+        // By taking intersection, we avoid selecting an item outside of its bounding box
+        raylib::Rectangle siblingRect = GetAnchoredRect(sibling->rect, sibling->anchor, boundingBox);
+        bool siblingColliding = siblingRect.CheckCollision(raylib::Mouse::GetPosition());
+
+        if (siblingColliding && boundingBox.CheckCollision(raylib::Mouse::GetPosition())) {
             return this->parent->GetChild(i) == this;
         }
     }

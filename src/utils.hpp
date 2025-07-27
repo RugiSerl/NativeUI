@@ -5,5 +5,5 @@
 
 template<class T> std::vector<T> rotateVector(std::vector<T> vector, int offset);
 raylib::Rectangle getInnerRect(raylib::Rectangle, float);
-
+raylib::Rectangle getRectangleIntersection(raylib::Rectangle r1, raylib::Rectangle r2);
 #endif // !__UTILS_H__

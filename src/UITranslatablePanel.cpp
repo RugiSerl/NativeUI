@@ -3,8 +3,7 @@
 void UITranslatablePanel::update(raylib::Rectangle boundingBox) {
     UISelectablePanel::update(boundingBox);
 
-    if (UISelectablePanel::getMouseCollision(boundingBox) &&
-            IsMouseButtonDown(MOUSE_BUTTON_LEFT) && selected) {
+    if (UISelectablePanel::getMouseCollision(boundingBox) && IsMouseButtonDown(MOUSE_BUTTON_LEFT) && selected) {
         this->translating = true;
 
     } else if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
