@@ -21,12 +21,23 @@ struct RectangleSplitted {
     // corner rectangles
     raylib::Rectangle TopLeftCorner;
     raylib::Rectangle TopRightCorner;
-    raylib::Rectangle BottomRightCorner;
     raylib::Rectangle BottomLeftCorner;
+    raylib::Rectangle BottomRightCorner;
 };
 
 template<class T> std::vector<T> rotateVector(std::vector<T> vector, int offset);
 raylib::Rectangle getInnerRect(raylib::Rectangle, float);
+
+
+/**
+ * Splits our rectangle into a grid of 9 rectangles, with a rectangle inside it defining the central cell of the grid
+ *
+ *  ___________
+ * |__|______|_|
+ * |__|center|_|
+ * |__|______|_|
+ *
+ */
 RectangleSplitted GetSplittedRectangle(raylib::Rectangle outerRectangle, raylib::Rectangle innerRectangle);
 raylib::Rectangle getRectangleIntersection(raylib::Rectangle r1, raylib::Rectangle r2);
 #endif // !__UTILS_H__

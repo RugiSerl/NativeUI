@@ -26,16 +26,27 @@ raylib::Rectangle getRectangleIntersection(raylib::Rectangle r1, raylib::Rectang
 RectangleSplitted GetSplittedRectangle(raylib::Rectangle outerRectangle, raylib::Rectangle innerRectangle) {
     // Making sure that innerRectangle is inside of outerRectangle
     if (innerRectangle.x > outerRectangle.x &&
-        innerRectangle.y > outerRectangle.y &&
-        innerRectangle.x+innerRectangle.width < outerRectangle.x+outerRectangle.width &&
-        innerRectangle.y+innerRectangle.height < outerRectangle.y+outerRectangle.height) 
-    {  
+            innerRectangle.y > outerRectangle.y &&
+            innerRectangle.x + innerRectangle.width < outerRectangle.x + outerRectangle.width &&
+            innerRectangle.y + innerRectangle.height < outerRectangle.y + outerRectangle.height) {
+        // There is probably a better way to do this
         return RectangleSplitted{
-            LeftRect: raylib::Rectangle(outerRectangle.x, innerRectangle.y, innerRectangle.x-outerRectangle.x, innerRectangle.height),
-            RightRect: raylib::Rectangle(innerRectangle.x+innerRectangle.width, innerRectangle.y, innerRectangle.x-outerRectangle.x, innerRectangle.y),
-            TopRect: raylib::Rectangle(innerRectangle.x, innerRectangle.y, innerRectangle.x-outerRectangle.x, innerRectangle.y),
-            BottomRect: raylib::Rectangle(outerRectangle.x, innerRectangle.y, innerRectangle.x-outerRectangle.x, innerRectangle.y),
-
+LeftRect:
+            raylib::Rectangle(outerRectangle.x, innerRectangle.y, innerRectangle.x - outerRectangle.x, innerRectangle.height),
+RightRect:
+            raylib::Rectangle(innerRectangle.x + innerRectangle.width, innerRectangle.y, outerRectangle.x + outerRectangle.width - (innerRectangle.x + innerRectangle.width), innerRectangle.height),
+TopRect:
+            raylib::Rectangle(innerRectangle.x, outerRectangle.y, innerRectangle.width, innerRectangle.y - outerRectangle.y),
+BottomRect:
+            raylib::Rectangle(innerRectangle.x, innerRectangle.height + innerRectangle.y, innerRectangle.width, outerRectangle.y + outerRectangle.height - (innerRectangle.y + innerRectangle.height)),
+TopLeftCorner:
+            raylib::Rectangle(outerRectangle.x, outerRectangle.y, innerRectangle.x - outerRectangle.x, innerRectangle.y - outerRectangle.y),
+TopRightCorner:
+            raylib::Rectangle(innerRectangle.x + innerRectangle.width, outerRectangle.y, outerRectangle.x + outerRectangle.width - (innerRectangle.x + innerRectangle.width), innerRectangle.y - outerRectangle.y),
+BottomLeftCorner:
+            raylib::Rectangle(outerRectangle.x, innerRectangle.y + innerRectangle.width, innerRectangle.x - outerRectangle.x, outerRectangle.y + outerRectangle.height - (innerRectangle.y + innerRectangle.height)),
+BottomRightCorner:
+            raylib::Rectangle(innerRectangle.x + innerRectangle.width, innerRectangle.y + innerRectangle.height, outerRectangle.x + outerRectangle.width - (innerRectangle.x + innerRectangle.width), outerRectangle.y + outerRectangle.height - (innerRectangle.y + innerRectangle.height)),
         };
 
     } else {

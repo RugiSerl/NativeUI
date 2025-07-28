@@ -8,6 +8,7 @@
 #include <string>
 #include "graphics.hpp"
 #include "UIResizablePanel.hpp"
+#include "cursor.hpp"
 
 void test(void) {
     std::cout << "clicked !" << std::endl;
@@ -33,10 +34,10 @@ int main() {
     navigatorSplit.AddChild(&button, 0);
     UICheckbox checkbox(raylib::Rectangle(50, 20.0, 50.0, 50.0), Anchor2{Anchor::LEFT, Anchor::TOP}, DEFAULT_PANEL_STYLEBOX, DEFAULT_SELECTED_STYLEBOX, DEFAULT_HOVER_STYLEBOX, DEFAULT_BUTTON_DOWN_STYLEBOX);
 
-    UIResizablePanel panel(raylib::Rectangle(40.0, 40.0, 50.0, 50.0), RESIZABLE_SOUTH);
+    UIResizablePanel panel(raylib::Rectangle(40.0, 40.0, 200.0, 200.0), resizableDirections::BOTTOM, raylib::Vector2(40, 40));
 
-    navigatorSplit.AddChild(&panel, 1);
-    navigatorSplit.AddChild(&checkbox, 0);
+    navigatorSplit.AddChild(&panel, 0);
+    panel.AddChild(&checkbox);
     navigatorSplit.AddChild(&selectable2, 0);
     navigatorSplit.AddChild(&translatable, 0);
 
@@ -49,12 +50,14 @@ int main() {
     // Main game loop
     while (!w.ShouldClose()) { // Detect window close button or ESC key
         // Draw
+        SetCursor(MOUSE_CURSOR_DEFAULT);
         BeginDrawing();
         ClearBackground(RAYWHITE);
         selectable.UpdateAndDraw();
 
         DrawFPS(0, 0);
         EndDrawing();
+        UpdateCursorState();
     }
 
     CloseWindow();

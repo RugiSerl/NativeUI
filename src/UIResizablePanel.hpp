@@ -5,12 +5,12 @@
 #define RESIZE_LENIENCY 10
 
 
-enum resizableDirections {
-    NOT_RESIZABLE = 0,
-    RESIZABLE_NORTH = 1,
-    RESIZABLE_SOUTH = 2,
-    RESIZABLE_EAST = 4,
-    RESIZABLE_WEST = 8,
+enum class resizableDirections : u_int8_t {
+    NONE = 0,
+    TOP = 1,
+    BOTTOM = 2,
+    LEFT = 4,
+    RIGHT = 8,
 };
 
 /**
@@ -18,9 +18,10 @@ enum resizableDirections {
  */
 class UIResizablePanel : public UITranslatablePanel {
 public:
-    UIResizablePanel(raylib::Rectangle r, resizableDirections resizableConstraints, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX) : UITranslatablePanel(r, normalStylebox, selectedStylebox), resizableConstraints(resizableConstraints) {};
+    UIResizablePanel(raylib::Rectangle r, resizableDirections resizableConstraints, Vector2 minSize = raylib::Vector2(0, 0), UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX) : UITranslatablePanel(r, normalStylebox, selectedStylebox), resizableConstraints(resizableConstraints), minSize(minSize) {};
 protected:
-    resizableDirections resizeState;
+    Vector2 minSize;
+    resizableDirections resizeState = resizableDirections::NONE;
     resizableDirections resizableConstraints;
     virtual void update(raylib::Rectangle boundingBox) override;
 };

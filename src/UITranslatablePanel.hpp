@@ -9,8 +9,9 @@
 class UITranslatablePanel : public UISelectablePanel {
 public:
     UITranslatablePanel(raylib::Rectangle r, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX) : UISelectablePanel(r, Anchor2{LEFT, TOP}, normalStylebox, selectedStylebox), translating(false) {};
-    bool canBeTranslated = true;
+    bool allowedToBeTranslated = true;
 protected:
+    bool canBeTranslated(raylib::Rectangle boundingBox);
     bool translating;
     raylib::Vector2 offset;
     virtual void update(raylib::Rectangle boundingBox) override;
