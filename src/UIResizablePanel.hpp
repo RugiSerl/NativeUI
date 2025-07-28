@@ -18,9 +18,10 @@ enum resizableDirections {
  */
 class UIResizablePanel : public UITranslatablePanel {
 public:
-    UIResizablePanel(raylib::Rectangle r, resizableDirections resizableState, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX) : UITranslatablePanel(r, normalStylebox, selectedStylebox), resizableState(resizableState) {};
+    UIResizablePanel(raylib::Rectangle r, resizableDirections resizableConstraints, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX) : UITranslatablePanel(r, normalStylebox, selectedStylebox), resizableConstraints(resizableConstraints) {};
 protected:
-    resizableDirections resizableState;
+    resizableDirections resizeState;
+    resizableDirections resizableConstraints;
     virtual void update(raylib::Rectangle boundingBox) override;
 };
 

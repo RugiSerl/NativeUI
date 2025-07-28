@@ -15,7 +15,6 @@ void DrawRoundedRectangle(raylib::Rectangle rect, float cornerRadius, Color colo
     DrawCircleSector(rect.GetPosition() + raylib::Vector2(cornerRadius, rect.height - cornerRadius), cornerRadius, 90, 180, 5, color);
     // Bottom right
     DrawCircleSector(rect.GetPosition() + raylib::Vector2(rect.width - cornerRadius, rect.height - cornerRadius), cornerRadius, 0, 90, 5, color);
-
 }
 
 void DrawRoundedRectangleLines(raylib::Rectangle rect, float cornerRadius, Color color, float thickness) {

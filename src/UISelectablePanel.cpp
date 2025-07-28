@@ -63,13 +63,11 @@ void UISelectablePanel::onSelected() {
         }
     }
 }
-// Getting mouse collision between component hitbox, but also making sure that
-// the component is not behind another component
+// Getting mouse collision between component hitbox, but also making sure thatthe component is not behind another component
 bool UISelectablePanel::getMouseCollision(raylib::Rectangle boundingBox) {
     for (int i = this->parent->GetChildrenCount() - 1; i >= 0; i--) { // size > 0 btw, since this already counts as a child
         UIComponent *sibling = this->parent->GetChild(i);
 
-        // By taking intersection, we avoid selecting an item outside of its bounding box
         raylib::Rectangle siblingRect = GetAnchoredRect(sibling->rect, sibling->anchor, boundingBox);
         bool siblingColliding = siblingRect.CheckCollision(raylib::Mouse::GetPosition());
 

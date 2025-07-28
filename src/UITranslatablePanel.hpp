@@ -12,6 +12,7 @@ public:
 
 protected:
     bool translating;
+    raylib::Vector2 offset;
     virtual void update(raylib::Rectangle boundingBox) override;
 };
 
