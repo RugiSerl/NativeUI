@@ -2,12 +2,14 @@
 #include "utils.hpp"
 
 void UIResizablePanel::update(raylib::Rectangle boundingBox) {
-    // Check if mouse is in resize zone and not already down
-    if (!IsMouseButtonDown(MOUSE_BUTTON_LEFT) && !IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && getMouseCollision(boundingBox) && !getInnerRect(GetAnchoredRect(rect, anchor, boundingBox), RESIZE_LENIENCY).CheckCollision(raylib::Mouse::GetPosition())) {
+    // Check if mouse is in resize zone
+    if (getMouseCollision(boundingBox) && !getInnerRect(GetAnchoredRect(rect, anchor, boundingBox), RESIZE_LENIENCY).CheckCollision(raylib::Mouse::GetPosition())) {
         SetMouseCursor(MOUSE_CURSOR_RESIZE_EW);
+        canBeTranslated = false;
     } else {
-        UITranslatablePanel::update(boundingBox);
+        canBeTranslated = true;
         SetMouseCursor(MOUSE_CURSOR_DEFAULT);
 
     }
+    UITranslatablePanel::update(boundingBox);
 }
