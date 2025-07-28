@@ -3,13 +3,14 @@
 
 void UIResizablePanel::update(raylib::Rectangle boundingBox) {
     // Check if mouse is in resize zone
-    if (getMouseCollision(boundingBox) && !getInnerRect(GetAnchoredRect(rect, anchor, boundingBox), RESIZE_LENIENCY).CheckCollision(raylib::Mouse::GetPosition())) {
-        SetMouseCursor(MOUSE_CURSOR_RESIZE_EW);
+    if (!translating && getMouseCollision(boundingBox) && !getInnerRect(GetAnchoredRect(rect, anchor, boundingBox), RESIZE_LENIENCY).CheckCollision(raylib::Mouse::GetPosition())) {
         canBeTranslated = false;
+        RectangleSplitted splitted = GetSplittedRectangle(GetAnchoredRect(rect, anchor, boundingBox), getInnerRect(GetAnchoredRect(rect, anchor, boundingBox), RESIZE_LENIENCY));
+        splitted.LeftRect.Draw(BLUE);
+
     } else {
         canBeTranslated = true;
-        SetMouseCursor(MOUSE_CURSOR_DEFAULT);
-
     }
+
     UITranslatablePanel::update(boundingBox);
 }

@@ -2,7 +2,7 @@
 
 void UITranslatablePanel::update(raylib::Rectangle boundingBox) {
     UISelectablePanel::update(boundingBox);
-    
+
     if (canBeTranslated && UISelectablePanel::getMouseCollision(boundingBox) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && selected) {
         this->translating = true;
         this->offset = GetAnchoredRect(rect, anchor, boundingBox).GetPosition() - raylib::Mouse::GetPosition();
@@ -13,7 +13,7 @@ void UITranslatablePanel::update(raylib::Rectangle boundingBox) {
 
     if (this->translating) {
         // works because the component is anchored to top left.
-        this->rect.SetPosition(raylib::Mouse::GetPosition()-boundingBox.GetPosition()+offset);
+        this->rect.SetPosition(raylib::Mouse::GetPosition() - boundingBox.GetPosition() + offset);
     }
 }
 

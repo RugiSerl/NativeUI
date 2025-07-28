@@ -42,7 +42,6 @@ int main() {
 
     raylib::Color textColor(LIGHTGRAY);
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-
     raylib::Window w(screenWidth, screenHeight, "NativeUI Showcase");
 
     SetTargetFPS(165);
