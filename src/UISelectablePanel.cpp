@@ -24,10 +24,7 @@ void UISelectablePanel::update(raylib::Rectangle boundingBox) {
         selected = UISelectablePanel::getMouseCollision(boundingBox);
 
         if (selected) {
-            std::cout << isBehindChild(boundingBox) << std::endl;
-
             onSelected();
-
         }
     }
 }

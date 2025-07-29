@@ -9,6 +9,7 @@
 #include "graphics.hpp"
 #include "UIResizablePanel.hpp"
 #include "cursor.hpp"
+#include "utils.hpp"
 
 void test(void) {
     std::cout << "clicked !" << std::endl;
@@ -28,9 +29,9 @@ int main() {
     UISplit navigatorSplit(raylib::Rectangle(0), Anchor2{Anchor::FILL, Anchor::FILL}, HORIZONTAL_SPLIT, Anchor::LEFT, 400);
     menusplit.AddChild(&navigatorSplit, 1);
 
-    UISelectablePanel selectable2(raylib::Rectangle(40.0, 40.0, 400.0, 400.0), Anchor2{Anchor::CENTER, Anchor::TOP});
-    UISelectablePanel selectable3(raylib::Rectangle(-20, 20.0, 200.0, 200.0), Anchor2{Anchor::CENTER, Anchor::TOP});
-    UISelectablePanel selectable4(raylib::Rectangle(-20, 20.0, 50.0, 50.0), Anchor2{Anchor::CENTER, Anchor::TOP});
+    UIResizablePanel selectable2(raylib::Rectangle(40.0, 40.0, 400.0, 400.0), resizableDirections::BOTTOM, raylib::Vector2(40, 40));
+    UIResizablePanel selectable3(raylib::Rectangle(0, 20.0, 200.0, 200.0), resizableDirections::BOTTOM, raylib::Vector2(40, 40));
+    UIResizablePanel selectable4(raylib::Rectangle(0, 20.0, 50.0, 50.0), resizableDirections::BOTTOM, raylib::Vector2(40, 40));
     UIButton button(raylib::Rectangle(-20.0, 20.0, 50.0, 50.0), Anchor2{Anchor::LEFT, Anchor::TOP}, test, DEFAULT_PANEL_STYLEBOX, DEFAULT_SELECTED_STYLEBOX, DEFAULT_HOVER_STYLEBOX, DEFAULT_BUTTON_DOWN_STYLEBOX);
     navigatorSplit.AddChild(&button, 0);
     UICheckbox checkbox(raylib::Rectangle(50, 20.0, 50.0, 50.0), Anchor2{Anchor::LEFT, Anchor::TOP}, DEFAULT_PANEL_STYLEBOX, DEFAULT_SELECTED_STYLEBOX, DEFAULT_HOVER_STYLEBOX, DEFAULT_BUTTON_DOWN_STYLEBOX);
@@ -47,7 +48,8 @@ int main() {
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     raylib::Window w(screenWidth, screenHeight, "NativeUI Showcase");
 
-    SetTargetFPS(-1);
+
+    SetTargetFPS(165);
 
     // Main game loop
     while (!w.ShouldClose()) { // Detect window close button or ESC key

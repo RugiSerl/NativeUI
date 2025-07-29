@@ -3,6 +3,39 @@
 #include <vector>
 #include "raylib-cpp.hpp"
 
+/**
+ * @brief Alternative rectangle representation with two points
+ * 
+ */
+class VectorRectangle {
+public:
+    raylib::Vector2 topLeft;
+    raylib::Vector2 bottomRight;
+    VectorRectangle(raylib::Rectangle rect) : topLeft(rect.GetPosition()), bottomRight(rect.x+rect.width, rect.y+rect.height) {}; 
+    VectorRectangle(raylib::Vector2 topLeft, raylib::Vector2 bottomRight) : topLeft(topLeft), bottomRight(bottomRight) {}; 
+    VectorRectangle(float x1, float y1, float x2, float y2) : topLeft(x1, y1), bottomRight(x2, y2) {}; 
+    raylib::Rectangle ToRectangle() {
+        return raylib::Rectangle(topLeft.x, topLeft.y, bottomRight.x-topLeft.x, bottomRight.y-topLeft.y);
+    }
+    /**
+     * @brief clamp rectangle width to 0
+     * 
+     * @return VectorRectangle 
+     */
+    VectorRectangle EnsureNotNegativeWidth() { // 
+        return VectorRectangle(topLeft.x, topLeft.y, std::max(bottomRight.x, topLeft.x), std::max(bottomRight.y, topLeft.y));
+    }
+
+};
+
+
+
+
+
+template<class T> std::vector<T> rotateVector(std::vector<T> vector, int offset);
+raylib::Rectangle getInnerRect(raylib::Rectangle, float);
+
+
 
 /**
  * @brief Represents all the rectangles after a rectangle was splitted in a 3x3 grid.
@@ -25,9 +58,6 @@ struct RectangleSplitted {
     raylib::Rectangle BottomRightCorner;
 };
 
-template<class T> std::vector<T> rotateVector(std::vector<T> vector, int offset);
-raylib::Rectangle getInnerRect(raylib::Rectangle, float);
-
 
 /**
  * Splits our rectangle into a grid of 9 rectangles, with a rectangle inside it defining the central cell of the grid
@@ -39,5 +69,13 @@ raylib::Rectangle getInnerRect(raylib::Rectangle, float);
  *
  */
 RectangleSplitted GetSplittedRectangle(raylib::Rectangle outerRectangle, raylib::Rectangle innerRectangle);
+
+/**
+ * @brief Get the intersection rectangle between two rectangles.
+ * 
+ * @param r1 
+ * @param r2 
+ * @return raylib::Rectangle 
+ */
 raylib::Rectangle getRectangleIntersection(raylib::Rectangle r1, raylib::Rectangle r2);
 #endif // !__UTILS_H__
