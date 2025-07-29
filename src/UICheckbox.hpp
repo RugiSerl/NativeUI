@@ -2,6 +2,9 @@
 #define __UICHECKBOX_H__
 #include "UIButton.hpp"
 
+/**
+ * Special case of button. Switches between true and false when clicked.
+ */
 class UICheckbox : public UIButton {
 public:
     UICheckbox(raylib::Rectangle r, Anchor2 a, UIStylebox normalStylebox, UIStylebox selectedStylebox, UIStylebox hoveredStylebox, UIStylebox downStylebox);

@@ -17,9 +17,11 @@ static int frameCursor = MOUSE_CURSOR_DEFAULT;
  * This also serves the purpose of having the cursor only
  * set at the end of the frame so if multiple changes
  * occur only the last will take effect.
+ * @param cursorType raylib's enum cursor type (ex MOUSE_CURSOR_ARROW)
  */
-void SetCursor(int cursortype);
+void SetCursor(int cursorType);
 void UpdateCursorState();
+
 
 
 #endif
