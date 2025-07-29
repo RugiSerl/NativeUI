@@ -4,11 +4,24 @@
 #include "anchor.hpp"
 
 /**
- * Main brick block of the UI. All UI classes extend from it. It allows tree based ui.
+ * @brief Main brick block of the UI. All UI classes extend from it. It allows tree based ui.
  */
 class UIComponent {
 public:
+    /**
+     * @brief Construct a new UIComponent object, should generally not be accessed directly
+     *
+     * @param r rectangle
+     * @param a anchor
+     * @param parent parent of the node
+     * @param root root of the node
+     */
     UIComponent(raylib::Rectangle r, Anchor2 a, UIComponent* parent = NULL, UIComponent* root = NULL);
+    /**
+     * @brief This is the way you add children (you can't access children member)
+     *
+     * @param child UIComponent to add
+     */
     void AddChild(UIComponent* child);
 
     raylib::Rectangle rect; // be careful ! always apply anchor before using it
@@ -36,7 +49,19 @@ protected:
     virtual void update(raylib::Rectangle BoundingBox);
 
 private:
+    /**
+     * @brief This the true way of appending child. Don't use it.
+     * @warning Use AddChild() instead
+     *
+     * @param child child to add
+     */
     void addChild(UIComponent* child);
+    /**
+     * @brief This the true way of removing child. Don't use it.
+     * @warning Use RemoveChild() instead
+     *
+     * @param child child to remove
+     */
     void removeChild(UIComponent* child);
 };
 

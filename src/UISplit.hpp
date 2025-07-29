@@ -4,15 +4,30 @@
 
 #define BAR_WIDTH 1 // px
 
+/**
+ * @brief different types of split
+ *
+ */
 enum splitType {
     VERTICAL_SPLIT,
     HORIZONTAL_SPLIT,
 };
 /**
- * A panel dividing its content in two part, either left and right or top and bottom.
+ * @brief A panel dividing its content in two part, either left and right or top and bottom.
  */
 class UISplit : public UISelectablePanel {
 public:
+    /**
+     * @brief Construct a new UISplit object
+     *
+     * @param r rectangle of the object.
+     * @param a anchor of the object.
+     * @param type vertical or horizontal.
+     * @param barAnchor reuse anchor system for UIComponent.
+     * @param barOffset distance of the bar to barAnchor.
+     * @param normalStylebox
+     * @param selectedStylebox
+     */
     UISplit(raylib::Rectangle r, Anchor2 a, splitType type, Anchor barAnchor, float barOffset, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX);
     virtual void UpdateAndDraw(raylib::Rectangle BoundingBox = GetScreenBoundingbox()) override;
     void AddChild(UIComponent* child, int side);

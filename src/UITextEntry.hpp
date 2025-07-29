@@ -3,7 +3,9 @@
 #include "UISelectablePanel.hpp"
 #include <string>
 
-class UiTextEntry : public UISelectablePanel {
+//TODO
+
+class UITextEntry : public UISelectablePanel {
 public:
     std::string text;
 };

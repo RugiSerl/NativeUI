@@ -2,7 +2,10 @@
 #define __UIBUTTON_H__
 #include "UISelectablePanel.hpp"
 #include <functional>
-
+/**
+ * @brief Panel that will trigger function when clicked upon.
+ *
+ */
 class UIButton : public UISelectablePanel {
 public:
     /**

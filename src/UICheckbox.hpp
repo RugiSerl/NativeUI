@@ -3,7 +3,7 @@
 #include "UIButton.hpp"
 
 /**
- * Special case of button. Switches between true and false when clicked.
+ * @brief Special case of button. Switches between true and false when clicked.
  */
 class UICheckbox : public UIButton {
 public:

@@ -5,7 +5,7 @@
 
 
 /**
- * Represents all the rectangles after a rectangle was splitted in a 3x3 grid.
+ * @brief Represents all the rectangles after a rectangle was splitted in a 3x3 grid.
  *  ________
  * |__|__|__|
  * |__|__|__|

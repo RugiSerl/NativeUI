@@ -8,6 +8,13 @@
  */
 class UITranslatablePanel : public UISelectablePanel {
 public:
+    /**
+     * @brief Construct a new UITranslatablePanel object
+     *
+     * @param r rectangle of the object
+     * @param normalStylebox
+     * @param selectedStylebox
+     */
     UITranslatablePanel(raylib::Rectangle r, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX) : UISelectablePanel(r, Anchor2{LEFT, TOP}, normalStylebox, selectedStylebox), translating(false) {};
     bool allowedToBeTranslated = true;
 protected:
