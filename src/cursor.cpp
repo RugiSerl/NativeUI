@@ -9,7 +9,7 @@ void UpdateCursorState() {
         SetMouseCursor(frameCursor);
         cursorState = frameCursor;
     }
-    
+
     // set it to default every frame
     frameCursor = MOUSE_CURSOR_DEFAULT;
 }

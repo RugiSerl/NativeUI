@@ -1,6 +1,7 @@
 #include "UISelectablePanel.hpp"
 #include "utils.hpp"
 #include <algorithm>
+#include <iostream>
 UISelectablePanel::UISelectablePanel(raylib::Rectangle r, Anchor2 a,
                                      UIStylebox normalStylebox,
                                      UIStylebox selectedStylebox)
@@ -11,7 +12,7 @@ UISelectablePanel::UISelectablePanel(raylib::Rectangle r, Anchor2 a,
 void UISelectablePanel::update(raylib::Rectangle boundingBox) {
     if (parent == NULL) {
         if (raylib::Mouse::IsButtonPressed(MOUSE_BUTTON_LEFT)) {
-            selected = GetAnchoredRect(this->rect, this->anchor, boundingBox).CheckCollision(raylib::Mouse::GetPosition());
+            selected = GetAnchoredRect(rect, anchor, boundingBox).CheckCollision(raylib::Mouse::GetPosition());
         }
 
         return;
@@ -19,10 +20,14 @@ void UISelectablePanel::update(raylib::Rectangle boundingBox) {
     }
 
     if (raylib::Mouse::IsButtonPressed(MOUSE_BUTTON_LEFT)) {
+
         selected = UISelectablePanel::getMouseCollision(boundingBox);
 
         if (selected) {
+            std::cout << isBehindChild(boundingBox) << std::endl;
+
             onSelected();
+
         }
     }
 }
@@ -54,8 +59,10 @@ void UISelectablePanel::onSelected() {
 
     }
 }
-// Getting mouse collision between component hitbox, but also making sure thatthe component is not behind another component
+// Getting mouse collision between component hitbox, but also making sure that the component is not behind another component
 bool UISelectablePanel::getMouseCollision(raylib::Rectangle boundingBox) {
+
+    // Check if there are no sibling colliding
     for (int i = this->parent->GetChildrenCount() - 1; i >= 0; i--) { // size > 0 btw, since this already counts as a child
         UIComponent *sibling = this->parent->GetChild(i);
 
@@ -63,11 +70,31 @@ bool UISelectablePanel::getMouseCollision(raylib::Rectangle boundingBox) {
         bool siblingColliding = siblingRect.CheckCollision(raylib::Mouse::GetPosition());
 
         if (siblingColliding && boundingBox.CheckCollision(raylib::Mouse::GetPosition())) {
-            return this->parent->GetChild(i) == this;
+            return this->parent->GetChild(i) == this && !isBehindChild(boundingBox);
         }
     }
 
     return false;
+}
+
+bool UISelectablePanel::isBehindChild(raylib::Rectangle boundingBox) {
+    bool isBehind = false;
+
+    for (UIComponent* child : children) {
+        UISelectablePanel *selectableChild = dynamic_cast<UISelectablePanel *>(child);
+
+        if (selectableChild) {
+            if (GetAnchoredRect(child->rect, child->anchor, GetAnchoredRect(rect, anchor, boundingBox)).CheckCollision(raylib::Mouse::GetPosition())) {
+                return true;
+            }
+
+            isBehind = isBehind || selectableChild->isBehindChild(rect);
+
+        }
+    }
+
+    return isBehind;
+
 }
 
 void UISelectablePanel::draw(raylib::Rectangle boundingBox) {

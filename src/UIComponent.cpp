@@ -20,7 +20,6 @@ void UIComponent::RemoveChild(UIComponent *child) {
 
 void UIComponent::addChild(UIComponent *child) {
     child->parent = this;
-    child->root = this->root;
     this->children.push_back(child);
 }
 

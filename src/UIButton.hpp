@@ -20,6 +20,7 @@ public:
     // state of the button
     bool pressed, hovered, down;
     UIStylebox hoveredStylebox, downStylebox;
+    // callback function
     std::function<void (void)> onClick;
 protected:
     virtual void update(raylib::Rectangle boundingBox) override;

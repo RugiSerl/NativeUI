@@ -28,8 +28,9 @@ int main() {
     UISplit navigatorSplit(raylib::Rectangle(0), Anchor2{Anchor::FILL, Anchor::FILL}, HORIZONTAL_SPLIT, Anchor::LEFT, 400);
     menusplit.AddChild(&navigatorSplit, 1);
 
-    UITranslatablePanel translatable(raylib::Rectangle(40.0, 40.0, 400.0, 400.0));
-    UISelectablePanel selectable2(raylib::Rectangle(-20, 20.0, 50.0, 50.0), Anchor2{Anchor::CENTER, Anchor::TOP});
+    UISelectablePanel selectable2(raylib::Rectangle(40.0, 40.0, 400.0, 400.0), Anchor2{Anchor::CENTER, Anchor::TOP});
+    UISelectablePanel selectable3(raylib::Rectangle(-20, 20.0, 200.0, 200.0), Anchor2{Anchor::CENTER, Anchor::TOP});
+    UISelectablePanel selectable4(raylib::Rectangle(-20, 20.0, 50.0, 50.0), Anchor2{Anchor::CENTER, Anchor::TOP});
     UIButton button(raylib::Rectangle(-20.0, 20.0, 50.0, 50.0), Anchor2{Anchor::LEFT, Anchor::TOP}, test, DEFAULT_PANEL_STYLEBOX, DEFAULT_SELECTED_STYLEBOX, DEFAULT_HOVER_STYLEBOX, DEFAULT_BUTTON_DOWN_STYLEBOX);
     navigatorSplit.AddChild(&button, 0);
     UICheckbox checkbox(raylib::Rectangle(50, 20.0, 50.0, 50.0), Anchor2{Anchor::LEFT, Anchor::TOP}, DEFAULT_PANEL_STYLEBOX, DEFAULT_SELECTED_STYLEBOX, DEFAULT_HOVER_STYLEBOX, DEFAULT_BUTTON_DOWN_STYLEBOX);
@@ -38,8 +39,9 @@ int main() {
 
     navigatorSplit.AddChild(&panel, 0);
     navigatorSplit.AddChild(&checkbox, 1);
-    translatable.AddChild(&selectable2);
-    navigatorSplit.AddChild(&translatable, 1);
+    selectable2.AddChild(&selectable3);
+    selectable3.AddChild(&selectable4);
+    navigatorSplit.AddChild(&selectable2, 1);
 
     raylib::Color textColor(LIGHTGRAY);
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);

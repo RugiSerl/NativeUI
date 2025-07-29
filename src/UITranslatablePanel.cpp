@@ -14,6 +14,7 @@ void UITranslatablePanel::update(raylib::Rectangle boundingBox) {
     if ( IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && canBeTranslated(boundingBox)) {
         this->translating = true;
         this->offset = GetAnchoredRect(rect, anchor, boundingBox).GetPosition() - raylib::Mouse::GetPosition();
+
     } else if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
         this->translating = false;
     }

@@ -3,7 +3,7 @@
 #include "raylib-cpp.hpp"
 
 
-// state of the cursor for now
+// current state of the cursor
 static int cursorState = MOUSE_CURSOR_DEFAULT;
 
 // state of the cursor set during the frame
