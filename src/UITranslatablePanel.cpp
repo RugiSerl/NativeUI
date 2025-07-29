@@ -1,5 +1,6 @@
 #include "UITranslatablePanel.hpp"
 #include "cursor.hpp"
+#include "utils.hpp"
 
 void UITranslatablePanel::update(raylib::Rectangle boundingBox) {
     UISelectablePanel::update(boundingBox);
@@ -22,8 +23,11 @@ void UITranslatablePanel::update(raylib::Rectangle boundingBox) {
     // update translation if translating
     if (this->translating) {
         // works because the component is anchored to top left.
-        this->rect.SetPosition(raylib::Mouse::GetPosition() - boundingBox.GetPosition() + offset);
+        translatedPosition = raylib::Mouse::GetPosition() - boundingBox.GetPosition() + offset;
     }
+    // TODO: fix bug here
+    this->rect.SetPosition(clampRectangle(rect, raylib::Rectangle(raylib::Vector2(0, 0), boundingBox.GetSize())).GetPosition());
+
 }
 
 bool UITranslatablePanel::canBeTranslated(raylib::Rectangle boundingBox) {

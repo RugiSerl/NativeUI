@@ -30,7 +30,7 @@ public:
     void Show();
     /**
      * @brief Recursively call update and draw for the component and its children
-     * 
+     *
      * @param BoundingBox where is contained the object
      */
     virtual void UpdateAndDraw(raylib::Rectangle BoundingBox = GetScreenBoundingbox());

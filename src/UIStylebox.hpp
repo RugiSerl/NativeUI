@@ -5,7 +5,7 @@
 
 /**
  * @brief Defines graphic properties of a rectangle
- * 
+ *
  */
 class UIStylebox {
 public:

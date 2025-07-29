@@ -8,6 +8,7 @@
  */
 class UITranslatablePanel : public UISelectablePanel {
 public:
+
     /**
      * @brief Construct a new UITranslatablePanel object
      *
@@ -15,13 +16,20 @@ public:
      * @param normalStylebox
      * @param selectedStylebox
      */
-    UITranslatablePanel(raylib::Rectangle r, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX) : UISelectablePanel(r, Anchor2{LEFT, TOP}, normalStylebox, selectedStylebox), translating(false) {};
+    UITranslatablePanel(raylib::Rectangle r, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX) : UISelectablePanel(r, Anchor2{LEFT, TOP}, normalStylebox, selectedStylebox), translating(false), translatedPosition(rect.GetPosition()) {};
+    
+    
     bool allowedToBeTranslated = true;
+
 protected:
+
+    raylib::Vector2 translatedPosition; // position that is not restrained by boundingBox, ie panel true position
+    
     bool canBeTranslated(raylib::Rectangle boundingBox);
     bool translating;
     raylib::Vector2 offset;
     virtual void update(raylib::Rectangle boundingBox) override;
+
 };
 
 #endif // !__UITRANSLATABLEPANEL__H__
