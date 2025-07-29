@@ -5,12 +5,12 @@
 #define RESIZE_LENIENCY 10
 
 
-enum class resizableDirections : u_int8_t {
-    NONE = 0,
-    TOP = 1,
-    BOTTOM = 2,
-    LEFT = 4,
-    RIGHT = 8,
+enum class resizableDirections {
+    NONE,
+    TOP,
+    BOTTOM,
+    LEFT,
+    RIGHT,
 };
 
 /**
