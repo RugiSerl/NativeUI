@@ -18,8 +18,9 @@ enum class resizableDirections : u_int8_t {
  */
 class UIResizablePanel : public UITranslatablePanel {
 public:
-    UIResizablePanel(raylib::Rectangle r, resizableDirections resizableConstraints, Vector2 minSize = raylib::Vector2(0, 0), UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX) : UITranslatablePanel(r, normalStylebox, selectedStylebox), resizableConstraints(resizableConstraints), minSize(minSize) {};
+    UIResizablePanel(raylib::Rectangle r, resizableDirections resizableConstraints, Vector2 minSize = raylib::Vector2(0, 0), UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX) : UITranslatablePanel(r, normalStylebox, selectedStylebox), resizableConstraints(resizableConstraints), minSize(minSize), resizedRect(rect) {};
 protected:
+    raylib::Rectangle resizedRect; // rect that is not constrained by minSize
     Vector2 minSize;
     resizableDirections resizeState = resizableDirections::NONE;
     resizableDirections resizableConstraints;

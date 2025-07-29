@@ -35,17 +35,17 @@ void UIResizablePanel::update(raylib::Rectangle boundingBox) {
 
     switch (resizeState) {
         case resizableDirections::RIGHT:
-            rect.width += raylib::Mouse::GetDelta().x;
+            resizedRect.width += raylib::Mouse::GetDelta().x;
             break;
         case resizableDirections::BOTTOM:
-            rect.height += raylib::Mouse::GetDelta().y;
+            resizedRect.height += raylib::Mouse::GetDelta().y;
             break;
 
         default:
             break;
     }
-    rect.width = std::max(minSize.x, rect.width);
-    rect.height = std::max(minSize.y, rect.height);
+    rect.width = std::max(minSize.x, resizedRect.width);
+    rect.height = std::max(minSize.y, resizedRect.height);
 
     if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
         resizeState = resizableDirections::NONE;
