@@ -3,10 +3,14 @@
 #include "raylib-cpp.hpp"
 #include "anchor.hpp"
 
+/**
+ * @brief Defines graphic properties of a rectangle
+ * 
+ */
 class UIStylebox {
 public:
     /**
-     * Defines graphic properties of a rectangle
+     * @brief Init object UIStylebox
      * @param borderThickness thickness of the edges
      * @param cornerRadius amount of roundness on the corners
      * @param fillColor color inside of the rectangle

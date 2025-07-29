@@ -1,6 +1,6 @@
 # NativeUI
 <p align="center">
-<img src="icon.svg" height="250" alt="NativeUI icon">
+<img src="icon.svg" height="150" alt="NativeUI icon">
 
 Wip oop based ui framework written in cpp with raylib and cpp-bindings. Using [this very awesome cpp template](https://github.com/CapsCollective/raylib-cpp-starter)
 </p>
@@ -31,22 +31,8 @@ The first command will clone in the lastest C++ bindings and targeted version of
 ### Draw.io
 You can also take a look at `./ui.drawio`, representing class diagram.
 
-### Making Use of Separate Compilation
-When building compiled applications from scratch, *each* source file needs to be compiled into an object file in order for them all to be linked together as a full program. This can become rather time-consuming and inefficient as your codebase expands to use tens or even hundreds of files that recompile each time you build. Fortunately, with a few clever rules in our [`Makefile`](Makefile), we can be sure to only have to recompile files affected by our changes.
-
-By using the following Make commands instead of the default target, we can skip the cleanup step, and only recompile files that changed:
-
-#### macOS & Linux
-
-```console
-$ make bin/app; make execute
-```
-
-#### Windows
-
-```console
-> mingw32-make bin/app && mingw32-make execute
-```
+### Doxygen
+You can take a look at documentation generation with doxygen [on this page](docs/Doxygen.md)
 
 ## Licence
 

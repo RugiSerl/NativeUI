@@ -3,7 +3,7 @@
 #include "UISelectablePanel.hpp"
 
 /**
- * A Panel allowing translation with mouse movement, when holding left mouse button
+ * @brief A Panel allowing translation with mouse movement, when holding left mouse button.
  * This panel will always be anchored from top left, as it doesn't have any fixed position.
  */
 class UITranslatablePanel : public UISelectablePanel {
