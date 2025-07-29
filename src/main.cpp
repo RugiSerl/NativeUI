@@ -28,7 +28,7 @@ int main() {
     UISplit navigatorSplit(raylib::Rectangle(0), Anchor2{Anchor::FILL, Anchor::FILL}, HORIZONTAL_SPLIT, Anchor::LEFT, 400);
     menusplit.AddChild(&navigatorSplit, 1);
 
-    UITranslatablePanel translatable(raylib::Rectangle(40.0, 40.0, 50.0, 50.0));
+    UITranslatablePanel translatable(raylib::Rectangle(40.0, 40.0, 400.0, 400.0));
     UISelectablePanel selectable2(raylib::Rectangle(-20, 20.0, 50.0, 50.0), Anchor2{Anchor::CENTER, Anchor::TOP});
     UIButton button(raylib::Rectangle(-20.0, 20.0, 50.0, 50.0), Anchor2{Anchor::LEFT, Anchor::TOP}, test, DEFAULT_PANEL_STYLEBOX, DEFAULT_SELECTED_STYLEBOX, DEFAULT_HOVER_STYLEBOX, DEFAULT_BUTTON_DOWN_STYLEBOX);
     navigatorSplit.AddChild(&button, 0);
@@ -37,15 +37,15 @@ int main() {
     UIResizablePanel panel(raylib::Rectangle(40.0, 40.0, 200.0, 200.0), resizableDirections::BOTTOM, raylib::Vector2(40, 40));
 
     navigatorSplit.AddChild(&panel, 0);
-    panel.AddChild(&checkbox);
-    navigatorSplit.AddChild(&selectable2, 0);
-    navigatorSplit.AddChild(&translatable, 0);
+    navigatorSplit.AddChild(&checkbox, 1);
+    translatable.AddChild(&selectable2);
+    navigatorSplit.AddChild(&translatable, 1);
 
     raylib::Color textColor(LIGHTGRAY);
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     raylib::Window w(screenWidth, screenHeight, "NativeUI Showcase");
 
-    SetTargetFPS(165);
+    SetTargetFPS(-1);
 
     // Main game loop
     while (!w.ShouldClose()) { // Detect window close button or ESC key

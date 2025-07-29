@@ -53,15 +53,6 @@ void UISelectablePanel::onSelected() {
         }
 
     }
-
-    // Do this for parents as well
-    if (this->parent != NULL) {
-        UISelectablePanel *selectableCasted = dynamic_cast<UISelectablePanel *>(this->parent);
-
-        if (selectableCasted) { // is selectable ?
-            selectableCasted->onSelected();
-        }
-    }
 }
 // Getting mouse collision between component hitbox, but also making sure thatthe component is not behind another component
 bool UISelectablePanel::getMouseCollision(raylib::Rectangle boundingBox) {
