@@ -1,0 +1,149 @@
+\doxysection{UICheckbox Class Reference}
+\hypertarget{classUICheckbox}{}\label{classUICheckbox}\index{UICheckbox@{UICheckbox}}
+
+
+{\ttfamily \#include $<$UICheckbox.\+hpp$>$}
+
+
+
+Inheritance diagram for UICheckbox\+:
+% FIG 0
+
+
+Collaboration diagram for UICheckbox\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classUICheckbox_aa5a4a3c210b1d80894d23d66ac662e20}\label{classUICheckbox_aa5a4a3c210b1d80894d23d66ac662e20} 
+{\bfseries UICheckbox} (raylib\+::\+Rectangle r, \mbox{\hyperlink{classAnchor2}{Anchor2}} a, \mbox{\hyperlink{classUIStylebox}{UIStylebox}} normal\+Stylebox, \mbox{\hyperlink{classUIStylebox}{UIStylebox}} selected\+Stylebox, \mbox{\hyperlink{classUIStylebox}{UIStylebox}} hovered\+Stylebox, \mbox{\hyperlink{classUIStylebox}{UIStylebox}} down\+Stylebox)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classUIButton}{UIButton}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classUIButton_a18e94e8edeae8b85a8c82bffb8835012}{UIButton}} (raylib\+::\+Rectangle r, \mbox{\hyperlink{classAnchor2}{Anchor2}} a, std\+::function$<$ void(void)$>$ callback, \mbox{\hyperlink{classUIStylebox}{UIStylebox}} normal\+Stylebox, \mbox{\hyperlink{classUIStylebox}{UIStylebox}} selected\+Stylebox, \mbox{\hyperlink{classUIStylebox}{UIStylebox}} hovered\+Stylebox, \mbox{\hyperlink{classUIStylebox}{UIStylebox}} down\+Stylebox)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classUISelectablePanel}{UISelectable\+Panel}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries UISelectable\+Panel} (raylib\+::\+Rectangle r, \mbox{\hyperlink{classAnchor2}{Anchor2}} a, \mbox{\hyperlink{classUIStylebox}{UIStylebox}} normal\+Stylebox=DEFAULT\+\_\+\+PANEL\+\_\+\+STYLEBOX, \mbox{\hyperlink{classUIStylebox}{UIStylebox}} selected\+Stylebox=DEFAULT\+\_\+\+SELECTED\+\_\+\+STYLEBOX)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classUIPanel}{UIPanel}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries UIPanel} (raylib\+::\+Rectangle r, \mbox{\hyperlink{classAnchor2}{Anchor2}} a, \mbox{\hyperlink{classUIStylebox}{UIStylebox}} s=DEFAULT\+\_\+\+PANEL\+\_\+\+STYLEBOX)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classUIComponent}{UIComponent}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries UIComponent} (raylib\+::\+Rectangle r, \mbox{\hyperlink{classAnchor2}{Anchor2}} a, \mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*}parent=NULL, \mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*}root=NULL)
+\item 
+void {\bfseries Add\+Child} (\mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*}child)
+\item 
+void {\bfseries Hide} ()
+\item 
+void {\bfseries Show} ()
+\item 
+virtual void {\bfseries Update\+And\+Draw} (raylib\+::\+Rectangle Bounding\+Box=Get\+Screen\+Boundingbox())
+\item 
+void {\bfseries Remove\+Child} (\mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*}component)
+\item 
+void {\bfseries Remove\+Child} (int index)
+\item 
+int {\bfseries Get\+Children\+Count} ()
+\item 
+\mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Child} (int index)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classUICheckbox_aa4d7280d7b798543ee69b06379038b33}\label{classUICheckbox_aa4d7280d7b798543ee69b06379038b33} 
+bool {\bfseries value}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classUIButton}{UIButton}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries pressed}
+\item 
+bool {\bfseries hovered}
+\item 
+bool {\bfseries down}
+\item 
+\mbox{\hyperlink{classUIStylebox}{UIStylebox}} {\bfseries hovered\+Stylebox}
+\item 
+\mbox{\hyperlink{classUIStylebox}{UIStylebox}} {\bfseries down\+Stylebox}
+\item 
+std\+::function$<$ void(void)$>$ {\bfseries on\+Click}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classUIPanel}{UIPanel}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classUIStylebox}{UIStylebox}} {\bfseries stylebox}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classUIComponent}{UIComponent}}}
+\begin{DoxyCompactItemize}
+\item 
+raylib\+::\+Rectangle {\bfseries rect}
+\item 
+\mbox{\hyperlink{classAnchor2}{Anchor2}} {\bfseries anchor}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classUICheckbox_ad19389c3bb8f0cf5ba2345d52f95f40f}{draw}} (raylib\+::\+Rectangle bounding\+Box) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classUIButton}{UIButton}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classUIButton_a3b9ccbb0bcede7cae8f643b9a4930e20}{update}} (raylib\+::\+Rectangle bounding\+Box) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classUISelectablePanel}{UISelectable\+Panel}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries get\+Mouse\+Collision} (raylib\+::\+Rectangle bounding\+Box)
+\item 
+void {\bfseries on\+Selected} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classUISelectablePanel}{UISelectable\+Panel}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries selected}
+\item 
+\mbox{\hyperlink{classUIStylebox}{UIStylebox}} {\bfseries selected\+Stylebox}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classUIComponent}{UIComponent}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries children}
+\item 
+\mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*} {\bfseries parent}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries children\+To\+Remove}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries children\+To\+Add}
+\item 
+bool {\bfseries visible}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Special case of button. Switches between true and false when clicked. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classUICheckbox_ad19389c3bb8f0cf5ba2345d52f95f40f}\label{classUICheckbox_ad19389c3bb8f0cf5ba2345d52f95f40f} 
+\index{UICheckbox@{UICheckbox}!draw@{draw}}
+\index{draw@{draw}!UICheckbox@{UICheckbox}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void UICheckbox\+::draw (\begin{DoxyParamCaption}\item[{raylib\+::\+Rectangle}]{bounding\+Box }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classUIButton}{UIButton}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/UICheckbox.\+hpp\item 
+src/UICheckbox.\+cpp\end{DoxyCompactItemize}

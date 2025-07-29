@@ -1,0 +1,34 @@
+\doxysection{UIResizable\+Panel.\+hpp}
+\hypertarget{UIResizablePanel_8hpp_source}{}\label{UIResizablePanel_8hpp_source}\index{src/UIResizablePanel.hpp@{src/UIResizablePanel.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_UIRESIZABLEPANEL\_H\_\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_UIRESIZABLEPANEL\_H\_\_}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}UITranslatablePanel.hpp"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ RESIZE\_LENIENCY\ 10}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{enum\ class}\ resizableDirections\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ NONE,}
+\DoxyCodeLine{00010\ \ \ \ \ TOP,}
+\DoxyCodeLine{00011\ \ \ \ \ BOTTOM,}
+\DoxyCodeLine{00012\ \ \ \ \ LEFT,}
+\DoxyCodeLine{00013\ \ \ \ \ RIGHT,}
+\DoxyCodeLine{00014\ \};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classUIResizablePanel}{UIResizablePanel}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classUITranslatablePanel}{UITranslatablePanel}}\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{classUIResizablePanel}{UIResizablePanel}}(raylib::Rectangle\ r,\ resizableDirections\ resizableConstraints,\ Vector2\ minSize\ =\ raylib::Vector2(0,\ 0),\ \mbox{\hyperlink{classUIStylebox}{UIStylebox}}\ normalStylebox\ =\ DEFAULT\_PANEL\_STYLEBOX,\ \mbox{\hyperlink{classUIStylebox}{UIStylebox}}\ selectedStylebox\ =\ DEFAULT\_SELECTED\_STYLEBOX)\ :\ \mbox{\hyperlink{classUITranslatablePanel}{UITranslatablePanel}}(r,\ normalStylebox,\ selectedStylebox),\ resizableConstraints(resizableConstraints),\ minSize(minSize),\ resizedRect(rect)\ \{\};}
+\DoxyCodeLine{00022\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00023\ \ \ \ \ raylib::Rectangle\ resizedRect;\ \textcolor{comment}{//\ rect\ that\ is\ not\ constrained\ by\ minSize}}
+\DoxyCodeLine{00024\ \ \ \ \ Vector2\ minSize;}
+\DoxyCodeLine{00025\ \ \ \ \ resizableDirections\ resizeState\ =\ resizableDirections::NONE;}
+\DoxyCodeLine{00026\ \ \ \ \ resizableDirections\ resizableConstraints;}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ update(raylib::Rectangle\ boundingBox)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00028\ \};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !\_\_UIRESIZABLEPANEL\_H\_\_}}
+
+\end{DoxyCode}

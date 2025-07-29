@@ -1,0 +1,126 @@
+\doxysection{UISelectable\+Panel Class Reference}
+\hypertarget{classUISelectablePanel}{}\label{classUISelectablePanel}\index{UISelectablePanel@{UISelectablePanel}}
+
+
+{\ttfamily \#include $<$UISelectable\+Panel.\+hpp$>$}
+
+
+
+Inheritance diagram for UISelectable\+Panel\+:
+% FIG 0
+
+
+Collaboration diagram for UISelectable\+Panel\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classUISelectablePanel_a3689ef6dc098b2d12dcd57db16ede526}\label{classUISelectablePanel_a3689ef6dc098b2d12dcd57db16ede526} 
+{\bfseries UISelectable\+Panel} (raylib\+::\+Rectangle r, \mbox{\hyperlink{classAnchor2}{Anchor2}} a, \mbox{\hyperlink{classUIStylebox}{UIStylebox}} normal\+Stylebox=DEFAULT\+\_\+\+PANEL\+\_\+\+STYLEBOX, \mbox{\hyperlink{classUIStylebox}{UIStylebox}} selected\+Stylebox=DEFAULT\+\_\+\+SELECTED\+\_\+\+STYLEBOX)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classUIPanel}{UIPanel}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries UIPanel} (raylib\+::\+Rectangle r, \mbox{\hyperlink{classAnchor2}{Anchor2}} a, \mbox{\hyperlink{classUIStylebox}{UIStylebox}} s=DEFAULT\+\_\+\+PANEL\+\_\+\+STYLEBOX)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classUIComponent}{UIComponent}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries UIComponent} (raylib\+::\+Rectangle r, \mbox{\hyperlink{classAnchor2}{Anchor2}} a, \mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*}parent=NULL, \mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*}root=NULL)
+\item 
+void {\bfseries Add\+Child} (\mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*}child)
+\item 
+void {\bfseries Hide} ()
+\item 
+void {\bfseries Show} ()
+\item 
+virtual void {\bfseries Update\+And\+Draw} (raylib\+::\+Rectangle Bounding\+Box=Get\+Screen\+Boundingbox())
+\item 
+void {\bfseries Remove\+Child} (\mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*}component)
+\item 
+void {\bfseries Remove\+Child} (int index)
+\item 
+int {\bfseries Get\+Children\+Count} ()
+\item 
+\mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Child} (int index)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classUISelectablePanel_a4e1388c7341092af95cdfcf0dbf3fbad}\label{classUISelectablePanel_a4e1388c7341092af95cdfcf0dbf3fbad} 
+bool {\bfseries get\+Mouse\+Collision} (raylib\+::\+Rectangle bounding\+Box)
+\item 
+virtual void \mbox{\hyperlink{classUISelectablePanel_a7d29c9781d663b6ff12cff89bd4dd0aa}{update}} (raylib\+::\+Rectangle bounding\+Box) override
+\item 
+virtual void \mbox{\hyperlink{classUISelectablePanel_a20b34e1fda6c6716124b0375f15b4050}{draw}} (raylib\+::\+Rectangle bounding\+Box) override
+\item 
+\Hypertarget{classUISelectablePanel_a1251be786f6d431845fa68a330e33bd0}\label{classUISelectablePanel_a1251be786f6d431845fa68a330e33bd0} 
+void {\bfseries on\+Selected} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classUISelectablePanel_ad024a67838abb226dea786a8ef160990}\label{classUISelectablePanel_ad024a67838abb226dea786a8ef160990} 
+bool {\bfseries selected}
+\item 
+\Hypertarget{classUISelectablePanel_aa8b289f2e75405d794fd52bed3e4e0d8}\label{classUISelectablePanel_aa8b289f2e75405d794fd52bed3e4e0d8} 
+\mbox{\hyperlink{classUIStylebox}{UIStylebox}} {\bfseries selected\+Stylebox}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classUIComponent}{UIComponent}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries children}
+\item 
+\mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*} {\bfseries parent}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries children\+To\+Remove}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries children\+To\+Add}
+\item 
+bool {\bfseries visible}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classUIPanel}{UIPanel}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classUIStylebox}{UIStylebox}} {\bfseries stylebox}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classUIComponent}{UIComponent}}}
+\begin{DoxyCompactItemize}
+\item 
+raylib\+::\+Rectangle {\bfseries rect}
+\item 
+\mbox{\hyperlink{classAnchor2}{Anchor2}} {\bfseries anchor}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A Panel selectable when clicked upon, and handling overlapping with other selectable panels. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classUISelectablePanel_a20b34e1fda6c6716124b0375f15b4050}\label{classUISelectablePanel_a20b34e1fda6c6716124b0375f15b4050} 
+\index{UISelectablePanel@{UISelectablePanel}!draw@{draw}}
+\index{draw@{draw}!UISelectablePanel@{UISelectablePanel}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void UISelectable\+Panel\+::draw (\begin{DoxyParamCaption}\item[{raylib\+::\+Rectangle}]{bounding\+Box }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classUIPanel}{UIPanel}}.
+
+\Hypertarget{classUISelectablePanel_a7d29c9781d663b6ff12cff89bd4dd0aa}\label{classUISelectablePanel_a7d29c9781d663b6ff12cff89bd4dd0aa} 
+\index{UISelectablePanel@{UISelectablePanel}!update@{update}}
+\index{update@{update}!UISelectablePanel@{UISelectablePanel}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void UISelectable\+Panel\+::update (\begin{DoxyParamCaption}\item[{raylib\+::\+Rectangle}]{bounding\+Box }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classUIComponent}{UIComponent}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/UISelectable\+Panel.\+hpp\item 
+src/UISelectable\+Panel.\+cpp\end{DoxyCompactItemize}

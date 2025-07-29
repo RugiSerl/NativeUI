@@ -1,0 +1,137 @@
+\doxysection{UITranslatable\+Panel Class Reference}
+\hypertarget{classUITranslatablePanel}{}\label{classUITranslatablePanel}\index{UITranslatablePanel@{UITranslatablePanel}}
+
+
+{\ttfamily \#include $<$UITranslatable\+Panel.\+hpp$>$}
+
+
+
+Inheritance diagram for UITranslatable\+Panel\+:
+% FIG 0
+
+
+Collaboration diagram for UITranslatable\+Panel\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classUITranslatablePanel_a8f2644ee0faf7663214b8dbac4c46685}\label{classUITranslatablePanel_a8f2644ee0faf7663214b8dbac4c46685} 
+{\bfseries UITranslatable\+Panel} (raylib\+::\+Rectangle r, \mbox{\hyperlink{classUIStylebox}{UIStylebox}} normal\+Stylebox=DEFAULT\+\_\+\+PANEL\+\_\+\+STYLEBOX, \mbox{\hyperlink{classUIStylebox}{UIStylebox}} selected\+Stylebox=DEFAULT\+\_\+\+SELECTED\+\_\+\+STYLEBOX)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classUISelectablePanel}{UISelectable\+Panel}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries UISelectable\+Panel} (raylib\+::\+Rectangle r, \mbox{\hyperlink{classAnchor2}{Anchor2}} a, \mbox{\hyperlink{classUIStylebox}{UIStylebox}} normal\+Stylebox=DEFAULT\+\_\+\+PANEL\+\_\+\+STYLEBOX, \mbox{\hyperlink{classUIStylebox}{UIStylebox}} selected\+Stylebox=DEFAULT\+\_\+\+SELECTED\+\_\+\+STYLEBOX)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classUIPanel}{UIPanel}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries UIPanel} (raylib\+::\+Rectangle r, \mbox{\hyperlink{classAnchor2}{Anchor2}} a, \mbox{\hyperlink{classUIStylebox}{UIStylebox}} s=DEFAULT\+\_\+\+PANEL\+\_\+\+STYLEBOX)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classUIComponent}{UIComponent}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries UIComponent} (raylib\+::\+Rectangle r, \mbox{\hyperlink{classAnchor2}{Anchor2}} a, \mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*}parent=NULL, \mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*}root=NULL)
+\item 
+void {\bfseries Add\+Child} (\mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*}child)
+\item 
+void {\bfseries Hide} ()
+\item 
+void {\bfseries Show} ()
+\item 
+virtual void {\bfseries Update\+And\+Draw} (raylib\+::\+Rectangle Bounding\+Box=Get\+Screen\+Boundingbox())
+\item 
+void {\bfseries Remove\+Child} (\mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*}component)
+\item 
+void {\bfseries Remove\+Child} (int index)
+\item 
+int {\bfseries Get\+Children\+Count} ()
+\item 
+\mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Child} (int index)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classUITranslatablePanel_a2347bb476d35a2518c4fecf48124a0f1}\label{classUITranslatablePanel_a2347bb476d35a2518c4fecf48124a0f1} 
+bool {\bfseries allowed\+To\+Be\+Translated} = true
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classUIPanel}{UIPanel}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classUIStylebox}{UIStylebox}} {\bfseries stylebox}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classUIComponent}{UIComponent}}}
+\begin{DoxyCompactItemize}
+\item 
+raylib\+::\+Rectangle {\bfseries rect}
+\item 
+\mbox{\hyperlink{classAnchor2}{Anchor2}} {\bfseries anchor}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classUITranslatablePanel_a2be1923a3a7aa508fdc88e6962874054}\label{classUITranslatablePanel_a2be1923a3a7aa508fdc88e6962874054} 
+bool {\bfseries can\+Be\+Translated} (raylib\+::\+Rectangle bounding\+Box)
+\item 
+virtual void \mbox{\hyperlink{classUITranslatablePanel_a3d751ffb001d945beca4ba64855fec97}{update}} (raylib\+::\+Rectangle bounding\+Box) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classUISelectablePanel}{UISelectable\+Panel}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries get\+Mouse\+Collision} (raylib\+::\+Rectangle bounding\+Box)
+\item 
+virtual void \mbox{\hyperlink{classUISelectablePanel_a20b34e1fda6c6716124b0375f15b4050}{draw}} (raylib\+::\+Rectangle bounding\+Box) override
+\item 
+void {\bfseries on\+Selected} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classUITranslatablePanel_a0bedf012df2c8dbe380cca812d9ee32d}\label{classUITranslatablePanel_a0bedf012df2c8dbe380cca812d9ee32d} 
+bool {\bfseries translating}
+\item 
+\Hypertarget{classUITranslatablePanel_abfa73ebfcedde029989c072ddbe730fd}\label{classUITranslatablePanel_abfa73ebfcedde029989c072ddbe730fd} 
+raylib\+::\+Vector2 {\bfseries offset}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classUISelectablePanel}{UISelectable\+Panel}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries selected}
+\item 
+\mbox{\hyperlink{classUIStylebox}{UIStylebox}} {\bfseries selected\+Stylebox}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classUIComponent}{UIComponent}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries children}
+\item 
+\mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*} {\bfseries parent}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries children\+To\+Remove}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries children\+To\+Add}
+\item 
+bool {\bfseries visible}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A Panel allowing translation with mouse movement, when holding left mouse button This panel will always be anchored from top left, as it doesn\textquotesingle{}t have any fixed position. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classUITranslatablePanel_a3d751ffb001d945beca4ba64855fec97}\label{classUITranslatablePanel_a3d751ffb001d945beca4ba64855fec97} 
+\index{UITranslatablePanel@{UITranslatablePanel}!update@{update}}
+\index{update@{update}!UITranslatablePanel@{UITranslatablePanel}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void UITranslatable\+Panel\+::update (\begin{DoxyParamCaption}\item[{raylib\+::\+Rectangle}]{bounding\+Box }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classUISelectablePanel}{UISelectable\+Panel}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/UITranslatable\+Panel.\+hpp\item 
+src/UITranslatable\+Panel.\+cpp\end{DoxyCompactItemize}

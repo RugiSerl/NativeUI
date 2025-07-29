@@ -1,0 +1,48 @@
+\doxysection{UIComponent.\+hpp}
+\hypertarget{UIComponent_8hpp_source}{}\label{UIComponent_8hpp_source}\index{src/UIComponent.hpp@{src/UIComponent.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_UI\_COMPONENT\_\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_UI\_COMPONENT\_\_}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}raylib-\/cpp.hpp"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}anchor.hpp"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classUIComponent}{UIComponent}}\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{classUIComponent}{UIComponent}}(raylib::Rectangle\ r,\ \mbox{\hyperlink{classAnchor2}{Anchor2}}\ a,\ \mbox{\hyperlink{classUIComponent}{UIComponent}}*\ parent\ =\ NULL,\ \mbox{\hyperlink{classUIComponent}{UIComponent}}*\ root\ =\ NULL);}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{void}\ AddChild(\mbox{\hyperlink{classUIComponent}{UIComponent}}*\ child);}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ raylib::Rectangle\ rect;\ \textcolor{comment}{//\ be\ careful\ !\ always\ apply\ anchor\ before\ using\ it}}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{classAnchor2}{Anchor2}}\ anchor;}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{void}\ Hide();}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ Show();}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ UpdateAndDraw(raylib::Rectangle\ BoundingBox\ =\ GetScreenBoundingbox());}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{void}\ RemoveChild(\mbox{\hyperlink{classUIComponent}{UIComponent}}*\ component);}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ RemoveChild(\textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{int}\ GetChildrenCount();}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classUIComponent}{UIComponent}}*\ GetChild(\textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00026\ \ \ \ \ std::vector<UIComponent*>\ children;}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{classUIComponent}{UIComponent}}*\ parent;\ \textcolor{comment}{//\ NULL\ if\ root\ of\ the\ tree}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ When\ adding\ or\ removing\ a\ children,\ we\ only\ do\ it\ at\ the\ end\ of\ the\ frame\ to\ avoid\ interfering\ with\ children\ updates}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ For\ that\ reason\ I\ implemented\ queue\ based\ system.}}
+\DoxyCodeLine{00031\ \ \ \ \ std::vector<UIComponent*>\ childrenToRemove;}
+\DoxyCodeLine{00032\ \ \ \ \ std::vector<UIComponent*>\ childrenToAdd;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{bool}\ visible;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ draw(raylib::Rectangle\ BoundingBox);}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ update(raylib::Rectangle\ BoundingBox);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ addChild(\mbox{\hyperlink{classUIComponent}{UIComponent}}*\ child);}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ removeChild(\mbox{\hyperlink{classUIComponent}{UIComponent}}*\ child);}
+\DoxyCodeLine{00041\ \};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

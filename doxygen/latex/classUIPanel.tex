@@ -1,0 +1,100 @@
+\doxysection{UIPanel Class Reference}
+\hypertarget{classUIPanel}{}\label{classUIPanel}\index{UIPanel@{UIPanel}}
+
+
+{\ttfamily \#include $<$UIPanel.\+hpp$>$}
+
+
+
+Inheritance diagram for UIPanel\+:
+% FIG 0
+
+
+Collaboration diagram for UIPanel\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classUIPanel_a8bb3314de81d19bf84749915b6cc2921}\label{classUIPanel_a8bb3314de81d19bf84749915b6cc2921} 
+{\bfseries UIPanel} (raylib\+::\+Rectangle r, \mbox{\hyperlink{classAnchor2}{Anchor2}} a, \mbox{\hyperlink{classUIStylebox}{UIStylebox}} s=DEFAULT\+\_\+\+PANEL\+\_\+\+STYLEBOX)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classUIComponent}{UIComponent}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries UIComponent} (raylib\+::\+Rectangle r, \mbox{\hyperlink{classAnchor2}{Anchor2}} a, \mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*}parent=NULL, \mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*}root=NULL)
+\item 
+void {\bfseries Add\+Child} (\mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*}child)
+\item 
+void {\bfseries Hide} ()
+\item 
+void {\bfseries Show} ()
+\item 
+virtual void {\bfseries Update\+And\+Draw} (raylib\+::\+Rectangle Bounding\+Box=Get\+Screen\+Boundingbox())
+\item 
+void {\bfseries Remove\+Child} (\mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*}component)
+\item 
+void {\bfseries Remove\+Child} (int index)
+\item 
+int {\bfseries Get\+Children\+Count} ()
+\item 
+\mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Child} (int index)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classUIPanel_ae7962a54953cab5593729fb636f3fb41}\label{classUIPanel_ae7962a54953cab5593729fb636f3fb41} 
+\mbox{\hyperlink{classUIStylebox}{UIStylebox}} {\bfseries stylebox}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classUIComponent}{UIComponent}}}
+\begin{DoxyCompactItemize}
+\item 
+raylib\+::\+Rectangle {\bfseries rect}
+\item 
+\mbox{\hyperlink{classAnchor2}{Anchor2}} {\bfseries anchor}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classUIPanel_a8ce26be47a439a7b397142fc3b239250}{draw}} (raylib\+::\+Rectangle bounding\+Box) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classUIComponent}{UIComponent}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries update} (raylib\+::\+Rectangle Bounding\+Box)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classUIComponent}{UIComponent}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries children}
+\item 
+\mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*} {\bfseries parent}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries children\+To\+Remove}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries children\+To\+Add}
+\item 
+bool {\bfseries visible}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a \doxylink{classUIComponent}{UIComponent} that can be drawn, using stylebox. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classUIPanel_a8ce26be47a439a7b397142fc3b239250}\label{classUIPanel_a8ce26be47a439a7b397142fc3b239250} 
+\index{UIPanel@{UIPanel}!draw@{draw}}
+\index{draw@{draw}!UIPanel@{UIPanel}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void UIPanel\+::draw (\begin{DoxyParamCaption}\item[{raylib\+::\+Rectangle}]{bounding\+Box }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classUIComponent}{UIComponent}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/UIPanel.\+hpp\item 
+src/UIPanel.\+cpp\end{DoxyCompactItemize}

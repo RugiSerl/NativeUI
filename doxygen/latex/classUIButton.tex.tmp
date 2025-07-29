@@ -1,0 +1,169 @@
+\doxysection{UIButton Class Reference}
+\hypertarget{classUIButton}{}\label{classUIButton}\index{UIButton@{UIButton}}
+
+
+Inheritance diagram for UIButton\+:
+% FIG 0
+
+
+Collaboration diagram for UIButton\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classUIButton_a18e94e8edeae8b85a8c82bffb8835012}{UIButton}} (raylib\+::\+Rectangle r, \mbox{\hyperlink{classAnchor2}{Anchor2}} a, std\+::function$<$ void(void)$>$ callback, \mbox{\hyperlink{classUIStylebox}{UIStylebox}} normal\+Stylebox, \mbox{\hyperlink{classUIStylebox}{UIStylebox}} selected\+Stylebox, \mbox{\hyperlink{classUIStylebox}{UIStylebox}} hovered\+Stylebox, \mbox{\hyperlink{classUIStylebox}{UIStylebox}} down\+Stylebox)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classUISelectablePanel}{UISelectable\+Panel}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries UISelectable\+Panel} (raylib\+::\+Rectangle r, \mbox{\hyperlink{classAnchor2}{Anchor2}} a, \mbox{\hyperlink{classUIStylebox}{UIStylebox}} normal\+Stylebox=DEFAULT\+\_\+\+PANEL\+\_\+\+STYLEBOX, \mbox{\hyperlink{classUIStylebox}{UIStylebox}} selected\+Stylebox=DEFAULT\+\_\+\+SELECTED\+\_\+\+STYLEBOX)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classUIPanel}{UIPanel}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries UIPanel} (raylib\+::\+Rectangle r, \mbox{\hyperlink{classAnchor2}{Anchor2}} a, \mbox{\hyperlink{classUIStylebox}{UIStylebox}} s=DEFAULT\+\_\+\+PANEL\+\_\+\+STYLEBOX)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classUIComponent}{UIComponent}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries UIComponent} (raylib\+::\+Rectangle r, \mbox{\hyperlink{classAnchor2}{Anchor2}} a, \mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*}parent=NULL, \mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*}root=NULL)
+\item 
+void {\bfseries Add\+Child} (\mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*}child)
+\item 
+void {\bfseries Hide} ()
+\item 
+void {\bfseries Show} ()
+\item 
+virtual void {\bfseries Update\+And\+Draw} (raylib\+::\+Rectangle Bounding\+Box=Get\+Screen\+Boundingbox())
+\item 
+void {\bfseries Remove\+Child} (\mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*}component)
+\item 
+void {\bfseries Remove\+Child} (int index)
+\item 
+int {\bfseries Get\+Children\+Count} ()
+\item 
+\mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Child} (int index)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classUIButton_af69024ee31335617c761dd485357ae2f}\label{classUIButton_af69024ee31335617c761dd485357ae2f} 
+bool {\bfseries pressed}
+\item 
+\Hypertarget{classUIButton_a29796662c05780b5010b18a94b189661}\label{classUIButton_a29796662c05780b5010b18a94b189661} 
+bool {\bfseries hovered}
+\item 
+\Hypertarget{classUIButton_a8e4423f1bff095d2efa10874e636d664}\label{classUIButton_a8e4423f1bff095d2efa10874e636d664} 
+bool {\bfseries down}
+\item 
+\Hypertarget{classUIButton_ab39fa63c910e4da180f014dc9e76d2bc}\label{classUIButton_ab39fa63c910e4da180f014dc9e76d2bc} 
+\mbox{\hyperlink{classUIStylebox}{UIStylebox}} {\bfseries hovered\+Stylebox}
+\item 
+\Hypertarget{classUIButton_a6031301c47e00a84069f82c107af6556}\label{classUIButton_a6031301c47e00a84069f82c107af6556} 
+\mbox{\hyperlink{classUIStylebox}{UIStylebox}} {\bfseries down\+Stylebox}
+\item 
+\Hypertarget{classUIButton_abb644c20a39b060f26fab349ee0bc0f9}\label{classUIButton_abb644c20a39b060f26fab349ee0bc0f9} 
+std\+::function$<$ void(void)$>$ {\bfseries on\+Click}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classUIPanel}{UIPanel}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classUIStylebox}{UIStylebox}} {\bfseries stylebox}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classUIComponent}{UIComponent}}}
+\begin{DoxyCompactItemize}
+\item 
+raylib\+::\+Rectangle {\bfseries rect}
+\item 
+\mbox{\hyperlink{classAnchor2}{Anchor2}} {\bfseries anchor}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classUIButton_a3b9ccbb0bcede7cae8f643b9a4930e20}{update}} (raylib\+::\+Rectangle bounding\+Box) override
+\item 
+virtual void \mbox{\hyperlink{classUIButton_a55ce4213cca5d605f7b4298218f3c18e}{draw}} (raylib\+::\+Rectangle bounding\+Box) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classUISelectablePanel}{UISelectable\+Panel}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries get\+Mouse\+Collision} (raylib\+::\+Rectangle bounding\+Box)
+\item 
+void {\bfseries on\+Selected} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classUISelectablePanel}{UISelectable\+Panel}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries selected}
+\item 
+\mbox{\hyperlink{classUIStylebox}{UIStylebox}} {\bfseries selected\+Stylebox}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classUIComponent}{UIComponent}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries children}
+\item 
+\mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*} {\bfseries parent}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries children\+To\+Remove}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classUIComponent}{UIComponent}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries children\+To\+Add}
+\item 
+bool {\bfseries visible}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classUIButton_a18e94e8edeae8b85a8c82bffb8835012}\label{classUIButton_a18e94e8edeae8b85a8c82bffb8835012} 
+\index{UIButton@{UIButton}!UIButton@{UIButton}}
+\index{UIButton@{UIButton}!UIButton@{UIButton}}
+\doxysubsubsection{\texorpdfstring{UIButton()}{UIButton()}}
+{\footnotesize\ttfamily UIButton\+::\+UIButton (\begin{DoxyParamCaption}\item[{raylib\+::\+Rectangle}]{r,  }\item[{\mbox{\hyperlink{classAnchor2}{Anchor2}}}]{a,  }\item[{std\+::function$<$ void(void)$>$}]{callback,  }\item[{\mbox{\hyperlink{classUIStylebox}{UIStylebox}}}]{normal\+Stylebox,  }\item[{\mbox{\hyperlink{classUIStylebox}{UIStylebox}}}]{selected\+Stylebox,  }\item[{\mbox{\hyperlink{classUIStylebox}{UIStylebox}}}]{hovered\+Stylebox,  }\item[{\mbox{\hyperlink{classUIStylebox}{UIStylebox}}}]{down\+Stylebox }\end{DoxyParamCaption})}
+
+Constructor for \doxylink{classUIButton}{UIButton}. 
+\begin{DoxyParams}{Parameters}
+{\em r} & contains size and relative position of item. \\
+\hline
+{\em a} & anchor data of the item. \\
+\hline
+{\em callback} & function to call when the button is pressed. \\
+\hline
+{\em normal\+Stylebox} & default stylebox. \\
+\hline
+{\em selected\+Stylebox} & \\
+\hline
+{\em down\+Stylebox} & stylebox displayed when the user is holding left mouse button. \\
+\hline
+{\em hovered\+Stylebox} & stylebox displayed when the mouse is on top of the button. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classUIButton_a55ce4213cca5d605f7b4298218f3c18e}\label{classUIButton_a55ce4213cca5d605f7b4298218f3c18e} 
+\index{UIButton@{UIButton}!draw@{draw}}
+\index{draw@{draw}!UIButton@{UIButton}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void UIButton\+::draw (\begin{DoxyParamCaption}\item[{raylib\+::\+Rectangle}]{bounding\+Box }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classUISelectablePanel}{UISelectable\+Panel}}.
+
+\Hypertarget{classUIButton_a3b9ccbb0bcede7cae8f643b9a4930e20}\label{classUIButton_a3b9ccbb0bcede7cae8f643b9a4930e20} 
+\index{UIButton@{UIButton}!update@{update}}
+\index{update@{update}!UIButton@{UIButton}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void UIButton\+::update (\begin{DoxyParamCaption}\item[{raylib\+::\+Rectangle}]{bounding\+Box }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classUISelectablePanel}{UISelectable\+Panel}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/UIButton.\+hpp\item 
+src/UIButton.\+cpp\end{DoxyCompactItemize}
