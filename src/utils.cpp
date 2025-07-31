@@ -60,5 +60,5 @@ BottomRightCorner:
 
 
 raylib::Rectangle clampRectangle(raylib::Rectangle rect, raylib::Rectangle bounds) {
-    return raylib::Rectangle(std::max(rect.x, bounds.x), std::max(rect.y, bounds.y), std::min(rect.width, bounds.width), std::min(rect.height, bounds.height));
+    return raylib::Rectangle(Clamp(rect.x, bounds.x, bounds.x+bounds.width-rect.width), Clamp(rect.y, bounds.y, bounds.y+bounds.height-rect.height), std::min(rect.width, bounds.width), std::min(rect.height, bounds.height));
 }

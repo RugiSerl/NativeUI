@@ -26,7 +26,7 @@ void UITranslatablePanel::update(raylib::Rectangle boundingBox) {
         translatedPosition = raylib::Mouse::GetPosition() - boundingBox.GetPosition() + offset;
     }
     // TODO: fix bug here
-    this->rect.SetPosition(clampRectangle(rect, raylib::Rectangle(raylib::Vector2(0, 0), boundingBox.GetSize())).GetPosition());
+    this->rect.SetPosition(clampRectangle(raylib::Rectangle(translatedPosition, rect.GetSize()), boundingBox.GetSize()).GetPosition());
 
 }
 
