@@ -39,7 +39,7 @@ int main() {
     UIResizablePanel panel(raylib::Rectangle(40.0, 40.0, 200.0, 200.0), resizableDirections(false, true, false, false), raylib::Vector2(40, 40));
 
     navigatorSplit.AddChild(&panel, 0);
-    navigatorSplit.AddChild(&checkbox, 1);
+    selectable3.AddChild(&checkbox);
     selectable2.AddChild(&selectable3);
     selectable3.AddChild(&selectable4);
     navigatorSplit.AddChild(&selectable2, 1);

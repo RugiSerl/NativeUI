@@ -6,7 +6,7 @@ void UIResizablePanel::update(raylib::Rectangle boundingBox) {
     // Check if mouse is in resize zone
     if (!translating && getMouseCollision(boundingBox) && !getInnerRect(GetAnchoredRect(rect, anchor, boundingBox), RESIZE_LENIENCY).CheckCollision(raylib::Mouse::GetPosition())) {
 
-        
+
         allowedToBeTranslated = false; // resize mode
         RectangleSplitted grid = GetSplittedRectangle(GetAnchoredRect(rect, anchor, boundingBox), getInnerRect(GetAnchoredRect(rect, anchor, boundingBox), RESIZE_LENIENCY));
 

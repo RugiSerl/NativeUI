@@ -28,13 +28,24 @@ public:
 
 };
 
-
-
-
-
+/**
+ * @brief moves all the elements from a vector according to offset
+ *
+ * @tparam T type of the elements in the vector
+ * @param vector
+ * @param offset
+ * @return std::vector<T>
+ */
 template<class T> std::vector<T> rotateVector(std::vector<T> vector, int offset);
-raylib::Rectangle getInnerRect(raylib::Rectangle, float);
 
+
+/**
+ * @brief Get rectangle inside another with padding value
+ *
+ * @param padding
+ * @return raylib::Rectangle
+ */
+raylib::Rectangle getInnerRect(raylib::Rectangle, float padding);
 
 
 /**

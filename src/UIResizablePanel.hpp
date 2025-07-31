@@ -6,7 +6,7 @@
 
 /**
  * @brief Contains information of which edge can be resized.
- * 
+ *
  */
 class resizableDirections {
 public:

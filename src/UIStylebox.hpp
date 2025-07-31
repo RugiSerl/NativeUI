@@ -9,6 +9,13 @@
  */
 class UIStylebox {
 public:
+
+    float borderThickness, cornerRadius;
+    Color fillColor, borderColor;
+    float innerOffset;
+    float shadowDistance;
+    Texture2D Image; // optionnal
+
     /**
      * @brief Init object UIStylebox
      * @param borderThickness thickness of the edges
@@ -19,13 +26,24 @@ public:
      * @param shadowDistance distance to the rectangle's drop shadow (doesn't matter if <=0)
      */
     UIStylebox(float borderThickness, float cornerRadius, Color fillColor, Color borderColor, float innerOffset = 0, float shadowDistance = 0);
-    float borderThickness, cornerRadius;
-    Color fillColor, borderColor;
-    float innerOffset;
-    float shadowDistance;
-    Texture2D Image; // optionnal
+
+
+    /**
+     * @brief Draw the stylebox on screen but also use scissor
+     *
+     * @param rect relative rect
+     * @param anchor anchor origin
+     * @param boundingBox box to constrain to
+     */
     void draw(raylib::Rectangle rect, Anchor2 anchor, raylib::Rectangle boundingBox);
-    void draw(raylib::Rectangle rect);
+
+    /**
+     * @brief Draw stylebox
+     *
+     * @param anchoredRect make sure you have applied anchor before passing this as argument
+     */
+    void draw(raylib::Rectangle anchoredRect);
+
 };
 
 

@@ -9,7 +9,7 @@
 class UIButton : public UISelectablePanel {
 public:
     /**
-     * Constructor for  UIButton.
+     * Constructor for UIButton.
      * @param r contains size and relative position of item.
      * @param a anchor data of the item.
      * @param callback function to call when the button is pressed.
