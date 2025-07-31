@@ -18,15 +18,16 @@ void UITranslatablePanel::update(raylib::Rectangle boundingBox) {
 
     } else if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
         this->translating = false;
+        // forget true position when translation is over
+        this->translatedPosition = this->rect.GetPosition();
     }
 
-    // update translation if translating
     if (this->translating) {
         // works because the component is anchored to top left.
         translatedPosition = raylib::Mouse::GetPosition() - boundingBox.GetPosition() + offset;
     }
-    // TODO: fix bug here
-    this->rect.SetPosition(clampRectangle(raylib::Rectangle(translatedPosition, rect.GetSize()), boundingBox.GetSize()).GetPosition());
+
+    this->rect = clampRectangle(raylib::Rectangle(translatedPosition, rect.GetSize()), boundingBox.GetSize());
 
 }
 

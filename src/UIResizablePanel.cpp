@@ -44,11 +44,13 @@ void UIResizablePanel::update(raylib::Rectangle boundingBox) {
         break;
     }
 
-    rect.width = std::max(minSize.x, resizedRect.width);
-    rect.height = std::max(minSize.y, resizedRect.height);
+    rect.width = Clamp(resizedRect.width, minSize.x, boundingBox.width);
+    rect.height = Clamp(resizedRect.height, minSize.y, boundingBox.height);
 
     if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
         resizeState = resizableDirections::NONE;
+        // forget true size when resizing is over
+        this->resizedRect = this->rect;
     }
 
 
