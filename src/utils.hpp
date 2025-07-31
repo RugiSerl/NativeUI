@@ -81,7 +81,7 @@ raylib::Rectangle getRectangleIntersection(raylib::Rectangle r1, raylib::Rectang
 
 /**
  * @brief Clamp rectangle inside another
- * 
+ *
  * @param rect rectangle to clamp
  * @param bounds delimiting rectangle
  * @return raylib::Rectangle clamped rectangle

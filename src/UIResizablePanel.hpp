@@ -4,13 +4,21 @@
 
 #define RESIZE_LENIENCY 10
 
-
-enum class resizableDirections {
-    NONE,
-    TOP,
-    BOTTOM,
-    LEFT,
-    RIGHT,
+/**
+ * @brief Contains information of which edge can be resized.
+ * 
+ */
+class resizableDirections {
+public:
+    resizableDirections() : Top(false), Bottom(false), Left(false), Right(false) {};
+    resizableDirections(bool top, bool bottom, bool right, bool left) : Top(top), Bottom(bottom), Left(left), Right(right) {};
+    bool isNone() {
+        return !(Top || Bottom || Left || Right);
+    };
+    bool Top;
+    bool Bottom;
+    bool Left;
+    bool Right;
 };
 
 /**
@@ -31,7 +39,7 @@ public:
 protected:
     raylib::Rectangle resizedRect; // rect that is not constrained by minSize
     Vector2 minSize;
-    resizableDirections resizeState = resizableDirections::NONE;
+    resizableDirections resizeState;
     resizableDirections resizableConstraints;
     virtual void update(raylib::Rectangle boundingBox) override;
 };

@@ -6,8 +6,8 @@ void UIResizablePanel::update(raylib::Rectangle boundingBox) {
     // Check if mouse is in resize zone
     if (!translating && getMouseCollision(boundingBox) && !getInnerRect(GetAnchoredRect(rect, anchor, boundingBox), RESIZE_LENIENCY).CheckCollision(raylib::Mouse::GetPosition())) {
 
-        // resize mode
-        allowedToBeTranslated = false;
+        
+        allowedToBeTranslated = false; // resize mode
         RectangleSplitted grid = GetSplittedRectangle(GetAnchoredRect(rect, anchor, boundingBox), getInnerRect(GetAnchoredRect(rect, anchor, boundingBox), RESIZE_LENIENCY));
 
         // set Cursor appearance when hovering
@@ -18,37 +18,38 @@ void UIResizablePanel::update(raylib::Rectangle boundingBox) {
             SetCursor(MOUSE_CURSOR_RESIZE_NS);
         }
 
-        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && resizeState == resizableDirections::NONE) {
+        // 1. start resize
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && resizeState.isNone()) {
             if (grid.RightRect.CheckCollision(raylib::Mouse::GetPosition())) {
-                resizeState = resizableDirections::RIGHT;
+                this->resizeState.Right = true;
 
             } else if (grid.BottomRect.CheckCollision(raylib::Mouse::GetPosition())) {
-                resizeState = resizableDirections::BOTTOM;
+                resizeState.Bottom = true;
+
+            } else if (grid.TopRect.CheckCollision(raylib::Mouse::GetPosition())) {
+                resizeState.Top = true;
             }
+
         }
 
     } else {
         allowedToBeTranslated = true;
     }
 
-    switch (resizeState) {
-    case resizableDirections::RIGHT:
-        resizedRect.width += raylib::Mouse::GetDelta().x;
-        break;
+    // 2. update resize
+    if (resizeState.Right) {
+        resizedRect.width += GetMouseDelta().x;
 
-    case resizableDirections::BOTTOM:
-        resizedRect.height += raylib::Mouse::GetDelta().y;
-        break;
-
-    default:
-        break;
+    } else if (resizeState.Bottom) {
+        resizedRect.height += GetMouseDelta().y;
     }
 
     rect.width = Clamp(resizedRect.width, minSize.x, boundingBox.width);
     rect.height = Clamp(resizedRect.height, minSize.y, boundingBox.height);
 
+    // 3. end resize
     if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
-        resizeState = resizableDirections::NONE;
+        resizeState = resizableDirections();
         // forget true size when resizing is over
         this->resizedRect = this->rect;
     }
