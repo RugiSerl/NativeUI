@@ -30,7 +30,7 @@ public:
 
     // styleBox associated to the state
     UIStylebox hoveredStylebox, downStylebox;
-    
+
     // callback function
     std::function<void (void)> onClick;
 

@@ -16,7 +16,7 @@ public:
     float shadowDistance;
     Texture2D Image; // optionnal
 
-    
+
     /**
      * @brief Init object UIStylebox
      * @param borderThickness thickness of the edges

@@ -23,7 +23,7 @@ public:
     bool allowedToBeTranslated = true;
 
 protected:
-    
+
 
 
     /**

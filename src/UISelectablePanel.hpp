@@ -20,9 +20,9 @@ public:
      */
     UISelectablePanel(raylib::Rectangle r, Anchor2 a, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX);
 
-    
+
 protected:
-    
+
 
     /**
      * @brief Get if panel is colliding with extra steps :

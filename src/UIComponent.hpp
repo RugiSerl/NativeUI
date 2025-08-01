@@ -28,9 +28,9 @@ public:
      */
     void AddChild(UIComponent* child);
 
-    
+
     /**
-     * @brief Recursively call update and draw for the component and its children. This takes effect at the UpdateAndDraw() function 
+     * @brief Recursively call update and draw for the component and its children. This takes effect at the UpdateAndDraw() function
      *
      * @param BoundingBox where is contained the object
      */
@@ -39,47 +39,47 @@ public:
 
     /**
      * @brief Remove child with child pointer value
-     * 
+     *
      * @param component child
      */
     void RemoveChild(UIComponent* component);
-    
-    
+
+
     /**
      * @brief remove child with index value
-     * 
+     *
      * @param index childIndex
      */
     void RemoveChild(int index);
-    
-    
+
+
     /**
      * @brief Get the amount of children
-     * 
-     * @return int 
+     *
+     * @return int
      */
     int GetChildrenCount();
 
 
     /**
      * @brief Get the nth child
-     * 
+     *
      * @param index n
-     * @return UIComponent* child 
+     * @return UIComponent* child
      */
     UIComponent* GetChild(int index);
 
 
     /**
      * @brief Hide the component (and its children)
-     * 
+     *
      */
     void Hide();
 
 
     /**
      * @brief Show the component (and its children)
-     * 
+     *
      */
     void Show();
 
@@ -92,7 +92,7 @@ protected:
 
     /**
      * @brief Draw the component on screen. Mostly overriden by children classes
-     * 
+     *
      * @param BoundingBox bounds to restrain to, often the rectangle of the parent
      */
     virtual void draw(raylib::Rectangle BoundingBox);
@@ -100,7 +100,7 @@ protected:
 
     /**
      * @brief Update component logic. Mostly overriden by children classes
-     * 
+     *
      * @param BoundingBox bounds to restrain to, often the rectangle of the parent
      */
     virtual void update(raylib::Rectangle BoundingBox);

@@ -34,19 +34,19 @@ public:
      * @param selectedStylebox
      */
     UISplit(raylib::Rectangle r, Anchor2 a, splitType type, Anchor barAnchor, float barOffset, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX);
-    
-    
+
+
     /**
      * @brief Overrides UpdateAndDraw to update properly the first and the second part of the split.
-     * 
-     * @param BoundingBox 
+     *
+     * @param BoundingBox
      */
     virtual void UpdateAndDraw(raylib::Rectangle BoundingBox = GetScreenBoundingbox()) override;
 
 
     /**
      * @brief This replaces UIComponent's AddChild.
-     * 
+     *
      * @param child child to add
      * @param side index of the side. Can be 0 or 1.
      */
