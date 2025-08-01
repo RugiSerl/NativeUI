@@ -20,14 +20,17 @@ void UIResizablePanel::update(raylib::Rectangle boundingBox) {
 
         // 1. start resize
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && resizeState.isNone()) {
-            if (grid.RightRect.CheckCollision(raylib::Mouse::GetPosition())) {
-                this->resizeState.Right = true;
+            if (grid.TopRect.CheckCollision(raylib::Mouse::GetPosition()) && resizableConstraints.Top) {
+                resizeState.Top = true;
 
-            } else if (grid.BottomRect.CheckCollision(raylib::Mouse::GetPosition())) {
+            } else if (grid.BottomRect.CheckCollision(raylib::Mouse::GetPosition()) && resizableConstraints.Bottom) {
                 resizeState.Bottom = true;
 
-            } else if (grid.TopRect.CheckCollision(raylib::Mouse::GetPosition())) {
-                resizeState.Top = true;
+            } else if (grid.LeftRect.CheckCollision(raylib::Mouse::GetPosition()) && resizableConstraints.Left) {
+                resizeState.Left = true;
+
+            } else if (grid.RightRect.CheckCollision(raylib::Mouse::GetPosition()) && resizableConstraints.Right) {
+                resizeState.Right = true;
             }
 
         }
@@ -37,19 +40,27 @@ void UIResizablePanel::update(raylib::Rectangle boundingBox) {
     }
 
     // 2. update resize
-    if (resizeState.Right) {
-        resizedRect.width += GetMouseDelta().x;
+    if (resizeState.Top) {
+        //rect.y += GetMouseDelta().y;
+        //resizedRect.height -= GetMouseDelta().y;
 
     } else if (resizeState.Bottom) {
         resizedRect.height += GetMouseDelta().y;
+
+    } else if (resizeState.Left) {
+        //resizedRect.width -= GetMouseDelta().x;
+
+    } else if (resizeState.Right) {
+        resizedRect.width += GetMouseDelta().x;
     }
+
 
     rect.width = Clamp(resizedRect.width, minSize.x, boundingBox.width);
     rect.height = Clamp(resizedRect.height, minSize.y, boundingBox.height);
 
     // 3. end resize
-    if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
-        resizeState = resizableDirections();
+    if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && !resizeState.isNone()) {
+        resizeState.SetToNone();
         // forget true size when resizing is over
         this->resizedRect = this->rect;
     }

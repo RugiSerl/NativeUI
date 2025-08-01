@@ -18,6 +18,9 @@ public:
      * @param selectedStylebox
      */
     UITranslatablePanel(raylib::Rectangle r, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX) : UISelectablePanel(r, Anchor2{LEFT, TOP}, normalStylebox, selectedStylebox), translating(false), translatedPosition(rect.GetPosition()) {};
+    
+    
+    void Translate(float delta);
 
 protected:
     raylib::Vector2 translatedPosition; // position that is not restrained by boundingBox, ie panel true position

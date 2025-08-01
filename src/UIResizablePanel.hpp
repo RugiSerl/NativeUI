@@ -11,9 +11,16 @@
 class resizableDirections {
 public:
     resizableDirections() : Top(false), Bottom(false), Left(false), Right(false) {};
+    resizableDirections(bool value) : Top(value), Bottom(value), Left(value), Right(value) {};
     resizableDirections(bool top, bool bottom, bool right, bool left) : Top(top), Bottom(bottom), Left(left), Right(right) {};
     bool isNone() {
         return !(Top || Bottom || Left || Right);
+    };
+    void SetToNone() {
+        Top = false;
+        Bottom = false;
+        Left = false;
+        Right = false;
     };
     bool Top;
     bool Bottom;
@@ -26,6 +33,7 @@ public:
  */
 class UIResizablePanel : public UITranslatablePanel {
 public:
+
     /**
      * @brief Construct a new UIResizablePanel object
      *
