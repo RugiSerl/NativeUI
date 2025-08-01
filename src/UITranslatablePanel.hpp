@@ -2,13 +2,14 @@
 #define __UITRANSLATABLEPANEL__H__
 #include "UISelectablePanel.hpp"
 
+
 /**
  * @brief A Panel allowing translation with mouse movement, when holding left mouse button.
  * This panel will always be anchored from top left, as it doesn't have any fixed position.
  */
 class UITranslatablePanel : public UISelectablePanel {
 public:
-    bool allowedToBeTranslated = true;
+
 
     /**
      * @brief Construct a new UITranslatablePanel object
@@ -18,14 +19,12 @@ public:
      * @param selectedStylebox
      */
     UITranslatablePanel(raylib::Rectangle r, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX) : UISelectablePanel(r, Anchor2{LEFT, TOP}, normalStylebox, selectedStylebox), translating(false), translatedPosition(rect.GetPosition()) {};
-    
-    
-    void Translate(float delta);
+
+    bool allowedToBeTranslated = true;
 
 protected:
-    raylib::Vector2 translatedPosition; // position that is not restrained by boundingBox, ie panel true position
-    bool translating;
-    raylib::Vector2 offset;
+    
+
 
     /**
      * @brief
@@ -35,7 +34,13 @@ protected:
      */
     bool canBeTranslated(raylib::Rectangle boundingBox);
 
+
     virtual void update(raylib::Rectangle boundingBox) override;
+
+
+    raylib::Vector2 translatedPosition; // position that is not restrained by boundingBox, ie panel true position
+    bool translating;
+    raylib::Vector2 offset;
 
 };
 

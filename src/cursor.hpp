@@ -20,6 +20,8 @@ static int frameCursor = MOUSE_CURSOR_DEFAULT;
  * @param cursorType raylib's enum cursor type (ex MOUSE_CURSOR_ARROW)
  */
 void SetCursor(int cursorType);
+
+
 /**
  * @brief Call once per frame, to update the cursor if needed.
  *

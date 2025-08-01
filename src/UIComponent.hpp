@@ -8,6 +8,8 @@
  */
 class UIComponent {
 public:
+
+
     /**
      * @brief Construct a new UIComponent object, should generally not be accessed directly
      *
@@ -17,30 +19,93 @@ public:
      * @param root root of the node
      */
     UIComponent(raylib::Rectangle r, Anchor2 a, UIComponent* parent = NULL, UIComponent* root = NULL);
+
+
     /**
-     * @brief This is the way you add children (you can't access children member)
+     * @brief This is the way you add children (you can't access children member). This takes effect at the UpdateAndDraw() function
      *
      * @param child UIComponent to add
      */
     void AddChild(UIComponent* child);
 
-    raylib::Rectangle rect; // be careful ! always apply anchor before using it
-    Anchor2 anchor;
-    void Hide();
-    void Show();
+    
     /**
-     * @brief Recursively call update and draw for the component and its children
+     * @brief Recursively call update and draw for the component and its children. This takes effect at the UpdateAndDraw() function 
      *
      * @param BoundingBox where is contained the object
      */
     virtual void UpdateAndDraw(raylib::Rectangle BoundingBox = GetScreenBoundingbox());
+
+
+    /**
+     * @brief Remove child with child pointer value
+     * 
+     * @param component child
+     */
     void RemoveChild(UIComponent* component);
+    
+    
+    /**
+     * @brief remove child with index value
+     * 
+     * @param index childIndex
+     */
     void RemoveChild(int index);
+    
+    
+    /**
+     * @brief Get the amount of children
+     * 
+     * @return int 
+     */
     int GetChildrenCount();
+
+
+    /**
+     * @brief Get the nth child
+     * 
+     * @param index n
+     * @return UIComponent* child 
+     */
     UIComponent* GetChild(int index);
 
 
+    /**
+     * @brief Hide the component (and its children)
+     * 
+     */
+    void Hide();
+
+
+    /**
+     * @brief Show the component (and its children)
+     * 
+     */
+    void Show();
+
+
+    raylib::Rectangle rect; // be careful ! always apply anchor before using it
+    Anchor2 anchor;
+
 protected:
+
+
+    /**
+     * @brief Draw the component on screen. Mostly overriden by children classes
+     * 
+     * @param BoundingBox bounds to restrain to, often the rectangle of the parent
+     */
+    virtual void draw(raylib::Rectangle BoundingBox);
+
+
+    /**
+     * @brief Update component logic. Mostly overriden by children classes
+     * 
+     * @param BoundingBox bounds to restrain to, often the rectangle of the parent
+     */
+    virtual void update(raylib::Rectangle BoundingBox);
+
+
     std::vector<UIComponent*> children;
     UIComponent* parent; // NULL if root of the tree
 
@@ -50,10 +115,11 @@ protected:
     std::vector<UIComponent*> childrenToAdd;
 
     bool visible;
-    virtual void draw(raylib::Rectangle BoundingBox);
-    virtual void update(raylib::Rectangle BoundingBox);
+    ;
 
 private:
+
+
     /**
      * @brief This the true way of appending child. Don't use it.
      * @warning Use AddChild() instead
@@ -61,6 +127,8 @@ private:
      * @param child child to add
      */
     void addChild(UIComponent* child);
+
+
     /**
      * @brief This the true way of removing child. Don't use it.
      * @warning Use RemoveChild() instead

@@ -28,7 +28,7 @@ void UITranslatablePanel::update(raylib::Rectangle boundingBox) {
     }
 
     this->rect = clampRectangle(raylib::Rectangle(translatedPosition, rect.GetSize()), boundingBox.GetSize());
-    
+
 
 }
 

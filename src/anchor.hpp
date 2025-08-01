@@ -1,6 +1,8 @@
 #ifndef __ANCHOR_H__
 #define __ANCHOR_H__
 #include "raylib-cpp.hpp"
+
+
 /**
  * @brief points on the screen to set the position from
  *
@@ -13,6 +15,8 @@ enum Anchor {
     TOP,
     BOTTOM
 };
+
+
 /**
  * @brief Set of Two Anchors for 2d positioning
  *
@@ -21,6 +25,7 @@ class Anchor2 {
 public:
     Anchor horizontal, vertical;
 };
+
 
 /**
  * @brief Get the Screen Boundingbox object

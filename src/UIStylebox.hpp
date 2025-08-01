@@ -16,6 +16,7 @@ public:
     float shadowDistance;
     Texture2D Image; // optionnal
 
+    
     /**
      * @brief Init object UIStylebox
      * @param borderThickness thickness of the edges
@@ -36,6 +37,7 @@ public:
      * @param boundingBox box to constrain to
      */
     void draw(raylib::Rectangle rect, Anchor2 anchor, raylib::Rectangle boundingBox);
+
 
     /**
      * @brief Draw stylebox

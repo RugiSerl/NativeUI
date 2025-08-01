@@ -3,7 +3,6 @@
 #include "raylib-cpp.hpp"
 
 
-
 /**
  * Draws a rectangle with rounded corners.
  * @param rect rectangle to draw
@@ -11,12 +10,14 @@
  */
 void DrawRoundedRectangle(raylib::Rectangle rect, float cornerRadius, Color color) ;
 
+
 /**
  * Draws a rectangle's lines with rounded corners.
  * @param rect rectangle to draw
  * @param cornerRadius radius of the circle drawn in the corner
  */
 void DrawRoundedRectangleLines(raylib::Rectangle rect, float cornerRadius, Color Color, float thickness) ;
+
 
 /**
  * Draws the line of an arc of a circle.

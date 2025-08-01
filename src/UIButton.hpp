@@ -2,12 +2,16 @@
 #define __UIBUTTON_H__
 #include "UISelectablePanel.hpp"
 #include <functional>
+
+
 /**
  * @brief Panel that will trigger function when clicked upon.
  *
  */
 class UIButton : public UISelectablePanel {
 public:
+
+
     /**
      * Constructor for UIButton.
      * @param r contains size and relative position of item.
@@ -20,11 +24,16 @@ public:
      */
     UIButton(raylib::Rectangle r, Anchor2 a, std::function<void (void)> callback, UIStylebox normalStylebox, UIStylebox selectedStylebox, UIStylebox hoveredStylebox, UIStylebox downStylebox);
 
+
     // state of the button
     bool pressed, hovered, down;
+
+    // styleBox associated to the state
     UIStylebox hoveredStylebox, downStylebox;
+    
     // callback function
     std::function<void (void)> onClick;
+
 protected:
     virtual void update(raylib::Rectangle boundingBox) override;
     virtual void draw(raylib::Rectangle boundingBox) override;

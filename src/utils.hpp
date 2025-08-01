@@ -3,6 +3,7 @@
 #include <vector>
 #include "raylib-cpp.hpp"
 
+
 /**
  * @brief Alternative rectangle representation with two points
  *
@@ -27,6 +28,7 @@ public:
     }
 
 };
+
 
 /**
  * @brief moves all the elements from a vector according to offset
@@ -81,6 +83,7 @@ struct RectangleSplitted {
  */
 RectangleSplitted GetSplittedRectangle(raylib::Rectangle outerRectangle, raylib::Rectangle innerRectangle);
 
+
 /**
  * @brief Get the intersection rectangle between two rectangles.
  *
@@ -89,6 +92,7 @@ RectangleSplitted GetSplittedRectangle(raylib::Rectangle outerRectangle, raylib:
  * @return raylib::Rectangle
  */
 raylib::Rectangle getRectangleIntersection(raylib::Rectangle r1, raylib::Rectangle r2);
+
 
 /**
  * @brief Clamp rectangle inside another

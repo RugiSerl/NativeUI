@@ -8,6 +8,8 @@
  */
 class UISelectablePanel : public UIPanel {
 public:
+
+
     /**
      * @brief Construct a new UISelectablePanel object
      *
@@ -18,9 +20,10 @@ public:
      */
     UISelectablePanel(raylib::Rectangle r, Anchor2 a, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX);
 
+    
 protected:
-    bool selected;
-    UIStylebox selectedStylebox;
+    
+
     /**
      * @brief Get if panel is colliding with extra steps :
      * First making sure that no sibling is overlapping in front of it,
@@ -32,15 +35,23 @@ protected:
     bool getMouseCollision(raylib::Rectangle boundingBox);
     virtual void update(raylib::Rectangle boundingBox) override;
     virtual void draw(raylib::Rectangle boundingBox) override;
+
+
     /**
      * @brief Will deselect other panels.
      *
      */
     void onSelected();
 
+
+    bool selected;
+    UIStylebox selectedStylebox;
+
 private:
+
+
     /**
-     * Check if panel is behind one of its child at the mouse position
+     * @brief if panel is behind one of its child at the mouse position
      */
     bool isBehindChild(raylib::Rectangle boundingBox);
 
