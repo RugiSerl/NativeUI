@@ -13,23 +13,34 @@ void UITranslatablePanel::update(raylib::Rectangle boundingBox) {
 
     // select / unselect for translating
     if ( IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && canBeTranslated(boundingBox)) {
-        this->translating = true;
-        this->offset = GetAnchoredRect(rect, anchor, boundingBox).GetPosition() - raylib::Mouse::GetPosition();
+        beginTranslation(boundingBox);
 
     } else if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && translating) {
-        this->translating = false;
-        // forget true position when translation is over
-        this->translatedPosition = this->rect.GetPosition();
+        endTranslation();
     }
 
     if (this->translating) {
-        // works because the component is anchored to top left.
-        translatedPosition = raylib::Mouse::GetPosition() - boundingBox.GetPosition() + offset;
+        updateTranslation(boundingBox);
     }
 
+    // This will also affect resizing
     this->rect = clampRectangle(raylib::Rectangle(translatedPosition, rect.GetSize()), boundingBox.GetSize());
+}
 
+void UITranslatablePanel::beginTranslation(raylib::Rectangle boundingBox) {
+    this->translating = true;
+    this->offset = GetAnchoredRect(rect, anchor, boundingBox).GetPosition() - raylib::Mouse::GetPosition();
+}
 
+void UITranslatablePanel::updateTranslation(raylib::Rectangle boundingBox) {
+    // works because the component is anchored to top left.
+    translatedPosition = raylib::Mouse::GetPosition() - boundingBox.GetPosition() + offset;
+}
+
+void UITranslatablePanel::endTranslation() {
+    this->translating = false;
+    // forget true position when translation is over
+    this->translatedPosition = this->rect.GetPosition();
 }
 
 bool UITranslatablePanel::canBeTranslated(raylib::Rectangle boundingBox) {

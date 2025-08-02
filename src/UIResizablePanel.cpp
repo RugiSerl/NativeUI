@@ -20,6 +20,7 @@ void UIResizablePanel::update(raylib::Rectangle boundingBox) {
 
         // 1. start resize
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && resizeState.isNone()) {
+            //1.1 Checking edges
             if (grid.TopRect.CheckCollision(raylib::Mouse::GetPosition()) && resizableConstraints.Top) {
                 resizeState.Top = true;
 
@@ -32,6 +33,20 @@ void UIResizablePanel::update(raylib::Rectangle boundingBox) {
             } else if (grid.RightRect.CheckCollision(raylib::Mouse::GetPosition()) && resizableConstraints.Right) {
                 resizeState.Right = true;
             }
+            //1.2 Checking corners
+            else if (grid.TopLeftCorner.CheckCollision(raylib::Mouse::GetPosition()) && resizableConstraints.Top && resizableConstraints.Left) {
+                resizeState.Left = true;
+                resizeState.Top = true;
+            } else if (grid.TopRightCorner.CheckCollision(raylib::Mouse::GetPosition()) && resizableConstraints.Top && resizableConstraints.Right) {
+                resizeState.Right = true;
+                resizeState.Top = true;
+            } else if (grid.BottomLeftCorner.CheckCollision(raylib::Mouse::GetPosition()) && resizableConstraints.Bottom && resizableConstraints.Left) {
+                resizeState.Left = true;
+                resizeState.Bottom = true;
+            } else if (grid.BottomRightCorner.CheckCollision(raylib::Mouse::GetPosition()) && resizableConstraints.Bottom && resizableConstraints.Right) {
+                resizeState.Right = true;
+                resizeState.Bottom = true;
+            } 
 
         }
 
@@ -41,16 +56,17 @@ void UIResizablePanel::update(raylib::Rectangle boundingBox) {
 
     // 2. update resize
     if (resizeState.Top) {
-        //rect.y += GetMouseDelta().y;
-        //resizedRect.height -= GetMouseDelta().y;
-
-    } else if (resizeState.Bottom) {
+        translatedPosition.y += GetMouseDelta().y;
+        resizedRect.height -= GetMouseDelta().y;
+    }
+    if (resizeState.Left) {
+        translatedPosition.x += GetMouseDelta().x;
+        resizedRect.width -= GetMouseDelta().x;
+    }
+    if (resizeState.Bottom) {
         resizedRect.height += GetMouseDelta().y;
-
-    } else if (resizeState.Left) {
-        //resizedRect.width -= GetMouseDelta().x;
-
-    } else if (resizeState.Right) {
+    }
+    if (resizeState.Right) {
         resizedRect.width += GetMouseDelta().x;
     }
 
@@ -62,7 +78,11 @@ void UIResizablePanel::update(raylib::Rectangle boundingBox) {
     if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && !resizeState.isNone()) {
         resizeState.SetToNone();
         // forget true size when resizing is over
-        this->resizedRect = this->rect;
+        this->resizedRect = this->rect, boundingBox;
+        
+        // If we moved the object by resizing top or left we did in a way a translation. So we need to let the translatablePanel know.
+        endTranslation();
+
     }
 
 

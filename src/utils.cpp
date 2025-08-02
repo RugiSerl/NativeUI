@@ -47,7 +47,7 @@ TopLeftCorner:
 TopRightCorner:
             raylib::Rectangle(innerRectangle.x + innerRectangle.width, outerRectangle.y, outerRectangle.x + outerRectangle.width - (innerRectangle.x + innerRectangle.width), innerRectangle.y - outerRectangle.y),
 BottomLeftCorner:
-            raylib::Rectangle(outerRectangle.x, innerRectangle.y + innerRectangle.width, innerRectangle.x - outerRectangle.x, outerRectangle.y + outerRectangle.height - (innerRectangle.y + innerRectangle.height)),
+            raylib::Rectangle(outerRectangle.x, innerRectangle.y + innerRectangle.height, innerRectangle.x - outerRectangle.x, outerRectangle.y + outerRectangle.height - (innerRectangle.y + innerRectangle.height)),
 BottomRightCorner:
             raylib::Rectangle(innerRectangle.x + innerRectangle.width, innerRectangle.y + innerRectangle.height, outerRectangle.x + outerRectangle.width - (innerRectangle.x + innerRectangle.width), outerRectangle.y + outerRectangle.height - (innerRectangle.y + innerRectangle.height)),
         };

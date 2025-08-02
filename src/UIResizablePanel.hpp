@@ -50,6 +50,8 @@ public:
 protected:
 
     virtual void update(raylib::Rectangle boundingBox) override;
+
+private:
     raylib::Rectangle resizedRect; // rect that is not constrained by minSize
     Vector2 minSize;
     resizableDirections resizeState;
