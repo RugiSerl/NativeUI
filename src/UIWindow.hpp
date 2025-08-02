@@ -1,10 +1,13 @@
 #ifndef __UIWINDOW_H__
 #define __UIWINDOW_H__
-#include "UISelectablePanel.hpp"
+#include "UIResizablePanel.hpp"
+#include "UISplit.hpp"
 
-class UIWindow : public UISelectablePanel {
-
+class UIWindow : public UIResizablePanel, public UISplit {
+    public:
+    
 };
+
 
 
 #endif

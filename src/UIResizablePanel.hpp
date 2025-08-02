@@ -49,6 +49,29 @@ public:
 
 protected:
 
+
+    /**
+     * @brief setup before translation
+     * 
+     * @param boundingBox needed to get rect absolute position
+     */
+    void startResizing(raylib::Rectangle boundingBox);
+    
+    
+    /**
+     * @brief Update variables during translation
+     * 
+     * @param boundingBox 
+     */
+    void updateResizing(raylib::Rectangle boundingBox);
+
+    
+    /**
+     * @brief finalize translation
+     * 
+     */
+    void stopResizing();
+
     virtual void update(raylib::Rectangle boundingBox) override;
 
 private:

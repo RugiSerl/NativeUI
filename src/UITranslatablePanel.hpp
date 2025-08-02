@@ -21,8 +21,7 @@ public:
     UITranslatablePanel(raylib::Rectangle r, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX) : UISelectablePanel(r, Anchor2{LEFT, TOP}, normalStylebox, selectedStylebox), translating(false), translatedPosition(rect.GetPosition()) {};
 
 
-    // Do children class allow translation ? can be modified at each frame.
-    bool allowedToBeTranslated = true;
+    bool inResizeZone = true;
 
 protected:
 
@@ -37,26 +36,26 @@ protected:
 
 
     /**
-     * @brief setup before translation.
+     * @brief setup before translation
      * 
-     * @param boundingBox needed to get rect absolute position.
+     * @param boundingBox needed to get rect absolute position
      */
-    void beginTranslation(raylib::Rectangle boundingBox);
+    void startTranslating(raylib::Rectangle boundingBox);
     
+    
+    /**
+     * @brief Update variables during translation
+     * 
+     * @param boundingBox 
+     */
+    void updateTranslating(raylib::Rectangle boundingBox);
+
 
     /**
-     * @brief Update variables during translation.
-     * 
-     * @param boundingBox needed to get rect absolute position.
-     */
-    void updateTranslation(raylib::Rectangle boundingBox);
-    
-    
-    /**
-     * @brief Finalize translation.
+     * @brief finalize translation
      * 
      */
-    void endTranslation();
+    void stopTranslating();
 
 
     virtual void update(raylib::Rectangle boundingBox) override;
