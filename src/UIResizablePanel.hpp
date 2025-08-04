@@ -52,23 +52,23 @@ protected:
 
     /**
      * @brief setup before translation
-     * 
+     *
      * @param boundingBox needed to get rect absolute position
      */
     void startResizing(raylib::Rectangle boundingBox);
-    
-    
+
+
     /**
      * @brief Update variables during translation
-     * 
-     * @param boundingBox 
+     *
+     * @param boundingBox
      */
     void updateResizing(raylib::Rectangle boundingBox);
 
-    
+
     /**
      * @brief finalize translation
-     * 
+     *
      */
     void stopResizing();
 

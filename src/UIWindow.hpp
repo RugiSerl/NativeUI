@@ -4,8 +4,8 @@
 #include "UISplit.hpp"
 
 class UIWindow : public UIResizablePanel, public UISplit {
-    public:
-    
+public:
+
 };
 
 

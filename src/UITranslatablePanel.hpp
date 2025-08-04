@@ -37,23 +37,23 @@ protected:
 
     /**
      * @brief setup before translation
-     * 
+     *
      * @param boundingBox needed to get rect absolute position
      */
     void startTranslating(raylib::Rectangle boundingBox);
-    
-    
+
+
     /**
      * @brief Update variables during translation
-     * 
-     * @param boundingBox 
+     *
+     * @param boundingBox
      */
     void updateTranslating(raylib::Rectangle boundingBox);
 
 
     /**
      * @brief finalize translation
-     * 
+     *
      */
     void stopTranslating();
 
