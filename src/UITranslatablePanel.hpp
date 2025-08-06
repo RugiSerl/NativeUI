@@ -21,7 +21,7 @@ public:
     UITranslatablePanel(raylib::Rectangle r, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX) : UISelectablePanel(r, Anchor2{LEFT, TOP}, normalStylebox, selectedStylebox), translating(false), virtualRectangle(rect) {};
 
 
-    bool inResizeZone = true;
+    bool inResizeZone = false;
 
 protected:
 
