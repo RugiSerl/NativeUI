@@ -14,15 +14,13 @@ void UIResizablePanel::update(raylib::Rectangle boundingBox) {
     if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && !resizeState.isNone()) {
         stopResizing();
     }
-
-    if (!resizeState.isNone()) { // is the user resizing ?
-        updateResizing(boundingBox);
-        this->rect = getRectangleIntersection(virtualRectangle, raylib::Rectangle(raylib::Vector2(0, 0), boundingBox.GetSize()));
-    }
-
     rect.width = std::max(minSize.x, virtualRectangle.width);
     rect.height = std::max(minSize.y, virtualRectangle.height);
     
+    if (!resizeState.isNone()) {
+        updateResizing(boundingBox);
+        this->rect = getRectangleIntersection(virtualRectangle, raylib::Rectangle(raylib::Vector2(0, 0), boundingBox.GetSize()));
+    }
     
     UITranslatablePanel::update(boundingBox);
 }
