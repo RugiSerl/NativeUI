@@ -31,6 +31,14 @@ jobs:
       run: mingw32-make clean
       shell: cmd
 
+    - name: make compileLib
+      run: mingw32-make compileLib
+      shell: cmd
+
+    - name: make clean
+      run: mingw32-make clean
+      shell: cmd
+
     - name: make bin/app CXX=g++
       run: mingw32-make bin/app CXX=g++
       shell: cmd

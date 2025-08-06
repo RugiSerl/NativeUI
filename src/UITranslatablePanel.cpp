@@ -22,9 +22,7 @@ void UITranslatablePanel::update(raylib::Rectangle boundingBox) {
     if (this->translating) {
         updateTranslating(boundingBox);
     }
-
-    // This will also affect resizing
-    this->rect = clampRectangle(raylib::Rectangle(translatedPosition, rect.GetSize()), boundingBox.GetSize());
+    this->rect = getRectangleIntersection(virtualRectangle, raylib::Rectangle(raylib::Vector2(0, 0), boundingBox.GetSize()));
 }
 
 void UITranslatablePanel::startTranslating(raylib::Rectangle boundingBox) {
@@ -34,13 +32,13 @@ void UITranslatablePanel::startTranslating(raylib::Rectangle boundingBox) {
 
 void UITranslatablePanel::updateTranslating(raylib::Rectangle boundingBox) {
     // works because the component is anchored to top left.
-    translatedPosition = raylib::Mouse::GetPosition() - boundingBox.GetPosition() + offset;
+    virtualRectangle.SetPosition(raylib::Mouse::GetPosition() - boundingBox.GetPosition() + offset);
 }
 
 void UITranslatablePanel::stopTranslating() {
     this->translating = false;
     // forget true position when translation is over
-    this->translatedPosition = this->rect.GetPosition();
+    this->virtualRectangle = this->rect;
 }
 
 bool UITranslatablePanel::canBeTranslated(raylib::Rectangle boundingBox) {

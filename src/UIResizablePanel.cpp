@@ -16,6 +16,10 @@ void UIResizablePanel::update(raylib::Rectangle boundingBox) {
         stopResizing();
     }
 
+
+    rect.width = std::max(minSize.x, virtualRectangle.width);
+    rect.height = std::max(minSize.y, virtualRectangle.height);
+
     UITranslatablePanel::update(boundingBox);
 }
 
@@ -59,31 +63,27 @@ void UIResizablePanel::startResizing(raylib::Rectangle boundingBox) {
 
 void UIResizablePanel::updateResizing(raylib::Rectangle boundingBox) {
     if (resizeState.Top) {
-        translatedPosition.y += GetMouseDelta().y;
-        resizedRect.height -= GetMouseDelta().y;
+        virtualRectangle.y += GetMouseDelta().y;
+        virtualRectangle.height -= GetMouseDelta().y;
     }
 
     if (resizeState.Left) {
-        translatedPosition.x += GetMouseDelta().x;
-        resizedRect.width -= GetMouseDelta().x;
+        virtualRectangle.x += GetMouseDelta().x;
+        virtualRectangle.width -= GetMouseDelta().x;
     }
 
     if (resizeState.Bottom) {
-        resizedRect.height += GetMouseDelta().y;
+        virtualRectangle.height += GetMouseDelta().y;
     }
 
     if (resizeState.Right) {
-        resizedRect.width += GetMouseDelta().x;
+        virtualRectangle.width += GetMouseDelta().x;
     }
 
-    rect.width = Clamp(resizedRect.width, minSize.x, boundingBox.width);
-    rect.height = Clamp(resizedRect.height, minSize.y, boundingBox.height);
 }
 
 void UIResizablePanel::stopResizing() {
     resizeState.SetToNone();
-    // forget true size when resizing is over
-    this->resizedRect = this->rect;
 
     // If we moved the object by resizing top or left we did in a way a translation. So we need to let the translatablePanel know.
     stopTranslating();

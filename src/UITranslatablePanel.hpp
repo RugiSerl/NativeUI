@@ -18,7 +18,7 @@ public:
      * @param normalStylebox
      * @param selectedStylebox
      */
-    UITranslatablePanel(raylib::Rectangle r, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX) : UISelectablePanel(r, Anchor2{LEFT, TOP}, normalStylebox, selectedStylebox), translating(false), translatedPosition(rect.GetPosition()) {};
+    UITranslatablePanel(raylib::Rectangle r, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX) : UISelectablePanel(r, Anchor2{LEFT, TOP}, normalStylebox, selectedStylebox), translating(false), virtualRectangle(rect) {};
 
 
     bool inResizeZone = true;
@@ -52,7 +52,7 @@ protected:
 
 
     /**
-     * @brief finalize translation
+     * @brief Finalize translation.
      *
      */
     void stopTranslating();
@@ -61,7 +61,9 @@ protected:
     virtual void update(raylib::Rectangle boundingBox) override;
 
 
-    raylib::Vector2 translatedPosition; // position that is not restrained by boundingBox, ie panel true position
+    // Rectangle not bounded by parents when the user is clicking.
+    raylib::Rectangle virtualRectangle;
+
     bool translating;
     raylib::Vector2 offset;
 

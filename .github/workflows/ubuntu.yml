@@ -33,6 +33,12 @@ jobs:
 
     - name: make clean
       run: make clean
+
+    - name: make compileLib
+      run: make compileLib
+
+    - name: make clean
+      run: make clean
       
     - name: make bin/app CXX=g++
       run: make bin/app CXX=g++

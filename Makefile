@@ -13,10 +13,12 @@ platformpth = $(subst /,$(PATHSEP),$1)
 buildDir := bin
 executable := app
 target := $(buildDir)/$(executable)
+library := libNativeUI.so
+targetLibrary := $(buildDir)/$(library)
 sources := $(call rwildcard,src/,*.cpp)
 objects := $(patsubst src/%, $(buildDir)/%, $(patsubst %.cpp, %.o, $(sources)))
 depends := $(patsubst %.o, %.d, $(objects))
-compileFlags := -std=c++17 -I include
+compileFlags := -std=c++17 -I include -fPIC
 linkFlags = -L lib/$(platform) -l raylib
 
 # Check for Windows
@@ -24,7 +26,7 @@ ifeq ($(OS), Windows_NT)
 	# Set Windows macros
 	platform := Windows
 	CXX ?= g++
-	linkFlags += -Wl,--allow-multiple-definition -pthread -lopengl32 -lgdi32 -lwinmm -static -static-libgcc -static-libstdc++
+	linkFlags += -Wl,--allow-multiple-definition -pthread -lopengl32 -lgdi32 -lwinmm
 	THEN := &&
 	PATHSEP := \$(BLANK)
 	MKDIR := -mkdir -p
@@ -57,7 +59,7 @@ endif
 # Lists phony targets for Makefile
 .PHONY: all setup submodules execute clean
 
-# Default target, compiles, executes and cleans
+# Default target, compiles and executes
 all: $(target) execute
 
 # Sets up the project for compiling, generates includes and libs
@@ -96,6 +98,11 @@ $(buildDir)/%.o: src/%.cpp Makefile
 # Run the executable
 execute:
 	$(target) $(ARGS)
+
+$(targetLibrary): $(objects)
+	$(CXX)  $(objects) -o $(targetLibrary) $(linkFlags)  
+
+compileLib: $(targetLibrary)
 
 # Clean up all relevant files
 clean:
