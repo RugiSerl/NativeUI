@@ -20,7 +20,12 @@ void UIResizablePanel::update(raylib::Rectangle boundingBox) {
         updateResizing(boundingBox);
     }
 
+
     UITranslatablePanel::update(boundingBox);
+
+    // Clamp size so it remains superior to minSize
+    rect.width = std::max(minSize.x, rect.width);
+    rect.height = std::max(minSize.y, rect.height);
 }
 
 void UIResizablePanel::startResizing(raylib::Rectangle boundingBox) {
