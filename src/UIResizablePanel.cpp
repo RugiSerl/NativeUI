@@ -14,12 +14,12 @@ void UIResizablePanel::update(raylib::Rectangle boundingBox) {
     if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && !resizeState.isNone()) {
         stopResizing();
     }
-    
-    
+
+
     if (!resizeState.isNone()) {
         updateResizing(boundingBox);
     }
-    
+
     UITranslatablePanel::update(boundingBox);
 }
 

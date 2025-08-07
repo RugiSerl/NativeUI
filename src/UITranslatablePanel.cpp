@@ -5,11 +5,6 @@
 void UITranslatablePanel::update(raylib::Rectangle boundingBox) {
     UISelectablePanel::update(boundingBox);
 
-    // display move cursor on hover
-    if (canBeTranslated(boundingBox)) {
-        SetCursor(MOUSE_CURSOR_RESIZE_ALL);
-    }
-
 
     // select / unselect for translating
     if ( IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && canBeTranslated(boundingBox)) {
@@ -22,6 +17,7 @@ void UITranslatablePanel::update(raylib::Rectangle boundingBox) {
     if (this->translating) {
         updateTranslating(boundingBox);
     }
+
     this->rect = clampRectangle(virtualRectangle, raylib::Rectangle(raylib::Vector2(0, 0), boundingBox.GetSize()));
 
 }

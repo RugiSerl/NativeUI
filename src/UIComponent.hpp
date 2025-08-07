@@ -26,7 +26,7 @@ public:
      *
      * @param child UIComponent to add
      */
-    void AddChild(UIComponent* child);
+    virtual void AddChild(UIComponent* child);
 
 
     /**
