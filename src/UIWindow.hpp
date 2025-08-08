@@ -2,6 +2,11 @@
 #define __UIWINDOW_H__
 #include "UIResizablePanel.hpp"
 #include "UISplit.hpp"
+#include "UIButton.hpp"
+
+
+#define TOP_BAR_OFFSET 20
+
 
 class UIWindow : public UIResizablePanel {
 public:
@@ -18,15 +23,31 @@ public:
      */
     UIWindow(raylib::Rectangle r, resizableDirections resizableConstraints, Vector2 minSize = raylib::Vector2(0, 0), UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX);
 
-    
+
     void AddChild(UIComponent* component) override;
 
-    
+
 protected:
+
+
     virtual void UpdateAndDraw(raylib::Rectangle boundingBox) override;
 
+
 private:
+
+
+    /**
+     * @brief splits the window into a top bar and a window body.
+     *
+     */
     UISplit topBar;
+
+
+    /**
+     * @brief Button to close the window
+     *
+     */
+    UIButton closeButton;
 
 };
 

@@ -34,9 +34,9 @@ void UIResizablePanel::update(raylib::Rectangle boundingBox) {
     // Clamp position so resizing stops whenever resizing from top or left
     r.x = std::min(r.x, rect.x + rect.width - minSize.x);
     r.y = std::min(r.y, rect.y + rect.height - minSize.y);
-    
+
     this->rect = clampRectangle(r, raylib::Rectangle(raylib::Vector2(0, 0), boundingBox.GetSize()));
-    
+
 
 }
 

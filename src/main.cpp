@@ -7,7 +7,7 @@
 #include <raylib-cpp.hpp>
 #include <string>
 #include "graphics.hpp"
-#include "UIResizablePanel.hpp"
+#include "UIWindow.hpp"
 #include "cursor.hpp"
 #include "utils.hpp"
 
@@ -29,7 +29,7 @@ int main() {
     UISplit navigatorSplit(raylib::Rectangle(0), Anchor2{Anchor::FILL, Anchor::FILL}, HORIZONTAL_SPLIT, Anchor::LEFT, 400);
     menusplit.AddChild(&navigatorSplit, 1);
 
-    UIResizablePanel selectable2(raylib::Rectangle(40.0, 40.0, 400.0, 400.0), resizableDirections(true), raylib::Vector2(40, 40));
+    UIWindow selectable2(raylib::Rectangle(40.0, 40.0, 400.0, 400.0), resizableDirections(true), raylib::Vector2(40, 40));
     UIResizablePanel selectable3(raylib::Rectangle(0, 20.0, 200.0, 200.0), resizableDirections(true), raylib::Vector2(40, 40));
     UIResizablePanel selectable4(raylib::Rectangle(0, 20.0, 50.0, 50.0), resizableDirections(true), raylib::Vector2(40, 40));
     UIButton button(raylib::Rectangle(-20.0, 20.0, 50.0, 50.0), Anchor2{Anchor::LEFT, Anchor::TOP}, test, DEFAULT_PANEL_STYLEBOX, DEFAULT_SELECTED_STYLEBOX, DEFAULT_HOVER_STYLEBOX, DEFAULT_BUTTON_DOWN_STYLEBOX);
