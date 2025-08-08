@@ -23,9 +23,21 @@ void UIResizablePanel::update(raylib::Rectangle boundingBox) {
 
     UITranslatablePanel::update(boundingBox);
 
+
+    // Updating rectangle with a new intermediary one
+    raylib::Rectangle r = virtualRectangle;
+
     // Clamp size so it remains superior to minSize
-    rect.width = std::max(minSize.x, rect.width);
-    rect.height = std::max(minSize.y, rect.height);
+    r.width = std::max(minSize.x, virtualRectangle.width);
+    r.height = std::max(minSize.y, virtualRectangle.height);
+
+    // Clamp position so resizing stops whenever resizing from top or left
+    r.x = std::min(r.x, rect.x + rect.width - minSize.x);
+    r.y = std::min(r.y, rect.y + rect.height - minSize.y);
+    
+    this->rect = clampRectangle(r, raylib::Rectangle(raylib::Vector2(0, 0), boundingBox.GetSize()));
+    
+
 }
 
 void UIResizablePanel::startResizing(raylib::Rectangle boundingBox) {
