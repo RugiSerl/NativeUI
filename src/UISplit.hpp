@@ -53,6 +53,9 @@ public:
     void AddChild(UIComponent* child, int side);
 
 
+    bool IsSelected(int side);
+
+
 protected:
 
     splitType type;

@@ -63,3 +63,11 @@ void UISplit::UpdateAndDraw(raylib::Rectangle boundingBox) {
         .Draw(LIGHTGRAY);
     }
 }
+
+bool UISplit::IsSelected(int side) {
+    if (side == 0) return firstSide->IsSelected();
+
+    if (side == 1) return secondSide->IsSelected();
+
+    return 0;
+}

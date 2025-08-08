@@ -1,4 +1,5 @@
 #include "UIWindow.hpp"
+#include <iostream>
 
 UIWindow::UIWindow(raylib::Rectangle r, resizableDirections resizableConstraints, Vector2 minSize, UIStylebox normalStylebox, UIStylebox selectedStylebox) :
     UIResizablePanel(r, resizableConstraints, minSize, normalStylebox, selectedStylebox),
@@ -16,7 +17,7 @@ void UIWindow::AddChild(UIComponent* child) {
 
 void UIWindow::UpdateAndDraw(raylib::Rectangle boundingBox) {
     if (visible) {
-        UIResizablePanel::UpdateAndDraw(boundingBox);
+        // UIResizablePanel::UpdateAndDraw(boundingBox);
         topBar.UpdateAndDraw(GetAnchoredRect(this->rect, anchor, boundingBox));
     }
 

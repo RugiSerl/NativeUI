@@ -1,3 +1,4 @@
-- add code for ~~selectable~~, textentry, window, ~~button~~, ~~checkbox~~, ~~translatablePanel~~, ~~UISplit~~, ~~resizablePanel~~, and Node
+- add code for ~~selectable~~, textentry, ~~window~~, ~~button~~, ~~checkbox~~, ~~translatablePanel~~, ~~UISplit~~, ~~resizablePanel~~, and Node
 - ~~find a way to calculate collision taking in account overlap~~
 - recreate system to change cursor
+- fix bug with UISplit being selected even though it is behind its children

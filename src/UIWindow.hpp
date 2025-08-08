@@ -5,7 +5,7 @@
 #include "UIButton.hpp"
 
 
-#define TOP_BAR_OFFSET 20
+#define TOP_BAR_OFFSET 40
 
 
 class UIWindow : public UIResizablePanel {
@@ -24,6 +24,11 @@ public:
     UIWindow(raylib::Rectangle r, resizableDirections resizableConstraints, Vector2 minSize = raylib::Vector2(0, 0), UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX);
 
 
+    /**
+     * @brief Add child to window body
+     *
+     * @param component child
+     */
     void AddChild(UIComponent* component) override;
 
 

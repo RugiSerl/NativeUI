@@ -21,6 +21,12 @@ public:
     UISelectablePanel(raylib::Rectangle r, Anchor2 a, UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX);
 
 
+    /**
+     * @brief Is the panel selected ?
+     */
+    bool IsSelected();
+
+
 protected:
 
 

@@ -101,3 +101,7 @@ void UISelectablePanel::draw(raylib::Rectangle boundingBox) {
         selectedStylebox.draw(rect, anchor, boundingBox);
     }
 }
+
+bool UISelectablePanel::IsSelected() {
+    return selected;
+}
