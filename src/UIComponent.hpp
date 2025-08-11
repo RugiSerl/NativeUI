@@ -83,7 +83,7 @@ public:
      */
     void Show();
 
-    
+
     virtual std::vector<UIComponent*> GetChildren();
 
 

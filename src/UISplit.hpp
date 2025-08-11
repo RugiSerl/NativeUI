@@ -55,21 +55,21 @@ public:
 
     /**
      * @brief This replaces UIComponent's GetChild.
-     * 
-     * @param side 
-     * @param index 
-     * @return UIComponent* 
+     *
+     * @param side
+     * @param index
+     * @return UIComponent*
      */
     UIComponent* GetChild(int side, int index);
 
-    
+
     /**
      * @brief Get Children from both sides
-     * 
+     *
      * @return std::vector<UIComponent*> concatenated children
      */
     std::vector<UIComponent*> GetChildren() override;
-    
+
 
     bool IsSelected(int side);
 

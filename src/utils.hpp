@@ -99,16 +99,17 @@ raylib::Rectangle clampRectangle(raylib::Rectangle rect, raylib::Rectangle bound
 
 /**
  * @brief concatenate two vectors
- * 
+ *
  * @tparam T type of the elements in the vector
  * @param v1 first vector
  * @param v2 second vector
- * @return std::vector<T> 
+ * @return std::vector<T>
  *
  */
 template<class T> std::vector<T> concatenateVectors(std::vector<T> v1, std::vector<T> v2) {
     std::vector<T> v;
-    v.reserve(v1.size()+v2.size());
+    v.reserve(v1.size() + v2.size());
+
     for (T e1 : v1) {
         v.push_back(e1);
     }

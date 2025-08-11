@@ -34,10 +34,12 @@ void UISplit::AddChild(UIComponent *child, int side) {
 }
 
 UIComponent* UISplit::GetChild(int side, int index) {
-    if (side==0) {
+    if (side == 0) {
         return firstSide->GetChild(index);
-    } else if (side==1) {
+
+    } else if (side == 1) {
         return secondSide->GetChild(index);
+
     } else {
         throw std::invalid_argument("side must be 0 or 1");
     }

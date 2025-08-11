@@ -77,6 +77,7 @@ bool UISelectablePanel::getMouseCollision(raylib::Rectangle boundingBox) {
 
 bool UISelectablePanel::isBehindChild(raylib::Rectangle boundingBox) {
     if (!visible) return false;
+
     bool isBehind = false;
 
     for (UIComponent* child : children) {
