@@ -27,6 +27,12 @@ public:
     bool IsSelected();
 
 
+    /**
+     * @brief if panel is behind one of its child at the mouse position
+     */
+    bool isBehindChild(raylib::Rectangle boundingBox);
+
+
 protected:
 
 
@@ -52,14 +58,6 @@ protected:
 
     bool selected;
     UIStylebox selectedStylebox;
-
-private:
-
-
-    /**
-     * @brief if panel is behind one of its child at the mouse position
-     */
-    bool isBehindChild(raylib::Rectangle boundingBox);
 
 };
 

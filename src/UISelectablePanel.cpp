@@ -1,5 +1,6 @@
 #include "UISelectablePanel.hpp"
 #include "utils.hpp"
+#include "UISplit.hpp"
 #include <algorithm>
 #include <iostream>
 UISelectablePanel::UISelectablePanel(raylib::Rectangle r, Anchor2 a,
@@ -75,6 +76,7 @@ bool UISelectablePanel::getMouseCollision(raylib::Rectangle boundingBox) {
 }
 
 bool UISelectablePanel::isBehindChild(raylib::Rectangle boundingBox) {
+    if (!visible) return false;
     bool isBehind = false;
 
     for (UIComponent* child : children) {
@@ -84,9 +86,6 @@ bool UISelectablePanel::isBehindChild(raylib::Rectangle boundingBox) {
             if (GetAnchoredRect(child->rect, child->anchor, GetAnchoredRect(rect, anchor, boundingBox)).CheckCollision(raylib::Mouse::GetPosition())) {
                 return true;
             }
-
-            isBehind = isBehind || selectableChild->isBehindChild(rect);
-
         }
     }
 

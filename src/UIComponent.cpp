@@ -35,6 +35,10 @@ UIComponent *UIComponent::GetChild(int index) {
     return this->children.at(index);
 }
 
+std::vector<UIComponent*> UIComponent::GetChildren() {
+    return this->children;
+}
+
 void UIComponent::UpdateAndDraw(raylib::Rectangle boundingBox) {
     if (visible) {
         update(boundingBox);
@@ -42,7 +46,7 @@ void UIComponent::UpdateAndDraw(raylib::Rectangle boundingBox) {
         raylib::Rectangle componentRect = GetAnchoredRect(rect, anchor, boundingBox);
 
         // Recursively update
-        for (UIComponent *child : children) {
+        for (UIComponent* child : children) {
             child->UpdateAndDraw(getRectangleIntersection(componentRect, boundingBox));
         }
 

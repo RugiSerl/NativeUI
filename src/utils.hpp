@@ -31,17 +31,6 @@ public:
 
 
 /**
- * @brief moves all the elements from a vector according to offset
- *
- * @tparam T type of the elements in the vector
- * @param vector
- * @param offset
- * @return std::vector<T>
- */
-template<class T> std::vector<T> rotateVector(std::vector<T> vector, int offset);
-
-
-/**
  * @brief Get rectangle inside another with padding value
  *
  * @param padding
@@ -102,5 +91,55 @@ raylib::Rectangle getRectangleIntersection(raylib::Rectangle r1, raylib::Rectang
  * @return raylib::Rectangle clamped rectangle
  */
 raylib::Rectangle clampRectangle(raylib::Rectangle rect, raylib::Rectangle bounds);
+
+
+// -----------------------------------------------
+// Template functions
+
+
+/**
+ * @brief concatenate two vectors
+ * 
+ * @tparam T type of the elements in the vector
+ * @param v1 first vector
+ * @param v2 second vector
+ * @return std::vector<T> 
+ *
+ */
+template<class T> std::vector<T> concatenateVectors(std::vector<T> v1, std::vector<T> v2) {
+    std::vector<T> v;
+    v.reserve(v1.size()+v2.size());
+    for (T e1 : v1) {
+        v.push_back(e1);
+    }
+
+    for (T e2 : v2) {
+        v.push_back(e2);
+    }
+
+    return v;
+
+}
+
+
+/**
+ * @brief moves all the elements from a vector according to offset
+ *
+ * @tparam T type of the elements in the vector
+ * @param vector
+ * @param offset
+ * @return std::vector<T>
+ */
+template<typename T> std::vector<T> rotateVector(std::vector<T> vector, int offset) {
+    std::vector<T> newVector(vector.size());
+    int i = 0;
+
+    for (T element : vector) {
+        newVector.at(i) = vector.at((i + offset) % vector.size());
+        i++;
+    }
+
+    return newVector;
+}
 
 #endif // !__UTILS_H__

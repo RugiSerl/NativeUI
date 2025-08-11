@@ -1,6 +1,7 @@
 #include "UISplit.hpp"
 #include <iostream>
 #include <stdexcept>
+#include "utils.hpp"
 
 UISplit::UISplit(raylib::Rectangle r, Anchor2 a, splitType type,
                  Anchor barAnchor, float barOffset, UIStylebox normalStylebox,
@@ -32,6 +33,21 @@ void UISplit::AddChild(UIComponent *child, int side) {
     }
 }
 
+UIComponent* UISplit::GetChild(int side, int index) {
+    if (side==0) {
+        return firstSide->GetChild(index);
+    } else if (side==1) {
+        return secondSide->GetChild(index);
+    } else {
+        throw std::invalid_argument("side must be 0 or 1");
+    }
+}
+
+std::vector<UIComponent*> UISplit::GetChildren() {
+    return concatenateVectors(firstSide->GetChildren(), secondSide->GetChildren());
+}
+
+
 void UISplit::UpdateAndDraw(raylib::Rectangle boundingBox) {
     if (visible) {
         UISelectablePanel::draw(boundingBox);
@@ -54,20 +70,20 @@ void UISplit::UpdateAndDraw(raylib::Rectangle boundingBox) {
         secondSide->UpdateAndDraw(secondSideRect);
 
         // Draws split bar.
-        // Can remove
-        GetAnchoredRect(raylib::Rectangle((type == HORIZONTAL_SPLIT) * barOffset,
-                                          (type == VERTICAL_SPLIT) * barOffset,
-                                          (type == HORIZONTAL_SPLIT) * BAR_WIDTH,
-                                          (type == VERTICAL_SPLIT) * BAR_WIDTH),
-                        barAnchor, anchoredRect)
-        .Draw(LIGHTGRAY);
+        // // Can remove
+        // GetAnchoredRect(raylib::Rectangle((type == HORIZONTAL_SPLIT) * barOffset,
+        //                                   (type == VERTICAL_SPLIT) * barOffset,
+        //                                   (type == HORIZONTAL_SPLIT) * BAR_WIDTH,
+        //                                   (type == VERTICAL_SPLIT) * BAR_WIDTH),
+        //                 barAnchor, anchoredRect)
+        // .Draw(LIGHTGRAY);
     }
 }
 
 bool UISplit::IsSelected(int side) {
-    if (side == 0) return firstSide->IsSelected();
+    // if (side == 0) return firstSide->IsSelected();
 
-    if (side == 1) return secondSide->IsSelected();
+    // if (side == 1) return secondSide->IsSelected();
 
     return 0;
 }

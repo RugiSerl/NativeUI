@@ -83,6 +83,9 @@ public:
      */
     void Show();
 
+    
+    virtual std::vector<UIComponent*> GetChildren();
+
 
     raylib::Rectangle rect; // be careful ! always apply anchor before using it
     Anchor2 anchor;
