@@ -53,21 +53,15 @@ public:
     void RemoveChild(int index);
 
 
-    /**
-     * @brief Get the amount of children
-     *
-     * @return int
-     */
-    int GetChildrenCount();
 
 
     /**
-     * @brief Get the nth child
-     *
-     * @param index n
-     * @return UIComponent* child
+     * @brief Set the Parent object
+     * 
+     * @param parent 
      */
-    UIComponent* GetChild(int index);
+    void SetParent(UIComponent* parent);
+
 
 
     /**

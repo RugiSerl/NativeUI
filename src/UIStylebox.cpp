@@ -12,6 +12,7 @@ UIStylebox::UIStylebox(float borderThickness, float cornerRadius, Color fillColo
 }
 
 void UIStylebox::draw(raylib::Rectangle rect, Anchor2 anchor, raylib::Rectangle boundingBox) {
+    
     BeginScissorMode(boundingBox.x, boundingBox.y, boundingBox.width, boundingBox.height);
 
     raylib::Rectangle anchoredRect = getInnerRect(GetAnchoredRect(rect, anchor, boundingBox), this->innerOffset) ;

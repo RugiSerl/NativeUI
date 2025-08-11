@@ -27,17 +27,15 @@ void UIComponent::removeChild(UIComponent *child) {
     children.erase(std::remove(children.begin(), children.end(), child), children.end());
 }
 
-int UIComponent::GetChildrenCount() {
-    return this->children.size();
-}
-
-UIComponent *UIComponent::GetChild(int index) {
-    return this->children.at(index);
-}
 
 std::vector<UIComponent*> UIComponent::GetChildren() {
     return this->children;
 }
+
+void UIComponent::SetParent(UIComponent* parent) {
+    this->parent = parent;
+}
+
 
 void UIComponent::UpdateAndDraw(raylib::Rectangle boundingBox) {
     if (visible) {

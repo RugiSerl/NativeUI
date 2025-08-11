@@ -45,10 +45,10 @@ void UISelectablePanel::onSelected() {
     this->parent->AddChild(this);
 
     // don't forget to unselect siblings (for selectable objects of course)
-    for (int i = 0; i < this->parent->GetChildrenCount(); i++) {
-        if (this->parent->GetChild(i) != this) { // don't deselect ourself (it's stupid)
+    for (int i = 0; i < this->parent->GetChildren().size(); i++) {
+        if (this->parent->GetChildren().at(i) != this) { // don't deselect ourself (it's stupid)
             // try downcasting object
-            UISelectablePanel *selectableCasted = dynamic_cast<UISelectablePanel *>(this->parent->GetChild(i));
+            UISelectablePanel *selectableCasted = dynamic_cast<UISelectablePanel *>(this->parent->GetChildren().at(i));
 
             if (selectableCasted) { // is selectable ?
                 selectableCasted->selected = false;
@@ -61,14 +61,14 @@ void UISelectablePanel::onSelected() {
 bool UISelectablePanel::getMouseCollision(raylib::Rectangle boundingBox) {
 
     // Check if there are no sibling colliding
-    for (int i = this->parent->GetChildrenCount() - 1; i >= 0; i--) { // size > 0 btw, since this already counts as a child
-        UIComponent *sibling = this->parent->GetChild(i);
+    for (int i = this->parent->GetChildren().size() - 1; i >= 0; i--) { // size > 0 btw, since this already counts as a child
+        UIComponent *sibling = this->parent->GetChildren().at(i);
 
         raylib::Rectangle siblingRect = GetAnchoredRect(sibling->rect, sibling->anchor, boundingBox);
         bool siblingColliding = siblingRect.CheckCollision(raylib::Mouse::GetPosition());
 
         if (siblingColliding && boundingBox.CheckCollision(raylib::Mouse::GetPosition())) {
-            return this->parent->GetChild(i) == this && !isBehindChild(boundingBox);
+            return this->parent->GetChildren().at(i) == this && !isBehindChild(boundingBox);
         }
     }
 
@@ -80,7 +80,7 @@ bool UISelectablePanel::isBehindChild(raylib::Rectangle boundingBox) {
 
     bool isBehind = false;
 
-    for (UIComponent* child : children) {
+    for (UIComponent* child : GetChildren()) {
         UISelectablePanel *selectableChild = dynamic_cast<UISelectablePanel *>(child);
 
         if (selectableChild) {

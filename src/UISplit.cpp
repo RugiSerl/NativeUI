@@ -19,6 +19,8 @@ UISplit::UISplit(raylib::Rectangle r, Anchor2 a, splitType type,
 
     firstSide = new UISelectablePanel(raylib::Rectangle(0), Anchor2{FILL, FILL});
     secondSide = new UISelectablePanel(raylib::Rectangle(0), Anchor2{FILL, FILL});
+    firstSide->SetParent(this);
+    secondSide->SetParent(this);
 
 }
 void UISplit::AddChild(UIComponent *child, int side) {
@@ -33,40 +35,20 @@ void UISplit::AddChild(UIComponent *child, int side) {
     }
 }
 
-UIComponent* UISplit::GetChild(int side, int index) {
-    if (side == 0) {
-        return firstSide->GetChild(index);
-
-    } else if (side == 1) {
-        return secondSide->GetChild(index);
-
-    } else {
-        throw std::invalid_argument("side must be 0 or 1");
-    }
-}
 
 std::vector<UIComponent*> UISplit::GetChildren() {
-    return concatenateVectors(firstSide->GetChildren(), secondSide->GetChildren());
+    return {firstSide, secondSide};
 }
 
 
 void UISplit::UpdateAndDraw(raylib::Rectangle boundingBox) {
     if (visible) {
+
+        
         UISelectablePanel::draw(boundingBox);
 
-        raylib::Rectangle anchoredRect = GetAnchoredRect(rect, anchor, boundingBox);
-
-        raylib::Rectangle firstSideRect;
-        raylib::Rectangle secondSideRect;
-
-        if (type == VERTICAL_SPLIT) {
-            firstSideRect = raylib::Rectangle(anchoredRect.x, anchoredRect.y, anchoredRect.width, barOffset);
-            secondSideRect = raylib::Rectangle(anchoredRect.x, anchoredRect.y + barOffset, anchoredRect.width, anchoredRect.height - barOffset);
-
-        } else {
-            firstSideRect = raylib::Rectangle(anchoredRect.x, anchoredRect.y, barOffset, anchoredRect.height);
-            secondSideRect = raylib::Rectangle( anchoredRect.x + barOffset, anchoredRect.y, anchoredRect.width - barOffset, anchoredRect.height);
-        }
+        auto [firstSideRect, secondSideRect] = this->GetSplittedRectangle(boundingBox);
+        
 
         firstSide->UpdateAndDraw(firstSideRect);
         secondSide->UpdateAndDraw(secondSideRect);
@@ -79,13 +61,36 @@ void UISplit::UpdateAndDraw(raylib::Rectangle boundingBox) {
         //                                   (type == VERTICAL_SPLIT) * BAR_WIDTH),
         //                 barAnchor, anchoredRect)
         // .Draw(LIGHTGRAY);
+
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+            std::cout << isBehindChild(boundingBox) << std::endl;
+        }
     }
 }
 
-bool UISplit::IsSelected(int side) {
-    // if (side == 0) return firstSide->IsSelected();
+std::tuple<raylib::Rectangle, raylib::Rectangle> UISplit::GetSplittedRectangle(raylib::Rectangle boundingBox) {
 
-    // if (side == 1) return secondSide->IsSelected();
+    raylib::Rectangle anchoredRect = GetAnchoredRect(rect, anchor, boundingBox);
+
+    raylib::Rectangle firstSideRect;
+    raylib::Rectangle secondSideRect;
+
+    if (type == VERTICAL_SPLIT) {
+        firstSideRect = raylib::Rectangle(anchoredRect.x, anchoredRect.y, anchoredRect.width, barOffset);
+        secondSideRect = raylib::Rectangle(anchoredRect.x, anchoredRect.y + barOffset, anchoredRect.width, anchoredRect.height - barOffset);
+
+    } else {
+        firstSideRect = raylib::Rectangle(anchoredRect.x, anchoredRect.y, barOffset, anchoredRect.height);
+        secondSideRect = raylib::Rectangle( anchoredRect.x + barOffset, anchoredRect.y, anchoredRect.width - barOffset, anchoredRect.height);
+    }
+
+    return {firstSideRect, secondSideRect};
+}
+
+bool UISplit::IsSelected(int side) {
+    if (side == 0) return firstSide->IsSelected();
+
+    if (side == 1) return secondSide->IsSelected();
 
     return 0;
 }

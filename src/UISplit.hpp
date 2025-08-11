@@ -54,21 +54,13 @@ public:
 
 
     /**
-     * @brief This replaces UIComponent's GetChild.
-     *
-     * @param side
-     * @param index
-     * @return UIComponent*
-     */
-    UIComponent* GetChild(int side, int index);
-
-
-    /**
      * @brief Get Children from both sides
      *
      * @return std::vector<UIComponent*> concatenated children
      */
     std::vector<UIComponent*> GetChildren() override;
+
+    std::tuple<raylib::Rectangle, raylib::Rectangle> GetSplittedRectangle(raylib::Rectangle boundingBox);
 
 
     bool IsSelected(int side);
