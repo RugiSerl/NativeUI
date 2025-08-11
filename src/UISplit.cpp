@@ -47,11 +47,10 @@ void UISplit::UpdateAndDraw(raylib::Rectangle boundingBox) {
         
         UISelectablePanel::draw(boundingBox);
 
-        auto [firstSideRect, secondSideRect] = this->GetSplittedRectangle(boundingBox);
         
 
-        firstSide->UpdateAndDraw(firstSideRect);
-        secondSide->UpdateAndDraw(secondSideRect);
+        firstSide->UpdateAndDraw(this->GetSplittedRectangle(boundingBox, 0));
+        secondSide->UpdateAndDraw(this->GetSplittedRectangle(boundingBox, 1));
 
         // Draws split bar.
         // // Can remove
@@ -64,9 +63,9 @@ void UISplit::UpdateAndDraw(raylib::Rectangle boundingBox) {
     }
 }
 
-std::tuple<raylib::Rectangle, raylib::Rectangle> UISplit::GetSplittedRectangle(raylib::Rectangle boundingBox) {
+raylib::Rectangle UISplit::GetSplittedRectangle(raylib::Rectangle boundingBox, int side) {
 
-    raylib::Rectangle anchoredRect = GetAnchoredRect(rect, anchor, boundingBox);
+    raylib::Rectangle anchoredRect = GetScreenSpaceCoordinate(boundingBox);
 
     raylib::Rectangle firstSideRect;
     raylib::Rectangle secondSideRect;
@@ -80,7 +79,7 @@ std::tuple<raylib::Rectangle, raylib::Rectangle> UISplit::GetSplittedRectangle(r
         secondSideRect = raylib::Rectangle( anchoredRect.x + barOffset, anchoredRect.y, anchoredRect.width - barOffset, anchoredRect.height);
     }
 
-    return {firstSideRect, secondSideRect};
+    return (side==0)?firstSideRect : secondSideRect;
 }
 
 bool UISplit::IsSelected(int side) {

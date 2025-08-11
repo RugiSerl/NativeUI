@@ -60,7 +60,7 @@ public:
      */
     std::vector<UIComponent*> GetChildren() override;
 
-    std::tuple<raylib::Rectangle, raylib::Rectangle> GetSplittedRectangle(raylib::Rectangle boundingBox);
+    raylib::Rectangle GetSplittedRectangle(raylib::Rectangle boundingBox, int side);
 
 
     bool IsSelected(int side);

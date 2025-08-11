@@ -13,7 +13,7 @@ UISelectablePanel::UISelectablePanel(raylib::Rectangle r, Anchor2 a,
 void UISelectablePanel::update(raylib::Rectangle boundingBox) {
     if (parent == NULL) {
         if (raylib::Mouse::IsButtonPressed(MOUSE_BUTTON_LEFT)) {
-            selected = GetAnchoredRect(rect, anchor, boundingBox).CheckCollision(raylib::Mouse::GetPosition());
+            selected = GetScreenSpaceCoordinate(boundingBox).CheckCollision(raylib::Mouse::GetPosition());
         }
 
         return;
@@ -64,7 +64,7 @@ bool UISelectablePanel::getMouseCollision(raylib::Rectangle boundingBox) {
     for (int i = this->parent->GetChildren().size() - 1; i >= 0; i--) { // size > 0 btw, since this already counts as a child
         UIComponent *sibling = this->parent->GetChildren().at(i);
 
-        raylib::Rectangle siblingRect = GetAnchoredRect(sibling->rect, sibling->anchor, boundingBox);
+        raylib::Rectangle siblingRect = sibling->GetScreenSpaceCoordinate(boundingBox);
         bool siblingColliding = siblingRect.CheckCollision(raylib::Mouse::GetPosition());
 
         if (siblingColliding && boundingBox.CheckCollision(raylib::Mouse::GetPosition())) {

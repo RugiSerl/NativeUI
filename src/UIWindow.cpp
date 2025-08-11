@@ -18,7 +18,7 @@ void UIWindow::AddChild(UIComponent* child) {
 void UIWindow::UpdateAndDraw(raylib::Rectangle boundingBox) {
     if (visible) {
         // UIResizablePanel::UpdateAndDraw(boundingBox);
-        topBar.UpdateAndDraw(GetAnchoredRect(this->rect, anchor, boundingBox));
+        topBar.UpdateAndDraw(GetScreenSpaceCoordinate(boundingBox));
     }
 
 

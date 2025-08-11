@@ -11,7 +11,7 @@ void UICheckbox::draw(raylib::Rectangle boundingBox) {
 
     if (value) {
         // drawing inside of checkbox if active
-        raylib::Rectangle anchoredRect = GetAnchoredRect(rect, anchor, boundingBox);
+        raylib::Rectangle anchoredRect = GetScreenSpaceCoordinate(boundingBox);
         BeginScissorMode(boundingBox.x, boundingBox.y, boundingBox.width, boundingBox.height);
         DEFAULT_CHECKBOX_INSIDE_STYLEBOX.draw(GetAnchoredRect(raylib::Rectangle(rect.GetSize() * 0.67), Anchor2{CENTER, CENTER}, anchoredRect));
         EndScissorMode();

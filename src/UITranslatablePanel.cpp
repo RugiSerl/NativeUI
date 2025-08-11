@@ -24,7 +24,7 @@ void UITranslatablePanel::update(raylib::Rectangle boundingBox) {
 
 void UITranslatablePanel::startTranslating(raylib::Rectangle boundingBox) {
     this->translating = true;
-    this->offset = GetAnchoredRect(rect, anchor, boundingBox).GetPosition() - raylib::Mouse::GetPosition();
+    this->offset = GetScreenSpaceCoordinate(boundingBox).GetPosition() - raylib::Mouse::GetPosition();
 }
 
 void UITranslatablePanel::updateTranslating(raylib::Rectangle boundingBox) {
