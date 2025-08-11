@@ -1,6 +1,7 @@
 #include "UIResizablePanel.hpp"
 #include "utils.hpp"
 #include "cursor.hpp"
+#include <tuple>
 
 void UIResizablePanel::update(raylib::Rectangle boundingBox) {
     // Check if mouse is in resize zone
