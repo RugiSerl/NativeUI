@@ -31,6 +31,8 @@ public:
      */
     void AddChild(UIComponent* component) override;
 
+    virtual std::string getType() override;
+
 
 protected:
 

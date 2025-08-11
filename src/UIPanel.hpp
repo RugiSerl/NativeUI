@@ -23,6 +23,9 @@ public:
 
     UIStylebox stylebox;
 
+    virtual std::string getType() override;
+
+
 protected:
 
 

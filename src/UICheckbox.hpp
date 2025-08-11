@@ -25,6 +25,9 @@ public:
 
     bool value;
 
+    virtual std::string getType();
+
+
 protected:
     virtual void draw(raylib::Rectangle boundingBox) override;
 };

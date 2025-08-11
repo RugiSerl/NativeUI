@@ -65,7 +65,7 @@ public:
 
     bool IsSelected(int side);
 
-
+    virtual std::string getType() override;
 
 protected:
 

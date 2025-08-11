@@ -41,7 +41,7 @@ void UIComponent::UpdateAndDraw(raylib::Rectangle boundingBox) {
     if (visible) {
         update(boundingBox);
         draw(boundingBox);
-        raylib::Rectangle componentRect = GetAnchoredRect(rect, anchor, boundingBox);
+        raylib::Rectangle componentRect = GetScreenSpaceCoordinate(boundingBox);
 
         // Recursively update
         for (UIComponent* child : children) {
@@ -62,6 +62,10 @@ void UIComponent::UpdateAndDraw(raylib::Rectangle boundingBox) {
     }
 }
 
+raylib::Rectangle UIComponent::GetScreenSpaceCoordinate(raylib::Rectangle boundingBox) {
+    return GetAnchoredRect(rect, anchor, boundingBox);
+}
+
 void UIComponent::draw(raylib::Rectangle boundingBox) {
     // overriden by children classes
 }
@@ -76,4 +80,8 @@ void UIComponent::Show() {
 
 void UIComponent::Hide() {
     visible = false;
+}
+
+std::string UIComponent::getType() {
+    return "UIComponent";
 }

@@ -23,3 +23,7 @@ void UIWindow::UpdateAndDraw(raylib::Rectangle boundingBox) {
 
 
 }
+
+std::string UIWindow::getType() {
+    return "UIWindow";
+}

@@ -105,3 +105,7 @@ void UISelectablePanel::draw(raylib::Rectangle boundingBox) {
 bool UISelectablePanel::IsSelected() {
     return selected;
 }
+
+std::string UISelectablePanel::getType() {
+    return "UISelectablePanel";
+}

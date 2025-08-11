@@ -42,3 +42,7 @@ bool UITranslatablePanel::canBeTranslated(raylib::Rectangle boundingBox) {
     return !inResizeZone && UISelectablePanel::getMouseCollision(boundingBox) && selected;
 }
 
+std::string UITranslatablePanel::getType() {
+    return "UITranslatablePanel";
+}
+

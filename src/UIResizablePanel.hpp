@@ -47,6 +47,9 @@ public:
     UIResizablePanel(raylib::Rectangle r, resizableDirections resizableConstraints, Vector2 minSize = raylib::Vector2(0, 0), UIStylebox normalStylebox = DEFAULT_PANEL_STYLEBOX, UIStylebox selectedStylebox = DEFAULT_SELECTED_STYLEBOX) : UITranslatablePanel(r, normalStylebox, selectedStylebox), resizableConstraints(resizableConstraints), minSize(minSize) {};
 
 
+    virtual std::string getType() override;
+
+    
 protected:
 
 
@@ -73,6 +76,7 @@ protected:
     void stopResizing();
 
     virtual void update(raylib::Rectangle boundingBox) override;
+
 
 private:
     Vector2 minSize;

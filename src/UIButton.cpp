@@ -38,3 +38,8 @@ void UIButton::draw(raylib::Rectangle boundingBox) {
         hoveredStylebox.draw(rect, anchor, boundingBox);
     }
 }
+
+
+std::string UIButton::getType() {
+    return "UIButton";
+}

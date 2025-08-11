@@ -34,6 +34,9 @@ public:
     // callback function
     std::function<void (void)> onClick;
 
+    virtual std::string getType();
+
+
 protected:
     virtual void update(raylib::Rectangle boundingBox) override;
     virtual void draw(raylib::Rectangle boundingBox) override;

@@ -23,6 +23,8 @@ public:
 
     bool inResizeZone = false;
 
+    virtual std::string getType() override;
+
 protected:
 
 

@@ -2,6 +2,9 @@
 #define __UI_COMPONENT__
 #include "raylib-cpp.hpp"
 #include "anchor.hpp"
+#include <typeinfo>
+
+
 
 /**
  * @brief Main brick block of the UI. All UI classes extend from it. It allows tree based ui.
@@ -38,6 +41,15 @@ public:
 
 
     /**
+     * @brief Get the Screen Space Coordinate of the component. The amount of pixel from top left in both directions. Coordinates used by raylib
+     * 
+     * @param boundingBox 
+     * @return raylib::Rectangle 
+     */
+    virtual raylib::Rectangle GetScreenSpaceCoordinate(raylib::Rectangle boundingBox);
+
+
+    /**
      * @brief Remove child with child pointer value
      *
      * @param component child
@@ -53,15 +65,12 @@ public:
     void RemoveChild(int index);
 
 
-
-
     /**
      * @brief Set the Parent object
      * 
      * @param parent 
      */
     void SetParent(UIComponent* parent);
-
 
 
     /**
@@ -76,6 +85,14 @@ public:
      *
      */
     void Show();
+
+
+    /**
+     * @brief Get the Type of the component as a string.
+     * 
+     * @return ComponentType 
+     */
+    virtual std::string getType();
 
 
     virtual std::vector<UIComponent*> GetChildren();

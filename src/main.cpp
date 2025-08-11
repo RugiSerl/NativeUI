@@ -44,10 +44,12 @@ int main() {
     selectable3.AddChild(&selectable4);
     navigatorSplit.AddChild(&selectable2, 1);
 
+
     raylib::Color textColor(LIGHTGRAY);
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     raylib::Window w(screenWidth, screenHeight, "NativeUI Showcase");
 
+    std::cout << checkbox.getType() << std::endl;
 
     SetTargetFPS(165);
 

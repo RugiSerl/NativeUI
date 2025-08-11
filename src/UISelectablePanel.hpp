@@ -33,6 +33,9 @@ public:
     bool isBehindChild(raylib::Rectangle boundingBox);
 
 
+    virtual std::string getType() override;
+
+    
 protected:
 
 

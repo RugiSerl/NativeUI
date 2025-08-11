@@ -17,3 +17,7 @@ void UICheckbox::draw(raylib::Rectangle boundingBox) {
         EndScissorMode();
     }
 }
+
+std::string UICheckbox::getType() {
+    return "UICheckbox";
+}

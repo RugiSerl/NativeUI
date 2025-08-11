@@ -6,3 +6,7 @@ UIPanel::UIPanel(raylib::Rectangle r, Anchor2 a, UIStylebox s)
 void UIPanel::draw(raylib::Rectangle boundingBox) {
     stylebox.draw(rect, anchor, boundingBox);
 }
+
+std::string UIPanel::getType() {
+    return "UIPanel";
+}

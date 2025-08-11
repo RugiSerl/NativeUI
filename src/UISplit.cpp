@@ -61,10 +61,6 @@ void UISplit::UpdateAndDraw(raylib::Rectangle boundingBox) {
         //                                   (type == VERTICAL_SPLIT) * BAR_WIDTH),
         //                 barAnchor, anchoredRect)
         // .Draw(LIGHTGRAY);
-
-        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
-            std::cout << isBehindChild(boundingBox) << std::endl;
-        }
     }
 }
 
@@ -94,3 +90,8 @@ bool UISplit::IsSelected(int side) {
 
     return 0;
 }
+
+std::string UISplit::getType() {
+    return "UISplit";
+}
+

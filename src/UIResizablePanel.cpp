@@ -106,3 +106,7 @@ void UIResizablePanel::stopResizing() {
     stopTranslating();
 }
 
+std::string UIResizablePanel::getType() {
+    return "UIResizablePanel";
+}
+
