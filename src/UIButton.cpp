@@ -31,11 +31,11 @@ void UIButton::draw(raylib::Rectangle boundingBox) {
     UISelectablePanel::draw(boundingBox);
 
     if (this->down) {
-        downStylebox.draw(rect, anchor, boundingBox);
+        downStylebox.draw(this, boundingBox);
 
     } else if (this->hovered) {
 
-        hoveredStylebox.draw(rect, anchor, boundingBox);
+        hoveredStylebox.draw(this, boundingBox);
     }
 }
 

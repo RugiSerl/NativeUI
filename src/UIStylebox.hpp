@@ -42,17 +42,17 @@ public:
 
     /**
      * @brief Draw the stylebox on screen but also use scissor
-     * 
+     *
      * @param anchoredRect rectangle with screen coordinates (from top right)
-     * @param boundingBox box to contrain to 
+     * @param boundingBox box to contrain to
      */
     void draw(raylib::Rectangle anchoredRect, raylib::Rectangle boundingBox);
 
 
     /**
      * @brief Draw the stylebox on screen but also use scissor
-     * 
-     * @param component 
+     *
+     * @param component
      * @param boundingBox box to contrain to
      */
     void draw(UIComponent* component, raylib::Rectangle boundingBox);

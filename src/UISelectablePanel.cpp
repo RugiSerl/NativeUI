@@ -23,6 +23,7 @@ void UISelectablePanel::update(raylib::Rectangle boundingBox) {
     if (raylib::Mouse::IsButtonPressed(MOUSE_BUTTON_LEFT)) {
 
         selected = UISelectablePanel::getMouseCollision(boundingBox);
+
         if (selected) {
             onSelected();
 
@@ -38,12 +39,14 @@ void UISelectablePanel::onSelected() {
     // in case of overlapping, happening only between two siblings because of the
     // scissor mode restricting area for children, put this element at the end - on
     // top
+    if (this->parent->getType() != "UISplit") { // don't do that for children of split container as it will swap the two sides
+        // Removing this object from the parent's childrens (poor guy)
+        this->parent->RemoveChild(this);
 
-    // Removing this object from the parent's childrens (poor guy)
-    this->parent->RemoveChild(this);
+        // Put it back at the end of the children (on top)
+        this->parent->AddChild(this);
+    }
 
-    // Put it back at the end of the children (on top)
-    this->parent->AddChild(this);
 
     // don't forget to unselect siblings (for selectable objects of course)
     for (int i = 0; i < this->parent->GetChildren().size(); i++) {
@@ -77,7 +80,7 @@ bool UISelectablePanel::isBehindChild(raylib::Rectangle boundingBox) {
 
     for (UIComponent* child : GetChildren()) {
         if (UISelectablePanel *selectableChild = dynamic_cast<UISelectablePanel *>(child); selectableChild) {
-            if (GetAnchoredRect(child->rect, child->anchor, GetAnchoredRect(rect, anchor, boundingBox)).CheckCollision(raylib::Mouse::GetPosition())) {
+            if (child->GetScreenSpaceCoordinate(GetScreenSpaceCoordinate(boundingBox)).CheckCollision(raylib::Mouse::GetPosition())) {
                 return true;
             }
         }

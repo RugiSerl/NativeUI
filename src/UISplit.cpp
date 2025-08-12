@@ -17,8 +17,8 @@ UISplit::UISplit(raylib::Rectangle r, Anchor2 a, splitType type,
         this->barAnchor.vertical = FILL;
     }
 
-    this->children.push_back(new UISelectablePanel(raylib::Rectangle(0), Anchor2{FILL, FILL}));
-    this->children.push_back(new UISelectablePanel(raylib::Rectangle(0), Anchor2{FILL, FILL}));
+    this->children.push_back(new UISelectablePanel(raylib::Rectangle(0), Anchor2{LEFT, TOP}));
+    this->children.push_back(new UISelectablePanel(raylib::Rectangle(0), Anchor2{LEFT, TOP}));
     this->children.at(0)->SetParent(this);
     this->children.at(1)->SetParent(this);
 
@@ -33,28 +33,6 @@ void UISplit::AddChild(UIComponent *child, int side) {
 }
 
 
-
-void UISplit::UpdateAndDraw(raylib::Rectangle boundingBox) {
-    if (visible) {
-
-        
-        UISelectablePanel::draw(boundingBox);
-
-        
-
-        this->children.at(0)->UpdateAndDraw(this->GetSplittedRectangle(boundingBox, 0));
-        this->children.at(1)->UpdateAndDraw(this->GetSplittedRectangle(boundingBox, 1));
-
-        // Draws split bar.
-        // // Can remove
-        // GetAnchoredRect(raylib::Rectangle((type == HORIZONTAL_SPLIT) * barOffset,
-        //                                   (type == VERTICAL_SPLIT) * barOffset,
-        //                                   (type == HORIZONTAL_SPLIT) * BAR_WIDTH,
-        //                                   (type == VERTICAL_SPLIT) * BAR_WIDTH),
-        //                 barAnchor, anchoredRect)
-        // .Draw(LIGHTGRAY);
-    }
-}
 
 raylib::Rectangle UISplit::GetSplittedRectangle(raylib::Rectangle boundingBox, int side) {
 
@@ -72,7 +50,7 @@ raylib::Rectangle UISplit::GetSplittedRectangle(raylib::Rectangle boundingBox, i
         secondSideRect = raylib::Rectangle( anchoredRect.x + barOffset, anchoredRect.y, anchoredRect.width - barOffset, anchoredRect.height);
     }
 
-    return (side==0)?firstSideRect : secondSideRect;
+    return (side == 0) ? firstSideRect : secondSideRect;
 }
 
 bool UISplit::IsSelected(int side) {

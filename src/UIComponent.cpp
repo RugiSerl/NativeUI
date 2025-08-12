@@ -38,10 +38,13 @@ void UIComponent::SetParent(UIComponent* p) {
 
 int UIComponent::GetChildIndex(UIComponent* child) {
     int i = 0;
+
     for (UIComponent* otherChild : this->children) {
-        if (otherChild==child) return i;
+        if (otherChild == child) return i;
+
         i++;
     }
+
     throw std::invalid_argument("Child index not found");
 }
 
@@ -70,16 +73,17 @@ void UIComponent::UpdateAndDraw(raylib::Rectangle boundingBox) {
             child->UpdateAndDraw(getRectangleIntersection(componentRect, boundingBox));
         }
 
-        
+
     }
 }
 
 raylib::Rectangle UIComponent::GetScreenSpaceCoordinate(raylib::Rectangle boundingBox) {
     if (this->parent != NULL) {
-        // UISplit *splitCasted = dynamic_cast<UISplit *>(this->parent);
-        // if (splitCasted) {
-        //     return splitCasted->GetSplittedRectangle(boundingBox, splitCasted->GetChildIndex(this));
-        // }
+        UISplit *splitCasted = dynamic_cast<UISplit *>(this->parent);
+
+        if (splitCasted) {
+            return splitCasted->GetSplittedRectangle(boundingBox, splitCasted->GetChildIndex(this));
+        }
 
     }
 

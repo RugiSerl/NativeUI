@@ -75,8 +75,8 @@ public:
 
     /**
      * @brief Get the index of the child
-     * 
-     * @param child 
+     *
+     * @param child
      * @return the index in the children vector
      */
     int GetChildIndex(UIComponent* child);
