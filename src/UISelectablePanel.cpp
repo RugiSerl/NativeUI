@@ -23,9 +23,9 @@ void UISelectablePanel::update(raylib::Rectangle boundingBox) {
     if (raylib::Mouse::IsButtonPressed(MOUSE_BUTTON_LEFT)) {
 
         selected = UISelectablePanel::getMouseCollision(boundingBox);
-
         if (selected) {
             onSelected();
+
         }
     }
 }
@@ -33,6 +33,7 @@ void UISelectablePanel::update(raylib::Rectangle boundingBox) {
 void UISelectablePanel::onSelected() {
     if (this->parent == NULL)
         return; // root case
+
 
     // in case of overlapping, happening only between two siblings because of the
     // scissor mode restricting area for children, put this element at the end - on
@@ -48,26 +49,20 @@ void UISelectablePanel::onSelected() {
     for (int i = 0; i < this->parent->GetChildren().size(); i++) {
         if (this->parent->GetChildren().at(i) != this) { // don't deselect ourself (it's stupid)
             // try downcasting object
-            UISelectablePanel *selectableCasted = dynamic_cast<UISelectablePanel *>(this->parent->GetChildren().at(i));
-
-            if (selectableCasted) { // is selectable ?
+            if (UISelectablePanel *selectableCasted = dynamic_cast<UISelectablePanel *>(this->parent->GetChildren().at(i)); selectableCasted) { // is selectable ?
                 selectableCasted->selected = false;
             }
         }
-
     }
 }
 // Getting mouse collision between component hitbox, but also making sure that the component is not behind another component
 bool UISelectablePanel::getMouseCollision(raylib::Rectangle boundingBox) {
 
     // Check if there are no sibling colliding
-    for (int i = this->parent->GetChildren().size() - 1; i >= 0; i--) { // size > 0 btw, since this already counts as a child
+    for (int i = this->parent->GetChildren().size() - 1; i >= 0; i--) {
         UIComponent *sibling = this->parent->GetChildren().at(i);
 
-        raylib::Rectangle siblingRect = sibling->GetScreenSpaceCoordinate(boundingBox);
-        bool siblingColliding = siblingRect.CheckCollision(raylib::Mouse::GetPosition());
-
-        if (siblingColliding && boundingBox.CheckCollision(raylib::Mouse::GetPosition())) {
+        if (sibling->GetScreenSpaceCoordinate(boundingBox).CheckCollision(raylib::Mouse::GetPosition())) {
             return this->parent->GetChildren().at(i) == this && !isBehindChild(boundingBox);
         }
     }
@@ -81,9 +76,7 @@ bool UISelectablePanel::isBehindChild(raylib::Rectangle boundingBox) {
     bool isBehind = false;
 
     for (UIComponent* child : GetChildren()) {
-        UISelectablePanel *selectableChild = dynamic_cast<UISelectablePanel *>(child);
-
-        if (selectableChild) {
+        if (UISelectablePanel *selectableChild = dynamic_cast<UISelectablePanel *>(child); selectableChild) {
             if (GetAnchoredRect(child->rect, child->anchor, GetAnchoredRect(rect, anchor, boundingBox)).CheckCollision(raylib::Mouse::GetPosition())) {
                 return true;
             }
@@ -95,10 +88,10 @@ bool UISelectablePanel::isBehindChild(raylib::Rectangle boundingBox) {
 }
 
 void UISelectablePanel::draw(raylib::Rectangle boundingBox) {
-    stylebox.draw(rect, anchor, boundingBox);
+    stylebox.draw(this, boundingBox);
 
     if (selected) {
-        selectedStylebox.draw(rect, anchor, boundingBox);
+        selectedStylebox.draw(this, boundingBox);
     }
 }
 

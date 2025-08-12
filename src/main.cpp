@@ -45,13 +45,13 @@ int main() {
     navigatorSplit.AddChild(&selectable2, 1);
 
 
+
     raylib::Color textColor(LIGHTGRAY);
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     raylib::Window w(screenWidth, screenHeight, "NativeUI Showcase");
 
-    std::cout << checkbox.getType() << std::endl;
 
-    SetTargetFPS(165);
+    SetTargetFPS(30);
 
     // Main game loop
     while (!w.ShouldClose()) { // Detect window close button or ESC key
@@ -59,7 +59,7 @@ int main() {
         SetCursor(MOUSE_CURSOR_DEFAULT);
         BeginDrawing();
         ClearBackground(RAYWHITE);
-        selectable.UpdateAndDraw();
+        menusplit.UpdateAndDraw();
 
         DrawFPS(0, 0);
         EndDrawing();

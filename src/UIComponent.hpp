@@ -42,9 +42,9 @@ public:
 
     /**
      * @brief Get the Screen Space Coordinate of the component. The amount of pixel from top left in both directions. Coordinates used by raylib
-     * 
-     * @param boundingBox 
-     * @return raylib::Rectangle 
+     *
+     * @param boundingBox
+     * @return raylib::Rectangle
      */
     virtual raylib::Rectangle GetScreenSpaceCoordinate(raylib::Rectangle boundingBox);
 
@@ -67,10 +67,19 @@ public:
 
     /**
      * @brief Set the Parent object
-     * 
-     * @param parent 
+     *
+     * @param parent
      */
     void SetParent(UIComponent* parent);
+
+
+    /**
+     * @brief Get the index of the child
+     * 
+     * @param child 
+     * @return the index in the children vector
+     */
+    int GetChildIndex(UIComponent* child);
 
 
     /**
@@ -89,8 +98,8 @@ public:
 
     /**
      * @brief Get the Type of the component as a string.
-     * 
-     * @return ComponentType 
+     *
+     * @return ComponentType
      */
     virtual std::string getType();
 
@@ -129,7 +138,7 @@ protected:
     std::vector<UIComponent*> childrenToAdd;
 
     bool visible;
-    ;
+
 
 private:
 

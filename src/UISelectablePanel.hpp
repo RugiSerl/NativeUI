@@ -35,7 +35,7 @@ public:
 
     virtual std::string getType() override;
 
-    
+
 protected:
 
 

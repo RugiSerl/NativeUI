@@ -2,6 +2,7 @@
 #define __UISTYLEBOX_H__
 #include "raylib-cpp.hpp"
 #include "anchor.hpp"
+#include "UIComponent.hpp"
 
 /**
  * @brief Defines graphic properties of a rectangle
@@ -37,6 +38,24 @@ public:
      * @param boundingBox box to constrain to
      */
     void draw(raylib::Rectangle rect, Anchor2 anchor, raylib::Rectangle boundingBox);
+
+
+    /**
+     * @brief Draw the stylebox on screen but also use scissor
+     * 
+     * @param anchoredRect rectangle with screen coordinates (from top right)
+     * @param boundingBox box to contrain to 
+     */
+    void draw(raylib::Rectangle anchoredRect, raylib::Rectangle boundingBox);
+
+
+    /**
+     * @brief Draw the stylebox on screen but also use scissor
+     * 
+     * @param component 
+     * @param boundingBox box to contrain to
+     */
+    void draw(UIComponent* component, raylib::Rectangle boundingBox);
 
 
     /**

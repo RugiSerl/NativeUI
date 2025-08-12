@@ -53,13 +53,6 @@ public:
     void AddChild(UIComponent* child, int side);
 
 
-    /**
-     * @brief Get Children from both sides
-     *
-     * @return std::vector<UIComponent*> concatenated children
-     */
-    std::vector<UIComponent*> GetChildren() override;
-
     raylib::Rectangle GetSplittedRectangle(raylib::Rectangle boundingBox, int side);
 
 

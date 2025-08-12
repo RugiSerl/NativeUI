@@ -17,28 +17,21 @@ UISplit::UISplit(raylib::Rectangle r, Anchor2 a, splitType type,
         this->barAnchor.vertical = FILL;
     }
 
-    firstSide = new UISelectablePanel(raylib::Rectangle(0), Anchor2{FILL, FILL});
-    secondSide = new UISelectablePanel(raylib::Rectangle(0), Anchor2{FILL, FILL});
-    firstSide->SetParent(this);
-    secondSide->SetParent(this);
+    this->children.push_back(new UISelectablePanel(raylib::Rectangle(0), Anchor2{FILL, FILL}));
+    this->children.push_back(new UISelectablePanel(raylib::Rectangle(0), Anchor2{FILL, FILL}));
+    this->children.at(0)->SetParent(this);
+    this->children.at(1)->SetParent(this);
 
 }
 void UISplit::AddChild(UIComponent *child, int side) {
-    if (side == 0) {
-        firstSide->AddChild(child);
-
-    } else if (side == 1) {
-        secondSide->AddChild(child);
+    if (side == 0 || side == 1) {
+        this->children.at(side)->AddChild(child);
 
     } else {
         throw std::invalid_argument("side must be 0 or 1");
     }
 }
 
-
-std::vector<UIComponent*> UISplit::GetChildren() {
-    return {firstSide, secondSide};
-}
 
 
 void UISplit::UpdateAndDraw(raylib::Rectangle boundingBox) {
@@ -49,8 +42,8 @@ void UISplit::UpdateAndDraw(raylib::Rectangle boundingBox) {
 
         
 
-        firstSide->UpdateAndDraw(this->GetSplittedRectangle(boundingBox, 0));
-        secondSide->UpdateAndDraw(this->GetSplittedRectangle(boundingBox, 1));
+        this->children.at(0)->UpdateAndDraw(this->GetSplittedRectangle(boundingBox, 0));
+        this->children.at(1)->UpdateAndDraw(this->GetSplittedRectangle(boundingBox, 1));
 
         // Draws split bar.
         // // Can remove
