@@ -60,15 +60,20 @@ void UISelectablePanel::onSelected() {
 }
 // Getting mouse collision between component hitbox, but also making sure that the component is not behind another component
 bool UISelectablePanel::getMouseCollision(raylib::Rectangle boundingBox) {
-
     // Check if there are no sibling colliding
-    for (int i = this->parent->GetChildren().size() - 1; i >= 0; i--) {
-        UIComponent *sibling = this->parent->GetChildren().at(i);
+    if (parent != NULL) {
+        for (int i = this->parent->GetChildren().size() - 1; i >= 0; i--) {
+            UIComponent *sibling = this->parent->GetChildren().at(i);
 
-        if (sibling->GetScreenSpaceCoordinate(boundingBox).CheckCollision(raylib::Mouse::GetPosition())) {
-            return this->parent->GetChildren().at(i) == this && !isBehindChild(boundingBox);
+            if (sibling->GetScreenSpaceCoordinate(boundingBox).CheckCollision(raylib::Mouse::GetPosition())) {
+                return this->parent->GetChildren().at(i) == this && !isBehindChild(boundingBox);
+            }
         }
+    } else {
+        // no need to check for siblings
+        return this->GetScreenSpaceCoordinate(boundingBox).CheckCollision(raylib::Mouse::GetPosition()) && !isBehindChild(boundingBox);
     }
+    
 
     return false;
 }

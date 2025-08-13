@@ -24,12 +24,11 @@ void UITranslatablePanel::update(raylib::Rectangle boundingBox) {
 
 void UITranslatablePanel::startTranslating(raylib::Rectangle boundingBox) {
     this->translating = true;
-    this->offset = GetScreenSpaceCoordinate(boundingBox).GetPosition() - raylib::Mouse::GetPosition();
 }
 
 void UITranslatablePanel::updateTranslating(raylib::Rectangle boundingBox) {
     // works because the component is anchored to top left.
-    virtualRectangle.SetPosition(raylib::Mouse::GetPosition() - boundingBox.GetPosition() + offset);
+    virtualRectangle.SetPosition(virtualRectangle.GetPosition()+raylib::Mouse::GetDelta());
 }
 
 void UITranslatablePanel::stopTranslating() {
@@ -39,7 +38,7 @@ void UITranslatablePanel::stopTranslating() {
 }
 
 bool UITranslatablePanel::canBeTranslated(raylib::Rectangle boundingBox) {
-    return !inResizeZone && UISelectablePanel::getMouseCollision(boundingBox) && selected;
+    return translationEnabled && !inResizeZone && UISelectablePanel::getMouseCollision(boundingBox) && selected;
 }
 
 std::string UITranslatablePanel::getType() {

@@ -8,6 +8,8 @@ UIWindow::UIWindow(raylib::Rectangle r, resizableDirections resizableConstraints
     this->Hide();
 }, DEFAULT_PANEL_STYLEBOX, DEFAULT_SELECTED_STYLEBOX, DEFAULT_HOVER_STYLEBOX, DEFAULT_BUTTON_DOWN_STYLEBOX) {
     topBar.AddChild(&closeButton, 0);
+    UIComponent::AddChild(&topBar);
+
 };
 
 
@@ -17,8 +19,10 @@ void UIWindow::AddChild(UIComponent* child) {
 
 void UIWindow::UpdateAndDraw(raylib::Rectangle boundingBox) {
     if (visible) {
-        // UIResizablePanel::UpdateAndDraw(boundingBox);
-        topBar.UpdateAndDraw(GetScreenSpaceCoordinate(boundingBox));
+        translationEnabled = true; // TODO
+        UIResizablePanel::UpdateAndDraw(boundingBox);
+        
+
     }
 
 

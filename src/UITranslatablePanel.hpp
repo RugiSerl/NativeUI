@@ -23,6 +23,8 @@ public:
 
     bool inResizeZone = false;
 
+    bool translationEnabled = true;
+    
     virtual std::string getType() override;
 
 protected:
@@ -67,7 +69,6 @@ protected:
     raylib::Rectangle virtualRectangle;
 
     bool translating;
-    raylib::Vector2 offset;
 
 };
 

@@ -54,9 +54,7 @@ raylib::Rectangle UISplit::GetSplittedRectangle(raylib::Rectangle boundingBox, i
 }
 
 bool UISplit::IsSelected(int side) {
-    if (side == 0) return firstSide->IsSelected();
-
-    if (side == 1) return secondSide->IsSelected();
+    if (side == 0 || side == 1) return (dynamic_cast<UISelectablePanel*> (children.at(side)))->IsSelected();
 
     return 0;
 }

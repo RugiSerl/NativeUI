@@ -33,12 +33,6 @@ public:
     bool isBehindChild(raylib::Rectangle boundingBox);
 
 
-    virtual std::string getType() override;
-
-
-protected:
-
-
     /**
      * @brief Get if panel is colliding with extra steps :
      * First making sure that no sibling is overlapping in front of it,
@@ -48,6 +42,15 @@ protected:
      * @return whether the panel is selectable.
      */
     bool getMouseCollision(raylib::Rectangle boundingBox);
+
+
+    virtual std::string getType() override;
+
+
+protected:
+
+
+    
     virtual void update(raylib::Rectangle boundingBox) override;
     virtual void draw(raylib::Rectangle boundingBox) override;
 
