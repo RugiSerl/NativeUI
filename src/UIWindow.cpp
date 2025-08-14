@@ -13,16 +13,24 @@ UIWindow::UIWindow(raylib::Rectangle r, resizableDirections resizableConstraints
 };
 
 
+bool UIWindow::isBehindChild(raylib::Rectangle BoundingBox) {
+    return (dynamic_cast<UISelectablePanel *> (topBar.GetChildren().at(0)))->isBehindChild(GetScreenSpaceCoordinate(BoundingBox));
+    // return UISelectablePanel::isBehindChild(BoundingBox);
+}
+
 void UIWindow::AddChild(UIComponent* child) {
     topBar.AddChild(child, 1); // we can only add to the window body
 }
 
+
 void UIWindow::UpdateAndDraw(raylib::Rectangle boundingBox) {
     if (visible) {
-        translationEnabled = true; // TODO
-        UIResizablePanel::UpdateAndDraw(boundingBox);
-        
+        this->translationEnabled = (dynamic_cast<UISelectablePanel *> (topBar.GetChildren().at(0)))->getMouseCollision(GetScreenSpaceCoordinate(boundingBox));
 
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+            std::cout << this->translationEnabled << std::endl;
+        }
+        UIResizablePanel::UpdateAndDraw(boundingBox);
     }
 
 

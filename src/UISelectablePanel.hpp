@@ -30,7 +30,7 @@ public:
     /**
      * @brief if panel is behind one of its child at the mouse position
      */
-    bool isBehindChild(raylib::Rectangle boundingBox);
+    virtual bool isBehindChild(raylib::Rectangle boundingBox);
 
 
     /**

@@ -25,6 +25,15 @@ public:
 
 
     /**
+     * @brief override normal isBehindChild() since the window is always behind the topBar split.
+     * 
+     * @param boundingBox 
+     * @return whether the window is behind a child or not
+     */
+    virtual bool isBehindChild(raylib::Rectangle boundingBox);
+
+
+    /**
      * @brief Add child to window body
      *
      * @param component child

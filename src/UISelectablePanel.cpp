@@ -47,16 +47,6 @@ void UISelectablePanel::onSelected() {
         this->parent->AddChild(this);
     }
 
-
-    // don't forget to unselect siblings (for selectable objects of course)
-    for (int i = 0; i < this->parent->GetChildren().size(); i++) {
-        if (this->parent->GetChildren().at(i) != this) { // don't deselect ourself (it's stupid)
-            // try downcasting object
-            if (UISelectablePanel *selectableCasted = dynamic_cast<UISelectablePanel *>(this->parent->GetChildren().at(i)); selectableCasted) { // is selectable ?
-                selectableCasted->selected = false;
-            }
-        }
-    }
 }
 // Getting mouse collision between component hitbox, but also making sure that the component is not behind another component
 bool UISelectablePanel::getMouseCollision(raylib::Rectangle boundingBox) {
