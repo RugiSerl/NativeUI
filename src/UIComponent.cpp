@@ -13,7 +13,7 @@ bool UIComponent::isHovered() {
 }
 
 void UIComponent::AddChild(UIComponent *child) {
-    assert(child != nullptr && "child added is null");
+    assert(child != nullptr && "child is null");
     child->parent=this;
     children.push_back(child);
 }
