@@ -2,7 +2,7 @@
 #include <iostream>
 #include "cursor.hpp"
 #include "utils.hpp"
-
+#include "UIComponent.hpp"
 void test(void) {
     std::cout << "clicked !" << std::endl;
 }
@@ -13,7 +13,7 @@ int main() {
     int screenWidth = 1280;
     int screenHeight = 720;
     //SetConfigFlags(FLAG_MSAA_4X_HINT);
-;
+    auto * uiComponent = new UIComponent();
 
 
 

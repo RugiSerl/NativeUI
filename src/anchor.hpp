@@ -40,10 +40,10 @@ raylib::Rectangle GetScreenBoundingbox();
  *
  * @param rect relative rectangle
  * @param anchor
- * @param BoundingBox bound constraint
+ * @param boundingBox bound constraint
  * @return raylib::Rectangle objective rectangle
  */
-raylib::Rectangle GetAnchoredRect(raylib::Rectangle rect, Anchor2 anchor, raylib::Rectangle BoundingBox = GetScreenBoundingbox());
+raylib::Rectangle GetAnchoredRect(raylib::Rectangle rect, Anchor2 anchor, raylib::Rectangle boundingBox = GetScreenBoundingbox());
 
 
 #endif
