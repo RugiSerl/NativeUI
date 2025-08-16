@@ -1,5 +1,4 @@
 #include "graphics.hpp"
-
 void DrawRoundedRectangle(raylib::Rectangle rect, float cornerRadius, Color color) {
     // Draw main rectangle
     DrawRectangleV(rect.GetPosition() + raylib::Vector2(cornerRadius, 0), rect.GetSize() - raylib::Vector2(2 * cornerRadius, 0), color);

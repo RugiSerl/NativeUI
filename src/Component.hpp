@@ -5,27 +5,30 @@
 #ifndef NATIVEUI_UICOMPONENT_HPP
 #define NATIVEUI_UICOMPONENT_HPP
 #include "anchor.hpp"
+#include "../include/raylib-cpp.hpp"
 /**
  * Main brick block of the ui system, acts as a node and contains basic information.
  */
-class UIComponent
-{
+class Component {
 public:
-    virtual ~UIComponent() = default;
+    virtual ~Component() = default;
 
-    UIComponent(raylib::Vector2 position, raylib::Vector2 size, Anchor2 anchor);
+    Component(raylib::Vector2 position, raylib::Vector2 size, Anchor2 anchor) : position(position), size(size),
+        anchor(anchor), parent(nullptr) {
+    };
 
     /**
-     * Get the coordinates from top lef.
+     * Get the actual position of the component on screen.
+     * @return The rectangle with position from top left
      */
-    void GetScreenSpaceRectangoe();
+    raylib::Rectangle GetScreenSpaceRectangle() const;
 
     /**
      * Retrieve a child with an index.
      * @param childIndex index of the child to retrieve.
      * @return the child to retrieve.
      */
-    UIComponent* GetChild(int childIndex);
+    Component *GetChild(int childIndex) const;
 
     /**
      * Is the component hovered by the mouse ?
@@ -37,14 +40,24 @@ public:
      * Add a child and set his parent to this.
      * @param child Child to add.
      */
-    void AddChild(UIComponent * child);
+    void AddChild(Component *child);
+
+    /**
+     * Removes a child
+     * @param child Child to remove.
+     */
+    void RemoveChild(Component *child);
+
+    /**
+     * Recursively call update and draw of itself then its children.
+     */
+    void UpdateAndDraw();
 
     raylib::Vector2 position;
     raylib::Vector2 size;
     Anchor2 anchor;
 
 protected:
-
     /**
      *  Updates component logic with user input.
      */
@@ -56,10 +69,9 @@ protected:
     virtual void draw();
 
 private:
-    std::vector<UIComponent*> children;
-    UIComponent* parent;
+    std::vector<Component *> children;
+    Component *parent;
 };
-
 
 
 #endif //NATIVEUI_UICOMPONENT_HPP
