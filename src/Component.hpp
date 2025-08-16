@@ -13,8 +13,14 @@ class Component {
 public:
     virtual ~Component() = default;
 
+    /**
+     *
+     * @param position relative position of the component from the anchor.
+     * @param size Size of the component.
+     * @param anchor From which point the component should be positionned.
+     */
     Component(raylib::Vector2 position, raylib::Vector2 size, Anchor2 anchor) : position(position), size(size),
-        anchor(anchor), parent(nullptr) {
+                                                                                anchor(anchor), parent(nullptr) {
     };
 
     /**
@@ -31,10 +37,23 @@ public:
     Component *GetChild(int childIndex) const;
 
     /**
-     * Is the component hovered by the mouse ?
+     * Allow external access to children, along with GetChild
+     * @return The amount of children.
+     */
+    int GetChildrenCount() const;
+
+    /**
+     * Check if the component is colliding with the cursor and if there is no child in front of it.
+     * @param mousePosition (optional) the position the cursor.
      * @return whether the mouse position is inside the component and no other component is above.
      */
-    bool isHovered();
+    bool IsHovered(raylib::Vector2 mousePosition = raylib::Mouse::GetPosition());
+
+    /**
+     * @param mousePosition (optional) the position the cursor
+     * @return whether the component is behind one of its children.
+     */
+    bool IsBehindChild(raylib::Vector2 mousePosition);
 
     /**
      * Add a child and set his parent to this.

@@ -8,11 +8,8 @@
 #include "utils.hpp"
 
 raylib::Rectangle Component::GetScreenSpaceRectangle() const {
-    try {
-        return GetAnchoredRect(raylib::Rectangle(position, size), anchor, (this->parent == nullptr) ? GetScreenBoundingbox() : parent->GetScreenSpaceRectangle());
-    } catch (std::exception &e) {
-        throw std::runtime_error(e.what());
-    }
+    return GetAnchoredRect(raylib::Rectangle(position, size), anchor,
+                           (this->parent == nullptr) ? GetScreenBoundingbox() : parent->GetScreenSpaceRectangle());
 }
 
 Component *Component::GetChild(const int childIndex) const {
@@ -20,9 +17,35 @@ Component *Component::GetChild(const int childIndex) const {
     return children.at(childIndex);
 }
 
-bool Component::isHovered() {
-    //TODO: replace
-    return GetScreenSpaceRectangle().CheckCollision(raylib::Mouse::GetPosition());
+int Component::GetChildrenCount() const {
+    return this->children.size();
+}
+
+bool Component::IsHovered(raylib::Vector2 mousePosition) {
+    if (parent == nullptr) {
+        return GetScreenSpaceRectangle().CheckCollision(mousePosition);
+    }
+
+    // It is important to loop in a decreasing order because last component are the last to be drawn and so are above the others.
+    for (int i = parent->GetChildrenCount() - 1; i >= 0; i--) {
+        if (parent->GetChild(i)->GetScreenSpaceRectangle().CheckCollision(mousePosition)) {
+            return parent->GetChild(i) == this // This component is above its siblings.
+                   && IsBehindChild(mousePosition); // This component has no child in front of it.
+        }
+    }
+
+    return false;
+}
+
+bool Component::IsBehindChild(raylib::Vector2 mousePosition) {
+    for (Component *child: children) {
+        if (GetScreenSpaceRectangle().CheckCollision(mousePosition)) {
+            return true;
+        } else if (child->IsBehindChild(mousePosition)) {
+            return true;
+        }
+    }
+    return false;
 }
 
 void Component::AddChild(Component *child) {
@@ -39,9 +62,12 @@ void Component::RemoveChild(Component *child) {
 }
 
 void Component::UpdateAndDraw() {
+    // TODO : add check for loop in tree with a vector for call stack.
     update();
     draw();
-    for (Component *child : children) {
+    // this make sure that deletion or additions of children during the update does not affect the order of update.
+    std::vector<Component *> backupChildren = children;
+    for (Component *child: backupChildren) {
         child->UpdateAndDraw();
     }
 }
