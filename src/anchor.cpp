@@ -1,12 +1,13 @@
 #include "anchor.hpp"
 #include <iostream>
 #include <stdexcept>
+#include "../include/raylib-cpp.hpp"
 
 raylib::Rectangle GetScreenBoundingbox() {
     return raylib::Rectangle(0, 0, GetScreenWidth(), GetScreenHeight());
 }
 
-raylib::Rectangle GetAnchoredRect(raylib::Rectangle rect, Anchor2 anchor, raylib::Rectangle boundingBox) {
+raylib::Rectangle GetAnchoredRect(const raylib::Rectangle rect, const Anchor2 anchor, raylib::Rectangle boundingBox) {
     raylib::Rectangle res(rect.GetSize());
 
     switch (anchor.horizontal) {

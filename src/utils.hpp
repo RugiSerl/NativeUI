@@ -1,6 +1,7 @@
 #ifndef __UTILS_H__
 #define __UTILS_H__
 #include <vector>
+#include <algorithm>
 #include "raylib-cpp.hpp"
 
 
@@ -120,6 +121,18 @@ template<class T> std::vector<T> concatenateVectors(std::vector<T> v1, std::vect
 
     return v;
 
+}
+
+
+/**
+ * @brief returns whether the vector contains the value
+ * 
+ * @tparam T type of the array
+ * @param vector 
+ * @param value 
+ */
+template<class T> bool isValueInVector(std::vector<T> vector, T value) {
+    return std::find(std::begin(vector), std::end(vector), value) != std::end(vector);
 }
 
 

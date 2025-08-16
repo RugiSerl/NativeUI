@@ -1,13 +1,13 @@
 #ifndef __GRAPHICS_H__
 #define __GRAPHICS_H__
+
 #include "raylib-cpp.hpp"
 
-
 /**
- * Draws a rectangle with rounded corners.
- * @param rect rectangle to draw
- * @param cornerRadius radius of the circle drawn in the corner
- */
+* Draws a rectangle with rounded corners.
+* @param rect rectangle to draw
+* @param cornerRadius radius of the circle drawn in the corner
+*/
 void DrawRoundedRectangle(raylib::Rectangle rect, float cornerRadius, Color color) ;
 
 
