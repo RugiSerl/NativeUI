@@ -12,6 +12,10 @@ raylib::Rectangle Component::GetScreenSpaceRectangle() const {
                            (this->parent == nullptr) ? GetScreenBoundingbox() : parent->GetScreenSpaceRectangle());
 }
 
+Component * Component::GetParent() const {
+    return this->parent;
+}
+
 Component *Component::GetChild(const int childIndex) const {
     assert(childIndex>=0 && childIndex<children.size() && "Invalid child index");
     return children.at(childIndex);
@@ -30,7 +34,7 @@ bool Component::IsHovered(raylib::Vector2 mousePosition) {
     for (int i = parent->GetChildrenCount() - 1; i >= 0; i--) {
         if (parent->GetChild(i)->GetScreenSpaceRectangle().CheckCollision(mousePosition)) {
             return parent->GetChild(i) == this // This component is above its siblings.
-                   && IsBehindChild(mousePosition); // This component has no child in front of it.
+                   && !IsBehindChild(mousePosition); // This component has no child in front of it.
         }
     }
 
@@ -39,9 +43,10 @@ bool Component::IsHovered(raylib::Vector2 mousePosition) {
 
 bool Component::IsBehindChild(raylib::Vector2 mousePosition) {
     for (Component *child: children) {
-        if (GetScreenSpaceRectangle().CheckCollision(mousePosition)) {
+        if (child->GetScreenSpaceRectangle().CheckCollision(mousePosition)) {
             return true;
-        } else if (child->IsBehindChild(mousePosition)) {
+        }
+        if (child->IsBehindChild(mousePosition)) {
             return true;
         }
     }
@@ -57,7 +62,7 @@ void Component::AddChild(Component *child) {
 
 void Component::RemoveChild(Component *child) {
     assert(child != nullptr && "child to remove is null");
-    assert(isValueInVector(children, child) && "child to remove is null");
+    assert(isValueInVector(children, child) && "child to remove is not in children");
     children.erase(std::remove(children.begin(), children.end(), child), children.end());
 }
 

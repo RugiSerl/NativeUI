@@ -29,7 +29,7 @@ int main() {
     raylib::Window w(screenWidth, screenHeight, "NativeUI Showcase");
 
 
-    SetTargetFPS(30);
+    SetTargetFPS(144);
     // Main game loop
     while (!w.ShouldClose()) { // Detect window close button or ESC key
         // Draw

@@ -30,6 +30,12 @@ public:
     raylib::Rectangle GetScreenSpaceRectangle() const;
 
     /**
+     * Access the parent in the tree of the component.
+     * @return Parent of the component.
+     */
+    Component *GetParent() const;
+
+    /**
      * Retrieve a child with an index.
      * @param childIndex index of the child to retrieve.
      * @return the child to retrieve.

@@ -7,5 +7,6 @@
 #include "StyleBox.hpp"
 
 #define DEFAULT_STYLE StyleBox(WHITE, LIGHTGRAY, 1.0f, 1.0f)
+#define DEFAULT_SELECTED_STYLE StyleBox(Color{0, 0, 0, 0}, Color{0, 0, 0, 128}, 1.0f, 1.0f)
 
 #endif //NATIVEUI_THEME_HPP
