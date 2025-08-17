@@ -3,14 +3,18 @@
 //
 
 #include "PanelResizable.hpp"
+
+#include <cassert>
+
 #include "utils.hpp"
+
+
 
 void PanelResizable::update() {
     Panel::update();
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && IsHovered()) {
         startTransform();
-    }
-    if (!ongoingTransform.IsNone()) {
+    } else if (!ongoingTransform.IsNone()) {
         updateTransform();
     }
     if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
@@ -19,21 +23,58 @@ void PanelResizable::update() {
 }
 
 void PanelResizable::startTransform() {
+    ongoingTransform.SetToNone();
     raylib::Rectangle screenSpaceRectangle = GetScreenSpaceRectangle();
-    RectangleSplit split = GetSplitRectangle(screenSpaceRectangle, getInnerRect(screenSpaceRectangle, RESIZE_PADDING));
+    utils::RectangleSplit split = utils::GetSplitRectangle(screenSpaceRectangle, utils::getInnerRect(screenSpaceRectangle, RESIZE_PADDING));
+
+    // Checking center for translation.
     if (split.centerRect.CheckCollision(raylib::Mouse::GetPosition())) {
         ongoingTransform.translating = true;
+
+    // Checking edges for resizing.
+    } else if (split.TopRect.CheckCollision(raylib::Mouse::GetPosition())) {
+        ongoingTransform.resizeTop = true;
+    } else if (split.BottomRect.CheckCollision(raylib::Mouse::GetPosition())) {
+        ongoingTransform.resizeBottom = true;
+    } else if (split.LeftRect.CheckCollision(raylib::Mouse::GetPosition())) {
+        ongoingTransform.resizeLeft = true;
+    } else if (split.RightRect.CheckCollision(raylib::Mouse::GetPosition())) {
+        ongoingTransform.resizeRight = true;
+
+    // Checking corners for resizing.
+    } else if (split.TopLeftCorner.CheckCollision(raylib::Mouse::GetPosition())) {
+        ongoingTransform.resizeTop = true;
+        ongoingTransform.resizeLeft = true;
+    } else if (split.TopRightCorner.CheckCollision(raylib::Mouse::GetPosition())) {
+        ongoingTransform.resizeTop = true;
+        ongoingTransform.resizeRight = true;
+    } else if (split.BottomLeftCorner.CheckCollision(raylib::Mouse::GetPosition())) {
+        ongoingTransform.resizeBottom = true;
+        ongoingTransform.resizeLeft = true;
+    } else if (split.BottomRightCorner.CheckCollision(raylib::Mouse::GetPosition())) {
+        ongoingTransform.resizeBottom = true;
+        ongoingTransform.resizeRight = true;
     }
 }
 
 void PanelResizable::updateTransform() {
-    if (ongoingTransform.translating) {
+    assert(!ongoingTransform.IsNone() && "updateTransform() called but no ongoing transform");
+    if (ongoingTransform.translating && availableTransform.translating) {
         virtualRectangle.SetPosition(virtualRectangle.GetPosition() + raylib::Mouse::GetDelta());
     }
+    if (ongoingTransform.resizeBottom && availableTransform.resizeBottom) {
+        virtualRectangle.height += raylib::Mouse::GetDelta().y;
+    }
 
-    raylib::Rectangle rect = clampRectangle(virtualRectangle, GetParent()->GetScreenSpaceRectangle());
-    position = rect.GetPosition();
-    size = rect.GetSize();
+    if (ongoingTransform.resizeRight && availableTransform.resizeRight) {
+        virtualRectangle.width += raylib::Mouse::GetDelta().x;
+    }
+
+
+    raylib::Rectangle r = utils::clampRectangle(virtualRectangle, GetParent()->GetScreenSpaceRectangle().GetSize());
+
+    position = r.GetPosition();
+    size = r.GetSize();
 }
 
 void PanelResizable::endTransform() {

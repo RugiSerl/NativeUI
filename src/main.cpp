@@ -18,9 +18,11 @@ int main() {
     int screenHeight = 720;
     //SetConfigFlags(FLAG_MSAA_4X_HINT);
     auto * root = new Panel(raylib::Vector2(0, 0), raylib::Vector2(0, 0), Anchor2{Anchor::FILL, Anchor::FILL}, DEFAULT_STYLE);
-    auto * uiComponent = new PanelResizable(raylib::Vector2(10, 10), raylib::Vector2(50, 50), Anchor2{Anchor::LEFT, Anchor::TOP}, DEFAULT_STYLE);
-    auto * uiComponent2 = new PanelResizable(raylib::Vector2(40, 20), raylib::Vector2(50, 50), Anchor2{Anchor::LEFT, Anchor::TOP}, DEFAULT_STYLE);
+    auto * uiComponent = new PanelResizable(raylib::Vector2(10, 10), raylib::Vector2(300, 300), Anchor2{Anchor::LEFT, Anchor::TOP}, raylib::Vector2(20, 20));
+    auto * uiComponent2 = new PanelResizable(raylib::Vector2(40, 20), raylib::Vector2(50, 50), Anchor2{Anchor::LEFT, Anchor::TOP}, raylib::Vector2(20, 50));
+    auto * uiComponent3 = new PanelResizable(raylib::Vector2(40, 20), raylib::Vector2(50, 50), Anchor2{Anchor::LEFT, Anchor::TOP}, raylib::Vector2(20, 50));
 
+    uiComponent->AddChild(uiComponent3);
     root->AddChild(uiComponent);
     root->AddChild(uiComponent2);
 
@@ -30,7 +32,7 @@ int main() {
     raylib::Window w(screenWidth, screenHeight, "NativeUI Showcase");
 
 
-    SetTargetFPS(144);
+    SetTargetFPS(30);
     // Main game loop
     while (!w.ShouldClose()) { // Detect window close button or ESC key
         // Draw

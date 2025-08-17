@@ -27,7 +27,7 @@ public:
      * Get the actual position of the component on screen.
      * @return The rectangle with position from top left
      */
-    raylib::Rectangle GetScreenSpaceRectangle() const;
+    virtual raylib::Rectangle GetScreenSpaceRectangle() const;
 
     /**
      * Access the parent in the tree of the component.

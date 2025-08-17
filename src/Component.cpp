@@ -55,14 +55,14 @@ bool Component::IsBehindChild(raylib::Vector2 mousePosition) {
 
 void Component::AddChild(Component *child) {
     assert(child != nullptr && "child added is null");
-    assert(!isValueInVector(children, child) && "child is null");
+    assert(!utils::isValueInVector(children, child) && "child is null");
     child->parent = this;
     children.push_back(child);
 }
 
 void Component::RemoveChild(Component *child) {
     assert(child != nullptr && "child to remove is null");
-    assert(isValueInVector(children, child) && "child to remove is not in children");
+    assert(utils::isValueInVector(children, child) && "child to remove is not in children");
     children.erase(std::remove(children.begin(), children.end(), child), children.end());
 }
 
