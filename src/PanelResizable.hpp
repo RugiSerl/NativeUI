@@ -4,6 +4,8 @@
 
 #ifndef NATIVEUI_PANELRESIZABLE_HPP
 #define NATIVEUI_PANELRESIZABLE_HPP
+#include <cassert>
+
 #include "Panel.hpp"
 
 #define RESIZE_PADDING 10
@@ -44,8 +46,7 @@ public:
     }
 
     /**
-     *
-     * @return Is everything false ?
+     * Is everything false ?
      */
     bool IsNone() const {
         return !(resizeTop || resizeBottom || resizeLeft || resizeRight || translating);
@@ -74,6 +75,7 @@ public:
                                                                       ongoingTransform(false),
                                                                       virtualRectangle(position, size),
                                                                       minimumSize(minimumSize) {
+
     }
 
     ~PanelResizable() override = default;

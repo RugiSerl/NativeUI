@@ -112,18 +112,19 @@ namespace utils {
     template<class T> std::vector<T> concatenateVectors(std::vector<T> v1, std::vector<T> v2) {
         std::vector<T> v;
         v.reserve(v1.size() + v2.size());
-
         for (T e1 : v1) {
             v.push_back(e1);
         }
-
         for (T e2 : v2) {
             v.push_back(e2);
         }
-
         return v;
-
     }
+
+    template<class T> std::vector<T> operator+(std::vector<T> v1, std::vector<T> v2) {
+        return concatenateVectors(v1, v2);
+    }
+
 
 
     /**

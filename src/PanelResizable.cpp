@@ -20,6 +20,19 @@ void PanelResizable::update() {
     if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
         endTransform();
     }
+
+
+    // Updating rectangle with a new intermediary one
+    raylib::Rectangle r = virtualRectangle;
+
+    // Clamp size so it remains superior to minSize
+    r.width = std::max(minimumSize.x, virtualRectangle.width);
+    r.height = std::max(minimumSize.y, virtualRectangle.height);
+
+
+    SetRect(utils::clampRectangle(r, GetParent()->GetScreenSpaceRectangle().GetSize()));
+
+
 }
 
 void PanelResizable::startTransform() {
@@ -62,19 +75,21 @@ void PanelResizable::updateTransform() {
     if (ongoingTransform.translating && availableTransform.translating) {
         virtualRectangle.SetPosition(virtualRectangle.GetPosition() + raylib::Mouse::GetDelta());
     }
+    if (ongoingTransform.resizeTop && availableTransform.resizeTop) {
+        virtualRectangle.height -= raylib::Mouse::GetDelta().y;
+        virtualRectangle.y += raylib::Mouse::GetDelta().y;
+    }
     if (ongoingTransform.resizeBottom && availableTransform.resizeBottom) {
         virtualRectangle.height += raylib::Mouse::GetDelta().y;
     }
-
+    if (ongoingTransform.resizeLeft && availableTransform.resizeLeft) {
+        virtualRectangle.width -= raylib::Mouse::GetDelta().x;
+        virtualRectangle.x += raylib::Mouse::GetDelta().x;
+    }
     if (ongoingTransform.resizeRight && availableTransform.resizeRight) {
         virtualRectangle.width += raylib::Mouse::GetDelta().x;
     }
 
-
-    raylib::Rectangle r = utils::clampRectangle(virtualRectangle, GetParent()->GetScreenSpaceRectangle().GetSize());
-
-    position = r.GetPosition();
-    size = r.GetSize();
 }
 
 void PanelResizable::endTransform() {

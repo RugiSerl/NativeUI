@@ -27,12 +27,11 @@ int main() {
     root->AddChild(uiComponent2);
 
 
-    raylib::Color textColor(LIGHTGRAY);
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     raylib::Window w(screenWidth, screenHeight, "NativeUI Showcase");
 
 
-    SetTargetFPS(30);
+    SetTargetFPS(144);
     // Main game loop
     while (!w.ShouldClose()) { // Detect window close button or ESC key
         // Draw

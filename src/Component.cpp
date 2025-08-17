@@ -30,28 +30,17 @@ bool Component::IsHovered(raylib::Vector2 mousePosition) {
         return GetScreenSpaceRectangle().CheckCollision(mousePosition);
     }
 
+    std::vector<Component *> preOrderWalk = GetRoot()->GetPreOrderWalk();
     // It is important to loop in a decreasing order because last component are the last to be drawn and so are above the others.
-    for (int i = parent->GetChildrenCount() - 1; i >= 0; i--) {
-        if (parent->GetChild(i)->GetScreenSpaceRectangle().CheckCollision(mousePosition)) {
-            return parent->GetChild(i) == this // This component is above its siblings.
-                   && !IsBehindChild(mousePosition); // This component has no child in front of it.
+    for (int i = preOrderWalk.size() - 1; i >= 0; i--) {
+        if (preOrderWalk.at(i)->GetScreenSpaceRectangle().CheckCollision(mousePosition)) {
+            return preOrderWalk.at(i) == this;
         }
     }
 
     return false;
 }
 
-bool Component::IsBehindChild(raylib::Vector2 mousePosition) {
-    for (Component *child: children) {
-        if (child->GetScreenSpaceRectangle().CheckCollision(mousePosition)) {
-            return true;
-        }
-        if (child->IsBehindChild(mousePosition)) {
-            return true;
-        }
-    }
-    return false;
-}
 
 void Component::AddChild(Component *child) {
     assert(child != nullptr && "child added is null");
@@ -75,6 +64,26 @@ void Component::UpdateAndDraw() {
     for (Component *child: backupChildren) {
         child->UpdateAndDraw();
     }
+}
+
+void Component::SetRect(raylib::Rectangle rect) {
+    position = rect.GetPosition();
+    size = rect.GetSize();
+}
+
+std::vector<Component *> Component::GetPreOrderWalk() {
+    std::vector<Component *> preOrderWalk = {this};
+    for (Component *child: children) {
+        preOrderWalk =  utils::concatenateVectors(preOrderWalk , child->GetPreOrderWalk());
+    }
+    return preOrderWalk;
+}
+
+Component* Component::GetRoot() {
+    if (parent==nullptr) {
+        return this;
+    }
+    return GetParent()->GetRoot();
 }
 
 void Component::update() {
