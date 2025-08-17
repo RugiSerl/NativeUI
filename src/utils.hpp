@@ -41,13 +41,13 @@ raylib::Rectangle getInnerRect(raylib::Rectangle, float padding);
 
 
 /**
- * @brief Represents all the rectangles after a rectangle was splitted in a 3x3 grid.
+ * @brief Represents all the rectangles after a rectangle was split in a 3x3 grid.
  *  ________
  * |__|__|__|
  * |__|__|__|
  * |__|__|__|
  */
-struct RectangleSplitted {
+struct RectangleSplit {
     // edge rectangles
     raylib::Rectangle LeftRect;
     raylib::Rectangle RightRect;
@@ -59,6 +59,8 @@ struct RectangleSplitted {
     raylib::Rectangle TopRightCorner;
     raylib::Rectangle BottomLeftCorner;
     raylib::Rectangle BottomRightCorner;
+
+    raylib::Rectangle centerRect;
 };
 
 
@@ -71,7 +73,7 @@ struct RectangleSplitted {
  * |__|______|_|
  *
  */
-RectangleSplitted GetSplittedRectangle(raylib::Rectangle outerRectangle, raylib::Rectangle innerRectangle);
+RectangleSplit GetSplitRectangle(raylib::Rectangle outerRectangle, raylib::Rectangle innerRectangle);
 
 
 /**

@@ -4,6 +4,7 @@
 #include "utils.hpp"
 #include "Component.hpp"
 #include "Panel.hpp"
+#include "PanelResizable.hpp"
 #include "Theme.hpp"
 
 void test(void) {
@@ -17,8 +18,8 @@ int main() {
     int screenHeight = 720;
     //SetConfigFlags(FLAG_MSAA_4X_HINT);
     auto * root = new Panel(raylib::Vector2(0, 0), raylib::Vector2(0, 0), Anchor2{Anchor::FILL, Anchor::FILL}, DEFAULT_STYLE);
-    auto * uiComponent = new Panel(raylib::Vector2(10, 10), raylib::Vector2(50, 50), Anchor2{Anchor::LEFT, Anchor::TOP}, DEFAULT_STYLE);
-    auto * uiComponent2 = new Panel(raylib::Vector2(40, 20), raylib::Vector2(50, 50), Anchor2{Anchor::LEFT, Anchor::TOP}, DEFAULT_STYLE);
+    auto * uiComponent = new PanelResizable(raylib::Vector2(10, 10), raylib::Vector2(50, 50), Anchor2{Anchor::LEFT, Anchor::TOP}, DEFAULT_STYLE);
+    auto * uiComponent2 = new PanelResizable(raylib::Vector2(40, 20), raylib::Vector2(50, 50), Anchor2{Anchor::LEFT, Anchor::TOP}, DEFAULT_STYLE);
 
     root->AddChild(uiComponent);
     root->AddChild(uiComponent2);

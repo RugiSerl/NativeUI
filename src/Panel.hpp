@@ -10,7 +10,7 @@
 
 class Panel : public Component {
 public:
-    Panel(raylib::Vector2 position, raylib::Vector2 size, Anchor2 anchor, StyleBox style, StyleBox selectedStyle=DEFAULT_SELECTED_STYLE, bool selectable=false) : Component(position, size, anchor), selected(false), selectable(selectable), selectedStyle(selectedStyle), style(style) {};
+    Panel(raylib::Vector2 position, raylib::Vector2 size, Anchor2 anchor, StyleBox style, StyleBox selectedStyle=DEFAULT_SELECTED_STYLE, bool selectable=false) : Component(position, size, anchor), selectable(selectable), selected(false), style(style), selectedStyle(selectedStyle) {};
 
     ~Panel() override = default;
 
@@ -19,7 +19,9 @@ public:
     virtual void draw() override;
 
 protected:
-
+    /**
+     * Move the component to put it above its siblings.
+     */
     void moveToFront();
 
 private:

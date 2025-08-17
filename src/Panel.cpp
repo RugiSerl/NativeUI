@@ -11,7 +11,7 @@
 void Panel::update() {
     Component::update();
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-        selected = IsHovered();
+        selected = IsHovered() && selectable;
         if (selected) {
             moveToFront();
         }
@@ -29,6 +29,9 @@ void Panel::draw() {
 
 void Panel::moveToFront() {
     if (GetParent() == nullptr) return;
+
+    // This will put this as the last element in the parent's children vector.
+    // It will be therefore above the others.
     GetParent()->RemoveChild(this);
     GetParent()->AddChild(this);
 
