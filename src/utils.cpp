@@ -65,4 +65,5 @@ namespace utils {
                                  std::min(rect.width, bounds.width), std::min(rect.height, bounds.height)};
     }
 
+
 }

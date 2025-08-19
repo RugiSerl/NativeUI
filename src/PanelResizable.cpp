@@ -9,7 +9,6 @@
 #include "utils.hpp"
 
 
-
 void PanelResizable::update() {
     Panel::update();
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && IsHovered()) {
@@ -25,26 +24,26 @@ void PanelResizable::update() {
     // Updating rectangle with a new intermediary one
     raylib::Rectangle r = virtualRectangle;
 
+
     // Clamp size so it remains superior to minSize
     r.width = std::max(minimumSize.x, virtualRectangle.width);
     r.height = std::max(minimumSize.y, virtualRectangle.height);
 
 
     SetRect(utils::clampRectangle(r, GetParent()->GetScreenSpaceRectangle().GetSize()));
-
-
 }
 
 void PanelResizable::startTransform() {
     ongoingTransform.SetToNone();
     raylib::Rectangle screenSpaceRectangle = GetScreenSpaceRectangle();
-    utils::RectangleSplit split = utils::GetSplitRectangle(screenSpaceRectangle, utils::getInnerRect(screenSpaceRectangle, RESIZE_PADDING));
+    utils::RectangleSplit split = utils::GetSplitRectangle(screenSpaceRectangle,
+                                                           utils::getInnerRect(screenSpaceRectangle, RESIZE_PADDING));
 
     // Checking center for translation.
     if (split.centerRect.CheckCollision(raylib::Mouse::GetPosition())) {
         ongoingTransform.translating = true;
 
-    // Checking edges for resizing.
+        // Checking edges for resizing.
     } else if (split.TopRect.CheckCollision(raylib::Mouse::GetPosition())) {
         ongoingTransform.resizeTop = true;
     } else if (split.BottomRect.CheckCollision(raylib::Mouse::GetPosition())) {
@@ -54,7 +53,7 @@ void PanelResizable::startTransform() {
     } else if (split.RightRect.CheckCollision(raylib::Mouse::GetPosition())) {
         ongoingTransform.resizeRight = true;
 
-    // Checking corners for resizing.
+        // Checking corners for resizing.
     } else if (split.TopLeftCorner.CheckCollision(raylib::Mouse::GetPosition())) {
         ongoingTransform.resizeTop = true;
         ongoingTransform.resizeLeft = true;
@@ -89,7 +88,6 @@ void PanelResizable::updateTransform() {
     if (ongoingTransform.resizeRight && availableTransform.resizeRight) {
         virtualRectangle.width += raylib::Mouse::GetDelta().x;
     }
-
 }
 
 void PanelResizable::endTransform() {

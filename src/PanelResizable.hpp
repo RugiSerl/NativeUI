@@ -75,7 +75,9 @@ public:
                                                                       ongoingTransform(false),
                                                                       virtualRectangle(position, size),
                                                                       minimumSize(minimumSize) {
-
+        assert(!availableTransform.IsNone() && "PanelResizable() : no available transformations provided, just use panel.");
+        assert(minimumSize.x >=0 && minimumSize.y>=0 && "PanelResizable() : you must set a minimum size superior to 0.");
+        assert(size.x >= minimumSize.x && size.y>=minimumSize.y && "PanelResizable() : The minimum size must be smaller than the initial size.");
     }
 
     ~PanelResizable() override = default;

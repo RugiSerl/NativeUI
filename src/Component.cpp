@@ -30,7 +30,9 @@ bool Component::IsHovered(raylib::Vector2 mousePosition) {
         return GetScreenSpaceRectangle().CheckCollision(mousePosition);
     }
 
+    // we take this because the component are drawn in a preOrderWalk, so we loop on the reversed order
     std::vector<Component *> preOrderWalk = GetRoot()->GetPreOrderWalk();
+
     // It is important to loop in a decreasing order because last component are the last to be drawn and so are above the others.
     for (int i = preOrderWalk.size() - 1; i >= 0; i--) {
         if (preOrderWalk.at(i)->GetScreenSpaceRectangle().CheckCollision(mousePosition)) {
