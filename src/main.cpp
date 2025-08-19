@@ -1,9 +1,12 @@
 #include "raylib-cpp.hpp"
 #include <iostream>
+
+#include "Button.hpp"
 #include "cursor.hpp"
 #include "utils.hpp"
 #include "Component.hpp"
 #include "Panel.hpp"
+#include "PanelResizable.hpp"
 #include "Theme.hpp"
 
 void test(void) {
@@ -17,19 +20,22 @@ int main() {
     int screenHeight = 720;
     //SetConfigFlags(FLAG_MSAA_4X_HINT);
     auto * root = new Panel(raylib::Vector2(0, 0), raylib::Vector2(0, 0), Anchor2{Anchor::FILL, Anchor::FILL}, DEFAULT_STYLE);
-    auto * uiComponent = new Panel(raylib::Vector2(10, 10), raylib::Vector2(50, 50), Anchor2{Anchor::LEFT, Anchor::TOP}, DEFAULT_STYLE);
-    auto * uiComponent2 = new Panel(raylib::Vector2(40, 20), raylib::Vector2(50, 50), Anchor2{Anchor::LEFT, Anchor::TOP}, DEFAULT_STYLE);
+    auto * uiComponent = new PanelResizable(raylib::Vector2(10, 10), raylib::Vector2(300, 300), Anchor2{Anchor::LEFT, Anchor::TOP}, raylib::Vector2(20, 20));
+    auto * uiComponent2 = new PanelResizable(raylib::Vector2(40, 20), raylib::Vector2(50, 50), Anchor2{Anchor::LEFT, Anchor::TOP}, raylib::Vector2(20, 50));
+    auto * uiComponent3 = new PanelResizable(raylib::Vector2(40, 20), raylib::Vector2(50, 50), Anchor2{Anchor::LEFT, Anchor::TOP}, raylib::Vector2(20, 50));
+    auto * button = new Button(raylib::Vector2(40, 20), raylib::Vector2(50, 50), Anchor2{Anchor::LEFT, Anchor::TOP}, test);
 
+    uiComponent->AddChild(uiComponent3);
+    uiComponent2->AddChild(button);
     root->AddChild(uiComponent);
     root->AddChild(uiComponent2);
 
 
-    raylib::Color textColor(LIGHTGRAY);
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     raylib::Window w(screenWidth, screenHeight, "NativeUI Showcase");
 
 
-    SetTargetFPS(30);
+    SetTargetFPS(144);
     // Main game loop
     while (!w.ShouldClose()) { // Detect window close button or ESC key
         // Draw
@@ -37,7 +43,6 @@ int main() {
         root->UpdateAndDraw();
         SetCursor(MOUSE_CURSOR_DEFAULT);
         BeginDrawing();
-        ClearBackground(RAYWHITE);
         EndDrawing();
         UpdateCursorState();
     }

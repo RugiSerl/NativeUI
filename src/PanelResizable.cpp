@@ -1,0 +1,96 @@
+//
+// Created by raphael on 8/17/25.
+//
+
+#include "PanelResizable.hpp"
+
+#include <cassert>
+
+#include "utils.hpp"
+
+
+void PanelResizable::update() {
+    Panel::update();
+    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && IsHovered()) {
+        startTransform();
+    } else if (!ongoingTransform.IsNone()) {
+        updateTransform();
+    }
+    if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
+        endTransform();
+    }
+
+
+    // Updating rectangle with a new intermediary one
+    raylib::Rectangle r = virtualRectangle;
+
+
+    // Clamp size so it remains superior to minSize
+    r.width = std::max(minimumSize.x, virtualRectangle.width);
+    r.height = std::max(minimumSize.y, virtualRectangle.height);
+
+
+    SetRect(utils::clampRectangle(r, GetParent()->GetScreenSpaceRectangle().GetSize()));
+}
+
+void PanelResizable::startTransform() {
+    ongoingTransform.SetToNone();
+    raylib::Rectangle screenSpaceRectangle = GetScreenSpaceRectangle();
+    utils::RectangleSplit split = utils::GetSplitRectangle(screenSpaceRectangle,
+                                                           utils::getInnerRect(screenSpaceRectangle, RESIZE_PADDING));
+
+    // Checking center for translation.
+    if (split.centerRect.CheckCollision(raylib::Mouse::GetPosition())) {
+        ongoingTransform.translating = true;
+
+        // Checking edges for resizing.
+    } else if (split.TopRect.CheckCollision(raylib::Mouse::GetPosition())) {
+        ongoingTransform.resizeTop = true;
+    } else if (split.BottomRect.CheckCollision(raylib::Mouse::GetPosition())) {
+        ongoingTransform.resizeBottom = true;
+    } else if (split.LeftRect.CheckCollision(raylib::Mouse::GetPosition())) {
+        ongoingTransform.resizeLeft = true;
+    } else if (split.RightRect.CheckCollision(raylib::Mouse::GetPosition())) {
+        ongoingTransform.resizeRight = true;
+
+        // Checking corners for resizing.
+    } else if (split.TopLeftCorner.CheckCollision(raylib::Mouse::GetPosition())) {
+        ongoingTransform.resizeTop = true;
+        ongoingTransform.resizeLeft = true;
+    } else if (split.TopRightCorner.CheckCollision(raylib::Mouse::GetPosition())) {
+        ongoingTransform.resizeTop = true;
+        ongoingTransform.resizeRight = true;
+    } else if (split.BottomLeftCorner.CheckCollision(raylib::Mouse::GetPosition())) {
+        ongoingTransform.resizeBottom = true;
+        ongoingTransform.resizeLeft = true;
+    } else if (split.BottomRightCorner.CheckCollision(raylib::Mouse::GetPosition())) {
+        ongoingTransform.resizeBottom = true;
+        ongoingTransform.resizeRight = true;
+    }
+}
+
+void PanelResizable::updateTransform() {
+    assert(!ongoingTransform.IsNone() && "updateTransform() called but no ongoing transform");
+    if (ongoingTransform.translating && availableTransform.translating) {
+        virtualRectangle.SetPosition(virtualRectangle.GetPosition() + raylib::Mouse::GetDelta());
+    }
+    if (ongoingTransform.resizeTop && availableTransform.resizeTop) {
+        virtualRectangle.height -= raylib::Mouse::GetDelta().y;
+        virtualRectangle.y += raylib::Mouse::GetDelta().y;
+    }
+    if (ongoingTransform.resizeBottom && availableTransform.resizeBottom) {
+        virtualRectangle.height += raylib::Mouse::GetDelta().y;
+    }
+    if (ongoingTransform.resizeLeft && availableTransform.resizeLeft) {
+        virtualRectangle.width -= raylib::Mouse::GetDelta().x;
+        virtualRectangle.x += raylib::Mouse::GetDelta().x;
+    }
+    if (ongoingTransform.resizeRight && availableTransform.resizeRight) {
+        virtualRectangle.width += raylib::Mouse::GetDelta().x;
+    }
+}
+
+void PanelResizable::endTransform() {
+    virtualRectangle = raylib::Rectangle(position, size);
+    ongoingTransform.SetToNone();
+}

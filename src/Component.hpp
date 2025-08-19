@@ -27,7 +27,15 @@ public:
      * Get the actual position of the component on screen.
      * @return The rectangle with position from top left
      */
-    raylib::Rectangle GetScreenSpaceRectangle() const;
+    virtual raylib::Rectangle GetScreenSpaceRectangle() const;
+
+    raylib::Rectangle GetParentRectangle() const;
+
+    /**
+     * Access the parent in the tree of the component.
+     * @return Parent of the component.
+     */
+    Component *GetParent() const;
 
     /**
      * Retrieve a child with an index.
@@ -50,12 +58,6 @@ public:
     bool IsHovered(raylib::Vector2 mousePosition = raylib::Mouse::GetPosition());
 
     /**
-     * @param mousePosition (optional) the position the cursor
-     * @return whether the component is behind one of its children.
-     */
-    bool IsBehindChild(raylib::Vector2 mousePosition);
-
-    /**
      * Add a child and set his parent to this.
      * @param child Child to add.
      */
@@ -72,6 +74,11 @@ public:
      */
     void UpdateAndDraw();
 
+    void SetRect(raylib::Rectangle rect);
+
+    std::vector<Component *> GetPreOrderWalk();
+
+    Component* GetRoot();
     raylib::Vector2 position;
     raylib::Vector2 size;
     Anchor2 anchor;
