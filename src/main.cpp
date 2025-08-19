@@ -1,5 +1,7 @@
 #include "raylib-cpp.hpp"
 #include <iostream>
+
+#include "Button.hpp"
 #include "cursor.hpp"
 #include "utils.hpp"
 #include "Component.hpp"
@@ -21,8 +23,10 @@ int main() {
     auto * uiComponent = new PanelResizable(raylib::Vector2(10, 10), raylib::Vector2(300, 300), Anchor2{Anchor::LEFT, Anchor::TOP}, raylib::Vector2(20, 20));
     auto * uiComponent2 = new PanelResizable(raylib::Vector2(40, 20), raylib::Vector2(50, 50), Anchor2{Anchor::LEFT, Anchor::TOP}, raylib::Vector2(20, 50));
     auto * uiComponent3 = new PanelResizable(raylib::Vector2(40, 20), raylib::Vector2(50, 50), Anchor2{Anchor::LEFT, Anchor::TOP}, raylib::Vector2(20, 50));
+    auto * button = new Button(raylib::Vector2(40, 20), raylib::Vector2(50, 50), Anchor2{Anchor::LEFT, Anchor::TOP}, test);
 
     uiComponent->AddChild(uiComponent3);
+    uiComponent2->AddChild(button);
     root->AddChild(uiComponent);
     root->AddChild(uiComponent2);
 
@@ -39,7 +43,6 @@ int main() {
         root->UpdateAndDraw();
         SetCursor(MOUSE_CURSOR_DEFAULT);
         BeginDrawing();
-        ClearBackground(RAYWHITE);
         EndDrawing();
         UpdateCursorState();
     }

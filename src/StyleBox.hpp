@@ -16,7 +16,7 @@ public:
 
     StyleBox(Color fillColor, Color borderColor, float borderWidth, float borderRadius) : fillColor(fillColor), borderColor(borderColor), borderWidth(borderWidth), borderRadius(borderRadius) {};
 
-    void draw(raylib::Rectangle rect) const;
+    void draw(raylib::Rectangle rect, raylib::Rectangle scissorRect) const;
 };
 
 

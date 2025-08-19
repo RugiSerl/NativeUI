@@ -26,9 +26,9 @@ void Panel::update() {
 void Panel::draw() {
     Component::draw();
 
-    style.draw(GetScreenSpaceRectangle());
+    style.draw(GetScreenSpaceRectangle(), GetParentRectangle());
     if (selected) {
-        selectedStyle.draw(GetScreenSpaceRectangle());
+        selectedStyle.draw(GetScreenSpaceRectangle(), GetParentRectangle());
     }
 
 }

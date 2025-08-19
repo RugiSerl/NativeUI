@@ -12,6 +12,11 @@ raylib::Rectangle Component::GetScreenSpaceRectangle() const {
                            (this->parent == nullptr) ? GetScreenBoundingbox() : parent->GetScreenSpaceRectangle());
 }
 
+raylib::Rectangle Component::GetParentRectangle() const {
+    if (this->parent == nullptr) return GetScreenBoundingbox();
+    return this->parent->GetScreenSpaceRectangle();
+}
+
 Component * Component::GetParent() const {
     return this->parent;
 }

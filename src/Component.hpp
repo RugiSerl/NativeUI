@@ -29,6 +29,8 @@ public:
      */
     virtual raylib::Rectangle GetScreenSpaceRectangle() const;
 
+    raylib::Rectangle GetParentRectangle() const;
+
     /**
      * Access the parent in the tree of the component.
      * @return Parent of the component.
