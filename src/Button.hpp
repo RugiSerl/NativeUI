@@ -19,16 +19,22 @@ public:
                                                       hoverStyle(hoverStyle), downStyle(downStyle), callback(std::move(callback)),
                                                       down(false) {
     }
-    ;
+
 
 protected:
+
     void update() override;
 
     void draw() override;
 
 private:
+
+    // Is the user hovering and holding mlb ?
     bool down;
+
+    // Function to call when the button is pressed.
     std::function<void (void)> callback;
+
     StyleBox hoverStyle;
     StyleBox downStyle;
 };

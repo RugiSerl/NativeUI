@@ -24,11 +24,15 @@ public:
     };
 
     /**
-     * Get the actual position of the component on screen.
-     * @return The rectangle with position from top left
+     * @brief Get the actual position of the component on screen.
+     * @return The rectangle with position from top left.
      */
     virtual raylib::Rectangle GetScreenSpaceRectangle() const;
 
+    /**
+     * @brief Shortcut for GetParent().GetScreenSpaceRectangle().
+     * @return The rectangle of the parent component in screen space coordinates.
+     */
     raylib::Rectangle GetParentRectangle() const;
 
     /**
@@ -45,7 +49,7 @@ public:
     Component *GetChild(int childIndex) const;
 
     /**
-     * Allow external access to children, along with GetChild
+     * Allow external access to children, along with GetChild().
      * @return The amount of children.
      */
     int GetChildrenCount() const;
@@ -64,26 +68,45 @@ public:
     void AddChild(Component *child);
 
     /**
-     * Removes a child
+     * @brief Removes a child.
      * @param child Child to remove.
      */
     void RemoveChild(Component *child);
 
     /**
-     * Recursively call update and draw of itself then its children.
+     * @brief Recursively call update and draw of itself then its children.
      */
     void UpdateAndDraw();
 
+    /**
+     * @brief No need to explain.
+     * @param rect Component's rect.
+     */
     void SetRect(raylib::Rectangle rect);
 
+    /**
+     * @brief Get pre-order walk in the component children tree.
+     * @return Vector containing the pre-order walk.
+     */
     std::vector<Component *> GetPreOrderWalk();
 
+    /**
+     * @brief Result of GetParent(), until the parent is null.
+     * @return Root of the component tree.
+     */
     Component* GetRoot();
+
+    // Relative position of the component
     raylib::Vector2 position;
+
+    // Size of the component.
     raylib::Vector2 size;
+
+    // The origin of the position.
     Anchor2 anchor;
 
 protected:
+
     /**
      *  Updates component logic with user input.
      */
@@ -95,7 +118,11 @@ protected:
     virtual void draw();
 
 private:
+
+    // Children of the component, allowing tree structure.
     std::vector<Component *> children;
+
+    // nullptr if root of the tree. Else points to the component that has this component as a child.
     Component *parent;
 };
 

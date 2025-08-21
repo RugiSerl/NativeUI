@@ -17,12 +17,12 @@ void DrawRoundedRectangle(raylib::Rectangle rect, float cornerRadius, Color colo
 }
 
 void DrawRoundedRectangleLines(raylib::Rectangle rect, float cornerRadius, Color color, float thickness) {
-    // For readability sake
-    float x = rect.x;
-    float y = rect.y;
-    float width = rect.width;
-    float height = rect.height;
-    float r = cornerRadius;
+    // For readability’s sake
+    const float x = rect.x;
+    const float y = rect.y;
+    const float width = rect.width;
+    const float height = rect.height;
+    const float r = cornerRadius;
 
     // Draw Edges
     DrawLineEx(Vector2{x + r, y}, Vector2{x + width - r, y}, thickness, color);
