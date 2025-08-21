@@ -99,7 +99,6 @@ namespace utils {
     // -----------------------------------------------
     // Template functions
 
-
     /**
      * @brief concatenate two vectors
      *
