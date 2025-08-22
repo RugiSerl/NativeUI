@@ -67,17 +67,19 @@ public:
      */
     PanelResizable(raylib::Vector2 position, raylib::Vector2 size, Anchor2 anchor,
                    raylib::Vector2 minimumSize,
-                   TransformState availableTransform = TransformState(true),
-                   StyleBox style = DEFAULT_STYLE,
-                   StyleBox selectedStyle = DEFAULT_SELECTED_STYLE) : Panel(position, size, anchor, style,
-                                                                            selectedStyle, true),
-                                                                      availableTransform(availableTransform),
-                                                                      ongoingTransform(false),
-                                                                      virtualRectangle(position, size),
-                                                                      minimumSize(minimumSize) {
-        assert(!availableTransform.IsNone() && "PanelResizable() : no available transformations provided, just use panel.");
-        assert(minimumSize.x >=0 && minimumSize.y>=0 && "PanelResizable() : you must set a minimum size superior to 0.");
-        assert(size.x >= minimumSize.x && size.y>=minimumSize.y && "PanelResizable() : The minimum size must be smaller than the initial size.");
+                   TransformState availableTransform = TransformState(true)) : Panel(position, size, anchor, true),
+                                                                               availableTransform(availableTransform),
+                                                                               ongoingTransform(false),
+                                                                               virtualRectangle(position, size),
+                                                                               minimumSize(minimumSize) {
+        assert(
+            !availableTransform.IsNone() &&
+            "PanelResizable() : no available transformations provided, just use panel.");
+        assert(
+            minimumSize.x >=0 && minimumSize.y>=0 && "PanelResizable() : you must set a minimum size superior to 0.");
+        assert(
+            size.x >= minimumSize.x && size.y>=minimumSize.y &&
+            "PanelResizable() : The minimum size must be smaller than the initial size.");
     }
 
     ~PanelResizable() override = default;
@@ -85,7 +87,11 @@ public:
 protected:
     void update() override;
 
+    raylib::Rectangle virtualRectangle;
 
+    raylib::Vector2 minimumSize;
+
+    TransformState availableTransform;
 
 private:
     /**
@@ -103,13 +109,7 @@ private:
      */
     void endTransform();
 
-    TransformState availableTransform;
-
     TransformState ongoingTransform;
-
-    raylib::Rectangle virtualRectangle;
-
-    raylib::Vector2 minimumSize;
 };
 
 

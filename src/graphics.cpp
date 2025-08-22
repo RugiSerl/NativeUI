@@ -38,13 +38,13 @@ void DrawRoundedRectangleLines(raylib::Rectangle rect, float cornerRadius, Color
 
 }
 
-void DrawCircleArcLine(raylib::Vector2 center, float radius, float startAngle, float stopAngle, float LineThickness, int segments, Color color) {
+void DrawCircleArcLine(raylib::Vector2 center, float radius, float startAngle, float stopAngle, float lineThickness, int segments, Color color) {
     for (int segment = 0; segment < segments; segment++) {
         float t1 = float(segment) / float(segments);
         float t2 = float(segment + 1) / float(segments);
 
         float angle = (1 - t1) * startAngle + t1 * stopAngle;
         float nextAngle = (1 - t2) * startAngle + t2 * stopAngle;
-        DrawLineEx(center + raylib::Vector2(cosf(angle), -sin(angle)) * radius, center + raylib::Vector2(cosf(nextAngle), -sin(nextAngle)) * radius, LineThickness, color);
+        DrawLineEx(center + raylib::Vector2(cosf(angle), -sin(angle)) * radius, center + raylib::Vector2(cosf(nextAngle), -sin(nextAngle)) * radius, lineThickness, color);
     }
 }

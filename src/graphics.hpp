@@ -23,13 +23,13 @@ void DrawRoundedRectangleLines(raylib::Rectangle rect, float cornerRadius, Color
  * Draws the line of an arc of a circle.
  * @param center The center of the circle
  * @param radius The length of the radius
- * @param startAngle The first angle (in radians) of the arc, from the vector (1, 0) and counter clockwise
- * @param stopAngle The last angle (in radians) of the arc, from the vector (1, 0) and counter clockwise
+ * @param startAngle The first angle (in radians) of the arc, from the vector (1, 0) and counterclockwise
+ * @param stopAngle The last angle (in radians) of the arc, from the vector (1, 0) and counterclockwise
  * @param lineThickness The width of the line
  * @param segments The amount of small lines to draw
  * @param color
  */
-void DrawCircleArcLine(raylib::Vector2 center, float radius, float startAngle, float stopAngle, float LineThickness, int segments, Color);
+void DrawCircleArcLine(raylib::Vector2 center, float radius, float startAngle, float stopAngle, float lineThickness, int segments, Color color);
 
 
 #endif // !__GRAPHICS_H__

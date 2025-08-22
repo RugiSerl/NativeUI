@@ -12,22 +12,16 @@
 
 class Button : public Panel {
 public:
-    Button(raylib::Vector2 position, raylib::Vector2 size, Anchor2 anchor, std::function<void (void)> callback,
-           StyleBox style = DEFAULT_STYLE,
-           StyleBox selectedStyle = DEFAULT_SELECTED_STYLE, StyleBox hoverStyle = DEFAULT_HOVER_STYLE,
-           StyleBox downStyle = DEFAULT_DOWN_STYLE) : Panel(position, size, anchor, style, selectedStyle, true),
-                                                      hoverStyle(hoverStyle), downStyle(downStyle), callback(std::move(callback)),
-                                                      down(false) {
+    Button(raylib::Vector2 position, raylib::Vector2 size, Anchor2 anchor,
+           std::function<void (void)> callback) : Panel(position, size, anchor, true),
+                                                  callback(std::move(callback)),
+                                                  down(false) {
     }
 
-
 protected:
-
     void update() override;
 
     void draw() override;
-
-private:
 
     // Is the user hovering and holding mlb ?
     bool down;
@@ -35,8 +29,9 @@ private:
     // Function to call when the button is pressed.
     std::function<void (void)> callback;
 
-    StyleBox hoverStyle;
-    StyleBox downStyle;
+    StyleBox hoverStyle = DEFAULT_HOVER_STYLE;
+
+    StyleBox downStyle = DEFAULT_DOWN_STYLE;
 };
 
 
