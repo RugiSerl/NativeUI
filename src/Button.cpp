@@ -6,13 +6,15 @@
 
 void Button::update() {
     Panel::update();
-    down = false;
     if (IsHovered()) {
         if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-            callback();
-        } else if (IsMouseButtonDown(MOUSE_LEFT_BUTTON)) {
             down = true;
+        } else if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON) && down) {
+            callback();
+            down = false;
         }
+    } else {
+        down = false;
     }
 }
 

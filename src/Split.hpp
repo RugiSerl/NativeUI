@@ -11,15 +11,12 @@ enum class splitType {
     HORIZONTAL_SPLIT,
 };
 
-class Split : public Panel {
+class Split : public Component {
 public:
 
-    Split(raylib::Vector2 position, raylib::Vector2 size, Anchor2 anchor,
-                   StyleBox style = DEFAULT_STYLE,
-                   StyleBox selectedStyle = DEFAULT_SELECTED_STYLE);
+    Split(raylib::Vector2 position, raylib::Vector2 size, Anchor2 anchor);
 
     ~Split() override = default;
-
 
     raylib::Rectangle GetSplitRectangle(int side);
 
