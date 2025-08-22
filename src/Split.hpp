@@ -16,7 +16,7 @@ public:
 
     Split(raylib::Vector2 position, raylib::Vector2 size, Anchor2 anchor,
                    StyleBox style = DEFAULT_STYLE,
-                   StyleBox selectedStyle = DEFAULT_SELECTED_STYLE));
+                   StyleBox selectedStyle = DEFAULT_SELECTED_STYLE);
 
     ~Split() override = default;
 
