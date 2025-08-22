@@ -87,10 +87,13 @@ public:
 protected:
     void update() override;
 
+    // Rectangle which is being transformed without constraints. The rectangle is a constrained version of it.
     raylib::Rectangle virtualRectangle;
 
+    // Minimum size of the rectangle
     raylib::Vector2 minimumSize;
 
+    // The transform this component supports
     TransformState availableTransform;
 
 private:
@@ -109,6 +112,7 @@ private:
      */
     void endTransform();
 
+    // The transforms happening as of now.
     TransformState ongoingTransform;
 };
 

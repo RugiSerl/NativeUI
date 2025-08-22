@@ -7,7 +7,7 @@
 #include "anchor.hpp"
 #include "../include/raylib-cpp.hpp"
 /**
- * Main brick block of the ui system, acts as a node and contains basic information.
+ * @brief Main brick block of the ui system, acts as a node and contains basic information.
  */
 class Component {
 public:

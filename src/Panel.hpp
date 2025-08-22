@@ -10,6 +10,9 @@
 #include "StyleBox.hpp"
 #include "Theme.hpp"
 
+/**
+ * Basic box shown on screen and with drawing priorities on which was selected last.
+ */
 class Panel : public Component {
 public:
     Panel(raylib::Vector2 position, raylib::Vector2 size, Anchor2 anchor,
@@ -30,12 +33,16 @@ protected:
      */
     void moveToFront();
 
+    // Can the panel be selected on click
     bool selectable;
 
+    // State of selection.
     bool selected;
 
+    // Default styleBox.
     StyleBox style = DEFAULT_STYLE;
 
+    // StyleBox when the user has selected the component.
     StyleBox selectedStyle = DEFAULT_SELECTED_STYLE;
 };
 
