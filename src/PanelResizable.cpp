@@ -91,6 +91,6 @@ void PanelResizable::updateTransform() {
 }
 
 void PanelResizable::endTransform() {
-    virtualRectangle = raylib::Rectangle(position, size);
+    virtualRectangle = raylib::Rectangle(modifier.position, modifier.size);
     ongoingTransform.SetToNone();
 }

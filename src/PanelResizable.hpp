@@ -65,12 +65,12 @@ public:
      * @param style normal style of the component
      * @param selectedStyle style of the component when selected
      */
-    PanelResizable(raylib::Vector2 position, raylib::Vector2 size, Anchor2 anchor,
+    PanelResizable(Modifier modifier,
                    raylib::Vector2 minimumSize,
-                   TransformState availableTransform = TransformState(true)) : Panel(position, size, anchor, true),
+                   TransformState availableTransform = TransformState(true)) : Panel(modifier, true),
                                                                                availableTransform(availableTransform),
                                                                                ongoingTransform(false),
-                                                                               virtualRectangle(position, size),
+                                                                               virtualRectangle(modifier.position, modifier.size),
                                                                                minimumSize(minimumSize) {
         assert(
             !availableTransform.IsNone() &&
@@ -78,7 +78,7 @@ public:
         assert(
             minimumSize.x >=0 && minimumSize.y>=0 && "PanelResizable() : you must set a minimum size superior to 0.");
         assert(
-            size.x >= minimumSize.x && size.y>=minimumSize.y &&
+            modifier.size.x >= minimumSize.x && modifier.size.y>=minimumSize.y &&
             "PanelResizable() : The minimum size must be smaller than the initial size.");
     }
 

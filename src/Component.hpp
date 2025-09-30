@@ -5,6 +5,7 @@
 #ifndef NATIVEUI_UICOMPONENT_HPP
 #define NATIVEUI_UICOMPONENT_HPP
 #include "anchor.hpp"
+#include "Modifier.hpp"
 #include "../include/raylib-cpp.hpp"
 /**
  * @brief Main brick block of the ui system, acts as a node and contains basic information.
@@ -19,9 +20,9 @@ public:
      * @param size Size of the component.
      * @param anchor From which point the component should be positionned.
      */
-    Component(raylib::Vector2 position, raylib::Vector2 size, Anchor2 anchor) : position(position), size(size),
-                                                                                anchor(anchor), parent(nullptr) {
-    };
+    Component(Modifier modifier) : modifier(modifier), parent(nullptr) {
+    }
+    ;
 
     /**
      * @brief Get the actual position of the component on screen.
@@ -96,14 +97,8 @@ public:
      */
     Component* GetRoot();
 
-    // Relative position of the component
-    raylib::Vector2 position;
+    Modifier modifier;
 
-    // Size of the component.
-    raylib::Vector2 size;
-
-    // The origin of the position.
-    Anchor2 anchor;
 
 protected:
 

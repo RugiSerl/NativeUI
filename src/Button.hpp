@@ -21,8 +21,8 @@ public:
      * @param anchor Origin of the position
      * @param callback function to call when the button is clicked.
      */
-    Button(raylib::Vector2 position, raylib::Vector2 size, Anchor2 anchor,
-           std::function<void (void)> callback) : Panel(position, size, anchor, true),
+    Button(Modifier modifier,
+           std::function<void (void)> callback) : Panel(modifier, true),
                                                   callback(std::move(callback)),
                                                   down(false) {
     }

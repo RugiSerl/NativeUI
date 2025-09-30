@@ -8,7 +8,7 @@
 #include "utils.hpp"
 
 raylib::Rectangle Component::GetScreenSpaceRectangle() const {
-    return GetAnchoredRect(raylib::Rectangle(position, size), anchor,
+    return GetAnchoredRect(raylib::Rectangle(modifier.position, modifier.size), modifier.anchor,
                            (this->parent == nullptr) ? GetScreenBoundingbox() : parent->GetScreenSpaceRectangle());
 }
 
@@ -74,8 +74,10 @@ void Component::UpdateAndDraw() {
 }
 
 void Component::SetRect(raylib::Rectangle rect) {
-    position = rect.GetPosition();
-    size = rect.GetSize();
+    modifier = modifier
+            .setPosition(rect.GetPosition())
+            .setSize(rect.GetSize());
+
 }
 
 std::vector<Component *> Component::GetPreOrderWalk() {

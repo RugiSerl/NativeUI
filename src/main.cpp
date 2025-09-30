@@ -19,11 +19,40 @@ int main() {
     int screenWidth = 1280;
     int screenHeight = 720;
     //SetConfigFlags(FLAG_MSAA_4X_HINT);
-    auto * root = new Panel(raylib::Vector2(0, 0), raylib::Vector2(0, 0), Anchor2{Anchor::FILL, Anchor::FILL});
-    auto * uiComponent = new PanelResizable(raylib::Vector2(10, 10), raylib::Vector2(300, 300), Anchor2{Anchor::LEFT, Anchor::TOP}, raylib::Vector2(20, 20));
-    auto * uiComponent2 = new PanelResizable(raylib::Vector2(40, 20), raylib::Vector2(50, 50), Anchor2{Anchor::LEFT, Anchor::TOP}, raylib::Vector2(20, 50));
-    auto * uiComponent3 = new PanelResizable(raylib::Vector2(40, 20), raylib::Vector2(50, 50), Anchor2{Anchor::LEFT, Anchor::TOP}, raylib::Vector2(20, 50));
-    auto * button = new Button(raylib::Vector2(40, 20), raylib::Vector2(50, 50), Anchor2{Anchor::LEFT, Anchor::TOP}, test);
+    auto *root = new Panel(Modifier()
+        .setPosition(raylib::Vector2(0, 0))
+        .setSize(raylib::Vector2(0, 0))
+        .setAnchor(Anchor2{Anchor::FILL, Anchor::FILL})
+    );
+
+
+    auto *uiComponent = new PanelResizable(
+        Modifier()
+        .setPosition(raylib::Vector2(10, 10))
+        .setSize(raylib::Vector2(300, 300))
+        .setAnchor(Anchor2{Anchor::LEFT, Anchor::TOP}),
+        raylib::Vector2(20, 20));
+
+    auto * uiComponent2 = new PanelResizable(
+        Modifier()
+        .setPosition(raylib::Vector2(40, 20))
+        .setSize(raylib::Vector2(50, 50))
+        .setAnchor(Anchor2{Anchor::LEFT, Anchor::TOP}),
+        raylib::Vector2(20, 50));
+
+    auto * uiComponent3 = new PanelResizable(
+        Modifier()
+        .setPosition(raylib::Vector2(40, 20))
+        .setSize(raylib::Vector2(50, 50))
+        .setAnchor(Anchor2{Anchor::LEFT, Anchor::TOP}),
+        raylib::Vector2(20, 50));
+
+    auto * button = new Button(
+        Modifier()
+        .setPosition(raylib::Vector2(40, 20))
+        .setSize(raylib::Vector2(50, 50))
+        .setAnchor(Anchor2{Anchor::LEFT, Anchor::TOP}),
+        test);
 
     uiComponent->AddChild(uiComponent3);
     uiComponent2->AddChild(button);

@@ -15,10 +15,10 @@
  */
 class Panel : public Component {
 public:
-    Panel(raylib::Vector2 position, raylib::Vector2 size, Anchor2 anchor,
-          bool selectable = false) : Component(position, size, anchor),
+    Panel(Modifier modifier,
+          bool selectable = false) : Component(modifier),
                                      selectable(selectable), selected(false) {
-        assert(size.x >= 0 && size.y >= 0 && "Panel() : The width and the height of the component must be positive");
+        assert(modifier.size.x >= 0 && modifier.size.y >= 0 && "Panel() : The width and the height of the component must be positive");
     };
 
     ~Panel() override = default;

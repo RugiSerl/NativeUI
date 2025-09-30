@@ -10,8 +10,8 @@
 
 
 void Panel::update() {
-    assert(size.x >= 0 && "width must be greater than 0");
-    assert(size.y >= 0 && "height must be greater than 0");
+    assert(modifier.size.x >= 0 && "width must be greater than 0");
+    assert(modifier.size.y >= 0 && "height must be greater than 0");
     Component::update();
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         selected = IsHovered() && selectable;
