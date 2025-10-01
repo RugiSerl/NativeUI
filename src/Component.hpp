@@ -2,9 +2,8 @@
 // Created by raphael on 8/15/25.
 //
 
-#ifndef NATIVEUI_UICOMPONENT_HPP
-#define NATIVEUI_UICOMPONENT_HPP
-#include "anchor.hpp"
+#ifndef NATIVEUI_COMPONENT_HPP
+#define NATIVEUI_COMPONENT_HPP
 #include "Layout.hpp"
 #include "Modifier.hpp"
 #include "../include/raylib-cpp.hpp"
@@ -16,14 +15,12 @@ public:
     virtual ~Component() = default;
 
     /**
-     *
-     * @param position relative position of the component from the anchor.
-     * @param size Size of the component.
-     * @param anchor From which point the component should be positionned.
+     * @param modifier transformations properties.
+     * @param layout describes how a component should draw its children
      */
-    Component(Modifier modifier, LayoutType layout) : modifier(modifier), parent(nullptr), layout(layout) {
+    Component(Modifier modifier, LayoutType layout) : modifier(modifier), layout(layout), parent(nullptr) {
     }
-    ;
+
 
     /**
      * @brief Get the actual position of the component on screen.

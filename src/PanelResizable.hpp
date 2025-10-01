@@ -24,15 +24,15 @@ public:
     TransformState(bool resizeTop, bool resizeBottom, bool resizeLeft, bool resizeRight,
                    bool translating) : resizeTop(resizeTop), resizeBottom(resizeBottom), resizeLeft(resizeLeft),
                                        resizeRight(resizeRight), translating(translating) {
-    };
+    }
 
     TransformState() : resizeTop(false), resizeBottom(false), resizeLeft(false), resizeRight(false),
                        translating(false) {
-    };
+    }
 
     explicit TransformState(bool value) : resizeTop(value), resizeBottom(value), resizeLeft(value), resizeRight(value),
                                           translating(value) {
-    };
+    }
 
     /**
      * Set everything to false.
@@ -57,22 +57,19 @@ class PanelResizable : public Panel {
 public:
     /**
      * Construct a new PanelResizable.
-     * @param position position of the component
-     * @param size size of the component.
-     * @param anchor Where is the origin of the position
+     * @param modifier transformations properties.
      * @param minimumSize The minimum width and height the component can be resized
      * @param availableTransform transformations allowed by the user
-     * @param style normal style of the component
-     * @param selectedStyle style of the component when selected
+     * @param layout describes how a component should draw its children
      */
     PanelResizable(Modifier modifier,
                    LayoutType layout,
                    raylib::Vector2 minimumSize,
                    TransformState availableTransform = TransformState(true)) : Panel(modifier, layout, true),
-                                                                               availableTransform(availableTransform),
-                                                                               ongoingTransform(false),
                                                                                virtualRectangle(modifier.position, modifier.size),
-                                                                               minimumSize(minimumSize) {
+                                                                               minimumSize(minimumSize),
+                                                                               availableTransform(availableTransform),
+                                                                               ongoingTransform(false) {
         assert(
             !availableTransform.IsNone() &&
             "PanelResizable() : no available transformations provided, just use panel.");

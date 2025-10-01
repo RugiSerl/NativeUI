@@ -16,16 +16,15 @@ class Button : public Panel {
 public:
     /**
      * @brief constructs a new Button object.
-     * @param position Position of the button.
-     * @param size Size of the button.
-     * @param anchor Origin of the position
+     * @param modifier transformations properties.
      * @param callback function to call when the button is clicked.
+     * @param layout describes how a component should draw its children
      */
     Button(Modifier modifier,
         LayoutType layout,
-           std::function<void (void)> callback) : Panel(modifier, layout, true),
-                                                  callback(std::move(callback)),
-                                                  down(false) {
+           std::function<void ()> callback) : Panel(modifier, layout, true),
+                                                  down(false),
+                                                  callback(std::move(callback)) {
     }
 
 protected:
@@ -37,7 +36,7 @@ protected:
     bool down;
 
     // Function to call when the button is pressed.
-    std::function<void (void)> callback;
+    std::function<void ()> callback;
 
     // styleBox when the cursor is above the component.
     StyleBox hoverStyle = DEFAULT_HOVER_STYLE;
