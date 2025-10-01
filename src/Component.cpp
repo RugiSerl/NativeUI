@@ -8,8 +8,11 @@
 #include "utils.hpp"
 
 raylib::Rectangle Component::GetScreenSpaceRectangle() const {
-    return GetAnchoredRect(raylib::Rectangle(modifier.position, modifier.size), modifier.anchor,
-                           (this->parent == nullptr) ? GetScreenBoundingbox() : parent->GetScreenSpaceRectangle());
+    return utils::getRectangleIntersection(GetAnchoredRect(raylib::Rectangle(modifier.position, modifier.size),
+                                                           modifier.anchor,
+                                                           GetParentRectangle()), GetParentRectangle());
+
+
 }
 
 raylib::Rectangle Component::GetParentRectangle() const {
