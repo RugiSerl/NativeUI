@@ -5,6 +5,7 @@
 #ifndef NATIVEUI_UICOMPONENT_HPP
 #define NATIVEUI_UICOMPONENT_HPP
 #include "anchor.hpp"
+#include "Layout.hpp"
 #include "Modifier.hpp"
 #include "../include/raylib-cpp.hpp"
 /**
@@ -20,7 +21,7 @@ public:
      * @param size Size of the component.
      * @param anchor From which point the component should be positionned.
      */
-    Component(Modifier modifier) : modifier(modifier), parent(nullptr) {
+    Component(Modifier modifier, LayoutType layout) : modifier(modifier), parent(nullptr), layout(layout) {
     }
     ;
 
@@ -98,6 +99,9 @@ public:
     Component* GetRoot();
 
     Modifier modifier;
+
+    LayoutType layout;
+
 
 
 protected:

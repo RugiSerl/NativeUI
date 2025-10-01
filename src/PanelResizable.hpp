@@ -66,8 +66,9 @@ public:
      * @param selectedStyle style of the component when selected
      */
     PanelResizable(Modifier modifier,
+                   LayoutType layout,
                    raylib::Vector2 minimumSize,
-                   TransformState availableTransform = TransformState(true)) : Panel(modifier, true),
+                   TransformState availableTransform = TransformState(true)) : Panel(modifier, layout, true),
                                                                                availableTransform(availableTransform),
                                                                                ongoingTransform(false),
                                                                                virtualRectangle(modifier.position, modifier.size),

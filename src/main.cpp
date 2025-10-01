@@ -22,7 +22,8 @@ int main() {
     auto *root = new Panel(Modifier()
         .setPosition(raylib::Vector2(0, 0))
         .setSize(raylib::Vector2(0, 0))
-        .setAnchor(Anchor2{Anchor::FILL, Anchor::FILL})
+        .setAnchor(Anchor2{Anchor::FILL, Anchor::FILL}),
+        LayoutType::NONE
     );
 
 
@@ -31,6 +32,7 @@ int main() {
         .setPosition(raylib::Vector2(10, 10))
         .setSize(raylib::Vector2(300, 300))
         .setAnchor(Anchor2{Anchor::LEFT, Anchor::TOP}),
+        LayoutType::NONE,
         raylib::Vector2(20, 20));
 
     auto * uiComponent2 = new PanelResizable(
@@ -38,6 +40,7 @@ int main() {
         .setPosition(raylib::Vector2(40, 20))
         .setSize(raylib::Vector2(50, 50))
         .setAnchor(Anchor2{Anchor::LEFT, Anchor::TOP}),
+        LayoutType::NONE,
         raylib::Vector2(20, 50));
 
     auto * uiComponent3 = new PanelResizable(
@@ -45,6 +48,7 @@ int main() {
         .setPosition(raylib::Vector2(40, 20))
         .setSize(raylib::Vector2(50, 50))
         .setAnchor(Anchor2{Anchor::LEFT, Anchor::TOP}),
+        LayoutType::NONE,
         raylib::Vector2(20, 50));
 
     auto * button = new Button(
@@ -52,6 +56,7 @@ int main() {
         .setPosition(raylib::Vector2(40, 20))
         .setSize(raylib::Vector2(50, 50))
         .setAnchor(Anchor2{Anchor::LEFT, Anchor::TOP}),
+        LayoutType::NONE,
         test);
 
     uiComponent->AddChild(uiComponent3);

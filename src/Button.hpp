@@ -22,7 +22,8 @@ public:
      * @param callback function to call when the button is clicked.
      */
     Button(Modifier modifier,
-           std::function<void (void)> callback) : Panel(modifier, true),
+        LayoutType layout,
+           std::function<void (void)> callback) : Panel(modifier, layout, true),
                                                   callback(std::move(callback)),
                                                   down(false) {
     }
