@@ -10,10 +10,21 @@ namespace utils {
     raylib::Rectangle getRectangleIntersection(const raylib::Rectangle r1, const raylib::Rectangle r2) {
         const auto r1v = VectorRectangle(r1);
         const auto r2v = VectorRectangle(r2);
-        return VectorRectangle(std::max(r1v.topLeft.x, r2v.topLeft.x), std::max(r1v.topLeft.y, r2v.topLeft.y),
+        return VectorRectangle(std::max(r1v.topLeft.x, r2v.topLeft.x),
+                               std::max(r1v.topLeft.y, r2v.topLeft.y),
                                std::min(r1v.bottomRight.x, r2v.bottomRight.x),
                                std::min(r1v.bottomRight.y, r2v.bottomRight.y)).EnsureNotNegativeWidth().ToRectangle();
     }
+
+    raylib::Rectangle getRectangleUnion(const raylib::Rectangle r1, const raylib::Rectangle r2) {
+        const auto r1v = VectorRectangle(r1);
+        const auto r2v = VectorRectangle(r2);
+        return VectorRectangle(std::min(r1v.topLeft.x, r2v.topLeft.x),
+                           std::min(r1v.topLeft.y, r2v.topLeft.y),
+                           std::max(r1v.bottomRight.x, r2v.bottomRight.x),
+                           std::max(r1v.bottomRight.y, r2v.bottomRight.y)).EnsureNotNegativeWidth().ToRectangle();
+    }
+
 
     RectangleSplit GetSplitRectangle(const raylib::Rectangle outerRectangle, const raylib::Rectangle innerRectangle) {
         // Making sure that innerRectangle is inside outerRectangle

@@ -9,7 +9,7 @@
 #include "PanelResizable.hpp"
 #include "Theme.hpp"
 
-void test(void) {
+void test() {
     std::cout << "clicked !" << std::endl;
 }
 
@@ -63,8 +63,7 @@ int main() {
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     raylib::Window w(screenWidth, screenHeight, "NativeUI Showcase");
 
-
-    SetTargetFPS(144);
+    SetTargetFPS(60);
     // Main game loop
     while (!w.ShouldClose()) { // Detect window close button or ESC key
         // Draw

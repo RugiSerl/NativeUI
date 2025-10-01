@@ -85,6 +85,11 @@ namespace utils {
      */
     raylib::Rectangle getRectangleIntersection(raylib::Rectangle r1, raylib::Rectangle r2);
 
+    /**
+     * The smallest rectangle containing both rectangles
+     * Not really the union of rectangles.
+     */
+    raylib::Rectangle getRectangleUnion(raylib::Rectangle r1, raylib::Rectangle r2);
 
     /**
      * @brief Clamp rectangle inside another

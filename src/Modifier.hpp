@@ -13,7 +13,7 @@
 class Modifier {
 public:
     // Set with default values. use Setters to change the values.
-    Modifier() : anchor(LEFT, LEFT), size(0, 0), position(0, 0){};
+    Modifier() : position(0, 0), size(0, 0), anchor(LEFT, LEFT){};
     Modifier setSize(raylib::Vector2 size);
     Modifier setPosition(raylib::Vector2 pos);
     Modifier setAnchor(Anchor2 anchor);
