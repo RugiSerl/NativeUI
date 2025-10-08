@@ -64,19 +64,17 @@ public:
      */
     PanelResizable(Modifier modifier,
                    LayoutType layout,
-                   raylib::Vector2 minimumSize,
                    TransformState availableTransform = TransformState(true)) : Panel(modifier, layout, true),
                                                                                virtualRectangle(modifier.position, modifier.size),
-                                                                               minimumSize(minimumSize),
                                                                                availableTransform(availableTransform),
                                                                                ongoingTransform(false) {
         assert(
             !availableTransform.IsNone() &&
             "PanelResizable() : no available transformations provided, just use panel.");
         assert(
-            minimumSize.x >=0 && minimumSize.y>=0 && "PanelResizable() : you must set a minimum size superior to 0.");
+            modifier.minSize.x >=0 && modifier.minSize.y>=0 && "PanelResizable() : you must set a minimum size superior to 0.");
         assert(
-            modifier.size.x >= minimumSize.x && modifier.size.y>=minimumSize.y &&
+            modifier.size.x >= modifier.minSize.x && modifier.size.y>=modifier.minSize.y &&
             "PanelResizable() : The minimum size must be smaller than the initial size.");
     }
 
@@ -88,8 +86,6 @@ protected:
     // Rectangle which is being transformed without constraints. The rectangle is a constrained version of it.
     raylib::Rectangle virtualRectangle;
 
-    // Minimum size of the rectangle
-    raylib::Vector2 minimumSize;
 
     // The transform this component supports
     TransformState availableTransform;

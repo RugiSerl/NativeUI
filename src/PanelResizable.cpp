@@ -24,10 +24,9 @@ void PanelResizable::update() {
     // Updating rectangle with a new intermediary one
     raylib::Rectangle r = virtualRectangle;
 
-
     // Clamp size so it remains superior to minSize
-    r.width = std::max(minimumSize.x, virtualRectangle.width);
-    r.height = std::max(minimumSize.y, virtualRectangle.height);
+    r.width = std::max(modifier.minSize.x, virtualRectangle.width);
+    r.height = std::max(modifier.minSize.y, virtualRectangle.height);
 
 
     SetRect(utils::clampRectangle(r, GetParent()->GetScreenSpaceRectangle().GetSize()));

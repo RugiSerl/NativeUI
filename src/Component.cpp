@@ -4,13 +4,40 @@
 
 #include "Component.hpp"
 
-#include <assert.h>
+#include <cassert>
+#include <iostream>
+
 #include "utils.hpp"
 
 raylib::Rectangle Component::GetScreenSpaceRectangle() const {
-    return utils::getRectangleIntersection(GetAnchoredRect(raylib::Rectangle(modifier.position, modifier.size),
-                                                           modifier.anchor,
-                                                           GetParentRectangle()), GetParentRectangle());
+    raylib::Rectangle parentRectangle = GetParentRectangle();
+    raylib::Rectangle boundingBox;
+    LayoutType parentLayout = GetParentLayout();
+
+
+    if (parentLayout == LayoutType::NONE) {
+        boundingBox = GetParentRectangle();
+    } else if (parentLayout == LayoutType::COLUMN) {
+        raylib::Rectangle previousSiblingRectangle = GetPreviousSiblingRectangle();
+        std::cout << "test" << std::endl;
+        boundingBox = raylib::Rectangle(parentRectangle.x,
+                                            previousSiblingRectangle.y + previousSiblingRectangle.height,
+                                            parentRectangle.width,
+                                            parentRectangle.y + parentRectangle.height - previousSiblingRectangle.y - previousSiblingRectangle.height);
+    } else if (parentLayout == LayoutType::ROW) {
+        raylib::Rectangle previousSiblingRectangle = GetPreviousSiblingRectangle();
+        boundingBox = raylib::Rectangle(parentRectangle.x + previousSiblingRectangle.width,
+                                            previousSiblingRectangle.y,
+                                            parentRectangle.x + parentRectangle.width - previousSiblingRectangle.x - previousSiblingRectangle.width,
+                                            parentRectangle.height);
+    } else {
+        throw std::invalid_argument("Incorrect value for Layout");
+    }
+
+    return utils::getRectangleIntersection(
+        GetAnchoredRect(raylib::Rectangle(modifier.position, modifier.size), modifier.anchor, boundingBox),
+        parentRectangle
+        );
 
 
 }
@@ -20,13 +47,43 @@ raylib::Rectangle Component::GetParentRectangle() const {
     return this->parent->GetScreenSpaceRectangle();
 }
 
+LayoutType Component::GetParentLayout() const {
+    if (this->parent==nullptr) return LayoutType::NONE;
+    return this->parent->layout;
+}
+
 Component * Component::GetParent() const {
     return this->parent;
+}
+
+raylib::Rectangle Component::GetPreviousSiblingRectangle() const {
+    Component* previousSibling = GetPreviousSibling();
+    // This is the first child of the parent. It is more convenient to say it's like the previous child has an empty rectangle for layout.
+    if (previousSibling == nullptr) {
+        return {GetParentRectangle().GetPosition(), raylib::Vector2(0, 0)};
+    }
+    return previousSibling->GetScreenSpaceRectangle();
+
+}
+
+Component * Component::GetPreviousSibling() const {
+    assert(this->parent != nullptr && "attempting to access the sibling of component which does not have parent.");
+    int siblingIndex = parent->GetChildIndex(this)-1;
+    if (siblingIndex == -1) {
+        return nullptr;
+    }
+    return GetParent()->GetChild(siblingIndex);
 }
 
 Component *Component::GetChild(const int childIndex) const {
     assert(childIndex>=0 && childIndex<children.size() && "Invalid child index");
     return children.at(childIndex);
+}
+
+
+int Component::GetChildIndex(const Component *child) const {
+    assert(!children.empty() && "Attempting to retrieve a child of a parent which has no children");
+    return std::distance(children.begin(), std::find(children.begin(), children.end(), child));
 }
 
 int Component::GetChildrenCount() const {
@@ -66,7 +123,6 @@ void Component::RemoveChild(Component *child) {
 }
 
 void Component::UpdateAndDraw() {
-    // TODO : add check for loop in tree with a vector for call stack.
     update();
     draw();
     // this make sure that deletion or additions of children during the update does not affect the order of update.

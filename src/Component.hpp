@@ -35,10 +35,29 @@ public:
     raylib::Rectangle GetParentRectangle() const;
 
     /**
+     * @brief Shortcut for GetParent()->layout, except it checks if parent is null before.
+     * @return Get the parent layout
+     */
+    LayoutType GetParentLayout() const;
+
+    /**
      * Access the parent in the tree of the component.
      * @return Parent of the component.
      */
     Component *GetParent() const;
+
+    /**
+     * @brief Get rectangle of the previous sibling. If the component does not have previous sibling, it will return the
+     * parent's rectangle
+     * @return the rectangle of the previous sibling.
+     */
+    raylib::Rectangle GetPreviousSiblingRectangle() const;
+
+    /**
+     * @brief Get previous sibling in the tree.
+     * @return The previous sibling in the order of the children of the parent. Returns nullptr if the component is the first child.
+     */
+    Component *GetPreviousSibling() const;
 
     /**
      * Retrieve a child with an index.
@@ -48,10 +67,18 @@ public:
     Component *GetChild(int childIndex) const;
 
     /**
+     * @brief retrieve child index by its instance.
+     * @param child Instance.
+     * @return Index of child. -1 if the instance was not found.
+     */
+    int GetChildIndex(const Component *child) const;
+
+    /**
      * Allow external access to children, along with GetChild().
      * @return The amount of children.
      */
     int GetChildrenCount() const;
+
 
     /**
      * Check if the component is colliding with the cursor and if there is no child in front of it.
