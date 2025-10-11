@@ -65,7 +65,7 @@ raylib::Rectangle Component::GetPreviousSiblingRectangle() const {
 
 }
 
-Component * Component::GetPreviousSiblingByInsertionOrder() const {
+Component* Component::GetPreviousSiblingByInsertionOrder() const {
     assert(this->parent != nullptr && "attempting to access the sibling of component which does not have parent.");
     int siblingIndex = parent->GetChildIndexInsertion(this)-1;
     if (siblingIndex < 0) {
@@ -149,7 +149,7 @@ void Component::UpdateAndDraw() {
     update();
     draw();
     // this make sure that deletion or additions of children during the update does not affect the order of update.
-    std::vector<Component *> backupChildren (childrenOrderedByInsertion);
+    std::vector<Component *> backupChildren (childrenOrderedByDraw);
     int i = 0;
     for (Component *child: backupChildren) {
         child->UpdateAndDraw();
@@ -173,7 +173,7 @@ void Component::SetRect(raylib::Rectangle rect) {
 
 std::vector<Component *> Component::GetPreOrderWalk() {
     std::vector<Component *> preOrderWalk = {this};
-    for (Component *child: childrenOrderedByInsertion) {
+    for (Component *child: childrenOrderedByDraw) {
         preOrderWalk =  utils::concatenateVectors(preOrderWalk , child->GetPreOrderWalk());
     }
     return preOrderWalk;
