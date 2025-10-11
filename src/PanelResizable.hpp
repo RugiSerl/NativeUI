@@ -62,21 +62,7 @@ public:
      * @param availableTransform transformations allowed by the user
      * @param layout describes how a component should draw its children
      */
-    PanelResizable(Modifier modifier,
-                   LayoutType layout,
-                   TransformState availableTransform = TransformState(true)) : Panel(modifier, layout, true),
-                                                                               virtualRectangle(modifier.position, modifier.size),
-                                                                               availableTransform(availableTransform),
-                                                                               ongoingTransform(false) {
-        assert(
-            !availableTransform.IsNone() &&
-            "PanelResizable() : no available transformations provided, just use panel.");
-        assert(
-            modifier.minSize.x >=0 && modifier.minSize.y>=0 && "PanelResizable() : you must set a minimum size superior to 0.");
-        assert(
-            modifier.size.x >= modifier.minSize.x && modifier.size.y>=modifier.minSize.y &&
-            "PanelResizable() : The minimum size must be smaller than the initial size.");
-    }
+    PanelResizable(Modifier modifier, LayoutType layout, TransformState availableTransform = TransformState(true));
 
     ~PanelResizable() override = default;
 
