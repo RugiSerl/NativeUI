@@ -10,9 +10,16 @@
 class Window : public PanelResizable {
 public:
 
-    Window();
+    Window(std::string title, Modifier modifier, TransformState availableTransform = TransformState(true));
 
     ~Window() override = default;
+
+protected:
+    void update() override;
+
+
+private:
+    std::string title;
 };
 
 

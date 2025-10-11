@@ -153,7 +153,6 @@ void Component::UpdateAndDraw() {
     int i = 0;
     for (Component *child: backupChildren) {
         child->UpdateAndDraw();
-        std::cout << i << std::endl;
         i++;
     }
 

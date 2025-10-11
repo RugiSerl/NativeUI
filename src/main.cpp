@@ -8,6 +8,7 @@
 #include "Panel.hpp"
 #include "PanelResizable.hpp"
 #include "Theme.hpp"
+#include "Window.hpp"
 
 void test() {
     std::cout << "clicked !" << std::endl;
@@ -78,6 +79,13 @@ int main() {
         .setAnchor(Anchor2{Anchor::LEFT, Anchor::TOP}),
         LayoutType::ROW);
 
+    auto *window = new Window(
+        "Test",
+        Modifier()
+        .setPosition(raylib::Vector2(0, 0))
+        .setSize(raylib::Vector2(400, 300))
+        .setAnchor(Anchor2{Anchor::RIGHT, Anchor::TOP}));
+
 
     panel->AddChild(rowChild1);
     panel->AddChild(rowChild2);
@@ -86,6 +94,7 @@ int main() {
     root->AddChild(uiComponent);
     root->AddChild(uiComponent2);
     root->AddChild(panel);
+    root->AddChild(window);
 
 
 
