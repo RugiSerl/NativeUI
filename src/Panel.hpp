@@ -29,10 +29,6 @@ public:
     virtual void draw() override;
 
 protected:
-    /**
-     * Move the component to put it above its siblings.
-     */
-    void moveToFront();
 
     // Can the panel be selected on click
     bool selectable;

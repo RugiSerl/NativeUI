@@ -21,7 +21,6 @@ public:
     Component(Modifier modifier, LayoutType layout) : modifier(modifier), layout(layout), parent(nullptr) {
     }
 
-
     /**
      * @brief Get the actual position of the component on screen.
      * @return The rectangle with position from top left.
@@ -57,7 +56,7 @@ public:
      * @brief Get previous sibling in the tree.
      * @return The previous sibling in the order of the children of the parent. Returns nullptr if the component is the first child.
      */
-    Component *GetPreviousSibling() const;
+    Component *GetPreviousSiblingByInsertionOrder() const;
 
     /**
      * Retrieve a child with an index.
@@ -67,11 +66,18 @@ public:
     Component *GetChild(int childIndex) const;
 
     /**
-     * @brief retrieve child index by its instance.
+     * @brief retrieve child index by its instance. Returns in the order of draw. @related childrenOrderedByInsertion
      * @param child Instance.
      * @return Index of child. -1 if the instance was not found.
      */
-    int GetChildIndex(const Component *child) const;
+    int GetChildIndexInsertion(const Component *child) const;
+
+    /**
+     * @brief retrieve child index by its instance. Returns in the order of insertion. @related childrenOrderedByDraw
+     * @param child Instance
+     * @return Index of child. -1 if the instance was not found.
+     */
+    int GetChildIndexDraw(const Component *child) const;
 
     /**
      * Allow external access to children, along with GetChild().
@@ -126,8 +132,6 @@ public:
 
     LayoutType layout;
 
-
-
 protected:
 
     /**
@@ -140,10 +144,26 @@ protected:
      */
     virtual void draw();
 
+    /**
+     * Makes this component the first in its parent's childrenOrderedByDraw
+     */
+    void MoveToFront();
+
+
 private:
 
     // Children of the component, allowing tree structure.
-    std::vector<Component *> children;
+    // Here we have two collection of children, having both the exact same components, but with different ordering.
+
+    // Children ordered by the order of draw, ie the first is the first children being drawn and so on.
+    // It may change when component are brought to the foreground when selected for instance.
+    std::vector<Component *> childrenOrderedByInsertion;
+
+    // Children ordered by when it got inserted as a child.
+    // It will not change unless change is made to the tree
+    std::vector<Component *> childrenOrderedByDraw;
+
+
 
     // nullptr if root of the tree. Else points to the component that has this component as a child.
     Component *parent;

@@ -91,7 +91,6 @@ int main() {
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     raylib::Window w(screenWidth, screenHeight, "NativeUI Showcase");
-    std::cout << "aa" << std::endl;
 
     SetTargetFPS(60);
     // Main game loop
