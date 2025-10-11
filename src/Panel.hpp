@@ -15,12 +15,7 @@
  */
 class Panel : public Component {
 public:
-    Panel(Modifier modifier,
-          LayoutType layout,
-          bool selectable = false) : Component(modifier, layout),
-                                     selectable(selectable), selected(false) {
-        assert(modifier.size.x >= 0 && modifier.size.y >= 0 && "Panel() : The width and the height of the component must be positive");
-    };
+    Panel(Modifier modifier, LayoutType layout, bool selectable = false);
 
     ~Panel() override = default;
 

@@ -23,7 +23,7 @@ public:
      * @param borderWidth Thickness of the border.
      * @param borderRadius Radius of the rounded corner.
      */
-    StyleBox(Color fillColor, Color borderColor, float borderWidth, float borderRadius) : fillColor(fillColor), borderColor(borderColor), borderWidth(borderWidth), borderRadius(borderRadius) {};
+    StyleBox(Color fillColor, Color borderColor, float borderWidth, float borderRadius);
 
     /**
      * Render the styleBox.

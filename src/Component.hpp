@@ -18,8 +18,7 @@ public:
      * @param modifier transformations properties.
      * @param layout describes how a component should draw its children
      */
-    Component(Modifier modifier, LayoutType layout) : modifier(modifier), layout(layout), parent(nullptr) {
-    }
+    Component(Modifier modifier, LayoutType layout);
 
     /**
      * @brief Get the actual position of the component on screen.

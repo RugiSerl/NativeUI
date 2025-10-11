@@ -58,7 +58,6 @@ public:
     /**
      * Construct a new PanelResizable.
      * @param modifier transformations properties.
-     * @param minimumSize The minimum width and height the component can be resized
      * @param availableTransform transformations allowed by the user
      * @param layout describes how a component should draw its children
      */

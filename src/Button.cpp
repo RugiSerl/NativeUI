@@ -4,6 +4,12 @@
 
 #include "Button.hpp"
 
+Button::Button(Modifier modifier, LayoutType layout, std::function<void ()> callback) : Panel(modifier, layout, true),
+                                                                                        down(false),
+                                                                                        callback(std::move(callback)) {
+}
+
+
 void Button::update() {
     Panel::update();
     if (IsHovered()) {

@@ -4,6 +4,8 @@
 
 #include "Modifier.hpp"
 
+Modifier::Modifier() : position(0, 0), size(0, 0), minSize(0, 0), anchor(LEFT, LEFT){}
+
 Modifier Modifier::setSize(raylib::Vector2 size) {
     this->size = size;
     return *this;

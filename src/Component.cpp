@@ -9,6 +9,13 @@
 
 #include "utils.hpp"
 
+Component::Component(Modifier modifier, LayoutType layout) : modifier(modifier),
+                                                             layout(layout),
+                                                             parent(nullptr) {
+}
+
+
+
 raylib::Rectangle Component::GetScreenSpaceRectangle() const {
     raylib::Rectangle parentRectangle = GetParentRectangle();
     raylib::Rectangle boundingBox;

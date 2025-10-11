@@ -7,7 +7,9 @@
 #include <cassert>
 #include <iostream>
 
-
+Panel::Panel(Modifier modifier, LayoutType layout, bool selectable): Component(modifier, layout), selectable(selectable), selected(false) {
+    assert(modifier.size.x >= 0 && modifier.size.y >= 0 && "Panel() : The width and the height of the component must be positive");
+};
 
 void Panel::update() {
     assert(modifier.size.x >= 0 && "width must be greater than 0");

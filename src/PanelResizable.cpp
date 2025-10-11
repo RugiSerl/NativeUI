@@ -32,17 +32,15 @@ void PanelResizable::update() {
     SetRect(utils::clampRectangle(r, GetParent()->GetScreenSpaceRectangle().GetSize()));
 }
 
-PanelResizable::PanelResizable(Modifier modifier,LayoutType layout,TransformState availableTransform) :
-        Panel(modifier.setAnchor(Anchor2(Anchor::LEFT, Anchor::TOP)), layout, true),
-        virtualRectangle(modifier.position, modifier.size),
-        availableTransform(availableTransform),
-        ongoingTransform(false) {
+PanelResizable::PanelResizable(Modifier modifier, LayoutType layout, TransformState availableTransform) : Panel(modifier.setAnchor(Anchor2(Anchor::LEFT, Anchor::TOP)), layout, true),
+                                                                                                          virtualRectangle(modifier.position, modifier.size),
+                                                                                                          availableTransform(availableTransform),
+                                                                                                          ongoingTransform(false) {
     assert(!availableTransform.IsNone() && "PanelResizable() : no available transformations provided, just use panel.");
     assert(modifier.minSize.x >=0 && modifier.minSize.y>=0 && "PanelResizable() : you must set a minimum size superior to 0.");
     assert(modifier.size.x >= modifier.minSize.x && modifier.size.y>=modifier.minSize.y && "PanelResizable() : The minimum size must be smaller than the initial size.");
-
-
 }
+
 
 void PanelResizable::startTransform() {
     ongoingTransform.SetToNone();
