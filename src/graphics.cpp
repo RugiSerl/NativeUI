@@ -1,5 +1,8 @@
 #include "graphics.hpp"
 void DrawRoundedRectangle(raylib::Rectangle rect, float cornerRadius, Color color) {
+    // Adjust for screen dpi
+    cornerRadius *= raylib::Window::GetScaleDPI().x;
+
     // Draw main rectangle
     DrawRectangleV(rect.GetPosition() + raylib::Vector2(cornerRadius, 0), rect.GetSize() - raylib::Vector2(2 * cornerRadius, 0), color);
     DrawRectangleV(rect.GetPosition() + raylib::Vector2(0, cornerRadius), raylib::Vector2(cornerRadius, rect.height - 2 * cornerRadius), color);
@@ -17,6 +20,11 @@ void DrawRoundedRectangle(raylib::Rectangle rect, float cornerRadius, Color colo
 }
 
 void DrawRoundedRectangleLines(raylib::Rectangle rect, float cornerRadius, Color color, float thickness) {
+    // Adjust for screen dpi
+    thickness *= raylib::Window::GetScaleDPI().x;
+    cornerRadius *= raylib::Window::GetScaleDPI().x;
+
+
     // For readability’s sake
     const float x = rect.x;
     const float y = rect.y;
