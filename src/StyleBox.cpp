@@ -20,7 +20,7 @@ void StyleBox::draw(const raylib::Rectangle rect, raylib::Rectangle scissorRect)
     assert(rect.height>=0 && "StyleBox::draw(): negative rectangle height");
 
 
-    float localBorderRadius = std::min(std::min(rect.width/2, rect.height/2), borderRadius);
+    float localBorderRadius = std::min(std::min(rect.width / 2, rect.height / 2), borderRadius);
 
     BeginScissorMode(scissorRect.x, scissorRect.y, scissorRect.width, scissorRect.height);
         DrawRoundedRectangle(rect, localBorderRadius, fillColor);

@@ -24,7 +24,6 @@ public:
     virtual void draw() override;
 
 protected:
-
     // Can the panel be selected on click
     bool selectable;
 

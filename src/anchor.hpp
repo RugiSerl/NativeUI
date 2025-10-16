@@ -23,7 +23,8 @@ enum Anchor {
  */
 class Anchor2 {
 public:
-    Anchor2(Anchor horizontal, Anchor vertical) : horizontal(horizontal), vertical(vertical) {};
+    Anchor2(Anchor horizontal, Anchor vertical) : horizontal(horizontal), vertical(vertical) {
+    }
 
     Anchor horizontal, vertical;
 };

@@ -17,8 +17,11 @@ public:
 
     // Setters of the class. Returns itself to chain setter.
     Modifier setSize(raylib::Vector2 size);
+
     Modifier setPosition(raylib::Vector2 pos);
+
     Modifier setAnchor(Anchor2 anchor);
+
     Modifier setMinimumSize(raylib::Vector2 minSize);
 
 

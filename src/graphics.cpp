@@ -1,4 +1,5 @@
 #include "graphics.hpp"
+
 void DrawRoundedRectangle(raylib::Rectangle rect, float cornerRadius, Color color) {
     // Adjust for screen dpi
     cornerRadius *= raylib::Window::GetScaleDPI().x;
@@ -20,10 +21,10 @@ void DrawRoundedRectangle(raylib::Rectangle rect, float cornerRadius, Color colo
 }
 
 void DrawRoundedRectangleLines(raylib::Rectangle rect, float cornerRadius, Color color, float thickness) {
+
     // Adjust for screen dpi
     thickness *= raylib::Window::GetScaleDPI().x;
     cornerRadius *= raylib::Window::GetScaleDPI().x;
-
 
     // For readability’s sake
     const float x = rect.x;
@@ -43,7 +44,6 @@ void DrawRoundedRectangleLines(raylib::Rectangle rect, float cornerRadius, Color
     DrawCircleArcLine(rect.GetPosition() + raylib::Vector2(rect.width - cornerRadius, cornerRadius), cornerRadius, 0, PI / 2, thickness, 5, color);
     DrawCircleArcLine(rect.GetPosition() + raylib::Vector2(cornerRadius, rect.height - cornerRadius), cornerRadius, -PI, -PI / 2, thickness, 5, color);
     DrawCircleArcLine(rect.GetPosition() + raylib::Vector2(rect.width - cornerRadius, rect.height - cornerRadius), cornerRadius, -PI / 2, 0, thickness, 5, color);
-
 }
 
 void DrawCircleArcLine(raylib::Vector2 center, float radius, float startAngle, float stopAngle, float lineThickness, int segments, Color color) {

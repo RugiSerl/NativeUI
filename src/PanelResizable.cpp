@@ -45,7 +45,7 @@ PanelResizable::PanelResizable(Modifier modifier, LayoutType layout, TransformSt
 void PanelResizable::startTransform() {
     ongoingTransform.SetToNone();
     raylib::Rectangle screenSpaceRectangle = GetScreenSpaceRectangle();
-    utils::RectangleSplit split = utils::GetSplitRectangle(screenSpaceRectangle, utils::getInnerRect(screenSpaceRectangle, RESIZE_PADDING*raylib::Window::GetScaleDPI().x));
+    utils::RectangleSplit split = utils::GetSplitRectangle(screenSpaceRectangle, utils::getInnerRect(screenSpaceRectangle, RESIZE_PADDING * raylib::Window::GetScaleDPI().x));
 
     // Checking center for translation.
     if (split.centerRect.CheckCollision(raylib::Mouse::GetPosition())) {

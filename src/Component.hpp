@@ -125,14 +125,13 @@ public:
      * @brief Result of GetParent(), until the parent is null.
      * @return Root of the component tree.
      */
-    Component* GetRoot();
+    Component *GetRoot();
 
     Modifier modifier;
 
     LayoutType layout;
 
 protected:
-
     /**
      *  Updates component logic with user input.
      */
@@ -148,9 +147,7 @@ protected:
      */
     void MoveToFront();
 
-
 private:
-
     // Children of the component, allowing tree structure.
     // Here we have two collection of children, having both the exact same components, but with different ordering.
 
@@ -161,7 +158,6 @@ private:
     // Children ordered by when it got inserted as a child.
     // It will not change unless change is made to the tree
     std::vector<Component *> childrenOrderedByDraw;
-
 
 
     // nullptr if root of the tree. Else points to the component that has this component as a child.

@@ -29,5 +29,4 @@ void SetCursor(int cursorType);
 void UpdateCursorState();
 
 
-
 #endif

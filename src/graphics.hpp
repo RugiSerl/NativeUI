@@ -8,7 +8,7 @@
 * @param rect rectangle to draw
 * @param cornerRadius radius of the circle drawn in the corner
 */
-void DrawRoundedRectangle(raylib::Rectangle rect, float cornerRadius, Color color) ;
+void DrawRoundedRectangle(raylib::Rectangle rect, float cornerRadius, Color color);
 
 
 /**
@@ -16,7 +16,7 @@ void DrawRoundedRectangle(raylib::Rectangle rect, float cornerRadius, Color colo
  * @param rect rectangle to draw
  * @param cornerRadius radius of the circle drawn in the corner
  */
-void DrawRoundedRectangleLines(raylib::Rectangle rect, float cornerRadius, Color Color, float thickness) ;
+void DrawRoundedRectangleLines(raylib::Rectangle rect, float cornerRadius, Color Color, float thickness);
 
 
 /**

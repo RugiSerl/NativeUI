@@ -20,7 +20,7 @@ public:
      * @param callback function to call when the button is clicked.
      * @param layout describes how a component should draw its children
      */
-    Button(Modifier modifier, LayoutType layout,std::function<void ()> callback);
+    Button(Modifier modifier, LayoutType layout, std::function<void ()> callback);
 
 protected:
     void update() override;
