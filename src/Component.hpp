@@ -84,7 +84,6 @@ public:
      */
     int GetChildrenCount() const;
 
-
     /**
      * Check if the component is colliding with the cursor and if there is no child in front of it.
      * @param mousePosition (optional) the position the cursor.
@@ -127,9 +126,15 @@ public:
      */
     Component *GetRoot();
 
-    Modifier modifier;
+    /**
+     * Set visible as false.
+     */
+    void Hide();
 
-    LayoutType layout;
+    /**
+     * Set visible as true.
+     */
+    void Show();
 
 protected:
     /**
@@ -143,9 +148,14 @@ protected:
     virtual void draw();
 
     /**
-     * Makes this component the first in its parent's childrenOrderedByDraw
+     *  Makes this component the first in its parent's childrenOrderedByDraw
      */
     void MoveToFront();
+
+
+    Modifier modifier;
+
+    LayoutType layout;
 
 private:
     // Children of the component, allowing tree structure.
@@ -159,9 +169,11 @@ private:
     // It will not change unless change is made to the tree
     std::vector<Component *> childrenOrderedByDraw;
 
-
     // nullptr if root of the tree. Else points to the component that has this component as a child.
     Component *parent;
+
+    bool visible;
+
 };
 
 

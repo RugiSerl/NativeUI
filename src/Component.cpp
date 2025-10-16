@@ -11,8 +11,10 @@
 
 Component::Component(Modifier modifier, LayoutType layout) : modifier(modifier),
                                                              layout(layout),
-                                                             parent(nullptr) {
+                                                             parent(nullptr),
+                                                             visible(true) {
 }
+
 
 
 raylib::Rectangle Component::GetScreenSpaceRectangle() const {
@@ -114,7 +116,7 @@ bool Component::IsHovered(raylib::Vector2 mousePosition) {
 
     // It is important to loop in a decreasing order because last component are the last to be drawn and so are above the others.
     for (int i = preOrderWalk.size() - 1; i >= 0; i--) {
-        if (preOrderWalk.at(i)->GetScreenSpaceRectangle().CheckCollision(mousePosition)) {
+        if (preOrderWalk.at(i)->GetScreenSpaceRectangle().CheckCollision(mousePosition) && preOrderWalk.at(i)->visible) {
             return preOrderWalk.at(i) == this;
         }
     }
@@ -150,6 +152,7 @@ void Component::MoveToFront() {
 }
 
 void Component::UpdateAndDraw() {
+    if (!visible) return;
     update();
     draw();
     // this make sure that deletion or additions of children during the update does not affect the order of update.
@@ -186,6 +189,14 @@ Component *Component::GetRoot() {
         return this;
     }
     return GetParent()->GetRoot();
+}
+
+void Component::Hide() {
+    visible = false;
+}
+
+void Component::Show() {
+    visible = true;
 }
 
 void Component::update() {

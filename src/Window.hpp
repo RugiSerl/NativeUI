@@ -17,7 +17,6 @@ public:
 protected:
     void update() override;
 
-
 private:
     std::string title;
 };
