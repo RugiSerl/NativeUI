@@ -19,6 +19,16 @@ protected:
 
 private:
     std::string title;
+
+    /**
+     * Container of the bar at the top of the window.
+     */
+    Component* topBar;
+
+    /**
+     * Rest of the window.
+     */
+    Component* Content;
 };
 
 

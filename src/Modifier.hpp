@@ -24,6 +24,8 @@ public:
 
     Modifier setMinimumSize(raylib::Vector2 minSize);
 
+    // TODO: add padding in modifier.
+
 
     raylib::Vector2 position;
     raylib::Vector2 size;
