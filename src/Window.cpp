@@ -17,6 +17,7 @@ Window::Window(std::string title, Modifier modifier, TransformState availableTra
                        .setPosition(raylib::Vector2(0, 0)),
                        LayoutType::COLUMN
     );
+    topBar->MakePassive();
 
     // Hide button
     topBar->AddChild(

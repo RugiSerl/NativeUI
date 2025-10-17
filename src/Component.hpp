@@ -6,6 +6,7 @@
 #define NATIVEUI_COMPONENT_HPP
 #include "Layout.hpp"
 #include "Modifier.hpp"
+
 #include "../include/raylib-cpp.hpp"
 /**
  * @brief Main brick block of the ui system, acts as a node and contains basic information.
@@ -136,6 +137,17 @@ public:
      */
     void Show();
 
+    /**
+     * Set passive to true.
+     */
+    void MakePassive();
+
+    /**
+     * Set passive to false.
+     */
+    void MakeActive();
+
+
 protected:
     /**
      *  Updates component logic with user input.
@@ -172,8 +184,19 @@ private:
     // nullptr if root of the tree. Else points to the component that has this component as a child.
     Component *parent;
 
-    bool visible;
+    /**
+     * Defines if component must be taken in account when
+     * calculating collision with mouse, such has when
+     * detecting if component is being hovered.
+     * @note This does not affect children.
+     */
+    bool passive;
 
+    /**
+     * Defines if component, and its children, are visible.
+     * @note This also impact whether component are updated.
+     */
+    bool visible;
 };
 
 

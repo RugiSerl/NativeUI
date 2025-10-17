@@ -26,6 +26,12 @@ int main() {
                            LayoutType::NONE
     );
 
+    auto *window = new Window(
+        "Test",
+        Modifier()
+        .setPosition(raylib::Vector2(0, 0))
+        .setSize(raylib::Vector2(400, 300))
+        .setAnchor(Anchor2{Anchor::RIGHT, Anchor::TOP}));
 
     auto *uiComponent = new PanelResizable(
         Modifier()
@@ -55,7 +61,7 @@ int main() {
         .setSize(raylib::Vector2(50, 50))
         .setAnchor(Anchor2{Anchor::LEFT, Anchor::TOP}),
         LayoutType::NONE,
-        test);
+        [window]{window->Show();});
 
     auto *panel = new PanelResizable(
         Modifier()
@@ -77,13 +83,6 @@ int main() {
         .setSize(raylib::Vector2(20, 20))
         .setAnchor(Anchor2{Anchor::LEFT, Anchor::TOP}),
         LayoutType::ROW);
-
-    auto *window = new Window(
-        "Test",
-        Modifier()
-        .setPosition(raylib::Vector2(0, 0))
-        .setSize(raylib::Vector2(400, 300))
-        .setAnchor(Anchor2{Anchor::RIGHT, Anchor::TOP}));
 
 
     panel->AddChild(rowChild1);
