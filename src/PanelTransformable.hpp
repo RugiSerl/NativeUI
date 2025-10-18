@@ -2,8 +2,8 @@
 // Created by raphael on 8/17/25.
 //
 
-#ifndef NATIVEUI_PANELRESIZABLE_HPP
-#define NATIVEUI_PANELRESIZABLE_HPP
+#ifndef NATIVEUI_PANELTRANSFORMABLE_HPP
+#define NATIVEUI_PANELTRANSFORMABLE_HPP
 #include <cassert>
 
 #include "Panel.hpp"
@@ -53,17 +53,17 @@ public:
     }
 };
 
-class PanelResizable : public Panel {
+class PanelTransformable : public Panel {
 public:
     /**
-     * Construct a new PanelResizable.
+     * Construct a new PanelTransformable.
      * @param modifier transformations properties.
      * @param availableTransform transformations allowed by the user
      * @param layout describes how a component should draw its children
      */
-    PanelResizable(Modifier modifier, LayoutType layout, TransformState availableTransform = TransformState(true));
+    PanelTransformable(Modifier modifier, LayoutType layout, TransformState availableTransform = TransformState(true));
 
-    ~PanelResizable() override = default;
+    ~PanelTransformable() override = default;
 
 protected:
     void update() override;
@@ -96,4 +96,4 @@ private:
 };
 
 
-#endif //NATIVEUI_PANELRESIZABLE_HPP
+#endif //NATIVEUI_PANELTRANSFORMABLE_HPP

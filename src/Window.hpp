@@ -4,10 +4,10 @@
 
 #ifndef NATIVEUI_WINDOW_HPP
 #define NATIVEUI_WINDOW_HPP
-#include "PanelResizable.hpp"
+#include "PanelTransformable.hpp"
 
 
-class Window : public PanelResizable {
+class Window : public PanelTransformable {
 public:
 
     Window(std::string title, Modifier modifier, TransformState availableTransform = TransformState(true));

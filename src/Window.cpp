@@ -9,7 +9,7 @@
 #include "Button.hpp"
 
 Window::Window(std::string title, Modifier modifier, TransformState availableTransform) : title(title),
-                                                                                          PanelResizable(modifier, LayoutType::COLUMN, availableTransform) {
+                                                                                          PanelTransformable(modifier, LayoutType::COLUMN, availableTransform) {
     // TODO fix column behaving as a row and vice versa in that context.
     topBar = new Component(Modifier()
                        .setAnchor(Anchor2(Anchor::FILL, Anchor::TOP))
@@ -48,5 +48,5 @@ Window::Window(std::string title, Modifier modifier, TransformState availableTra
 }
 
 void Window::update() {
-    PanelResizable::update();
+    PanelTransformable::update();
 }

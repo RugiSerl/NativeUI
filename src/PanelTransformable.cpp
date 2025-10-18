@@ -2,14 +2,14 @@
 // Created by raphael on 8/17/25.
 //
 
-#include "PanelResizable.hpp"
+#include "PanelTransformable.hpp"
 
 #include <cassert>
 
 #include "utils.hpp"
 
 
-void PanelResizable::update() {
+void PanelTransformable::update() {
     Panel::update();
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && IsHovered()) {
         startTransform();
@@ -32,7 +32,7 @@ void PanelResizable::update() {
     SetRect(utils::clampRectangle(r, GetParent()->GetScreenSpaceRectangle().GetSize()));
 }
 
-PanelResizable::PanelResizable(Modifier modifier, LayoutType layout, TransformState availableTransform) : Panel(modifier.setAnchor(Anchor2(Anchor::LEFT, Anchor::TOP)), layout, true),
+PanelTransformable::PanelTransformable(Modifier modifier, LayoutType layout, TransformState availableTransform) : Panel(modifier.setAnchor(Anchor2(Anchor::LEFT, Anchor::TOP)), layout, true),
                                                                                                           virtualRectangle(modifier.position, modifier.size),
                                                                                                           availableTransform(availableTransform),
                                                                                                           ongoingTransform(false) {
@@ -42,7 +42,7 @@ PanelResizable::PanelResizable(Modifier modifier, LayoutType layout, TransformSt
 }
 
 
-void PanelResizable::startTransform() {
+void PanelTransformable::startTransform() {
     ongoingTransform.SetToNone();
     raylib::Rectangle screenSpaceRectangle = GetScreenSpaceRectangle();
     utils::RectangleSplit split = utils::GetSplitRectangle(screenSpaceRectangle, utils::getInnerRect(screenSpaceRectangle, RESIZE_PADDING * raylib::Window::GetScaleDPI().x));
@@ -77,7 +77,7 @@ void PanelResizable::startTransform() {
     }
 }
 
-void PanelResizable::updateTransform() {
+void PanelTransformable::updateTransform() {
     assert(!ongoingTransform.IsNone() && "updateTransform() called but no ongoing transform");
     if (ongoingTransform.translating && availableTransform.translating) {
         virtualRectangle.SetPosition(virtualRectangle.GetPosition() + raylib::Mouse::GetDelta());
@@ -98,7 +98,7 @@ void PanelResizable::updateTransform() {
     }
 }
 
-void PanelResizable::endTransform() {
+void PanelTransformable::endTransform() {
     virtualRectangle = raylib::Rectangle(modifier.position, modifier.size);
     ongoingTransform.SetToNone();
 }

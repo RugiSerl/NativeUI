@@ -6,7 +6,7 @@
 #include "utils.hpp"
 #include "Component.hpp"
 #include "Panel.hpp"
-#include "PanelResizable.hpp"
+#include "PanelTransformable.hpp"
 #include "Theme.hpp"
 #include "Window.hpp"
 
@@ -33,14 +33,14 @@ int main() {
         .setSize(raylib::Vector2(400, 300))
         .setAnchor(Anchor2{Anchor::RIGHT, Anchor::TOP}));
 
-    auto *uiComponent = new PanelResizable(
+    auto *uiComponent = new PanelTransformable(
         Modifier()
         .setPosition(raylib::Vector2(10, 10))
         .setSize(raylib::Vector2(300, 300))
         .setAnchor(Anchor2{Anchor::LEFT, Anchor::TOP}),
         LayoutType::NONE);
 
-    auto *uiComponent2 = new PanelResizable(
+    auto *uiComponent2 = new PanelTransformable(
         Modifier()
         .setPosition(raylib::Vector2(40, 20))
         .setSize(raylib::Vector2(50, 50))
@@ -48,7 +48,7 @@ int main() {
         LayoutType::NONE
     );
 
-    auto *uiComponent3 = new PanelResizable(
+    auto *uiComponent3 = new PanelTransformable(
         Modifier()
         .setPosition(raylib::Vector2(40, 20))
         .setSize(raylib::Vector2(50, 50))
@@ -63,21 +63,21 @@ int main() {
         LayoutType::NONE,
         [window]{window->Show();});
 
-    auto *panel = new PanelResizable(
+    auto *panel = new PanelTransformable(
         Modifier()
         .setPosition(raylib::Vector2(600, 600))
         .setSize(raylib::Vector2(150, 150))
         .setAnchor(Anchor2{Anchor::LEFT, Anchor::TOP}),
         LayoutType::COLUMN);
 
-    auto *rowChild1 = new PanelResizable(
+    auto *rowChild1 = new PanelTransformable(
         Modifier()
         .setPosition(raylib::Vector2(50, 50))
         .setSize(raylib::Vector2(60, 60))
         .setAnchor(Anchor2{Anchor::LEFT, Anchor::TOP}),
         LayoutType::ROW);
 
-    auto *rowChild2 = new PanelResizable(
+    auto *rowChild2 = new PanelTransformable(
         Modifier()
         .setPosition(raylib::Vector2(50, 50))
         .setSize(raylib::Vector2(20, 20))
