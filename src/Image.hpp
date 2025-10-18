@@ -14,9 +14,17 @@ namespace UIComponent {
      */
     class Image : public Component{
     public:
-        Image(Modifier modifier, LayoutType layout);
+        Image(Modifier modifier, LayoutType layout, const std::string& imagePath);
         ~Image() = default;
 
+
+    protected:
+        /**
+         * @brief Actual content of the component
+         */
+        raylib::Texture2D texture;
+
+        void draw() override;
 
     };
 } // UIComponent

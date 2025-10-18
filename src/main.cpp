@@ -28,12 +28,13 @@ int main() {
     );
 
 
-    auto img = UIComponent::Image(
-        Modifier()
-        .setPosition(raylib::Vector2(0, 0))
-        .setSize(raylib::Vector2(0, 0))
-        .setAnchor(Anchor2{Anchor::FILL, Anchor::FILL}),
-        LayoutType::NONE
+    auto img = new UIComponent::Image(
+    Modifier()
+            .setPosition(raylib::Vector2(10, 10))
+            .setSize(raylib::Vector2(300, 300))
+            .setAnchor(Anchor2{Anchor::LEFT, Anchor::TOP}),
+            LayoutType::NONE,
+        "aeae"
     );
 
     auto *window = new UIComponent::Window(
@@ -103,6 +104,8 @@ int main() {
     root->AddChild(uiComponent2);
     root->AddChild(panel);
     root->AddChild(window);
+    root->AddChild(img);
+
 
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
