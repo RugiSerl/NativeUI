@@ -11,7 +11,7 @@
 Window::Window(std::string title, Modifier modifier, TransformState availableTransform) : title(title),
                                                                                           PanelTransformable(modifier, LayoutType::COLUMN, availableTransform) {
     // TODO fix column behaving as a row and vice versa in that context.
-    topBar = new Component(Modifier()
+    topBar = new Panel(Modifier()
                        .setAnchor(Anchor2(Anchor::FILL, Anchor::TOP))
                        .setSize(raylib::Vector2(0, 40))
                        .setPosition(raylib::Vector2(0, 0)),

@@ -9,8 +9,6 @@ raylib::Rectangle GetScreenBoundingbox() {
 
 raylib::Rectangle GetAnchoredRect(const raylib::Rectangle rect, const Anchor2 anchor, raylib::Rectangle boundingBox) {
     raylib::Rectangle res(rect.GetSize());
-
-
     switch (anchor.horizontal) {
         case LEFT:
             res.x = boundingBox.x + rect.x;
