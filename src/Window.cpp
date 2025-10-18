@@ -25,7 +25,8 @@ Window::Window(std::string title, Modifier modifier, TransformState availableTra
                    .setAnchor(Anchor2(Anchor::RIGHT, Anchor::FILL))
                    .setSize(raylib::Vector2(40, 40))
                    .setMinimumSize(raylib::Vector2(20, 20))
-                   .setPosition(raylib::Vector2(40, 0)),
+                   .setPosition(raylib::Vector2(40, 0))
+                   .setPadding(3),
                    LayoutType::ROW,
                    [this] { Hide(); })
     );
@@ -35,7 +36,8 @@ Window::Window(std::string title, Modifier modifier, TransformState availableTra
                    .setAnchor(Anchor2(Anchor::RIGHT, Anchor::FILL))
                    .setSize(raylib::Vector2(40, 40))
                    .setMinimumSize(raylib::Vector2(20, 20))
-                   .setPosition(raylib::Vector2(0, 0)),
+                   .setPosition(raylib::Vector2(0, 0))
+                   .setPadding(3),
                    LayoutType::ROW,
                    [this] { Hide(); })
     );

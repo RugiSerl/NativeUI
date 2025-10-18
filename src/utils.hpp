@@ -34,10 +34,20 @@ namespace utils {
     /**
      * @brief Get rectangle inside another with padding value
      *
+     * @param rectangle
      * @param padding
      * @return raylib::Rectangle
      */
-    raylib::Rectangle getInnerRect(raylib::Rectangle, float padding);
+    raylib::Rectangle getInnerRect(raylib::Rectangle rectangle, float padding);
+
+    /**
+     * @brief Get rectangle inside another with padding value
+     *
+     * @param rectangle
+     * @param padding
+     * @return raylib::Rectangle
+     */
+    raylib::Rectangle getInnerRect(raylib::Rectangle rectangle, raylib::Vector4 padding);
 
 
     /**

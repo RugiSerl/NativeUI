@@ -24,13 +24,16 @@ public:
 
     Modifier setMinimumSize(raylib::Vector2 minSize);
 
-    // TODO: add padding in modifier.
+    Modifier setPadding(float newPadding);
+
+    Modifier setPadding(float left, float top, float right, float bottom);
 
 
     raylib::Vector2 position;
     raylib::Vector2 size;
     raylib::Vector2 minSize;
     Anchor2 anchor;
+    raylib::Vector4 padding;
 };
 
 

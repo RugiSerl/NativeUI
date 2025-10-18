@@ -3,9 +3,12 @@
 
 namespace utils {
     raylib::Rectangle getInnerRect(const raylib::Rectangle rect, const float padding) {
-        return {rect.x + padding, rect.y + padding, rect.width - 2 * padding, rect.height - 2 * padding};
+        return getInnerRect(rect, raylib::Vector4(padding, padding, padding, padding));
     }
 
+    raylib::Rectangle getInnerRect(const raylib::Rectangle rect, const raylib::Vector4 padding) {
+        return {rect.x + padding.x, rect.y + padding.y, rect.width - padding.x - padding.z, rect.height - padding.y - padding.w};
+    }
 
     raylib::Rectangle getRectangleIntersection(const raylib::Rectangle r1, const raylib::Rectangle r2) {
         const auto r1v = VectorRectangle(r1);

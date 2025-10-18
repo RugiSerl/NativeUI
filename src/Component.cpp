@@ -47,7 +47,7 @@ raylib::Rectangle Component::GetScreenSpaceRectangle() const {
     }
 
     return utils::getRectangleIntersection(
-        GetAnchoredRect(raylib::Rectangle(modifier.position, modifier.size), modifier.anchor, boundingBox),
+        utils::getInnerRect(GetAnchoredRect(raylib::Rectangle(modifier.position, modifier.size), modifier.anchor, boundingBox), modifier.padding),
         parentRectangle
     );
 }
