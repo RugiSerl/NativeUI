@@ -9,214 +9,217 @@
 
 #include "utils.hpp"
 
-Component::Component(Modifier modifier, LayoutType layout) : modifier(modifier),
-                                                             layout(layout),
-                                                             parent(nullptr),
-                                                             visible(true),
-                                                             passive(false) {
-}
-
-
-
-
-raylib::Rectangle Component::GetScreenSpaceRectangle() const {
-    raylib::Rectangle parentRectangle = GetParentRectangle();
-    LayoutType parentLayout = GetParentLayout();
-    raylib::Rectangle previousSiblingRectangle = GetPreviousSiblingRectangle();
-
-    raylib::Rectangle boundingBox;
-
-    switch (parentLayout) {
-        case LayoutType::NONE:
-            boundingBox = parentRectangle;
-            break;
-        case LayoutType::ROW:
-            boundingBox = raylib::Rectangle(parentRectangle.x,
-                                            previousSiblingRectangle.y + previousSiblingRectangle.height,
-                                            parentRectangle.width,
-                                            parentRectangle.y + parentRectangle.height - previousSiblingRectangle.y - previousSiblingRectangle.height);
-            break;
-        case LayoutType::COLUMN:
-            boundingBox = raylib::Rectangle(previousSiblingRectangle.x + previousSiblingRectangle.width,
-                                            parentRectangle.y,
-                                            parentRectangle.x + parentRectangle.width - previousSiblingRectangle.x - previousSiblingRectangle.width,
-                                            parentRectangle.height);
-            break;
-        default:
-            throw std::invalid_argument("Incorrect value for Layout");
+namespace UIComponent {
+    Component::Component(Modifier modifier, LayoutType layout) : modifier(modifier),
+                                                                 layout(layout),
+                                                                 parent(nullptr),
+                                                                 visible(true),
+                                                                 passive(false) {
     }
 
-    return utils::getRectangleIntersection(
-        utils::getInnerRect(GetAnchoredRect(raylib::Rectangle(modifier.position, modifier.size), modifier.anchor, boundingBox), modifier.padding),
-        parentRectangle
-    );
-}
-
-raylib::Rectangle Component::GetParentRectangle() const {
-    if (this->parent == nullptr) return GetScreenBoundingbox();
-    return this->parent->GetScreenSpaceRectangle();
-}
-
-LayoutType Component::GetParentLayout() const {
-    if (this->parent == nullptr) return LayoutType::NONE;
-    return this->parent->layout;
-}
-
-Component *Component::GetParent() const {
-    return this->parent;
-}
-
-raylib::Rectangle Component::GetPreviousSiblingRectangle() const {
-    // Base case.
-    if (parent == nullptr) {
-        return {0, 0, 0, 0};
-    }
-    Component *previousSibling = GetPreviousSiblingByInsertionOrder();
-    // This is the first child of the parent. It is more convenient to say it's like the previous child has an empty rectangle for layout.
-    if (previousSibling == nullptr) {
-        return {GetParentRectangle().GetPosition(), raylib::Vector2(0, 0)};
-    }
-    return previousSibling->GetScreenSpaceRectangle();
-}
-
-Component *Component::GetPreviousSiblingByInsertionOrder() const {
-    assert(this->parent != nullptr && "attempting to access the sibling of component which does not have parent.");
-    int siblingIndex = parent->GetChildIndexInsertion(this) - 1;
-    if (siblingIndex < 0) {
-        return nullptr;
-    }
-    return GetParent()->GetChild(siblingIndex);
-}
-
-Component *Component::GetChild(const int childIndex) const {
-    assert(childIndex>=0 && childIndex<childrenOrderedByInsertion.size() && "Invalid child index");
-    return childrenOrderedByInsertion.at(childIndex);
-}
 
 
-int Component::GetChildIndexInsertion(const Component *child) const {
-    assert(!childrenOrderedByInsertion.empty() && "Attempting to retrieve a child of a parent which has no children");
-    return std::distance(childrenOrderedByInsertion.begin(), std::find(childrenOrderedByInsertion.begin(), childrenOrderedByInsertion.end(), child));
-}
 
-int Component::GetChildIndexDraw(const Component *child) const {
-    assert(!childrenOrderedByDraw.empty() && "Attempting to retrieve a child of a parent which has no children");
-    return std::distance(childrenOrderedByDraw.begin(), std::find(childrenOrderedByDraw.begin(), childrenOrderedByDraw.end(), child));
-}
+    raylib::Rectangle Component::GetScreenSpaceRectangle() const {
+        raylib::Rectangle parentRectangle = GetParentRectangle();
+        LayoutType parentLayout = GetParentLayout();
+        raylib::Rectangle previousSiblingRectangle = GetPreviousSiblingRectangle();
 
-int Component::GetChildrenCount() const {
-    return this->childrenOrderedByInsertion.size();
-}
+        raylib::Rectangle boundingBox;
 
-bool Component::IsHovered(raylib::Vector2 mousePosition) {
-    if (parent == nullptr) {
-        return GetScreenSpaceRectangle().CheckCollision(mousePosition);
+        switch (parentLayout) {
+            case LayoutType::NONE:
+                boundingBox = parentRectangle;
+                break;
+            case LayoutType::ROW:
+                boundingBox = raylib::Rectangle(parentRectangle.x,
+                                                previousSiblingRectangle.y + previousSiblingRectangle.height,
+                                                parentRectangle.width,
+                                                parentRectangle.y + parentRectangle.height - previousSiblingRectangle.y - previousSiblingRectangle.height);
+                break;
+            case LayoutType::COLUMN:
+                boundingBox = raylib::Rectangle(previousSiblingRectangle.x + previousSiblingRectangle.width,
+                                                parentRectangle.y,
+                                                parentRectangle.x + parentRectangle.width - previousSiblingRectangle.x - previousSiblingRectangle.width,
+                                                parentRectangle.height);
+                break;
+            default:
+                throw std::invalid_argument("Incorrect value for Layout");
+        }
+
+        return utils::getRectangleIntersection(
+            utils::getInnerRect(GetAnchoredRect(raylib::Rectangle(modifier.position, modifier.size), modifier.anchor, boundingBox), modifier.padding),
+            parentRectangle
+        );
     }
 
-    // we take this because the component are drawn in a preOrderWalk, so we loop on the reversed order
-    std::vector<Component *> preOrderWalk = GetRoot()->GetPreOrderWalk();
+    raylib::Rectangle Component::GetParentRectangle() const {
+        if (this->parent == nullptr) return GetScreenBoundingbox();
+        return this->parent->GetScreenSpaceRectangle();
+    }
 
-    // It is important to loop in a decreasing order because last component are the last to be drawn and so are above the others.
-    for (int i = preOrderWalk.size() - 1; i >= 0; i--) {
-        if (preOrderWalk.at(i)->GetScreenSpaceRectangle().CheckCollision(mousePosition) && preOrderWalk.at(i)->visible && !preOrderWalk.at(i)->passive) {
-            return preOrderWalk.at(i) == this;
+    LayoutType Component::GetParentLayout() const {
+        if (this->parent == nullptr) return LayoutType::NONE;
+        return this->parent->layout;
+    }
+
+    Component *Component::GetParent() const {
+        return this->parent;
+    }
+
+    raylib::Rectangle Component::GetPreviousSiblingRectangle() const {
+        // Base case.
+        if (parent == nullptr) {
+            return {0, 0, 0, 0};
+        }
+        Component *previousSibling = GetPreviousSiblingByInsertionOrder();
+        // This is the first child of the parent. It is more convenient to say it's like the previous child has an empty rectangle for layout.
+        if (previousSibling == nullptr) {
+            return {GetParentRectangle().GetPosition(), raylib::Vector2(0, 0)};
+        }
+        return previousSibling->GetScreenSpaceRectangle();
+    }
+
+    Component *Component::GetPreviousSiblingByInsertionOrder() const {
+        assert(this->parent != nullptr && "attempting to access the sibling of component which does not have parent.");
+        int siblingIndex = parent->GetChildIndexInsertion(this) - 1;
+        if (siblingIndex < 0) {
+            return nullptr;
+        }
+        return GetParent()->GetChild(siblingIndex);
+    }
+
+    Component *Component::GetChild(const int childIndex) const {
+        assert(childIndex>=0 && childIndex<childrenOrderedByInsertion.size() && "Invalid child index");
+        return childrenOrderedByInsertion.at(childIndex);
+    }
+
+
+    int Component::GetChildIndexInsertion(const Component *child) const {
+        assert(!childrenOrderedByInsertion.empty() && "Attempting to retrieve a child of a parent which has no children");
+        return std::distance(childrenOrderedByInsertion.begin(), std::find(childrenOrderedByInsertion.begin(), childrenOrderedByInsertion.end(), child));
+    }
+
+    int Component::GetChildIndexDraw(const Component *child) const {
+        assert(!childrenOrderedByDraw.empty() && "Attempting to retrieve a child of a parent which has no children");
+        return std::distance(childrenOrderedByDraw.begin(), std::find(childrenOrderedByDraw.begin(), childrenOrderedByDraw.end(), child));
+    }
+
+    int Component::GetChildrenCount() const {
+        return this->childrenOrderedByInsertion.size();
+    }
+
+    bool Component::IsHovered(raylib::Vector2 mousePosition) {
+        if (parent == nullptr) {
+            return GetScreenSpaceRectangle().CheckCollision(mousePosition);
+        }
+
+        // we take this because the component are drawn in a preOrderWalk, so we loop on the reversed order
+        std::vector<Component *> preOrderWalk = GetRoot()->GetPreOrderWalk();
+
+        // It is important to loop in a decreasing order because last component are the last to be drawn and so are above the others.
+        for (int i = preOrderWalk.size() - 1; i >= 0; i--) {
+            if (preOrderWalk.at(i)->GetScreenSpaceRectangle().CheckCollision(mousePosition) && preOrderWalk.at(i)->visible && !preOrderWalk.at(i)->passive) {
+                return preOrderWalk.at(i) == this;
+            }
+        }
+
+        return false;
+    }
+
+
+    void Component::AddChild(Component *child) {
+        assert(child != nullptr && "child added is null");
+        assert(!utils::isValueInVector(childrenOrderedByInsertion, child) && "child is null");
+        assert(!utils::isValueInVector(childrenOrderedByDraw, child) && "child is null");
+        child->parent = this;
+        childrenOrderedByInsertion.push_back(child);
+        childrenOrderedByDraw.push_back(child);
+    }
+
+    void Component::RemoveChild(Component *child) {
+        assert(child != nullptr && "child to remove is null");
+        assert(utils::isValueInVector(childrenOrderedByInsertion, child) && "child to remove is not in children");
+        assert(utils::isValueInVector(childrenOrderedByDraw, child) && "child to remove is not in children");
+        childrenOrderedByInsertion.erase(std::remove(childrenOrderedByInsertion.begin(), childrenOrderedByInsertion.end(), child), childrenOrderedByInsertion.end());
+        childrenOrderedByDraw.erase(std::remove(childrenOrderedByDraw.begin(), childrenOrderedByDraw.end(), child), childrenOrderedByDraw.end());
+    }
+
+    void Component::MoveToFront() {
+        if (parent == nullptr) {
+            return;
+        }
+
+        parent->childrenOrderedByDraw.erase(std::remove(parent->childrenOrderedByDraw.begin(), parent->childrenOrderedByDraw.end(), this), parent->childrenOrderedByDraw.end());
+        parent->childrenOrderedByDraw.push_back(this);
+    }
+
+    void Component::UpdateAndDraw() {
+        //
+        if (!visible) return;
+
+        // "Update and draw" part
+        if (!passive) {
+            update();
+        }
+        draw();
+
+        // this make sure that deletion or additions of children during the update does not affect the order of update.
+        std::vector<Component *> backupChildren(childrenOrderedByDraw);
+        int i = 0;
+        for (Component *child: backupChildren) {
+            child->UpdateAndDraw();
+            i++;
+        }
+
+        // Small check.
+        if (childrenOrderedByDraw.size() != childrenOrderedByInsertion.size()) {
+            std::cout << "error: childrenOrderedByInsertion.size() == " << childrenOrderedByDraw.size() << " and childrenOrderedByDraw.size() == " << childrenOrderedByInsertion.size() << std::endl;
+            throw std::runtime_error("childrenOrderedByInsertion's length and childrenOrderedByDraw's length do not match: ");
         }
     }
 
-    return false;
-}
-
-
-void Component::AddChild(Component *child) {
-    assert(child != nullptr && "child added is null");
-    assert(!utils::isValueInVector(childrenOrderedByInsertion, child) && "child is null");
-    assert(!utils::isValueInVector(childrenOrderedByDraw, child) && "child is null");
-    child->parent = this;
-    childrenOrderedByInsertion.push_back(child);
-    childrenOrderedByDraw.push_back(child);
-}
-
-void Component::RemoveChild(Component *child) {
-    assert(child != nullptr && "child to remove is null");
-    assert(utils::isValueInVector(childrenOrderedByInsertion, child) && "child to remove is not in children");
-    assert(utils::isValueInVector(childrenOrderedByDraw, child) && "child to remove is not in children");
-    childrenOrderedByInsertion.erase(std::remove(childrenOrderedByInsertion.begin(), childrenOrderedByInsertion.end(), child), childrenOrderedByInsertion.end());
-    childrenOrderedByDraw.erase(std::remove(childrenOrderedByDraw.begin(), childrenOrderedByDraw.end(), child), childrenOrderedByDraw.end());
-}
-
-void Component::MoveToFront() {
-    if (parent == nullptr) {
-        return;
+    void Component::SetRect(raylib::Rectangle rect) {
+        modifier = modifier
+                .setPosition(rect.GetPosition())
+                .setSize(rect.GetSize());
     }
 
-    parent->childrenOrderedByDraw.erase(std::remove(parent->childrenOrderedByDraw.begin(), parent->childrenOrderedByDraw.end(), this), parent->childrenOrderedByDraw.end());
-    parent->childrenOrderedByDraw.push_back(this);
-}
-
-void Component::UpdateAndDraw() {
-    //
-    if (!visible) return;
-
-    // "Update and draw" part
-    if (!passive) {
-        update();
-    }
-    draw();
-
-    // this make sure that deletion or additions of children during the update does not affect the order of update.
-    std::vector<Component *> backupChildren(childrenOrderedByDraw);
-    int i = 0;
-    for (Component *child: backupChildren) {
-        child->UpdateAndDraw();
-        i++;
+    std::vector<Component *> Component::GetPreOrderWalk() {
+        std::vector<Component *> preOrderWalk = {this};
+        for (Component *child: childrenOrderedByDraw) {
+            preOrderWalk = utils::concatenateVectors(preOrderWalk, child->GetPreOrderWalk());
+        }
+        return preOrderWalk;
     }
 
-    // Small check.
-    if (childrenOrderedByDraw.size() != childrenOrderedByInsertion.size()) {
-        std::cout << "error: childrenOrderedByInsertion.size() == " << childrenOrderedByDraw.size() << " and childrenOrderedByDraw.size() == " << childrenOrderedByInsertion.size() << std::endl;
-        throw std::runtime_error("childrenOrderedByInsertion's length and childrenOrderedByDraw's length do not match: ");
+    Component *Component::GetRoot() {
+        if (parent == nullptr) {
+            return this;
+        }
+        return GetParent()->GetRoot();
     }
-}
 
-void Component::SetRect(raylib::Rectangle rect) {
-    modifier = modifier
-            .setPosition(rect.GetPosition())
-            .setSize(rect.GetSize());
-}
-
-std::vector<Component *> Component::GetPreOrderWalk() {
-    std::vector<Component *> preOrderWalk = {this};
-    for (Component *child: childrenOrderedByDraw) {
-        preOrderWalk = utils::concatenateVectors(preOrderWalk, child->GetPreOrderWalk());
+    void Component::Hide() {
+        visible = false;
     }
-    return preOrderWalk;
-}
 
-Component *Component::GetRoot() {
-    if (parent == nullptr) {
-        return this;
+    void Component::Show() {
+        visible = true;
     }
-    return GetParent()->GetRoot();
-}
 
-void Component::Hide() {
-    visible = false;
-}
+    void Component::MakePassive() {
+        passive = true;
+    }
 
-void Component::Show() {
-    visible = true;
-}
+    void Component::MakeActive() {
+        passive = false;
+    }
 
-void Component::MakePassive() {
-    passive = true;
-}
+    void Component::update() {
+    }
 
-void Component::MakeActive() {
-    passive = false;
-}
+    void Component::draw() {
+    }
 
-void Component::update() {
-}
-
-void Component::draw() {
 }

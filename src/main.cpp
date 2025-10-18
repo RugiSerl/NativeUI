@@ -5,6 +5,7 @@
 #include "cursor.hpp"
 #include "utils.hpp"
 #include "Component.hpp"
+#include "Image.hpp"
 #include "Panel.hpp"
 #include "PanelTransformable.hpp"
 #include "Theme.hpp"
@@ -19,28 +20,37 @@ int main() {
     int screenWidth = 1280;
     int screenHeight = 720;
     //SetConfigFlags(FLAG_MSAA_4X_HINT);
-    auto *root = new Panel(Modifier()
+    auto *root = new UIComponent::Panel(Modifier()
                            .setPosition(raylib::Vector2(0, 0))
                            .setSize(raylib::Vector2(0, 0))
                            .setAnchor(Anchor2{Anchor::FILL, Anchor::FILL}),
                            LayoutType::NONE
     );
 
-    auto *window = new Window(
+
+    auto img = UIComponent::Image(
+        Modifier()
+        .setPosition(raylib::Vector2(0, 0))
+        .setSize(raylib::Vector2(0, 0))
+        .setAnchor(Anchor2{Anchor::FILL, Anchor::FILL}),
+        LayoutType::NONE
+    );
+
+    auto *window = new UIComponent::Window(
         "Test",
         Modifier()
         .setPosition(raylib::Vector2(0, 0))
         .setSize(raylib::Vector2(400, 300))
         .setAnchor(Anchor2{Anchor::RIGHT, Anchor::TOP}));
 
-    auto *uiComponent = new PanelTransformable(
+    auto *uiComponent = new UIComponent::PanelTransformable(
         Modifier()
         .setPosition(raylib::Vector2(10, 10))
         .setSize(raylib::Vector2(300, 300))
         .setAnchor(Anchor2{Anchor::LEFT, Anchor::TOP}),
         LayoutType::NONE);
 
-    auto *uiComponent2 = new PanelTransformable(
+    auto *uiComponent2 = new UIComponent::PanelTransformable(
         Modifier()
         .setPosition(raylib::Vector2(40, 20))
         .setSize(raylib::Vector2(50, 50))
@@ -48,14 +58,14 @@ int main() {
         LayoutType::NONE
     );
 
-    auto *uiComponent3 = new PanelTransformable(
+    auto *uiComponent3 = new UIComponent::PanelTransformable(
         Modifier()
         .setPosition(raylib::Vector2(40, 20))
         .setSize(raylib::Vector2(50, 50))
         .setAnchor(Anchor2{Anchor::LEFT, Anchor::TOP}),
         LayoutType::NONE);
 
-    auto *button = new Button(
+    auto *button = new UIComponent::Button(
         Modifier()
         .setPosition(raylib::Vector2(40, 20))
         .setSize(raylib::Vector2(50, 50))
@@ -63,21 +73,21 @@ int main() {
         LayoutType::NONE,
         [window]{window->Show();});
 
-    auto *panel = new PanelTransformable(
+    auto *panel = new UIComponent::PanelTransformable(
         Modifier()
         .setPosition(raylib::Vector2(600, 600))
         .setSize(raylib::Vector2(150, 150))
         .setAnchor(Anchor2{Anchor::LEFT, Anchor::TOP}),
         LayoutType::COLUMN);
 
-    auto *rowChild1 = new PanelTransformable(
+    auto *rowChild1 = new UIComponent::PanelTransformable(
         Modifier()
         .setPosition(raylib::Vector2(50, 50))
         .setSize(raylib::Vector2(60, 60))
         .setAnchor(Anchor2{Anchor::LEFT, Anchor::TOP}),
         LayoutType::ROW);
 
-    auto *rowChild2 = new PanelTransformable(
+    auto *rowChild2 = new UIComponent::PanelTransformable(
         Modifier()
         .setPosition(raylib::Vector2(50, 50))
         .setSize(raylib::Vector2(20, 20))

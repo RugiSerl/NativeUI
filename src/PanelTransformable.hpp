@@ -10,90 +10,91 @@
 
 #define RESIZE_PADDING 10
 
-/**
- * Describes actions possible of Panel.
- */
-class TransformState {
-public:
-    bool resizeTop;
-    bool resizeBottom;
-    bool resizeLeft;
-    bool resizeRight;
-    bool translating;
-
-    TransformState(bool resizeTop, bool resizeBottom, bool resizeLeft, bool resizeRight,
-                   bool translating) : resizeTop(resizeTop), resizeBottom(resizeBottom), resizeLeft(resizeLeft),
-                                       resizeRight(resizeRight), translating(translating) {
-    }
-
-    TransformState() : resizeTop(false), resizeBottom(false), resizeLeft(false), resizeRight(false),
-                       translating(false) {
-    }
-
-    explicit TransformState(bool value) : resizeTop(value), resizeBottom(value), resizeLeft(value), resizeRight(value),
-                                          translating(value) {
-    }
-
+namespace UIComponent {
     /**
-     * Set everything to false.
+     * Describes actions possible of Panel.
      */
-    void SetToNone() {
-        resizeTop = false;
-        resizeBottom = false;
-        resizeLeft = false;
-        resizeRight = false;
-        translating = false;
-    }
+    class TransformState {
+    public:
+        bool resizeTop;
+        bool resizeBottom;
+        bool resizeLeft;
+        bool resizeRight;
+        bool translating;
 
-    /**
-     * Is everything false ?
-     */
-    bool IsNone() const {
-        return !(resizeTop || resizeBottom || resizeLeft || resizeRight || translating);
-    }
-};
+        TransformState(bool resizeTop, bool resizeBottom, bool resizeLeft, bool resizeRight,
+                       bool translating) : resizeTop(resizeTop), resizeBottom(resizeBottom), resizeLeft(resizeLeft),
+                                           resizeRight(resizeRight), translating(translating) {
+        }
 
-class PanelTransformable : public Panel {
-public:
-    /**
-     * Construct a new PanelTransformable.
-     * @param modifier transformations properties.
-     * @param availableTransform transformations allowed by the user
-     * @param layout describes how a component should draw its children
-     */
-    PanelTransformable(Modifier modifier, LayoutType layout, TransformState availableTransform = TransformState(true));
+        TransformState() : resizeTop(false), resizeBottom(false), resizeLeft(false), resizeRight(false),
+                           translating(false) {
+        }
 
-    ~PanelTransformable() override = default;
+        explicit TransformState(bool value) : resizeTop(value), resizeBottom(value), resizeLeft(value), resizeRight(value),
+                                              translating(value) {
+        }
 
-protected:
-    void update() override;
+        /**
+         * Set everything to false.
+         */
+        void SetToNone() {
+            resizeTop = false;
+            resizeBottom = false;
+            resizeLeft = false;
+            resizeRight = false;
+            translating = false;
+        }
 
-    // Rectangle which is being transformed without constraints. The rectangle is a constrained version of it.
-    raylib::Rectangle virtualRectangle;
+        /**
+         * Is everything false ?
+         */
+        bool IsNone() const {
+            return !(resizeTop || resizeBottom || resizeLeft || resizeRight || translating);
+        }
+    };
+
+    class PanelTransformable : public Panel {
+    public:
+        /**
+         * Construct a new PanelTransformable.
+         * @param modifier transformations properties.
+         * @param availableTransform transformations allowed by the user
+         * @param layout describes how a component should draw its children
+         */
+        PanelTransformable(Modifier modifier, LayoutType layout, TransformState availableTransform = TransformState(true));
+
+        ~PanelTransformable() override = default;
+
+    protected:
+        void update() override;
+
+        // Rectangle which is being transformed without constraints. The rectangle is a constrained version of it.
+        raylib::Rectangle virtualRectangle;
 
 
-    // The transform this component supports
-    TransformState availableTransform;
+        // The transform this component supports
+        TransformState availableTransform;
 
-private:
-    /**
-     * called when user clicks on the component, and sets the state of transform.
-     */
-    void startTransform();
+    private:
+        /**
+         * called when user clicks on the component, and sets the state of transform.
+         */
+        void startTransform();
 
-    /**
-     * called when a transform is ongoing.
-     */
-    void updateTransform();
+        /**
+         * called when a transform is ongoing.
+         */
+        void updateTransform();
 
-    /**
-     * called when user release the mouse.
-     */
-    void endTransform();
+        /**
+         * called when user release the mouse.
+         */
+        void endTransform();
 
-    // The transforms happening as of now.
-    TransformState ongoingTransform;
-};
-
+        // The transforms happening as of now.
+        TransformState ongoingTransform;
+    };
+}
 
 #endif //NATIVEUI_PANELTRANSFORMABLE_HPP
