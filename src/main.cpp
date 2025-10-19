@@ -86,7 +86,7 @@ int main() {
         .setPosition(raylib::Vector2(600, 600))
         .setSize(raylib::Vector2(150, 150))
         .setAnchor(Anchor2{Anchor::LEFT, Anchor::TOP}),
-        LayoutType::COLUMN);
+        LayoutType::ROW);
 
     auto *rowChild1 = new UIComponent::PanelTransformable(
         Modifier()

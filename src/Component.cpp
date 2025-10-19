@@ -31,13 +31,13 @@ namespace UIComponent {
             case LayoutType::NONE:
                 boundingBox = parentRectangle;
                 break;
-            case LayoutType::ROW:
+            case LayoutType::COLUMN:
                 boundingBox = raylib::Rectangle(parentRectangle.x,
                                                 previousSiblingRectangle.y + previousSiblingRectangle.height,
                                                 parentRectangle.width,
                                                 parentRectangle.y + parentRectangle.height - previousSiblingRectangle.y - previousSiblingRectangle.height);
                 break;
-            case LayoutType::COLUMN:
+            case LayoutType::ROW:
                 boundingBox = raylib::Rectangle(previousSiblingRectangle.x + previousSiblingRectangle.width,
                                                 parentRectangle.y,
                                                 parentRectangle.x + parentRectangle.width - previousSiblingRectangle.x - previousSiblingRectangle.width,
