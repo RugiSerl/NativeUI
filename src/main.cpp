@@ -20,6 +20,13 @@ int main() {
     int screenWidth = 1280;
     int screenHeight = 720;
     //SetConfigFlags(FLAG_MSAA_4X_HINT);
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+    raylib::Window w(screenWidth, screenHeight, "NativeUI Showcase");
+
+    SetTargetFPS(60);
+    // Main game loop
+
+
     auto *root = new UIComponent::Panel(Modifier()
                            .setPosition(raylib::Vector2(0, 0))
                            .setSize(raylib::Vector2(0, 0))
@@ -34,7 +41,7 @@ int main() {
             .setSize(raylib::Vector2(300, 300))
             .setAnchor(Anchor2{Anchor::LEFT, Anchor::TOP}),
             LayoutType::NONE,
-        "aeae"
+        "./res/icon.png"
     );
 
     auto *window = new UIComponent::Window(
@@ -103,16 +110,10 @@ int main() {
     root->AddChild(uiComponent);
     root->AddChild(uiComponent2);
     root->AddChild(panel);
+    window->AddChild(img);
     root->AddChild(window);
-    root->AddChild(img);
 
 
-
-    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-    raylib::Window w(screenWidth, screenHeight, "NativeUI Showcase");
-
-    SetTargetFPS(60);
-    // Main game loop
     while (!w.ShouldClose()) {
         // Detect window close button or ESC key
         // Draw
@@ -126,6 +127,7 @@ int main() {
     }
 
     CloseWindow();
+    delete img;
 
     return 0;
 }

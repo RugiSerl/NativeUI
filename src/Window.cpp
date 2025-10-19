@@ -9,7 +9,7 @@
 #include "Button.hpp"
 namespace UIComponent {
     Window::Window(std::string title, Modifier modifier, TransformState availableTransform) : title(title),
-                                                                                              PanelTransformable(modifier, LayoutType::COLUMN, availableTransform) {
+                                                                                              PanelTransformable(modifier, LayoutType::ROW, availableTransform) {
         // TODO fix column behaving as a row and vice versa in that context.
         topBar = new Panel(Modifier()
                            .setAnchor(Anchor2(Anchor::FILL, Anchor::TOP))

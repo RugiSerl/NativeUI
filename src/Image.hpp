@@ -22,7 +22,7 @@ namespace UIComponent {
         /**
          * @brief Actual content of the component
          */
-        raylib::Texture2D texture;
+        raylib::Texture texture;
 
         void draw() override;
 
