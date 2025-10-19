@@ -16,7 +16,6 @@ namespace UIComponent {
                            .setPosition(raylib::Vector2(0, 0)),
                            LayoutType::ROW
         );
-        topBar->MakePassive();
 
         // Hide button
         topBar->AddChild(
@@ -41,9 +40,21 @@ namespace UIComponent {
                        [this] { Hide(); })
         );
 
-        this->AddChild(topBar);
 
+        content = new Component(
+               Modifier()
+               .setAnchor(Anchor2(Anchor::FILL, Anchor::FILL)),
+               LayoutType::NONE);
 
+        topBar->MakePassive();
+        content->MakePassive();
+
+        Component::AddChild(topBar);
+        Component::AddChild(content);
+    }
+
+    void Window::AddChild(Component *child) {
+        this->content->AddChild(child);
     }
 
     void Window::update() {
