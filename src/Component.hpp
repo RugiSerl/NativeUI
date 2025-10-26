@@ -98,7 +98,7 @@ namespace UIComponent {
          * Add a child and set his parent to this.
          * @param child Child to add.
          */
-        void AddChild(Component *child);
+        virtual void AddChild(Component *child);
 
         /**
          * @brief Removes a child.

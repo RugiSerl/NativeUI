@@ -18,8 +18,11 @@ namespace UIComponent {
 
         ~Window() override = default;
 
+        void AddChild(Component *child) override;
+
     protected:
         void update() override;
+
 
     private:
         std::string title;
