@@ -30,6 +30,7 @@ namespace UIComponent {
                        [this] { Hide(); })
         );
         // Hide button
+        // TODO: Change this button to give it a more appropriate function.
         topBar->AddChild(
             new Button(Modifier()
                        .setAnchor(Anchor2(Anchor::RIGHT, Anchor::FILL))

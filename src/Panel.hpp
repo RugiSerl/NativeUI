@@ -12,7 +12,7 @@
 
 namespace UIComponent {
     /**
-     * Basic box shown on screen and with drawing priorities on which was selected last.
+     * @brief Basic box shown on screen and with drawing priorities on which was selected last.
      */
     class Panel : public Component {
     public:

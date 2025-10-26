@@ -7,6 +7,10 @@
 #include "PanelTransformable.hpp"
 
 namespace UIComponent {
+    /**
+     * @brief A component used to display windows inside the main windows, handled entirely by the library.
+     * It consists in a top bar with action buttons and an empty space for content.
+     */
     class Window : public PanelTransformable {
     public:
 
@@ -28,7 +32,7 @@ namespace UIComponent {
         /**
          * Rest of the window.
          */
-        Component* Content;
+        Component* content;
     };
 }
 

@@ -11,7 +11,7 @@
 
 namespace UIComponent {
     /**
-     * Button calling a function when it is being clicked.
+     * @brief Button calling a function when it is being clicked.
      */
     class Button : public Panel {
     public:

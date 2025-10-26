@@ -7,7 +7,7 @@
 #include "../include/raylib-cpp.hpp"
 
 /**
- * Describe parameters for a styleBox
+ * @brief Holds style parameters for a component.
  */
 class StyleBox {
 public:

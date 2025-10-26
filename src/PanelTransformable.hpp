@@ -12,7 +12,7 @@
 
 namespace UIComponent {
     /**
-     * Describes actions possible of Panel.
+     * @brief Describes actions possible of Panel.
      */
     class TransformState {
     public:
@@ -54,6 +54,10 @@ namespace UIComponent {
         }
     };
 
+    /**
+     * @brief A panel that can be transformed, ie moved or resized.
+     * @note transformations can be individually enabled/disabled, using the availableTransform parameter.
+     */
     class PanelTransformable : public Panel {
     public:
         /**
