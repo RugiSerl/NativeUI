@@ -13,7 +13,7 @@ platformpth = $(subst /,$(PATHSEP),$1)
 buildDir := bin
 executable := app
 target := $(buildDir)/$(executable)
-library := libNativeUI.so
+library := libNativeUI.a
 targetLibrary := $(buildDir)/$(library)
 sources := $(call rwildcard,src/,*.cpp)
 objects := $(patsubst src/%, $(buildDir)/%, $(patsubst %.cpp, %.o, $(sources)))
@@ -100,7 +100,7 @@ execute:
 	$(target) $(ARGS)
 
 $(targetLibrary): $(objects)
-	$(CXX)  $(objects) -o $(targetLibrary) $(linkFlags)  
+	ar rcs  $(targetLibrary) $(objects)
 
 compileLib: $(targetLibrary)
 
