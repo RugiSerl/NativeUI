@@ -104,6 +104,7 @@ $(targetLibrary): $(objects)
 
 compileLib: $(targetLibrary)
 
+
 # Clean up all relevant files
 clean:
 	$(RM) $(call platformpth, $(buildDir)/*)
