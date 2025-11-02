@@ -13,6 +13,10 @@ namespace UIComponent {
 
     }
 
+    Image::Image(Modifier modifier, LayoutType layout) : Component(modifier, layout) {
+
+    }
+
     raylib::Rectangle Image::GetScreenSpaceRectangle() const {
         raylib::Rectangle rect = Component::GetScreenSpaceRectangle();
         const float imgRatio = texture.width/texture.height;

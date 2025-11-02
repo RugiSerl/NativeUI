@@ -23,6 +23,13 @@ namespace UIComponent {
     class Image : public Component{
     public:
         Image(Modifier modifier, LayoutType layout, const std::string& imagePath);
+
+        /**
+         * @brief Doesn't initialize texture itself. Used to manually initialize the texture outside.
+         * @param modifier transformations properties
+         * @param layout describes how a component should draw its children.
+         */
+        Image(Modifier modifier, LayoutType layout);
         ~Image() = default;
 
         raylib::Rectangle GetScreenSpaceRectangle() const override;
@@ -34,7 +41,7 @@ namespace UIComponent {
          */
         raylib::Texture texture;
 
-        void draw() override;
+        virtual void draw() override;
 
     private:
         imageResizeMode resizeMode;

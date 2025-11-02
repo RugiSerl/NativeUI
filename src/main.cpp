@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "Button.hpp"
+#include "Canvas.hpp"
 #include "cursor.hpp"
 #include "utils.hpp"
 #include "Component.hpp"
@@ -102,6 +103,13 @@ int main() {
         .setAnchor(Anchor2{Anchor::LEFT, Anchor::TOP}),
         LayoutType::ROW);
 
+    auto *canvas = new UIComponent::Canvas(
+        Modifier()
+        .setPosition(raylib::Vector2(50, 50))
+        .setSize(raylib::Vector2(400, 400))
+        .setAnchor(Anchor2{Anchor::LEFT, Anchor::TOP}),
+        LayoutType::ROW);
+
 
     panel->AddChild(rowChild1);
     panel->AddChild(rowChild2);
@@ -110,8 +118,17 @@ int main() {
     root->AddChild(uiComponent);
     root->AddChild(uiComponent2);
     root->AddChild(panel);
-    window->AddChild(img);
+    // window->AddChild(img);
+    window->AddChild(canvas);
     root->AddChild(window);
+
+    canvas->Render([] {
+        ClearBackground(GRAY);
+        DrawCircleV(raylib::Vector2(100, 100), 50, BLACK);
+        DrawRectangleV(raylib::Vector2(300, 150), raylib::Vector2(50, 100), RED);
+
+    });
+
 
 
     while (!w.ShouldClose()) {
