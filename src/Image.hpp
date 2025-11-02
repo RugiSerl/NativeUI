@@ -7,6 +7,14 @@
 #include "Component.hpp"
 
 namespace UIComponent {
+
+    enum class imageResizeMode{
+        STRETCH,
+        ADJUST,
+        KEEP_HEIGHT,
+        KEEP_WIDTH,
+    };
+
     /**
      * @brief Represents a texture (an image on the GPU).
      * @note It can represent any kind of rasterized content,
@@ -17,6 +25,8 @@ namespace UIComponent {
         Image(Modifier modifier, LayoutType layout, const std::string& imagePath);
         ~Image() = default;
 
+        raylib::Rectangle GetScreenSpaceRectangle() const override;
+
 
     protected:
         /**
@@ -25,6 +35,9 @@ namespace UIComponent {
         raylib::Texture texture;
 
         void draw() override;
+
+    private:
+        imageResizeMode resizeMode;
 
     };
 } // UIComponent
