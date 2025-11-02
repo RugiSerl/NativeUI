@@ -5,7 +5,7 @@
 #ifndef NATIVEUI_MODIFIER_HPP
 #define NATIVEUI_MODIFIER_HPP
 #include "anchor.hpp"
-#include "../include/Vector2.hpp"
+#include "Vector2.hpp"
 
 /**
  * @brief Gathers different aspects of the layout to avoid boilerplate arguments in Component initializers.

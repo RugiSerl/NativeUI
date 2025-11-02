@@ -4,7 +4,7 @@
 
 #include "Modifier.hpp"
 
-#include "../include/Vector4.hpp"
+#include "Vector4.hpp"
 
 Modifier::Modifier() : position(0, 0), size(0, 0), minSize(0, 0), anchor(LEFT, LEFT), padding(raylib::Vector4(0, 0, 0, 0)) {
 }

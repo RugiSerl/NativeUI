@@ -1,7 +1,7 @@
 #include "anchor.hpp"
 #include <iostream>
 #include <stdexcept>
-#include "../include/raylib-cpp.hpp"
+#include "raylib-cpp.hpp"
 
 raylib::Rectangle GetScreenBoundingbox() {
     return raylib::Rectangle(0, 0, GetScreenWidth(), GetScreenHeight());

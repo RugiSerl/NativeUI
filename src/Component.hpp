@@ -7,7 +7,7 @@
 #include "Layout.hpp"
 #include "Modifier.hpp"
 
-#include "../include/raylib-cpp.hpp"
+#include "raylib-cpp.hpp"
 
 namespace UIComponent {
     /**

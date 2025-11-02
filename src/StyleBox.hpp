@@ -4,7 +4,7 @@
 
 #ifndef NATIVEUI_STYLEBOX_HPP
 #define NATIVEUI_STYLEBOX_HPP
-#include "../include/raylib-cpp.hpp"
+#include "raylib-cpp.hpp"
 
 /**
  * @brief Holds style parameters for a component.
