@@ -127,7 +127,6 @@ int main() {
     }
 
     CloseWindow();
-    delete img;
 
     return 0;
 }
