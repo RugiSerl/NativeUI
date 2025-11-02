@@ -28,7 +28,7 @@ namespace UIComponent {
                 break;
 
             default:
-
+                break; // already done
         }
 
         return rect;
