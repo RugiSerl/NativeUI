@@ -10,7 +10,7 @@
 namespace UIComponent {
     Window::Window(std::string title, Modifier modifier, TransformState availableTransform) : title(title),
                                                                                               PanelTransformable(modifier, LayoutType::COLUMN, availableTransform) {
-        topBar = new Panel(Modifier()
+        topBar = new Component(Modifier()
                            .setAnchor(Anchor2(Anchor::FILL, Anchor::TOP))
                            .setSize(raylib::Vector2(0, 40))
                            .setPosition(raylib::Vector2(0, 0)),
@@ -42,7 +42,7 @@ namespace UIComponent {
         );
 
 
-        content = new Component(
+        content = new Panel(
                Modifier()
                .setAnchor(Anchor2(Anchor::FILL, Anchor::FILL)),
                LayoutType::NONE);
