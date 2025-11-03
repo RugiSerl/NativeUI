@@ -41,7 +41,6 @@ namespace UIComponent {
 
     void Image::draw() {
         texture.Draw(raylib::Rectangle(0, 0, texture.width, texture.height), GetScreenSpaceRectangle());
-        
     }
     
 } // UIComponent

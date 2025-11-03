@@ -31,6 +31,7 @@ namespace UIComponent {
          */
         void Render(std::function<void ()> drawCalls) const;
 
+        void draw() override;
     private:
         raylib::RenderTexture renderTexture;
     };
