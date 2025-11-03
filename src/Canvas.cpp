@@ -4,6 +4,7 @@
 
 #include "Canvas.hpp"
 
+#include "Mouse.hpp"
 #include "Rectangle.hpp"
 
 namespace UIComponent {
@@ -12,10 +13,20 @@ namespace UIComponent {
         texture = renderTexture.GetTexture();
     }
 
-    void Canvas::Render(std::function<void()> contentToDraw) const {
+    void Canvas::Render(std::function<void()> contentToDraw) {
         BeginTextureMode(this->renderTexture);
             contentToDraw();
         EndTextureMode();
+    }
+
+    raylib::Vector2 Canvas::GetRelativePosition(raylib::Vector2 absolutePosition) const {
+        raylib::Rectangle rect = GetScreenSpaceRectangle();
+        raylib::Vector2 relativePositionWithoutStretch = absolutePosition - rect.GetPosition();
+        return {relativePositionWithoutStretch.x * texture.width / rect.width, relativePositionWithoutStretch.y * texture.height / rect.height};
+    }
+
+    raylib::Vector2 Canvas::GetMouseRelativePosition() const {
+        return GetRelativePosition(raylib::Mouse::GetPosition());
     }
 
     void Canvas::draw() {

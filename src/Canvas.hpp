@@ -29,7 +29,20 @@ namespace UIComponent {
          *     DrawRectangleV(raylib::Vector2(300, 150), raylib::Vector2(50, 100), RED);
          * });
          */
-        void Render(std::function<void ()> drawCalls) const;
+        void Render(std::function<void ()> drawCalls);
+
+        /**
+         * @brief Computes the position that would be in the canvas from a screen space position.
+         * @param absolutePosition position we want to convert
+         * @return The position relative to the canvas
+         */
+        raylib::Vector2 GetRelativePosition(raylib::Vector2 absolutePosition) const;
+
+        /**
+         * @brief Shortcut for GetRelativePosition() with mouse coordinates
+         * @return The mouse position relative to the canvas.
+         */
+        raylib::Vector2 GetMouseRelativePosition() const;
 
         void draw() override;
     private:

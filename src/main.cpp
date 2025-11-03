@@ -122,12 +122,7 @@ int main() {
     window->AddChild(canvas);
     root->AddChild(window);
 
-    canvas->Render([] {
-        ClearBackground(GRAY);
-        DrawCircleV(raylib::Vector2(100, 100), 50, BLACK);
-        DrawRectangleV(raylib::Vector2(300, 150), raylib::Vector2(50, 100), RED);
 
-    });
 
 
 
@@ -138,6 +133,12 @@ int main() {
         SetCursor(MOUSE_CURSOR_DEFAULT);
         BeginDrawing();
         root->UpdateAndDraw();
+        canvas->Render([canvas] {
+            ClearBackground(GRAY);
+            DrawCircleV(canvas->GetMouseRelativePosition(), 50, BLACK);
+            DrawRectangleV(raylib::Vector2(300, 150), raylib::Vector2(50, 100), RED);
+
+        });
 
         EndDrawing();
         UpdateCursorState();
