@@ -11,10 +11,12 @@
 #include "RenderTexture.hpp"
 
 namespace UIComponent {
+    /**
+     * @brief Surface on which you can render pretty much anything. See Render() documentation to learn how to use.
+     */
     class Canvas : public Image{
     public:
-        Canvas(Modifier modifier, LayoutType layout);
-        ~Canvas() override = default;
+        Canvas(Modifier modifier, LayoutType layout);;
 
         /**
          * @brief Render content inside the canvas. You can render pretty much everything you can render on a normal
@@ -44,6 +46,9 @@ namespace UIComponent {
          */
         raylib::Vector2 GetMouseRelativePosition() const;
 
+        /**
+         * @brief overrides image draw to have the texture y-flipped, since when it renders from bottom left.
+         */
         void draw() override;
     private:
         raylib::RenderTexture renderTexture;

@@ -68,14 +68,14 @@ namespace UIComponent {
         Component *GetChild(int childIndex) const;
 
         /**
-         * @brief retrieve child index by its instance. Returns in the order of draw. @related childrenOrderedByInsertion
+         * @brief retrieve child index by its instance. Returns in the order of insertion. @related childrenOrderedByInsertion
          * @param child Instance.
          * @return Index of child. -1 if the instance was not found.
          */
         int GetChildIndexInsertion(const Component *child) const;
 
         /**
-         * @brief retrieve child index by its instance. Returns in the order of insertion. @related childrenOrderedByDraw
+         * @brief retrieve child index by its instance. Returns in the order of draw. @related childrenOrderedByDraw
          * @param child Instance
          * @return Index of child. -1 if the instance was not found.
          */

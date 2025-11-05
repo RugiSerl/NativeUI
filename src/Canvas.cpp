@@ -21,8 +21,7 @@ namespace UIComponent {
 
     raylib::Vector2 Canvas::GetRelativePosition(raylib::Vector2 absolutePosition) const {
         raylib::Rectangle rect = GetScreenSpaceRectangle();
-        raylib::Vector2 relativePositionWithoutStretch = absolutePosition - rect.GetPosition();
-        return {relativePositionWithoutStretch.x * texture.width / rect.width, relativePositionWithoutStretch.y * texture.height / rect.height};
+        return {(absolutePosition.x - rect.x) * texture.width / rect.width, (absolutePosition.y - rect.y) * texture.height / rect.height};
     }
 
     raylib::Vector2 Canvas::GetMouseRelativePosition() const {

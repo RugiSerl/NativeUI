@@ -30,7 +30,7 @@ namespace UIComponent {
          * @param layout describes how a component should draw its children.
          */
         Image(Modifier modifier, LayoutType layout);
-        ~Image() = default;
+        ~Image() override = default;
 
         raylib::Rectangle GetScreenSpaceRectangle() const override;
 
