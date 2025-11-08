@@ -3,6 +3,7 @@
 
 #include "Button.hpp"
 #include "Canvas.hpp"
+#include "CanvasDynamic.hpp"
 #include "cursor.hpp"
 #include "utils.hpp"
 #include "Component.hpp"
@@ -103,7 +104,7 @@ int main() {
         .setAnchor(Anchor2{Anchor::LEFT, Anchor::TOP}),
         LayoutType::ROW);
 
-    auto *canvas = new UIComponent::Canvas(
+    auto *canvas = new UIComponent::CanvasDynamic(
         Modifier()
         .setPosition(raylib::Vector2(50, 50))
         .setSize(raylib::Vector2(400, 400))

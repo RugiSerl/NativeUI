@@ -50,7 +50,7 @@ namespace UIComponent {
          * @brief overrides image draw to have the texture y-flipped, since when it renders from bottom left.
          */
         void draw() override;
-    private:
+    protected:
         raylib::RenderTexture renderTexture;
     };
 } // UIComponent
