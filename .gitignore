@@ -6,3 +6,5 @@ bin
 ./src/*.orig
 .vscode/
 doxygen/*
+.cache/
+compile_commands.json
