@@ -1,3 +1,8 @@
+#include "Layout.hpp"
+#include "Modifier.hpp"
+#include "TextEntry.hpp"
+#include "Vector2.hpp"
+#include "anchor.hpp"
 #include "raylib-cpp.hpp"
 #include <iostream>
 
@@ -111,6 +116,14 @@ int main() {
         .setAnchor(Anchor2{Anchor::LEFT, Anchor::TOP}),
         LayoutType::ROW);
 
+    auto *textEntry = new UIComponent::TextEntry(
+        Modifier()
+        .setPosition(raylib::Vector2(200, 200))
+        .setSize(raylib::Vector2(200, 200))
+        .setAnchor(Anchor2(Anchor::RIGHT, Anchor::TOP)),
+        LayoutType::NONE
+    );
+
 
     panel->AddChild(rowChild1);
     panel->AddChild(rowChild2);
@@ -122,7 +135,7 @@ int main() {
     // window->AddChild(img);
     window->AddChild(canvas);
     root->AddChild(window);
-
+    root->AddChild(textEntry);
 
 
 
