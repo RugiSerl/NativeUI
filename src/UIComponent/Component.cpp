@@ -7,7 +7,7 @@
 #include <cassert>
 #include <iostream>
 
-#include "utils.hpp"
+#include "../math/utils.hpp"
 
 namespace UIComponent {
     Component::Component(Modifier modifier, LayoutType layout) : modifier(modifier),

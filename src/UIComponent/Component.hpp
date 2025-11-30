@@ -4,8 +4,8 @@
 
 #ifndef NATIVEUI_COMPONENT_HPP
 #define NATIVEUI_COMPONENT_HPP
-#include "Layout.hpp"
-#include "Modifier.hpp"
+#include "../Properties/Layout.hpp"
+#include "../Properties/Modifier.hpp"
 
 #include "raylib-cpp.hpp"
 

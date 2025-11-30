@@ -5,7 +5,7 @@
 #include "Image.hpp"
 
 #include "Component.hpp"
-#include "utils.hpp"
+#include "../math/utils.hpp"
 
 namespace UIComponent {
     Image::Image(Modifier modifier, LayoutType layout, const std::string& imagePath) : Component(modifier, layout), texture(imagePath) {

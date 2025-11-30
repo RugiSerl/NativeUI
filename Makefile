@@ -15,7 +15,7 @@ executable := app
 target := $(buildDir)/$(executable)
 library := libNativeUI.a
 targetLibrary := $(buildDir)/$(library)
-sources := $(call rwildcard,src/,*.cpp)
+sources := $(call rwildcard,src/**,*.cpp)
 objects := $(patsubst src/%, $(buildDir)/%, $(patsubst %.cpp, %.o, $(sources)))
 depends := $(patsubst %.o, %.d, $(objects))
 compileFlags := -std=c++17 -I include -fPIC
@@ -75,7 +75,7 @@ include: submodules
 	$(call COPY,vendor/raylib/src,./include,raylib.h)
 	$(call COPY,vendor/raylib/src,./include,raymath.h)
 	$(call COPY,vendor/raylib/src,./include,rlgl.h)
-	$(call COPY,vendor/raylib-cpp/include,./include,*.hpp)
+	$(call COPY,vendor/raylib-cpp/include,./include/**,*.hpp)
 
 # Build the raylib static library file and copy it into lib
 lib: submodules

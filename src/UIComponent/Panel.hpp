@@ -6,9 +6,9 @@
 #define NATIVEUI_UIPANEL_HPP
 #include <cassert>
 
-#include "Component.hpp"
-#include "StyleBox.hpp"
-#include "Theme.hpp"
+#include "../UIComponent/Component.hpp"
+#include "../Properties/StyleBox.hpp"
+#include "../Theme.hpp"
 
 namespace UIComponent {
     /**

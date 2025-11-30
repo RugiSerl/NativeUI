@@ -4,7 +4,7 @@
 
 #ifndef NATIVEUI_MODIFIER_HPP
 #define NATIVEUI_MODIFIER_HPP
-#include "anchor.hpp"
+#include "Anchor.hpp"
 #include "Vector2.hpp"
 
 /**
