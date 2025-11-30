@@ -6,11 +6,11 @@
 #include "UIComponent/Button.hpp"
 #include "UIComponent/Canvas.hpp"
 #include "UIComponent/CanvasDynamic.hpp"
-#include "cursor.hpp"
 #include "UIComponent/Component.hpp"
 #include "UIComponent/Panel.hpp"
 #include "UIComponent/PanelTransformable.hpp"
 #include "UIComponent/Window.hpp"
+#include "raylib.h"
 
 void test() {
     std::cout << "clicked !" << std::endl;
@@ -20,10 +20,9 @@ int main() {
     // Initialization
     int screenWidth = 1280;
     int screenHeight = 720;
-    //SetConfigFlags(FLAG_MSAA_4X_HINT);
+    SetTraceLogLevel(LOG_ERROR); // temp, disable logging
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-    raylib::Window w(screenWidth, screenHeight, "NativeUI Showcase");
-
+    InitWindow(screenWidth, screenHeight, "NativeUI Showcase");
     SetTargetFPS(60);
     // Main game loop
 
@@ -134,11 +133,10 @@ int main() {
 
 
 
-    while (!w.ShouldClose()) {
+    while (!WindowShouldClose()) {
         // Detect window close button or ESC key
         // Draw
 
-        SetCursor(MOUSE_CURSOR_DEFAULT);
         BeginDrawing();
         root->UpdateAndDraw();
         canvas->Render([canvas] {
@@ -149,7 +147,6 @@ int main() {
         });
 
         EndDrawing();
-        UpdateCursorState();
     }
 
     CloseWindow();
