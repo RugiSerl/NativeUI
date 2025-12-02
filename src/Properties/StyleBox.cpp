@@ -15,7 +15,7 @@ StyleBox::StyleBox(Color fillColor, Color borderColor, float borderWidth, float 
 }
 ;
 
-void StyleBox::draw(const raylib::Rectangle rect, raylib::Rectangle scissorRect) const {
+void StyleBox::draw(const math::Rectangle rect, const math::Rectangle scissorRect) const {
     assert(rect.width>=0 && "StyleBox::draw(): negative rectangle width");
     assert(rect.height>=0 && "StyleBox::draw(): negative rectangle height");
 

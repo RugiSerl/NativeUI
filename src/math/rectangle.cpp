@@ -1,16 +1,16 @@
-#include "utils.hpp"
+#include "rectangle.hpp"
 #include <stdexcept>
 
-namespace utils {
-    raylib::Rectangle getInnerRect(const raylib::Rectangle rect, const float padding) {
+namespace math {
+    math::Rectangle getInnerRect(const math::Rectangle rect, const float padding) {
         return getInnerRect(rect, raylib::Vector4(padding, padding, padding, padding));
     }
 
-    raylib::Rectangle getInnerRect(const raylib::Rectangle rect, const raylib::Vector4 padding) {
+    math::Rectangle getInnerRect(const math::Rectangle rect, const raylib::Vector4 padding) {
         return {rect.x + padding.x, rect.y + padding.y, rect.width - padding.x - padding.z, rect.height - padding.y - padding.w};
     }
 
-    raylib::Rectangle getRectangleIntersection(const raylib::Rectangle r1, const raylib::Rectangle r2) {
+    math::Rectangle getRectangleIntersection(const math::Rectangle r1, const math::Rectangle r2) {
         const auto r1v = VectorRectangle(r1);
         const auto r2v = VectorRectangle(r2);
         return VectorRectangle(std::max(r1v.topLeft.x, r2v.topLeft.x),
@@ -19,7 +19,7 @@ namespace utils {
                                std::min(r1v.bottomRight.y, r2v.bottomRight.y)).EnsureNotNegativeWidth().ToRectangle();
     }
 
-    raylib::Rectangle getRectangleUnion(const raylib::Rectangle r1, const raylib::Rectangle r2) {
+    math::Rectangle getRectangleUnion(const math::Rectangle r1, const math::Rectangle r2) {
         const auto r1v = VectorRectangle(r1);
         const auto r2v = VectorRectangle(r2);
         return VectorRectangle(std::min(r1v.topLeft.x, r2v.topLeft.x),
@@ -29,7 +29,7 @@ namespace utils {
     }
 
 
-    RectangleSplit GetSplitRectangle(const raylib::Rectangle outerRectangle, const raylib::Rectangle innerRectangle) {
+    RectangleSplit GetSplitRectangle(const math::Rectangle outerRectangle, const math::Rectangle innerRectangle) {
         // Making sure that innerRectangle is inside outerRectangle
         if (innerRectangle.x > outerRectangle.x &&
             innerRectangle.y > outerRectangle.y &&
@@ -38,31 +38,31 @@ namespace utils {
             // There is probably a better way to do this
             return RectangleSplit{
                 .LeftRect =
-                raylib::Rectangle(outerRectangle.x, innerRectangle.y, innerRectangle.x - outerRectangle.x,
+                math::Rectangle(outerRectangle.x, innerRectangle.y, innerRectangle.x - outerRectangle.x,
                                   innerRectangle.height),
                 .RightRect =
-                raylib::Rectangle(innerRectangle.x + innerRectangle.width, innerRectangle.y,
+                math::Rectangle(innerRectangle.x + innerRectangle.width, innerRectangle.y,
                                   outerRectangle.x + outerRectangle.width - (innerRectangle.x + innerRectangle.width),
                                   innerRectangle.height),
                 .TopRect =
-                raylib::Rectangle(innerRectangle.x, outerRectangle.y, innerRectangle.width,
+                math::Rectangle(innerRectangle.x, outerRectangle.y, innerRectangle.width,
                                   innerRectangle.y - outerRectangle.y),
                 .BottomRect =
-                raylib::Rectangle(innerRectangle.x, innerRectangle.height + innerRectangle.y, innerRectangle.width,
+                math::Rectangle(innerRectangle.x, innerRectangle.height + innerRectangle.y, innerRectangle.width,
                                   outerRectangle.y + outerRectangle.height - (innerRectangle.y + innerRectangle.height)),
                 .TopLeftCorner =
-                raylib::Rectangle(outerRectangle.x, outerRectangle.y, innerRectangle.x - outerRectangle.x,
+                math::Rectangle(outerRectangle.x, outerRectangle.y, innerRectangle.x - outerRectangle.x,
                                   innerRectangle.y - outerRectangle.y),
                 .TopRightCorner =
-                raylib::Rectangle(innerRectangle.x + innerRectangle.width, outerRectangle.y,
+                math::Rectangle(innerRectangle.x + innerRectangle.width, outerRectangle.y,
                                   outerRectangle.x + outerRectangle.width - (innerRectangle.x + innerRectangle.width),
                                   innerRectangle.y - outerRectangle.y),
                 .BottomLeftCorner =
-                raylib::Rectangle(outerRectangle.x, innerRectangle.y + innerRectangle.height,
+                math::Rectangle(outerRectangle.x, innerRectangle.y + innerRectangle.height,
                                   innerRectangle.x - outerRectangle.x,
                                   outerRectangle.y + outerRectangle.height - (innerRectangle.y + innerRectangle.height)),
                 .BottomRightCorner =
-                raylib::Rectangle(innerRectangle.x + innerRectangle.width, innerRectangle.y + innerRectangle.height,
+                math::Rectangle(innerRectangle.x + innerRectangle.width, innerRectangle.y + innerRectangle.height,
                                   outerRectangle.x + outerRectangle.width - (innerRectangle.x + innerRectangle.width),
                                   outerRectangle.y + outerRectangle.height - (innerRectangle.y + innerRectangle.height)),
                 .centerRect = innerRectangle,
@@ -73,7 +73,7 @@ namespace utils {
     }
 
 
-    raylib::Rectangle clampRectangle(raylib::Rectangle rect, raylib::Rectangle bounds) {
+    math::Rectangle clampRectangle(math::Rectangle rect, math::Rectangle bounds) {
         return {Clamp(rect.x, bounds.x, std::max(bounds.x + bounds.width - rect.width, 0.0f)),
                                  Clamp(rect.y, bounds.y, std::max(bounds.y + bounds.height - rect.height, 0.0f)),
                                  std::min(rect.width, bounds.width), std::min(rect.height, bounds.height)};

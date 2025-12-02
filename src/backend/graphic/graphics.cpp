@@ -1,26 +1,25 @@
 #include "graphics.hpp"
 
-void DrawRoundedRectangle(raylib::Rectangle rect, float cornerRadius, Color color) {
-    // Adjust for screen dpi
-    cornerRadius *= raylib::Window::GetScaleDPI().x;
+void DrawRoundedRectangle(const math::Rectangle rect, const float cornerRadius, const Color color) {
 
+    auto raylibRectangle = rect.ToRaylibRectangle();
     // Draw main rectangle
-    DrawRectangleV(rect.GetPosition() + raylib::Vector2(cornerRadius, 0), rect.GetSize() - raylib::Vector2(2 * cornerRadius, 0), color);
-    DrawRectangleV(rect.GetPosition() + raylib::Vector2(0, cornerRadius), raylib::Vector2(cornerRadius, rect.height - 2 * cornerRadius), color);
-    DrawRectangleV(rect.GetPosition() + raylib::Vector2(rect.width - cornerRadius, cornerRadius), raylib::Vector2(cornerRadius, rect.height - 2 * cornerRadius), color);
+    DrawRectangleV(raylibRectangle.GetPosition() + raylib::Vector2(cornerRadius, 0), raylibRectangle.GetSize() - raylib::Vector2(2 * cornerRadius, 0), color);
+    DrawRectangleV(raylibRectangle.GetPosition() + raylib::Vector2(0, cornerRadius), raylib::Vector2(cornerRadius, raylibRectangle.height - 2 * cornerRadius), color);
+    DrawRectangleV(raylibRectangle.GetPosition() + raylib::Vector2(raylibRectangle.width - cornerRadius, cornerRadius), raylib::Vector2(cornerRadius, raylibRectangle.height - 2 * cornerRadius), color);
 
     // Draw corners
     // Top left
-    DrawCircleSector(rect.GetPosition() + raylib::Vector2(cornerRadius, cornerRadius), cornerRadius, 180, 270, 5, color);
+    DrawCircleSector(raylibRectangle.GetPosition() + raylib::Vector2(cornerRadius, cornerRadius), cornerRadius, 180, 270, 5, color);
     // Top right
-    DrawCircleSector(rect.GetPosition() + raylib::Vector2(rect.width - cornerRadius, cornerRadius), cornerRadius, -90, 0, 5, color);
+    DrawCircleSector(raylibRectangle.GetPosition() + raylib::Vector2(raylibRectangle.width - cornerRadius, cornerRadius), cornerRadius, -90, 0, 5, color);
     // Bottom left
-    DrawCircleSector(rect.GetPosition() + raylib::Vector2(cornerRadius, rect.height - cornerRadius), cornerRadius, 90, 180, 5, color);
+    DrawCircleSector(raylibRectangle.GetPosition() + raylib::Vector2(cornerRadius, raylibRectangle.height - cornerRadius), cornerRadius, 90, 180, 5, color);
     // Bottom right
-    DrawCircleSector(rect.GetPosition() + raylib::Vector2(rect.width - cornerRadius, rect.height - cornerRadius), cornerRadius, 0, 90, 5, color);
+    DrawCircleSector(raylibRectangle.GetPosition() + raylib::Vector2(raylibRectangle.width - cornerRadius, raylibRectangle.height - cornerRadius), cornerRadius, 0, 90, 5, color);
 }
 
-void DrawRoundedRectangleLines(raylib::Rectangle rect, float cornerRadius, Color color, float thickness) {
+void DrawRoundedRectangleLines(math::Rectangle rect, float cornerRadius, Color color, float thickness) {
 
     // Adjust for screen dpi
     thickness *= raylib::Window::GetScaleDPI().x;
@@ -40,19 +39,19 @@ void DrawRoundedRectangleLines(raylib::Rectangle rect, float cornerRadius, Color
     DrawLineEx(Vector2{x + r, y + height}, Vector2{x + width - r, y + height}, thickness, color);
 
     //Draw corners
-    DrawCircleArcLine(rect.GetPosition() + raylib::Vector2(cornerRadius, cornerRadius), cornerRadius, PI / 2, PI, thickness, 5, color);
-    DrawCircleArcLine(rect.GetPosition() + raylib::Vector2(rect.width - cornerRadius, cornerRadius), cornerRadius, 0, PI / 2, thickness, 5, color);
-    DrawCircleArcLine(rect.GetPosition() + raylib::Vector2(cornerRadius, rect.height - cornerRadius), cornerRadius, -PI, -PI / 2, thickness, 5, color);
-    DrawCircleArcLine(rect.GetPosition() + raylib::Vector2(rect.width - cornerRadius, rect.height - cornerRadius), cornerRadius, -PI / 2, 0, thickness, 5, color);
+    DrawCircleArcLine(rect.GetPosition() + math::Vector2(cornerRadius, cornerRadius), cornerRadius, PI / 2, PI, thickness, 5, color);
+    DrawCircleArcLine(rect.GetPosition() + math::Vector2(rect.width - cornerRadius, cornerRadius), cornerRadius, 0, PI / 2, thickness, 5, color);
+    DrawCircleArcLine(rect.GetPosition() + math::Vector2(cornerRadius, rect.height - cornerRadius), cornerRadius, -PI, -PI / 2, thickness, 5, color);
+    DrawCircleArcLine(rect.GetPosition() + math::Vector2(rect.width - cornerRadius, rect.height - cornerRadius), cornerRadius, -PI / 2, 0, thickness, 5, color);
 }
 
-void DrawCircleArcLine(raylib::Vector2 center, float radius, float startAngle, float stopAngle, float lineThickness, int segments, Color color) {
+void DrawCircleArcLine(math::Vector2 center, float radius, float startAngle, float stopAngle, float lineThickness, int segments, Color color) {
     for (int segment = 0; segment < segments; segment++) {
         float t1 = float(segment) / float(segments);
         float t2 = float(segment + 1) / float(segments);
 
         float angle = (1 - t1) * startAngle + t1 * stopAngle;
         float nextAngle = (1 - t2) * startAngle + t2 * stopAngle;
-        DrawLineEx(center + raylib::Vector2(cosf(angle), -sin(angle)) * radius, center + raylib::Vector2(cosf(nextAngle), -sin(nextAngle)) * radius, lineThickness, color);
+        DrawLineEx(center.ToRaylibVector2() + raylib::Vector2(cosf(angle), -sin(angle)) * radius, center.ToRaylibVector2() + raylib::Vector2(cosf(nextAngle), -sin(nextAngle)) * radius, lineThickness, color);
     }
 }

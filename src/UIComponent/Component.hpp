@@ -6,6 +6,7 @@
 #define NATIVEUI_COMPONENT_HPP
 #include "../Properties/Layout.hpp"
 #include "../Properties/Modifier.hpp"
+#include "../math/rectangle.hpp"
 
 #include "raylib-cpp.hpp"
 
@@ -27,13 +28,13 @@ namespace UIComponent {
          * @brief Get the actual position of the component on screen.
          * @return The rectangle with position from top left.
          */
-        virtual raylib::Rectangle GetScreenSpaceRectangle() const;
+        virtual math::Rectangle GetScreenSpaceRectangle() const;
 
         /**
          * @brief Shortcut for GetParent().GetScreenSpaceRectangle().
          * @return The rectangle of the parent component in screen space coordinates.
          */
-        raylib::Rectangle GetParentRectangle() const;
+        math::Rectangle GetParentRectangle() const;
 
         /**
          * @brief Shortcut for GetParent()->layout, except it checks if parent is null before.
@@ -52,7 +53,7 @@ namespace UIComponent {
          * parent's rectangle
          * @return the rectangle of the previous sibling.
          */
-        raylib::Rectangle GetPreviousSiblingRectangle() const;
+        math::Rectangle GetPreviousSiblingRectangle() const;
 
         /**
          * @brief Get previous sibling in the tree.
@@ -92,7 +93,7 @@ namespace UIComponent {
          * @param mousePosition (optional) the position the cursor.
          * @return whether the mouse position is inside the component and no other component is above.
          */
-        bool IsHovered(raylib::Vector2 mousePosition = raylib::Mouse::GetPosition());
+        bool IsHovered(math::Vector2 mousePosition = raylib::Mouse::GetPosition());
 
         /**
          * Add a child and set his parent to this.
@@ -115,7 +116,7 @@ namespace UIComponent {
          * @brief No need to explain.
          * @param rect Component's rect.
          */
-        void SetRect(raylib::Rectangle rect);
+        void SetRect(math::Rectangle rect);
 
         /**
          * @brief Get pre-order walk in the component children tree.

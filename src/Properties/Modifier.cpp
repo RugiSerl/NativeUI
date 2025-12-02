@@ -9,7 +9,7 @@
 Modifier::Modifier() : position(0, 0), size(0, 0), minSize(0, 0), anchor(LEFT, LEFT), padding(raylib::Vector4(0, 0, 0, 0)) {
 }
 
-Modifier Modifier::setSize(raylib::Vector2 size) {
+Modifier Modifier::setSize(math::Vector2 size) {
     this->size = size;
     return *this;
 }
@@ -19,12 +19,12 @@ Modifier Modifier::setAnchor(Anchor2 anchor) {
     return *this;
 }
 
-Modifier Modifier::setPosition(raylib::Vector2 pos) {
+Modifier Modifier::setPosition(math::Vector2 pos) {
     this->position = pos;
     return *this;
 }
 
-Modifier Modifier::setMinimumSize(raylib::Vector2 minSize) {
+Modifier Modifier::setMinimumSize(math::Vector2 minSize) {
     this->minSize = minSize;
     return *this;
 }

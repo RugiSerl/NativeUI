@@ -74,7 +74,7 @@ namespace UIComponent {
         void update() override;
 
         // Rectangle which is being transformed without constraints. The rectangle is a constrained version of it.
-        raylib::Rectangle virtualRectangle;
+        math::Rectangle virtualRectangle;
 
 
         // The transform this component supports

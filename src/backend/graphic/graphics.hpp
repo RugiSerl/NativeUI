@@ -1,14 +1,14 @@
 #ifndef __GRAPHICS_H__
 #define __GRAPHICS_H__
 
-#include "raylib-cpp.hpp"
+#include "../../math/rectangle.hpp"
 
 /**
 * Draws a rectangle with rounded corners.
 * @param rect rectangle to draw
 * @param cornerRadius radius of the circle drawn in the corner
 */
-void DrawRoundedRectangle(raylib::Rectangle rect, float cornerRadius, Color color);
+void DrawRoundedRectangle(math::Rectangle rect, float cornerRadius, Color color);
 
 
 /**
@@ -16,7 +16,7 @@ void DrawRoundedRectangle(raylib::Rectangle rect, float cornerRadius, Color colo
  * @param rect rectangle to draw
  * @param cornerRadius radius of the circle drawn in the corner
  */
-void DrawRoundedRectangleLines(raylib::Rectangle rect, float cornerRadius, Color Color, float thickness);
+void DrawRoundedRectangleLines(math::Rectangle rect, float cornerRadius, Color Color, float thickness);
 
 
 /**
@@ -29,7 +29,7 @@ void DrawRoundedRectangleLines(raylib::Rectangle rect, float cornerRadius, Color
  * @param segments The amount of small lines to draw
  * @param color
  */
-void DrawCircleArcLine(raylib::Vector2 center, float radius, float startAngle, float stopAngle, float lineThickness, int segments, Color color);
+void DrawCircleArcLine(math::Vector2 center, float radius, float startAngle, float stopAngle, float lineThickness, int segments, Color color);
 
 
 #endif // !__GRAPHICS_H__

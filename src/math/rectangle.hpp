@@ -2,22 +2,57 @@
 #define __UTILS_H__
 #include <vector>
 #include <algorithm>
+#include "Rectangle.hpp"
 #include "raylib-cpp.hpp"
+#include "raylib.h"
+#include "vector2.hpp"
 
-namespace utils {
+namespace math {
+
+    class Rectangle {
+    public:
+        float x, y, width, height;
+        Rectangle(float x, float y, float w, float h): x(x), y(y), width(w), height(h) {};
+        Rectangle(Vector2 position, Vector2 size): x(position.x), y(position.y), width(size.x), height(size.y) {};
+        Rectangle(Vector2 size): x(0), y(0), width(size.x), height(size.y) {};
+        Rectangle(): x(0), y(0), width(0), height(0) {};
+        math::Vector2 GetPosition() const {
+            return Vector2(x, y);
+        }
+        math::Vector2 GetSize() const{
+            return Vector2(width, height);
+        }
+        void SetPosition(Vector2 position) {
+            x = position.x;
+            y = position.y;
+        }
+        void SetSize(Vector2 size) {
+            width = size.x;
+            height = size.y;
+        }
+
+        bool CheckCollision(math::Vector2 position) const {
+            return position.x >= x && position.x <= x + width && position.y >= y && position.y <= y + height;
+        }
+        raylib::Rectangle ToRaylibRectangle() const {
+            return raylib::Rectangle(x, y, width, height);
+        }
+
+    };
+
     /**
      * @brief Alternative rectangle representation with two points
      *
      */
     class VectorRectangle {
     public:
-        raylib::Vector2 topLeft;
-        raylib::Vector2 bottomRight;
-        VectorRectangle(raylib::Rectangle rect) : topLeft(rect.GetPosition()), bottomRight(rect.x + rect.width, rect.y + rect.height) {};
-        VectorRectangle(raylib::Vector2 topLeft, raylib::Vector2 bottomRight) : topLeft(topLeft), bottomRight(bottomRight) {};
+        math::Vector2 topLeft;
+        math::Vector2 bottomRight;
+        VectorRectangle(math::Rectangle rect) : topLeft(rect.GetPosition()), bottomRight(rect.x + rect.width, rect.y + rect.height) {};
+        VectorRectangle(math::Vector2 topLeft, math::Vector2 bottomRight) : topLeft(topLeft), bottomRight(bottomRight) {};
         VectorRectangle(float x1, float y1, float x2, float y2) : topLeft(x1, y1), bottomRight(x2, y2) {};
-        raylib::Rectangle ToRectangle() {
-            return raylib::Rectangle(topLeft.x, topLeft.y, bottomRight.x - topLeft.x, bottomRight.y - topLeft.y);
+        math::Rectangle ToRectangle() {
+            return math::Rectangle(topLeft.x, topLeft.y, bottomRight.x - topLeft.x, bottomRight.y - topLeft.y);
         }
         /**
          * @brief clamp rectangle width to 0
@@ -36,18 +71,18 @@ namespace utils {
      *
      * @param rectangle
      * @param padding
-     * @return raylib::Rectangle
+     * @return math::Rectangle
      */
-    raylib::Rectangle getInnerRect(raylib::Rectangle rectangle, float padding);
+    math::Rectangle getInnerRect(math::Rectangle rectangle, float padding);
 
     /**
      * @brief Get rectangle inside another with padding value
      *
      * @param rectangle
      * @param padding
-     * @return raylib::Rectangle
+     * @return math::Rectangle
      */
-    raylib::Rectangle getInnerRect(raylib::Rectangle rectangle, raylib::Vector4 padding);
+    math::Rectangle getInnerRect(math::Rectangle rectangle, raylib::Vector4 padding);
 
 
     /**
@@ -59,18 +94,18 @@ namespace utils {
      */
     struct RectangleSplit {
         // edge rectangles
-        raylib::Rectangle LeftRect;
-        raylib::Rectangle RightRect;
-        raylib::Rectangle TopRect;
-        raylib::Rectangle BottomRect;
+        math::Rectangle LeftRect;
+        math::Rectangle RightRect;
+        math::Rectangle TopRect;
+        math::Rectangle BottomRect;
 
         // corner rectangles
-        raylib::Rectangle TopLeftCorner;
-        raylib::Rectangle TopRightCorner;
-        raylib::Rectangle BottomLeftCorner;
-        raylib::Rectangle BottomRightCorner;
+        math::Rectangle TopLeftCorner;
+        math::Rectangle TopRightCorner;
+        math::Rectangle BottomLeftCorner;
+        math::Rectangle BottomRightCorner;
 
-        raylib::Rectangle centerRect;
+        math::Rectangle centerRect;
     };
 
 
@@ -83,7 +118,7 @@ namespace utils {
      * |__|______|_|
      *
      */
-    RectangleSplit GetSplitRectangle(raylib::Rectangle outerRectangle, raylib::Rectangle innerRectangle);
+    RectangleSplit GetSplitRectangle(math::Rectangle outerRectangle, math::Rectangle innerRectangle);
 
 
     /**
@@ -91,24 +126,24 @@ namespace utils {
      *
      * @param r1
      * @param r2
-     * @return raylib::Rectangle
+     * @return math::Rectangle
      */
-    raylib::Rectangle getRectangleIntersection(raylib::Rectangle r1, raylib::Rectangle r2);
+    math::Rectangle getRectangleIntersection(math::Rectangle r1, math::Rectangle r2);
 
     /**
      * The smallest rectangle containing both rectangles
      * Not really the union of rectangles.
      */
-    raylib::Rectangle getRectangleUnion(raylib::Rectangle r1, raylib::Rectangle r2);
+    math::Rectangle getRectangleUnion(math::Rectangle r1, math::Rectangle r2);
 
     /**
      * @brief Clamp rectangle inside another
      *
      * @param rect rectangle to clamp
      * @param bounds delimiting rectangle
-     * @return raylib::Rectangle clamped rectangle
+     * @return math::Rectangle clamped rectangle
      */
-    raylib::Rectangle clampRectangle(raylib::Rectangle rect, raylib::Rectangle bounds);
+    math::Rectangle clampRectangle(math::Rectangle rect, math::Rectangle bounds);
 
 
     // -----------------------------------------------

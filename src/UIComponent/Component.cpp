@@ -7,7 +7,7 @@
 #include <cassert>
 #include <iostream>
 
-#include "../math/utils.hpp"
+#include "../math/rectangle.hpp"
 
 namespace UIComponent {
     Component::Component(Modifier modifier, LayoutType layout) : modifier(modifier),
@@ -20,25 +20,25 @@ namespace UIComponent {
 
 
 
-    raylib::Rectangle Component::GetScreenSpaceRectangle() const {
-        raylib::Rectangle parentRectangle = GetParentRectangle();
+    math::Rectangle Component::GetScreenSpaceRectangle() const {
+        math::Rectangle parentRectangle = GetParentRectangle();
         LayoutType parentLayout = GetParentLayout();
-        raylib::Rectangle previousSiblingRectangle = GetPreviousSiblingRectangle();
+        math::Rectangle previousSiblingRectangle = GetPreviousSiblingRectangle();
 
-        raylib::Rectangle boundingBox;
+        math::Rectangle boundingBox;
 
         switch (parentLayout) {
             case LayoutType::NONE:
                 boundingBox = parentRectangle;
                 break;
             case LayoutType::COLUMN:
-                boundingBox = raylib::Rectangle(parentRectangle.x,
+                boundingBox = math::Rectangle(parentRectangle.x,
                                                 previousSiblingRectangle.y + previousSiblingRectangle.height,
                                                 parentRectangle.width,
                                                 parentRectangle.y + parentRectangle.height - previousSiblingRectangle.y - previousSiblingRectangle.height);
                 break;
             case LayoutType::ROW:
-                boundingBox = raylib::Rectangle(previousSiblingRectangle.x + previousSiblingRectangle.width,
+                boundingBox = math::Rectangle(previousSiblingRectangle.x + previousSiblingRectangle.width,
                                                 parentRectangle.y,
                                                 parentRectangle.x + parentRectangle.width - previousSiblingRectangle.x - previousSiblingRectangle.width,
                                                 parentRectangle.height);
@@ -47,13 +47,13 @@ namespace UIComponent {
                 throw std::invalid_argument("Incorrect value for Layout");
         }
 
-        return utils::getRectangleIntersection(
-            utils::getInnerRect(GetAnchoredRect(raylib::Rectangle(modifier.position, modifier.size), modifier.anchor, boundingBox), modifier.padding),
+        return math::getRectangleIntersection(
+            math::getInnerRect(GetAnchoredRect(math::Rectangle(modifier.position, modifier.size), modifier.anchor, boundingBox), modifier.padding),
             parentRectangle
         );
     }
 
-    raylib::Rectangle Component::GetParentRectangle() const {
+    math::Rectangle Component::GetParentRectangle() const {
         if (this->parent == nullptr) return GetScreenBoundingbox();
         return this->parent->GetScreenSpaceRectangle();
     }
@@ -67,7 +67,7 @@ namespace UIComponent {
         return this->parent;
     }
 
-    raylib::Rectangle Component::GetPreviousSiblingRectangle() const {
+    math::Rectangle Component::GetPreviousSiblingRectangle() const {
         // Base case.
         if (parent == nullptr) {
             return {0, 0, 0, 0};
@@ -75,7 +75,7 @@ namespace UIComponent {
         Component *previousSibling = GetPreviousSiblingByInsertionOrder();
         // This is the first child of the parent. It is more convenient to say it's like the previous child has an empty rectangle for layout.
         if (previousSibling == nullptr) {
-            return {GetParentRectangle().GetPosition(), raylib::Vector2(0, 0)};
+            return math::Rectangle(GetParentRectangle().GetPosition(), math::Vector2(0, 0));
         }
         return previousSibling->GetScreenSpaceRectangle();
     }
@@ -109,7 +109,7 @@ namespace UIComponent {
         return this->childrenOrderedByInsertion.size();
     }
 
-    bool Component::IsHovered(raylib::Vector2 mousePosition) {
+    bool Component::IsHovered(math::Vector2 mousePosition) {
         if (parent == nullptr) {
             return GetScreenSpaceRectangle().CheckCollision(mousePosition);
         }
@@ -130,8 +130,8 @@ namespace UIComponent {
 
     void Component::AddChild(Component *child) {
         assert(child != nullptr && "child added is null");
-        assert(!utils::isValueInVector(childrenOrderedByInsertion, child) && "child is null");
-        assert(!utils::isValueInVector(childrenOrderedByDraw, child) && "child is null");
+        assert(!math::isValueInVector(childrenOrderedByInsertion, child) && "child is null");
+        assert(!math::isValueInVector(childrenOrderedByDraw, child) && "child is null");
         child->parent = this;
         childrenOrderedByInsertion.push_back(child);
         childrenOrderedByDraw.push_back(child);
@@ -139,8 +139,8 @@ namespace UIComponent {
 
     void Component::RemoveChild(Component *child) {
         assert(child != nullptr && "child to remove is null");
-        assert(utils::isValueInVector(childrenOrderedByInsertion, child) && "child to remove is not in children");
-        assert(utils::isValueInVector(childrenOrderedByDraw, child) && "child to remove is not in children");
+        assert(math::isValueInVector(childrenOrderedByInsertion, child) && "child to remove is not in children");
+        assert(math::isValueInVector(childrenOrderedByDraw, child) && "child to remove is not in children");
         childrenOrderedByInsertion.erase(std::remove(childrenOrderedByInsertion.begin(), childrenOrderedByInsertion.end(), child), childrenOrderedByInsertion.end());
         childrenOrderedByDraw.erase(std::remove(childrenOrderedByDraw.begin(), childrenOrderedByDraw.end(), child), childrenOrderedByDraw.end());
     }
@@ -179,7 +179,7 @@ namespace UIComponent {
         }
     }
 
-    void Component::SetRect(raylib::Rectangle rect) {
+    void Component::SetRect(math::Rectangle rect) {
         modifier = modifier
                 .setPosition(rect.GetPosition())
                 .setSize(rect.GetSize());
@@ -188,7 +188,7 @@ namespace UIComponent {
     std::vector<Component *> Component::GetPreOrderWalk() {
         std::vector<Component *> preOrderWalk = {this};
         for (Component *child: childrenOrderedByDraw) {
-            preOrderWalk = utils::concatenateVectors(preOrderWalk, child->GetPreOrderWalk());
+            preOrderWalk = math::concatenateVectors(preOrderWalk, child->GetPreOrderWalk());
         }
         return preOrderWalk;
     }

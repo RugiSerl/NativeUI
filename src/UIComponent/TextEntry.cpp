@@ -23,7 +23,7 @@ namespace UIComponent {
 
     void TextEntry::draw() {
         Panel::draw();
-        raylib::Rectangle rect = GetScreenSpaceRectangle();
+        math::Rectangle rect = GetScreenSpaceRectangle();
         raylib::DrawText(text, rect.x, rect.y, 10, BLACK);
     }
 }

@@ -3,12 +3,12 @@
 #include <stdexcept>
 #include "raylib-cpp.hpp"
 
-raylib::Rectangle GetScreenBoundingbox() {
-    return raylib::Rectangle(0, 0, GetScreenWidth(), GetScreenHeight());
+math::Rectangle GetScreenBoundingbox() {
+    return math::Rectangle(0, 0, GetScreenWidth(), GetScreenHeight());
 }
 
-raylib::Rectangle GetAnchoredRect(const raylib::Rectangle rect, const Anchor2 anchor, raylib::Rectangle boundingBox) {
-    raylib::Rectangle res(rect.GetSize());
+math::Rectangle GetAnchoredRect(const math::Rectangle rect, const Anchor2 anchor, math::Rectangle boundingBox) {
+    math::Rectangle res(rect.GetSize());
     switch (anchor.horizontal) {
         case LEFT:
             res.x = boundingBox.x + rect.x;

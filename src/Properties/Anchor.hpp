@@ -1,6 +1,7 @@
 #ifndef __ANCHOR_H__
 #define __ANCHOR_H__
 #include "raylib-cpp.hpp"
+#include "../math/rectangle.hpp"
 
 
 /**
@@ -33,9 +34,9 @@ public:
 /**
  * @brief Get the Screen Boundingbox object
  *
- * @return raylib::Rectangle
+ * @return math::Rectangle
  */
-raylib::Rectangle GetScreenBoundingbox();
+math::Rectangle GetScreenBoundingbox();
 
 
 /**
@@ -44,9 +45,9 @@ raylib::Rectangle GetScreenBoundingbox();
  * @param rect relative rectangle
  * @param anchor
  * @param boundingBox bound constraint
- * @return raylib::Rectangle objective rectangle
+ * @return math::Rectangle objective rectangle
  */
-raylib::Rectangle GetAnchoredRect(raylib::Rectangle rect, Anchor2 anchor, raylib::Rectangle boundingBox = GetScreenBoundingbox());
+math::Rectangle GetAnchoredRect(math::Rectangle rect, Anchor2 anchor, math::Rectangle boundingBox = GetScreenBoundingbox());
 
 
 #endif

@@ -16,22 +16,22 @@ public:
     Modifier();
 
     // Setters of the class. Returns itself to chain setter.
-    Modifier setSize(raylib::Vector2 size);
+    Modifier setSize(math::Vector2 size);
 
-    Modifier setPosition(raylib::Vector2 pos);
+    Modifier setPosition(math::Vector2 pos);
 
     Modifier setAnchor(Anchor2 anchor);
 
-    Modifier setMinimumSize(raylib::Vector2 minSize);
+    Modifier setMinimumSize(math::Vector2 minSize);
 
     Modifier setPadding(float newPadding);
 
     Modifier setPadding(float left, float top, float right, float bottom);
 
 
-    raylib::Vector2 position;
-    raylib::Vector2 size;
-    raylib::Vector2 minSize;
+    math::Vector2 position;
+    math::Vector2 size;
+    math::Vector2 minSize;
     Anchor2 anchor;
     raylib::Vector4 padding;
 };

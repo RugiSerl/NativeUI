@@ -6,7 +6,7 @@
 
 #include <cassert>
 
-#include "../math/utils.hpp"
+#include "../math/rectangle.hpp"
 
 namespace UIComponent {
     void PanelTransformable::update() {
@@ -22,14 +22,14 @@ namespace UIComponent {
 
 
         // Updating rectangle with a new intermediary one
-        raylib::Rectangle r = virtualRectangle;
+        math::Rectangle r = virtualRectangle;
 
         // Clamp size so it remains superior to minSize
         r.width = std::max(modifier.minSize.x, virtualRectangle.width);
         r.height = std::max(modifier.minSize.y, virtualRectangle.height);
 
 
-        SetRect(utils::clampRectangle(r, GetParent()->GetScreenSpaceRectangle().GetSize()));
+        SetRect(math::clampRectangle(r, GetParent()->GetScreenSpaceRectangle().GetSize()));
     }
 
     PanelTransformable::PanelTransformable(Modifier modifier, LayoutType layout, TransformState availableTransform) : Panel(modifier.setAnchor(Anchor2(Anchor::LEFT, Anchor::TOP)), layout, true),
@@ -44,8 +44,8 @@ namespace UIComponent {
 
     void PanelTransformable::startTransform() {
         ongoingTransform.SetToNone();
-        raylib::Rectangle screenSpaceRectangle = GetScreenSpaceRectangle();
-        utils::RectangleSplit split = utils::GetSplitRectangle(screenSpaceRectangle, utils::getInnerRect(screenSpaceRectangle, RESIZE_PADDING * raylib::Window::GetScaleDPI().x));
+        math::Rectangle screenSpaceRectangle = GetScreenSpaceRectangle();
+        math::RectangleSplit split = math::GetSplitRectangle(screenSpaceRectangle, math::getInnerRect(screenSpaceRectangle, RESIZE_PADDING * raylib::Window::GetScaleDPI().x));
 
         // Checking center for translation.
         if (split.centerRect.CheckCollision(raylib::Mouse::GetPosition())) {
@@ -99,7 +99,7 @@ namespace UIComponent {
     }
 
     void PanelTransformable::endTransform() {
-        virtualRectangle = raylib::Rectangle(modifier.position, modifier.size);
+        virtualRectangle = math::Rectangle(modifier.position, modifier.size);
         ongoingTransform.SetToNone();
     }
 }

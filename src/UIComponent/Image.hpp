@@ -5,6 +5,7 @@
 #ifndef NATIVEUI_IMAGE_HPP
 #define NATIVEUI_IMAGE_HPP
 #include "Component.hpp"
+#include "../backend/graphic/texture.hpp"
 
 namespace UIComponent {
 
@@ -32,18 +33,26 @@ namespace UIComponent {
         Image(Modifier modifier, LayoutType layout);
         ~Image() override = default;
 
-        raylib::Rectangle GetScreenSpaceRectangle() const override;
+        math::Rectangle GetScreenSpaceRectangle() const override;
 
 
     protected:
         /**
-         * @brief Actual content of the component
+         * @brief Get the Texture object. 
+         * This aims to be overriden in case the texture is different in a derived class.
+         * 
+         * @return graphic::Texture 
          */
-        raylib::Texture texture;
+        virtual graphic::Texture& GetTexture();
 
         virtual void draw() override;
 
     private:
+        /**
+         * @brief Actual content of the component
+         */
+        graphic::Texture texture;
+
         imageResizeMode resizeMode;
 
     };

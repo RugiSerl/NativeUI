@@ -5,7 +5,8 @@
 #include "Image.hpp"
 
 #include "Component.hpp"
-#include "../math/utils.hpp"
+#include "../math/rectangle.hpp"
+#include "raylib.h"
 
 namespace UIComponent {
     Image::Image(Modifier modifier, LayoutType layout, const std::string& imagePath) : Component(modifier, layout), texture(imagePath) {
@@ -17,9 +18,9 @@ namespace UIComponent {
 
     }
 
-    raylib::Rectangle Image::GetScreenSpaceRectangle() const {
-        raylib::Rectangle rect = Component::GetScreenSpaceRectangle();
-        const float imgRatio = texture.width/texture.height;
+    math::Rectangle Image::GetScreenSpaceRectangle() const {
+        math::Rectangle rect = Component::GetScreenSpaceRectangle();
+        // const float imgRatio = ;
         switch (resizeMode) {
             case imageResizeMode::STRETCH:
                 break; // already done
@@ -28,7 +29,7 @@ namespace UIComponent {
 
 
             case imageResizeMode::KEEP_HEIGHT:
-                rect = raylib::Rectangle();
+                rect = math::Rectangle();
                 break;
 
             default:
@@ -38,9 +39,13 @@ namespace UIComponent {
         return rect;
     }
 
+    graphic::Texture& Image::GetTexture() {
+        return texture;
+    }
+
 
     void Image::draw() {
-        texture.Draw(raylib::Rectangle(0, 0, texture.width, texture.height), GetScreenSpaceRectangle());
+        GetTexture().Draw(math::Rectangle(0, 0, texture.GetWidth(), texture.GetHeight()), GetScreenSpaceRectangle());
     }
     
 } // UIComponent

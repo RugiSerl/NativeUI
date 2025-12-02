@@ -3,6 +3,7 @@
 //
 
 #include "CanvasDynamic.hpp"
+#include "raylib.h"
 
 #include <iostream>
 
@@ -12,22 +13,9 @@ namespace UIComponent {
 
     void CanvasDynamic::update() {
         Canvas::update();
-        Vector2 screenSpaceSize = GetScreenSpaceRectangle().GetSize();
-        if (screenSpaceSize.x > 0 && screenSpaceSize.y > 0 && (screenSpaceSize.x != texture.width || screenSpaceSize.y != texture.height)) {
-            // Making a temporary copy of our content.
-            raylib::RenderTexture tmp = std::move(renderTexture);
-            renderTexture = raylib::RenderTexture(static_cast<int>(screenSpaceSize.x), static_cast<int>(screenSpaceSize.y));
-
-            // Drawing the old content onto the new one to avoid artifacts from random memory in the GPU (since
-            // the renderTexture was initialized without any content).
-            BeginTextureMode(renderTexture);
-                ClearBackground(BLACK); // clean previous residues.
-                DrawTextureRec(tmp.texture, raylib::Rectangle(0, texture.height, texture.width, -texture.height), raylib::Vector2(0, 0), WHITE);
-            EndTextureMode();
-
-            // Finally unload that copy to free space.
-            tmp.Unload();
-            texture = renderTexture.GetTexture();
+        math::Vector2 screenSpaceSize = GetScreenSpaceRectangle().GetSize();
+        if (screenSpaceSize.x > 0 && screenSpaceSize.y > 0 && (screenSpaceSize.x != renderTexture.GetWidth() || screenSpaceSize.y != renderTexture.GetHeight())) {
+            renderTexture.Resize(screenSpaceSize.x, screenSpaceSize.y);
         }
     }
 } // UIComponent

@@ -9,26 +9,29 @@
 
 namespace UIComponent {
     Canvas::Canvas(Modifier modifier, LayoutType layout) : Image(modifier, layout), renderTexture(modifier.size.x, modifier.size.y){
-        // The texture of the Image object is initialized as the texture of the renderTexture
-        texture = renderTexture.GetTexture();
+        
     }
 
     void Canvas::Render(std::function<void()> contentToDraw) {
-        BeginTextureMode(this->renderTexture);
+        renderTexture.BeginMode();
             contentToDraw();
-        EndTextureMode();
+        renderTexture.EndMode();
     }
 
-    raylib::Vector2 Canvas::GetRelativePosition(raylib::Vector2 absolutePosition) const {
-        raylib::Rectangle rect = GetScreenSpaceRectangle();
-        return {(absolutePosition.x - rect.x) * texture.width / rect.width, (absolutePosition.y - rect.y) * texture.height / rect.height};
+    math::Vector2 Canvas::GetRelativePosition(math::Vector2 absolutePosition) const {
+        math::Rectangle rect = GetScreenSpaceRectangle();
+        return {(absolutePosition.x - rect.x) * renderTexture.GetWidth() / rect.width, (absolutePosition.y - rect.y) * renderTexture.GetHeight() / rect.height};
     }
 
-    raylib::Vector2 Canvas::GetMouseRelativePosition() const {
+    math::Vector2 Canvas::GetMouseRelativePosition() const {
         return GetRelativePosition(raylib::Mouse::GetPosition());
     }
 
     void Canvas::draw() {
-        texture.Draw(raylib::Rectangle(0, texture.height, texture.width, -texture.height), GetScreenSpaceRectangle());
+        renderTexture.Draw(math::Rectangle(0, renderTexture.GetHeight(), renderTexture.GetWidth(), -renderTexture.GetHeight()), GetScreenSpaceRectangle());
+    }
+
+    graphic::Texture& Canvas::GetTexture() {
+        return renderTexture;
     }
 } // UIComponents

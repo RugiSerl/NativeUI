@@ -27,8 +27,8 @@ namespace UIComponent {
          * @code
          * canvas->Render([] {
          *     ClearBackground(GRAY);
-         *     DrawCircleV(raylib::Vector2(100, 100), 50, BLACK);
-         *     DrawRectangleV(raylib::Vector2(300, 150), raylib::Vector2(50, 100), RED);
+         *     DrawCircleV(math::Vector2(100, 100), 50, BLACK);
+         *     DrawRectangleV(math::Vector2(300, 150), math::Vector2(50, 100), RED);
          * });
          */
         void Render(std::function<void ()> drawCalls);
@@ -38,20 +38,23 @@ namespace UIComponent {
          * @param absolutePosition position we want to convert
          * @return The position relative to the canvas
          */
-        raylib::Vector2 GetRelativePosition(raylib::Vector2 absolutePosition) const;
+        math::Vector2 GetRelativePosition(math::Vector2 absolutePosition) const;
 
         /**
          * @brief Shortcut for GetRelativePosition() with mouse coordinates
          * @return The mouse position relative to the canvas.
          */
-        raylib::Vector2 GetMouseRelativePosition() const;
+        math::Vector2 GetMouseRelativePosition() const;
 
         /**
          * @brief overrides image draw to have the texture y-flipped, since when it renders from bottom left.
          */
         void draw() override;
     protected:
-        raylib::RenderTexture renderTexture;
+
+        graphic::Texture& GetTexture() override;
+
+        graphic::RenderTexture renderTexture;
     };
 } // UIComponent
 

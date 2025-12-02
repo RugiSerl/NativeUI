@@ -5,6 +5,8 @@
 #ifndef NATIVEUI_STYLEBOX_HPP
 #define NATIVEUI_STYLEBOX_HPP
 #include "raylib-cpp.hpp"
+#include "../math/rectangle.hpp"
+
 
 /**
  * @brief Holds style parameters for a component.
@@ -30,7 +32,7 @@ public:
      * @param rect Size on screen of the rectangle to draw.
      * @param scissorRect Rect delimitating the surface to draw the styleBox.
      */
-    void draw(raylib::Rectangle rect, raylib::Rectangle scissorRect) const;
+    void draw(const math::Rectangle rect, const math::Rectangle scissorRect) const;
 };
 
 
