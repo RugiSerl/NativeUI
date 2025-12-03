@@ -1,4 +1,4 @@
-#include "mouse.hpp"
+#include "input.hpp"
 #include "Mouse.hpp"
 
 namespace input {
