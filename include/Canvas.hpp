@@ -1,0 +1,61 @@
+//
+// Created by raphael on 11/2/25.
+//
+
+#ifndef NATIVEUI_CANVAS_HPP
+#define NATIVEUI_CANVAS_HPP
+#include <functional>
+
+#include "Component.hpp"
+#include "Image.hpp"
+#include "RenderTexture.hpp"
+
+namespace UIComponent {
+    /**
+     * @brief Surface on which you can render pretty much anything. See Render() documentation to learn how to use.
+     */
+    class Canvas : public Image{
+    public:
+        Canvas(Modifier modifier, LayoutType layout);;
+
+        /**
+         * @brief Render content inside the canvas. You can render pretty much everything you can render on a normal
+         * windows. You have to pass a function in which you execute the draw calls.
+         * @param drawCalls function containing all the draw calls.
+         *
+         * Example :
+         * @code
+         * canvas->Render([] {
+         *     ClearBackground(GRAY);
+         *     DrawCircleV(math::Vector2(100, 100), 50, BLACK);
+         *     DrawRectangleV(math::Vector2(300, 150), math::Vector2(50, 100), RED);
+         * });
+         */
+        void Render(std::function<void ()> drawCalls);
+
+        /**
+         * @brief Computes the position that would be in the canvas from a screen space position.
+         * @param absolutePosition position we want to convert
+         * @return The position relative to the canvas
+         */
+        math::Vector2 GetRelativePosition(math::Vector2 absolutePosition) const;
+
+        /**
+         * @brief Shortcut for GetRelativePosition() with mouse coordinates
+         * @return The mouse position relative to the canvas.
+         */
+        math::Vector2 GetMouseRelativePosition() const;
+
+        /**
+         * @brief overrides image draw to have the texture y-flipped, since when it renders from bottom left.
+         */
+        void draw() override;
+    protected:
+
+        graphic::Texture& GetTexture() override;
+
+        graphic::RenderTexture renderTexture;
+    };
+} // UIComponent
+
+#endif //NATIVEUI_CANVAS_HPP

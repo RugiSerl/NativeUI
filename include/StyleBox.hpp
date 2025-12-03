@@ -1,0 +1,39 @@
+//
+// Created by raphael on 8/16/25.
+//
+
+#ifndef NATIVEUI_STYLEBOX_HPP
+#define NATIVEUI_STYLEBOX_HPP
+#include "external/raylib-cpp.hpp"
+#include "rectangle.hpp"
+
+
+/**
+ * @brief Holds style parameters for a component.
+ */
+class StyleBox {
+public:
+    Color fillColor;
+    Color borderColor;
+    float borderWidth;
+    float borderRadius;
+
+    /**
+     * @brief Creates a styleBox object.
+     * @param fillColor Color inside the rectangle.
+     * @param borderColor Color of the border of the box.
+     * @param borderWidth Thickness of the border.
+     * @param borderRadius Radius of the rounded corner.
+     */
+    StyleBox(Color fillColor, Color borderColor, float borderWidth, float borderRadius);
+
+    /**
+     * Render the styleBox.
+     * @param rect Size on screen of the rectangle to draw.
+     * @param scissorRect Rect delimitating the surface to draw the styleBox.
+     */
+    void draw(const math::Rectangle rect, const math::Rectangle scissorRect) const;
+};
+
+
+#endif //NATIVEUI_STYLEBOX_HPP
