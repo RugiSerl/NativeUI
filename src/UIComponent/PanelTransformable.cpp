@@ -6,7 +6,7 @@
 
 #include <cassert>
 
-#include "../math/rectangle.hpp"
+#include "rectangle.hpp"
 
 namespace UIComponent {
     void PanelTransformable::update() {

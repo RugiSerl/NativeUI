@@ -5,7 +5,7 @@
 #include "Image.hpp"
 
 #include "Component.hpp"
-#include "../math/rectangle.hpp"
+#include "rectangle.hpp"
 #include "raylib.h"
 
 namespace UIComponent {

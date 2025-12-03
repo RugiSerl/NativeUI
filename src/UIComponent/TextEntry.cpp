@@ -2,7 +2,7 @@
 #include "Color.hpp"
 #include "Functions.hpp"
 #include "Keyboard.hpp"
-#include "../Properties/Layout.hpp"
+#include "Layout.hpp"
 #include "Panel.hpp"
 #include "Rectangle.hpp"
 #include "raylib.h"

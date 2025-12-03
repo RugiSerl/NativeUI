@@ -56,6 +56,8 @@ else
 	COPY = cp $1$(PATHSEP)$3 $2
 endif
 
+compileFlags += -I $(call platformpth, ./include/external)
+
 # Lists phony targets for Makefile
 .PHONY: all setup submodules execute clean
 
@@ -71,11 +73,11 @@ submodules:
 
 # Copy the relevant header files into includes
 include: submodules
-	$(MKDIR) $(call platformpth, ./include)
-	$(call COPY,vendor/raylib/src,./include,raylib.h)
-	$(call COPY,vendor/raylib/src,./include,raymath.h)
-	$(call COPY,vendor/raylib/src,./include,rlgl.h)
-	$(call COPY,vendor/raylib-cpp/include,./include,*.hpp)
+	$(MKDIR) $(call platformpth, ./include/external)
+	$(call COPY,vendor/raylib/src,./include/external,raylib.h)
+	$(call COPY,vendor/raylib/src,./include/external,raymath.h)
+	$(call COPY,vendor/raylib/src,./include/external,rlgl.h)
+	$(call COPY,vendor/raylib-cpp/include,./include/external,*.hpp)
 
 # Build the raylib static library file and copy it into lib
 lib: submodules

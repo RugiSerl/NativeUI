@@ -1,18 +1,18 @@
-#include "UIComponent/TextEntry.hpp"
-#include "Vector2.hpp"
-#include "Properties/Anchor.hpp"
+#include "TextEntry.hpp"
+#include "external/Vector2.hpp"
+#include "Anchor.hpp"
 #include <iostream>
-#include "raylib-cpp.hpp"
+#include "external/raylib-cpp.hpp"
 
-#include "UIComponent/Button.hpp"
-#include "UIComponent/Canvas.hpp"
-#include "UIComponent/CanvasDynamic.hpp"
-#include "UIComponent/Component.hpp"
-#include "UIComponent/Panel.hpp"
-#include "UIComponent/PanelTransformable.hpp"
-#include "UIComponent/Window.hpp"
-#include "math/vector2.hpp"
-#include "raylib.h"
+#include "Button.hpp"
+#include "Canvas.hpp"
+#include "CanvasDynamic.hpp"
+#include "Component.hpp"
+#include "Panel.hpp"
+#include "PanelTransformable.hpp"
+#include "Window.hpp"
+#include "vector2.hpp"
+#include "external/raylib.h"
 
 void test() {
     std::cout << "clicked !" << std::endl;

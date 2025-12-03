@@ -7,7 +7,7 @@
 #include <cassert>
 #include <iostream>
 
-#include "../math/rectangle.hpp"
+#include "rectangle.hpp"
 
 namespace UIComponent {
     Component::Component(Modifier modifier, LayoutType layout) : modifier(modifier),

@@ -6,7 +6,7 @@
 
 #include <cassert>
 
-#include "../backend/graphic/graphics.hpp"
+#include "graphics.hpp"
 
 StyleBox::StyleBox(Color fillColor, Color borderColor, float borderWidth, float borderRadius) : fillColor(fillColor),
                                                                                                 borderColor(borderColor),
