@@ -1,6 +1,6 @@
 #include "texture.hpp"
-#include "RenderTexture.hpp"
-#include "raylib.h"
+#include "external/RenderTexture.hpp"
+#include "external/raylib.h"
 
 namespace graphic {
     void Texture::Draw(math::Rectangle sourceRect, math::Rectangle destRect) const {

@@ -1,7 +1,7 @@
 #ifndef __FONT_HPP__
 #define __FONT_HPP__
 
-#include "Font.hpp"
+#include "external/Font.hpp"
 #include "vector2.hpp"
 #include <string>
 namespace graphic {
