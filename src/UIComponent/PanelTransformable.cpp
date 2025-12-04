@@ -6,6 +6,7 @@
 
 #include <cassert>
 
+#include "input.hpp"
 #include "rectangle.hpp"
 
 namespace UIComponent {
@@ -48,30 +49,30 @@ namespace UIComponent {
         math::RectangleSplit split = math::GetSplitRectangle(screenSpaceRectangle, math::getInnerRect(screenSpaceRectangle, RESIZE_PADDING * raylib::Window::GetScaleDPI().x));
 
         // Checking center for translation.
-        if (split.centerRect.CheckCollision(raylib::Mouse::GetPosition())) {
+        if (split.centerRect.CheckCollision(input::GetMousePosition())) {
             ongoingTransform.translating = true;
 
             // Checking edges for resizing.
-        } else if (split.TopRect.CheckCollision(raylib::Mouse::GetPosition())) {
+        } else if (split.TopRect.CheckCollision(input::GetMousePosition())) {
             ongoingTransform.resizeTop = true;
-        } else if (split.BottomRect.CheckCollision(raylib::Mouse::GetPosition())) {
+        } else if (split.BottomRect.CheckCollision(input::GetMousePosition())) {
             ongoingTransform.resizeBottom = true;
-        } else if (split.LeftRect.CheckCollision(raylib::Mouse::GetPosition())) {
+        } else if (split.LeftRect.CheckCollision(input::GetMousePosition())) {
             ongoingTransform.resizeLeft = true;
-        } else if (split.RightRect.CheckCollision(raylib::Mouse::GetPosition())) {
+        } else if (split.RightRect.CheckCollision(input::GetMousePosition())) {
             ongoingTransform.resizeRight = true;
 
             // Checking corners for resizing.
-        } else if (split.TopLeftCorner.CheckCollision(raylib::Mouse::GetPosition())) {
+        } else if (split.TopLeftCorner.CheckCollision(input::GetMousePosition())) {
             ongoingTransform.resizeTop = true;
             ongoingTransform.resizeLeft = true;
-        } else if (split.TopRightCorner.CheckCollision(raylib::Mouse::GetPosition())) {
+        } else if (split.TopRightCorner.CheckCollision(input::GetMousePosition())) {
             ongoingTransform.resizeTop = true;
             ongoingTransform.resizeRight = true;
-        } else if (split.BottomLeftCorner.CheckCollision(raylib::Mouse::GetPosition())) {
+        } else if (split.BottomLeftCorner.CheckCollision(input::GetMousePosition())) {
             ongoingTransform.resizeBottom = true;
             ongoingTransform.resizeLeft = true;
-        } else if (split.BottomRightCorner.CheckCollision(raylib::Mouse::GetPosition())) {
+        } else if (split.BottomRightCorner.CheckCollision(input::GetMousePosition())) {
             ongoingTransform.resizeBottom = true;
             ongoingTransform.resizeRight = true;
         }
@@ -80,21 +81,21 @@ namespace UIComponent {
     void PanelTransformable::updateTransform() {
         assert(!ongoingTransform.IsNone() && "updateTransform() called but no ongoing transform");
         if (ongoingTransform.translating && availableTransform.translating) {
-            virtualRectangle.SetPosition(virtualRectangle.GetPosition() + raylib::Mouse::GetDelta());
+            virtualRectangle.SetPosition(virtualRectangle.GetPosition() + input::GetMouseDelta());
         }
         if (ongoingTransform.resizeTop && availableTransform.resizeTop) {
-            virtualRectangle.height -= raylib::Mouse::GetDelta().y;
-            virtualRectangle.y += raylib::Mouse::GetDelta().y;
+            virtualRectangle.height -= input::GetMouseDelta().y;
+            virtualRectangle.y += input::GetMouseDelta().y;
         }
         if (ongoingTransform.resizeBottom && availableTransform.resizeBottom) {
-            virtualRectangle.height += raylib::Mouse::GetDelta().y;
+            virtualRectangle.height += input::GetMouseDelta().y;
         }
         if (ongoingTransform.resizeLeft && availableTransform.resizeLeft) {
-            virtualRectangle.width -= raylib::Mouse::GetDelta().x;
-            virtualRectangle.x += raylib::Mouse::GetDelta().x;
+            virtualRectangle.width -= input::GetMouseDelta().x;
+            virtualRectangle.x += input::GetMouseDelta().x;
         }
         if (ongoingTransform.resizeRight && availableTransform.resizeRight) {
-            virtualRectangle.width += raylib::Mouse::GetDelta().x;
+            virtualRectangle.width += input::GetMouseDelta().x;
         }
     }
 

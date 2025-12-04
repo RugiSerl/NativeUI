@@ -5,6 +5,8 @@
 
 namespace input {
     math::Vector2 GetMousePosition();
+    math::Vector2 GetMouseDelta();
+    char GetKeyChar();
 }
 
 #endif //__INPUT_HPP__

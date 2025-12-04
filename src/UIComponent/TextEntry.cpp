@@ -1,21 +1,19 @@
 #include "TextEntry.hpp"
-#include "Color.hpp"
 #include "Functions.hpp"
-#include "Keyboard.hpp"
 #include "Layout.hpp"
 #include "Panel.hpp"
-#include "Rectangle.hpp"
+#include "font.hpp"
+#include "input.hpp"
 #include "raylib.h"
-#include <iostream>
 
 namespace UIComponent {
-    TextEntry::TextEntry(Modifier modifier, LayoutType layout): Panel(modifier, layout, true), text() {
+    TextEntry::TextEntry(Modifier modifier, LayoutType layout, graphic::Font* font): Panel(modifier, layout, true), text(), font(font) {
     }
 
     void TextEntry::update() {
         Panel::update();
         if (selected) {
-            if (char letter = raylib::Keyboard::GetCharPressed()) { // making sure that letter != 0
+            if (char letter = input::GetKeyChar()) { // making sure that letter != 0
                 text += letter;
             }
         }
@@ -24,6 +22,6 @@ namespace UIComponent {
     void TextEntry::draw() {
         Panel::draw();
         math::Rectangle rect = GetScreenSpaceRectangle();
-        raylib::DrawText(text, rect.x, rect.y, 10, BLACK);
+        font->draw(text, rect.GetPosition(), BLACK);
     }
 }

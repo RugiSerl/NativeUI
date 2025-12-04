@@ -9,7 +9,7 @@
 
 namespace UIComponent {
     Canvas::Canvas(Modifier modifier, LayoutType layout) : Image(modifier, layout), renderTexture(modifier.size.x, modifier.size.y){
-        
+
     }
 
     void Canvas::Render(std::function<void()> contentToDraw) {

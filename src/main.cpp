@@ -11,6 +11,7 @@
 #include "Panel.hpp"
 #include "PanelTransformable.hpp"
 #include "Window.hpp"
+#include "font.hpp"
 #include "vector2.hpp"
 #include "external/raylib.h"
 
@@ -116,7 +117,8 @@ int main() {
         .setPosition(math::Vector2(200, 200))
         .setSize(math::Vector2(200, 200))
         .setAnchor(Anchor2(Anchor::RIGHT, Anchor::TOP)),
-        LayoutType::NONE
+        LayoutType::NONE,
+        new graphic::Font("res/Roboto-Regular.ttf", 50)
     );
 
 
