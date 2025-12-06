@@ -32,6 +32,7 @@ ifeq ($(OS), Windows_NT)
 	MKDIR := -mkdir -p
 	RM := -del /q
 	COPY = -robocopy "$(call platformpth,$1)" "$(call platformpth,$2)" $3
+	COPY_R = -robocopy "$(call platformpth,$1)" "$(call platformpth,$2)" $3
 else
 	# Check for MacOS/Linux
 	UNAMEOS := $(shell uname)
@@ -80,11 +81,11 @@ include: submodules
 # 	$(call COPY,vendor/raylib/src,./include/external,rlgl.h)
 # 	$(call COPY,vendor/raylib-cpp/include,./include/external,*.hpp)
 
-# Build the raylib static library file and copy it into lib
 lib: submodules
-	$(MKDIR) vendor/sdl/build $(THEN) cd vendor/sdl/build $(THEN) "$(MAKE)" PLATFORM=PLATFORM_DESKTOP
+#	building sdl dependency
+	cd vendor/sdl $(THEN) cmake -S . -B build $(THEN) cd build $(THEN) "$(MAKE)" 
 	$(MKDIR) $(call platformpth, lib/$(platform))
-#	$(call COPY,vendor/raylib/src,lib/$(platform),libraylib.a)
+	$(call COPY,vendor/sdl/build/,lib/$(platform),libSDL3_test.a)
 
 # Link the program and create the executable
 $(target): $(objects)
