@@ -54,6 +54,7 @@ else
 	MKDIR := mkdir -p
 	RM := rm -rf
 	COPY = cp $1$(PATHSEP)$3 $2
+	COPY_R = cp -r $1$(PATHSEP)$3 $2
 endif
 
 compileFlags += -I $(call platformpth, ./include/external)
@@ -74,7 +75,7 @@ submodules:
 # Copy the relevant header files into includes
 include: submodules
 	$(MKDIR) $(call platformpth, ./include/external)
-	$(call COPY,vendor/sdl/include,./include/external,*.h)
+	$(call COPY_R,vendor/sdl/include,./include/external,)
 # 	$(call COPY,vendor/raylib/src,./include/external,raymath.h)
 # 	$(call COPY,vendor/raylib/src,./include/external,rlgl.h)
 # 	$(call COPY,vendor/raylib-cpp/include,./include/external,*.hpp)
