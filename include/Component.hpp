@@ -8,7 +8,6 @@
 #include "Modifier.hpp"
 #include "rectangle.hpp"
 
-#include "raylib-cpp.hpp"
 
 namespace UIComponent {
     /**

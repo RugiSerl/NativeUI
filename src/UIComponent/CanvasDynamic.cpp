@@ -3,7 +3,6 @@
 //
 
 #include "CanvasDynamic.hpp"
-#include "raylib.h"
 
 #include <iostream>
 

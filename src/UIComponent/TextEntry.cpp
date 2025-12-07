@@ -1,10 +1,8 @@
 #include "TextEntry.hpp"
-#include "Functions.hpp"
 #include "Layout.hpp"
 #include "Panel.hpp"
 #include "font.hpp"
 #include "input.hpp"
-#include "raylib.h"
 
 namespace UIComponent {
     TextEntry::TextEntry(Modifier modifier, LayoutType layout, graphic::Font* font): Panel(modifier, layout, true), text(), font(font) {

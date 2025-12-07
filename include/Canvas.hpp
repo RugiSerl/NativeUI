@@ -8,7 +8,6 @@
 
 #include "Component.hpp"
 #include "Image.hpp"
-#include "RenderTexture.hpp"
 
 namespace UIComponent {
     /**

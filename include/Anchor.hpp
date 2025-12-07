@@ -1,6 +1,5 @@
 #ifndef __ANCHOR_H__
 #define __ANCHOR_H__
-#include "external/raylib-cpp.hpp"
 #include "rectangle.hpp"
 
 

@@ -4,7 +4,6 @@
 
 #include "Canvas.hpp"
 
-#include "Mouse.hpp"
 #include "Rectangle.hpp"
 
 namespace UIComponent {

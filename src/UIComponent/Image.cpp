@@ -6,7 +6,6 @@
 
 #include "Component.hpp"
 #include "rectangle.hpp"
-#include "raylib.h"
 
 namespace UIComponent {
     Image::Image(Modifier modifier, LayoutType layout, const std::string& imagePath) : Component(modifier, layout), texture(imagePath) {
@@ -47,5 +46,5 @@ namespace UIComponent {
     void Image::draw() {
         GetTexture().Draw(math::Rectangle(0, 0, texture.GetWidth(), texture.GetHeight()), GetScreenSpaceRectangle());
     }
-    
+
 } // UIComponent
