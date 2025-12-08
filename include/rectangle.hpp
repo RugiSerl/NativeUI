@@ -2,10 +2,9 @@
 #define __UTILS_H__
 #include <vector>
 #include <algorithm>
-#include "external/Rectangle.hpp"
-#include "external/raylib-cpp.hpp"
 #include "external/raylib.h"
 #include "vector2.hpp"
+#include "vector4.hpp"
 
 namespace math {
 
@@ -33,9 +32,6 @@ namespace math {
 
         bool CheckCollision(math::Vector2 position) const {
             return position.x >= x && position.x <= x + width && position.y >= y && position.y <= y + height;
-        }
-        raylib::Rectangle ToRaylibRectangle() const {
-            return raylib::Rectangle(x, y, width, height);
         }
 
     };
@@ -82,7 +78,7 @@ namespace math {
      * @param padding
      * @return math::Rectangle
      */
-    math::Rectangle getInnerRect(math::Rectangle rectangle, raylib::Vector4 padding);
+    math::Rectangle getInnerRect(math::Rectangle rectangle, math::Vector4 padding);
 
 
     /**

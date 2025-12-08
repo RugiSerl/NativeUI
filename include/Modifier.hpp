@@ -5,6 +5,8 @@
 #ifndef NATIVEUI_MODIFIER_HPP
 #define NATIVEUI_MODIFIER_HPP
 #include "Anchor.hpp"
+#include "vector2.hpp"
+#include "vector4.hpp"
 
 /**
  * @brief Gathers different aspects of the layout to avoid boilerplate arguments in Component initializers.
@@ -32,7 +34,7 @@ public:
     math::Vector2 size;
     math::Vector2 minSize;
     Anchor2 anchor;
-    raylib::Vector4 padding;
+    math::Vector4 padding;
 };
 
 

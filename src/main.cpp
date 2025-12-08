@@ -1,8 +1,6 @@
 #include "TextEntry.hpp"
-#include "external/Vector2.hpp"
 #include "Anchor.hpp"
 #include <iostream>
-#include "external/raylib-cpp.hpp"
 
 #include "Button.hpp"
 #include "Canvas.hpp"

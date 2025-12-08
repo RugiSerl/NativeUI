@@ -1,20 +1,20 @@
 #ifndef __TEXTURE_HPP__
 #define __TEXTURE_HPP__
 
-#include "external/RenderTexture.hpp"
-#include "external/Texture.hpp"
 #include "rectangle.hpp"
-#include "external/TextureUnmanaged.hpp"
 #include "external/raylib.h"
+#include <string>
 #include <utility>
 
 namespace graphic {
 
     class Texture {
     public:
-        Texture(const std::string& imagePath) : texture(imagePath) {};
+        Texture(const std::string& imagePath) {
+            texture = LoadTexture(imagePath.c_str());
+        };
         Texture() : texture() {};
-        ~Texture() {texture.Unload();};
+        ~Texture() {UnloadTexture(texture);};
         void Unload();
     
         void Draw(math::Rectangle sourceRect, math::Rectangle destRect) const;
@@ -25,12 +25,13 @@ namespace graphic {
         int GetHeight() const;
 
     protected:
-        raylib::TextureUnmanaged texture;
+         texture;
     };
 
-    class RenderTexture : public Texture {
+    class _RenderTexture : public Texture {
     public:
-        RenderTexture(int width, int height) : content(width, height) {
+        _RenderTexture(int width, int height)  {
+            content = LoadRenderTexture(width, height);
             texture = content.texture;
         };
         void BeginMode();
@@ -41,7 +42,7 @@ namespace graphic {
         // be careful with this one. Doesn't copy the texture
         Texture& GetTexture();
     private:
-        raylib::RenderTexture2D content;
+        RenderTexture2D content;
     };
 }
 

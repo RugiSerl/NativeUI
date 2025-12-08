@@ -1,19 +1,19 @@
 #ifndef __FONT_HPP__
 #define __FONT_HPP__
 
-#include "external/Font.hpp"
 #include "vector2.hpp"
+#include "external/raylib.h"
 #include <string>
 namespace graphic {
-    class Font {
+    class _Font {
     public:
-        Font(const std::string& path, int fontSize);
-        ~Font() = default;
+        _Font(const std::string& path, int fontSize);
+        ~_Font() = default;
 
         void draw(const std::string& text, const math::Vector2& position, const Color& color);
         void setSize(int fontSize);
     private:
-        raylib::Font data;
+        Font data;
         int size;
     };
 }

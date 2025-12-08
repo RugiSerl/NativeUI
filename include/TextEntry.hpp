@@ -7,7 +7,7 @@ namespace UIComponent {
     class TextEntry : public Panel
     {
     public:
-        TextEntry(Modifier modifier, LayoutType layout, graphic::Font* font);
+        TextEntry(Modifier modifier, LayoutType layout, graphic::_Font* font);
         ~TextEntry() = default;
     protected:
         virtual void update() override;
@@ -15,7 +15,7 @@ namespace UIComponent {
 
     private:
         std::string text;
-        graphic::Font* font;
+        graphic::_Font* font;
 
     };
 

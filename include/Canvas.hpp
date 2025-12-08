@@ -53,7 +53,7 @@ namespace UIComponent {
 
         graphic::Texture& GetTexture() override;
 
-        graphic::RenderTexture renderTexture;
+        graphic::_RenderTexture renderTexture;
     };
 } // UIComponent
 

@@ -6,6 +6,7 @@
 #define NATIVEUI_COMPONENT_HPP
 #include "Layout.hpp"
 #include "Modifier.hpp"
+#include "input.hpp"
 #include "rectangle.hpp"
 
 
@@ -92,7 +93,7 @@ namespace UIComponent {
          * @param mousePosition (optional) the position the cursor.
          * @return whether the mouse position is inside the component and no other component is above.
          */
-        bool IsHovered(math::Vector2 mousePosition = raylib::Mouse::GetPosition());
+        bool IsHovered(math::Vector2 mousePosition = input::GetMousePosition());
 
         /**
          * Add a child and set his parent to this.
