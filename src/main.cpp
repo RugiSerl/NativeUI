@@ -1,4 +1,6 @@
+#include "properties/Modifier.hpp"
 #include "raylib.h"
+#include "widgets/Widget.hpp"
 
 int main() {
     // Initialization
@@ -9,6 +11,13 @@ int main() {
     InitWindow(screenWidth, screenHeight, "NativeUI Showcase");
     SetTargetFPS(60);
     // Main game loop
+
+    widget::Widget myWidget(
+        property::Modifier()
+            .withSize(backend::Vector2(400, 400))
+            .withPosition(backend::Vector2(20, 20))
+
+    );
 
 
 

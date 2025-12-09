@@ -1,6 +1,5 @@
 #include "Texture.hpp"
 #include "raylib.h"
-#include <functional>
 
 namespace backend {
     Texture::Texture(std::string filename) {

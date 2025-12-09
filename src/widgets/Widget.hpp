@@ -1,13 +1,18 @@
 #pragma once
-
+#include "../properties/Modifier.hpp"
+#include <vector>
 namespace widget {
+    /**
+     * Base class for all UI components.
+     */
     class Widget {
     public:
-        Widget();
+        Widget(property::Modifier modifier);
 
     protected:
+
         /**
-         * Update logic
+         * Update logic / User input
          */
         void update();
 
@@ -17,6 +22,26 @@ namespace widget {
         void draw();
 
     private:
+
+        /**
+         * Contains all the data passed to the component, like the size, the position, the anchor, ...
+         */
+        property::Modifier modifier;
+
+        /**
+         * Children of the widget. They are constrained within the rectangle of the widget.
+         */
+        std::vector<Widget*> children;
+
+        /**
+         * Keeping track of which components are above each ones.
+         */
+        std::vector<int> orderOfDrawing;
+
+        /**
+         * nullptdr if root of the tree.
+         */
+         Widget* parent;
 
     };
 }
