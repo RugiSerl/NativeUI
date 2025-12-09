@@ -1,8 +1,4 @@
 #include "raylib.h"
-#include <iostream>
-void test() {
-    std::cout << "clicked !" << std::endl;
-}
 
 int main() {
     // Initialization
