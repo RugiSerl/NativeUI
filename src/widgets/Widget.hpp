@@ -9,6 +9,11 @@ namespace widget {
     public:
         Widget(property::Modifier modifier);
 
+        /**
+         * updates and draws widget, and recursively updates and draws its children.
+         */
+        void UpdateAndDraw();
+
     protected:
 
         /**
