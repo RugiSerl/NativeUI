@@ -7,12 +7,24 @@ namespace widget {
      */
     class Widget {
     public:
-        Widget(property::Modifier modifier);
+        Widget(property::Modifier modifier = property::Modifier());
 
         /**
          * updates and draws widget, and recursively updates and draws its children.
          */
         void UpdateAndDraw();
+
+        /**
+         * Adds widget as a child.
+         * Returns whether child could be added.
+         */
+        bool AddChild(Widget* widget);
+
+        /**
+         * Removes widget from children.
+         * Returns whether child was removed.
+         */
+        bool RemoveChild(Widget* widget);
 
     protected:
 

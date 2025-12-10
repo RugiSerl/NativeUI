@@ -12,14 +12,21 @@ int main() {
     SetTargetFPS(60);
     // Main game loop
 
-    widget::Widget myWidget(
+    auto* myWidget = new widget::Widget(
         property::Modifier()
             .withSize(backend::Vector2(400, 400))
             .withPosition(backend::Vector2(20, 20))
 
     );
 
+    auto* myWidget2 = new widget::Widget(
+        property::Modifier()
+            .withSize(backend::Vector2(400, 400))
+            .withPosition(backend::Vector2(20, 20))
 
+    );
+
+    myWidget->AddChild(myWidget2);
 
     while (!WindowShouldClose()) {
         // Detect window close button or ESC key
@@ -27,6 +34,7 @@ int main() {
 
         BeginDrawing();
         ClearBackground(WHITE);
+        myWidget->UpdateAndDraw();
 
         EndDrawing();
     }
