@@ -6,7 +6,13 @@ namespace widget {
 
     }
 
+
     void Panel::draw() {
-        
+
     }
+
+    void Panel::update() {
+
+    }
+
 }

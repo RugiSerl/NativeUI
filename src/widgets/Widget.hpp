@@ -10,6 +10,7 @@ namespace widget {
     class Widget {
     public:
         Widget(property::Modifier modifier = property::Modifier());
+        virtual ~Widget() = default;
 
         /**
          * updates and draws widget, and recursively updates and draws its children.

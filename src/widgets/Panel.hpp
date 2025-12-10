@@ -6,6 +6,8 @@ namespace widget {
     class Panel : public Widget {
     public:
         Panel(property::Modifier modifier = property::Modifier(), style::StyleBox styleBox = style::StyleBox());
+        ~Panel() override = default;
+
 
     protected:
 

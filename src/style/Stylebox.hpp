@@ -15,8 +15,10 @@ namespace style {
          */
         StyleBox() = default;
 
+        ~StyleBox() = default;
+
         /**
-         * Render the StyleBox on screen. 
+         * Render the StyleBox on screen.
          */
         void Render(backend::Rectangle target);
     protected:
