@@ -10,8 +10,8 @@ namespace property {
     };
 
     class Anchor {
-        public:
-            Anchor();
-            AnchorType verticalAnchor, horizontalAnchor;
+    public:
+        Anchor();
+        AnchorType verticalAnchor, horizontalAnchor;
     };
 }

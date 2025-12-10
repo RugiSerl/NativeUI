@@ -1,9 +1,11 @@
 #pragma once
 #include "../properties/Modifier.hpp"
+#include "../backend/Rectangle.hpp"
 #include <vector>
 namespace widget {
     /**
-     * Base class for all UI components.
+     * Base class for all UI components. Doesn't really do anything on its own.
+     * Can also be used as a container.
      */
     class Widget {
     public:
@@ -26,17 +28,22 @@ namespace widget {
          */
         bool RemoveChild(Widget* widget);
 
+        /**
+         * Get widget's rectangle on screen with origin from the top left corner.
+         */
+        backend::Rectangle GetRectangle();
+
     protected:
 
         /**
          * Update logic / User input
          */
-        void update();
+        virtual void update();
 
         /**
          * Draw on screen
          */
-        void draw();
+        virtual void draw();
 
     private:
 

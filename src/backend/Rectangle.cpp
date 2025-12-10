@@ -1,5 +1,7 @@
 #include "Rectangle.hpp"
+#include "Color.hpp"
 #include "Vector.hpp"
+#include "raylib.h"
 
 namespace backend {
     Rectangle::Rectangle(float x, float y, float width, float height) {
@@ -14,5 +16,16 @@ namespace backend {
         y = position.y;
         width = size.x;
         height = size.y;
+    }
+
+    void Rectangle::Draw(backend::Color color) {
+        DrawRectangleRec(*this, color);
+    }
+
+    void Rectangle::Draw(backend::Color color, float cornerRadius) {
+        if (cornerRadius <= 0) {
+            Draw(color); // Use standard drawing without rounded corners.
+            return;
+        }
     }
 }
