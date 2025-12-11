@@ -1,4 +1,5 @@
 #include "Widget.hpp"
+#include <iostream>
 
 namespace widget {
     Widget::Widget(property::Modifier modifier) : modifier(modifier) {
@@ -21,6 +22,10 @@ namespace widget {
             }
         }
         children.push_back(widget);
+
+        int childrenID = children.size()-1;
+        orderOfDrawing.push_back(childrenID);
+
         return true;
     }
 
@@ -32,6 +37,18 @@ namespace widget {
             }
         }
         return false;
+    }
+
+    bool Widget::SetParent(Widget* widget) {
+        if (parent != nullptr) {
+            return false;
+        }
+        parent = widget;
+        return true;
+    }
+
+    backend::Rectangle Widget::GetRectangle() {
+        return backend::Rectangle(modifier.position, modifier.size);
     }
 
     void Widget::update() {

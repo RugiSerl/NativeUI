@@ -4,32 +4,32 @@
 
 namespace property {
     Modifier Modifier::withPosition(backend::Vector2 position) {
-        position = position;
+        this->position = position;
         return *this;
     }
 
     Modifier Modifier::withSize(backend::Vector2 size) {
-        size = size;
+        this->size = size;
         return *this;
     }
 
     Modifier Modifier::withMinimumSize(backend::Vector2 minimumSize) {
-        minimumSize = minimumSize;
+        this->minimumSize = minimumSize;
         return *this;
     }
 
     Modifier Modifier::withPadding(backend::Vector4 padding) {
-        padding = padding;
+        this->padding = padding;
         return *this;
     }
 
     Modifier Modifier::withAnchor(property::Anchor anchor) {
-        anchor = anchor;
+        this->anchor = anchor;
         return *this;
     }
 
     Modifier Modifier::withLayout(property::Layout layout) {
-        layout = layout;
+        this->layout = layout;
         return *this;
     }
 }

@@ -30,6 +30,11 @@ namespace widget {
         bool RemoveChild(Widget* widget);
 
         /**
+         * Set widget as parent
+         */
+        bool SetParent(Widget* widget);
+
+        /**
          * Get widget's rectangle on screen with origin from the top left corner.
          */
         backend::Rectangle GetRectangle();
@@ -46,12 +51,12 @@ namespace widget {
          */
         virtual void draw();
 
-    private:
-
         /**
          * Contains all the data passed to the component, like the size, the position, the anchor, ...
          */
         property::Modifier modifier;
+
+    private:
 
         /**
          * Children of the widget. They are constrained within the rectangle of the widget.
@@ -66,7 +71,7 @@ namespace widget {
         /**
          * nullptdr if root of the tree.
          */
-         Widget* parent;
+        Widget* parent;
 
     };
 }

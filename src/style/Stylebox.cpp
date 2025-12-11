@@ -6,6 +6,7 @@ namespace style {
     }
 
     void StyleBox::Render(backend::Rectangle target) {
+
         target.Draw(backend::Color());
     }
 }
