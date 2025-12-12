@@ -1,11 +1,10 @@
 #pragma once
 
 #include "Widget.hpp"
-#include "../style/Stylebox.hpp"
 namespace widget {
     class Panel : public Widget {
     public:
-        Panel(property::Modifier modifier = property::Modifier(), style::StyleBox styleBox = style::StyleBox());
+        Panel(property::Modifier modifier, shape::Shape* shape);
         ~Panel() override = default;
 
 
@@ -15,7 +14,5 @@ namespace widget {
 
         void draw() override;
 
-    private:
-        style::StyleBox styleBox;
     };
 }

@@ -1,15 +1,13 @@
 #include "Panel.hpp"
 #include "Widget.hpp"
-#include <iostream>
 
 namespace widget {
-    Panel::Panel(property::Modifier modifier, style::StyleBox stylebox) : Widget(modifier), styleBox(stylebox) {
+    Panel::Panel(property::Modifier modifier, shape::Shape* shape) : Widget(modifier, shape) {
 
     }
 
     void Panel::draw() {
-
-        styleBox.Render(GetRectangle());
+        shape->Render(modifier.position);
     }
 
     void Panel::update() {

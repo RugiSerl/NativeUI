@@ -1,11 +1,11 @@
 #pragma once
-#include "Color.hpp"
+#include "colors.hpp"
 #include "external/raylib.h"
 #include <string>
 namespace backend {
     /**
      * @brief Simple wrapper around raylib's Texture2D
-     * 
+     *
      */
     class Texture : public ::Texture2D {
         public:

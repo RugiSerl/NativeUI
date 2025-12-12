@@ -1,8 +1,7 @@
 #include "Widget.hpp"
-#include <iostream>
 
 namespace widget {
-    Widget::Widget(property::Modifier modifier) : modifier(modifier) {
+    Widget::Widget(property::Modifier modifier, shape::Shape* shape) : modifier(modifier), shape(shape) {
 
     }
 
@@ -47,8 +46,8 @@ namespace widget {
         return true;
     }
 
-    backend::Rectangle Widget::GetRectangle() {
-        return backend::Rectangle(modifier.position, modifier.size);
+    shape::Shape* Widget::GetShape() {
+        return shape;
     }
 
     void Widget::update() {

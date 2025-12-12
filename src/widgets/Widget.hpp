@@ -1,6 +1,6 @@
 #pragma once
 #include "../properties/Modifier.hpp"
-#include "../backend/Rectangle.hpp"
+#include "../shape/Shape.hpp"
 #include <vector>
 namespace widget {
     /**
@@ -9,8 +9,10 @@ namespace widget {
      */
     class Widget {
     public:
-        Widget(property::Modifier modifier = property::Modifier());
-        virtual ~Widget() = default;
+        Widget(property::Modifier modifier, shape::Shape* shape);
+        virtual ~Widget() {
+            delete shape;
+        };
 
         /**
          * updates and draws widget, and recursively updates and draws its children.
@@ -37,7 +39,7 @@ namespace widget {
         /**
          * Get widget's rectangle on screen with origin from the top left corner.
          */
-        backend::Rectangle GetRectangle();
+        shape::Shape* GetShape();
 
     protected:
 
@@ -56,6 +58,11 @@ namespace widget {
          */
         property::Modifier modifier;
 
+        /**
+         * Shape of the widget. Also defines its collision shape.
+         */
+        shape::Shape* shape;
+
     private:
 
         /**
@@ -72,6 +79,7 @@ namespace widget {
          * nullptdr if root of the tree.
          */
         Widget* parent;
+
 
     };
 }
