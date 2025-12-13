@@ -1,6 +1,7 @@
 #include "backend/vectors.hpp"
 #include "properties/Modifier.hpp"
 #include "raylib.h"
+#include "shape/Circle.hpp"
 #include "shape/Rectangle.hpp"
 #include "shape/Shape.hpp"
 #include "widgets/Panel.hpp"
@@ -23,17 +24,9 @@ int main() {
         property::Modifier()
             .withSize(backend::Vector2(400, 400))
             .withPosition(backend::Vector2(20, 20)),
-        new shape::Rectangle(backend::Vector2(200, 200))
+        new shape::Circle(300)
     );
 
-    auto* myWidget2 = new widget::Panel(
-        property::Modifier()
-            .withSize(backend::Vector2(400, 400))
-            .withPosition(backend::Vector2(20, 20)),
-        new shape::Rectangle(backend::Vector2(200, 200))
-    );
-
-    myWidget->AddChild(myWidget2);
 
     while (!WindowShouldClose()) {
         // Detect window close button or ESC key

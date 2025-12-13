@@ -1,11 +1,10 @@
 #pragma once
+
 #include "Shape.hpp"
-
 namespace shape {
-    class Rectangle : public Shape {
+    class Circle : public Shape {
     public:
-
-        Rectangle(backend::Vector2 size);
+        Circle(float radius);
 
         bool GetPointCollision(backend::Vector2 point) const override;
 
@@ -14,7 +13,7 @@ namespace shape {
         backend::Vector2 GetBoundingBoxSize() const override;
 
     private:
-        backend::Vector2 size;
+        float radius;
 
     };
 }

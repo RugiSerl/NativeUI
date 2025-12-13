@@ -5,7 +5,13 @@ namespace backend {
     class Vector2 : public ::Vector2 {
         public:
             Vector2(float x, float y);
+            Vector2(float xy);
             Vector2();
+
+            Vector2 operator+(const Vector2 other) const;
+            Vector2 operator-(const Vector2 other) const;
+
+            float Length() const;
     };
 
     class Vector3 : public ::Vector3 {
