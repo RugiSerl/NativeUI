@@ -1,16 +1,17 @@
 #include "Rectangle.hpp"
+#include "Shape.hpp"
 
 namespace shape {
-    Rectangle::Rectangle(backend::Vector2 size) : size(size) {
+    Rectangle::Rectangle(property::RelativeCoordinate position, backend::Vector2 size) : Shape(position), size(size) {
     }
 
-    void Rectangle::Render(backend::Vector2 position, backend::Color color) const {
-        backend::DrawRectangle(position, size, color);
+    void Rectangle::Render(backend::Color color) const {
+        backend::DrawRectangle(position.ToScreenCoordinate(), size, color);
     }
 
-    bool Rectangle::GetPointCollision(backend::Vector2 point) const {
-        return point.x > 0 && point.x < size.x &&
-               point.y > 0 && point.y < size.y;
+    bool Rectangle::GetPointCollision(backend::ScreenCoordinate point) const {
+        return point.x > position.x && point.x < position.x + size.x &&
+               point.y > position.y && point.y < position.y + size.y;
     }
 
     backend::Vector2 Rectangle::GetBoundingBoxSize() const {

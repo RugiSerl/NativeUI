@@ -5,15 +5,15 @@ namespace shape {
     class Rectangle : public Shape {
     public:
 
-        Rectangle(backend::Vector2 size);
+        Rectangle(property::RelativeCoordinate position, backend::Vector2 size);
 
-        bool GetPointCollision(backend::Vector2 point) const override;
+        virtual bool GetPointCollision(backend::ScreenCoordinate point) const override;
 
-        void Render(backend::Vector2 position, backend::Color color) const override;
+        virtual void Render(backend::Color color) const override;
 
         backend::Vector2 GetBoundingBoxSize() const override;
 
-    private:
+    protected:
         backend::Vector2 size;
 
     };

@@ -4,11 +4,11 @@
 namespace shape {
     class Circle : public Shape {
     public:
-        Circle(float radius);
+        Circle(property::RelativeCoordinate, float radius);
 
-        bool GetPointCollision(backend::Vector2 point) const override;
+        bool GetPointCollision(backend::ScreenCoordinate point) const override;
 
-        void Render(backend::Vector2 position, backend::Color color) const override;
+        void Render(backend::Color color) const override;
 
         backend::Vector2 GetBoundingBoxSize() const override;
 

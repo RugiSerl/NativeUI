@@ -1,4 +1,5 @@
 #include "backend/vectors.hpp"
+#include "properties/Anchor.hpp"
 #include "properties/Modifier.hpp"
 #include "raylib.h"
 #include "shape/Circle.hpp"
@@ -24,7 +25,7 @@ int main() {
         property::Modifier()
             .withSize(backend::Vector2(400, 400))
             .withPosition(backend::Vector2(20, 20)),
-        new shape::Circle(300)
+        new shape::Circle(property::RelativeCoordinate(20, 20, property::AnchorType::LEFT, property::AnchorType::TOP), 300)
     );
 
 

@@ -1,23 +1,19 @@
 #include "Circle.hpp"
+#include "Shape.hpp"
 
 namespace shape {
-    Circle::Circle(float radius) : radius(radius)  {
+    Circle::Circle(property::RelativeCoordinate position, float radius) : Shape(position), radius(radius) {
 
     }
 
-    bool Circle::GetPointCollision(backend::Vector2 position) const {
-        return (backend::Vector2(radius) - position).Length() < radius;
+    bool Circle::GetPointCollision(backend::ScreenCoordinate point) const {
+        return (backend::ScreenCoordinate(radius) - point + (position.ToScreenCoordinate())).Length() < radius;
     }
 
-    void Circle::Render(backend::Vector2 position, backend::Color color) const {
-        backend::DrawCircle(position+backend::Vector2(radius), radius, 32, color);
+    void Circle::Render(backend::Color color) const {
+        backend::DrawCircle(position.ToScreenCoordinate()+backend::ScreenCoordinate(radius), radius, 32, color);
     }
 
-    /**
-     * Get the bounding box of the shape.
-     * Since the origin of the shape is always (0, 0), there is no need
-     * for a rectangle object, thus we only return the size of the bounding box.
-     */
     backend::Vector2 Circle::GetBoundingBoxSize() const {
         return backend::Vector2(2*radius);
     }
