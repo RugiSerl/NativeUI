@@ -1,10 +1,7 @@
 #include "backend/vectors.hpp"
-#include "properties/Anchor.hpp"
-#include "properties/Modifier.hpp"
 #include "raylib.h"
-#include "shape/Circle.hpp"
 #include "shape/Rectangle.hpp"
-#include "shape/Shape.hpp"
+#include "shape/RectangleRounded.hpp"
 #include "widgets/Panel.hpp"
 #include "widgets/Widget.hpp"
 #include <iostream>
@@ -25,7 +22,7 @@ int main() {
         property::Modifier()
             .withSize(backend::Vector2(400, 400))
             .withPosition(backend::Vector2(20, 20)),
-        new shape::Circle(property::RelativeCoordinate(20, 20, property::AnchorType::LEFT, property::AnchorType::TOP), 300)
+        new shape::RectangleRounded(property::RelativeCoordinate(200, 200, property::AnchorType::LEFT, property::AnchorType::TOP), backend::Vector2(200, 100), 30)
     );
 
 
