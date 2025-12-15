@@ -2,6 +2,7 @@
 #include "../backend/vectors.hpp"
 #include "../backend/graphics.hpp"
 #include "../properties/Anchor.hpp"
+#include "../properties/BoundingBox.hpp"
 
 namespace shape {
 
@@ -14,6 +15,9 @@ namespace shape {
 
     /**
      * Abstract class defining graphical shape.
+     * It includes a relative coordinate, a coordinate with a custom origin.
+     * This also means that it needs a containing bounding box to be drawn.
+     * (The custom origin will be place inside that bounding box).
      */
     class Shape {
     public:
@@ -25,20 +29,24 @@ namespace shape {
          * Get collision between shape and 2d point.
          * The shape is supposed to be anchored from top left.
          */
-        virtual bool GetPointCollision(backend::ScreenCoordinate point) const  = 0;
+        virtual bool GetPointCollision(const property::BoundingBox containing, const backend::ScreenCoordinate point) const  = 0;
 
         /**
          * Render the shape on screen.
          */
-        virtual void Render(backend::Color color) const  = 0;
+        virtual void Render(const property::BoundingBox containing, const backend::Color color) const  = 0;
 
         /**
-         * Get the bounding box of the shape, e.g. the smallest box in which the shape can fit.
-         * It is not used for rendering nor calculating collision, just for anchoring the shape.
+         * Get the size of the shape.
          */
-        virtual backend::Vector2 GetBoundingBoxSize() const  = 0;
+        virtual backend::RectangleSize GetSize() const = 0;
 
+        /**
+         * Get the position of the shape after applying custom anchor. So now in screen coordinates.
+         */
+        backend::ScreenCoordinate GetScreenCoordinates(const property::BoundingBox containing) const;
     protected:
+
         property::RelativeCoordinate position;
 
     };

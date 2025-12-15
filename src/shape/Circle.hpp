@@ -6,11 +6,11 @@ namespace shape {
     public:
         Circle(property::RelativeCoordinate, float radius);
 
-        bool GetPointCollision(backend::ScreenCoordinate point) const override;
+        bool GetPointCollision(const property::BoundingBox containing, backend::ScreenCoordinate point) const override;
 
-        void Render(backend::Color color) const override;
+        void Render(const property::BoundingBox containing, backend::Color color) const override;
 
-        backend::Vector2 GetBoundingBoxSize() const override;
+        backend::RectangleSize GetSize() const override;
 
     private:
         float radius;

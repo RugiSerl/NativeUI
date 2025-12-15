@@ -1,3 +1,4 @@
+#include "backend/rectangles.hpp"
 #include "backend/vectors.hpp"
 #include "raylib.h"
 #include "shape/Rectangle.hpp"
@@ -22,7 +23,7 @@ int main() {
         property::Modifier()
             .withSize(backend::Vector2(400, 400))
             .withPosition(backend::Vector2(20, 20)),
-        new shape::RectangleRounded(property::RelativeCoordinate(200, 200, property::AnchorType::LEFT, property::AnchorType::TOP), backend::Vector2(200, 100), 30)
+        new shape::RectangleRounded(property::RelativeCoordinate(200, 200, property::AnchorType::RIGHT, property::AnchorType::BOTTOM), backend::RectangleSize(500, 300), 100)
     );
 
 

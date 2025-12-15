@@ -1,4 +1,5 @@
 #include "Anchor.hpp"
+#include <stdexcept>
 
 namespace property {
     Anchor::Anchor() : verticalAnchor(AnchorType::LEFT), horizontalAnchor(AnchorType::TOP) {
@@ -9,18 +10,12 @@ namespace property {
 
     }
 
-    RelativeCoordinate::RelativeCoordinate(float x, float y, Anchor anchor) : Vector2(x, y), Anchor(anchor){
+    RelativeCoordinate::RelativeCoordinate(float x, float y, Anchor anchor) : x(x), y(y), origin(anchor){
 
     }
 
-    RelativeCoordinate::RelativeCoordinate(float x, float y, AnchorType horizontalAnchor, AnchorType verticalAnchor)
-      : Vector2(x, y),
-        Anchor(horizontalAnchor, verticalAnchor) {
+    RelativeCoordinate::RelativeCoordinate(float x, float y, AnchorType horizontalAnchor, AnchorType verticalAnchor) : x(x), y(y), origin(horizontalAnchor, verticalAnchor) {
 
-    }
-
-    backend::ScreenCoordinate RelativeCoordinate::ToScreenCoordinate() const {
-        return backend::ScreenCoordinate(x, y);
     }
 
 }

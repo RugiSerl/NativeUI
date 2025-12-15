@@ -1,6 +1,7 @@
 #include "Panel.hpp"
 #include "Widget.hpp"
 #include "../backend/inputs.hpp"
+#include "../backend/windows.hpp"
 
 namespace widget {
     Panel::Panel(property::Modifier modifier, shape::Shape* shape) : Widget(modifier, shape) {
@@ -8,10 +9,11 @@ namespace widget {
     }
 
     void Panel::draw() {
-        if (shape->GetPointCollision(backend::GetMousePosition())) {
-            shape->Render(backend::Color(255, 0, 0, 255));
+        property::BoundingBox bb(backend::ScreenCoordinate(0, 0), backend::GetWindowSize());
+        if (shape->GetPointCollision(bb, backend::GetMousePosition())) {
+            shape->Render(bb, backend::Color(255, 0, 0, 255));
         } else {
-            shape->Render(backend::Color());
+            shape->Render(bb, backend::Color());
         }
     }
 

@@ -1,6 +1,7 @@
 #pragma once
 #include "../backend/vectors.hpp"
 #include "../backend/coordinates.hpp"
+#include "BoundingBox.hpp"
 
 namespace property {
     enum class AnchorType {
@@ -31,10 +32,11 @@ namespace property {
     /**
      * Represent a coordinate on screen, but with custom origin (anchor).
      */
-    class RelativeCoordinate : public backend::Vector2, Anchor {
+    class RelativeCoordinate {
     public:
+        float x, y;
+        Anchor origin;
         RelativeCoordinate(float x, float y, Anchor anchor);
         RelativeCoordinate(float x, float y, AnchorType horizontalAnchor, AnchorType verticalAnchor);
-        backend::ScreenCoordinate ToScreenCoordinate() const;
     };
 }
