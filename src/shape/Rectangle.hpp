@@ -10,7 +10,9 @@ namespace shape {
 
         virtual bool GetPointCollision(const property::BoundingBox containing, backend::ScreenCoordinate point) const override;
 
-        virtual void Render(const property::BoundingBox containing, backend::Color color) const override;
+        virtual void RenderFilled(const property::BoundingBox containing, backend::Color color) const override;
+
+        void RenderLines(const property::BoundingBox containing, const float lineWidth, const backend::Color color) const override;
 
         backend::RectangleSize GetSize() const override;
 

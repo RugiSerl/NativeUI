@@ -5,8 +5,12 @@ namespace shape {
     Rectangle::Rectangle(property::RelativeCoordinate position, backend::RectangleSize size) : Shape(position), size(size) {
     }
 
-    void Rectangle::Render(const property::BoundingBox containing, backend::Color color) const {
+    void Rectangle::RenderFilled(const property::BoundingBox containing, backend::Color color) const {
         backend::DrawRectangle(GetScreenCoordinates(containing), size, color);
+    }
+
+    void Rectangle::RenderLines(const property::BoundingBox containing, const float lineWidth, const backend::Color color) const {
+        backend::DrawRectangleLines(GetScreenCoordinates(containing), GetSize(), lineWidth, color);
     }
 
     bool Rectangle::GetPointCollision(const property::BoundingBox containing, backend::ScreenCoordinate point) const {

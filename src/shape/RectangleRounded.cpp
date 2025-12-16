@@ -26,7 +26,12 @@ namespace shape {
         return (backend::ScreenCoordinate(clampedX, clampedY) - point).Length() < clampedCornerRadius;
     }
 
-    void RectangleRounded::Render(const property::BoundingBox containing, const backend::Color color) const {
+    void RectangleRounded::RenderFilled(const property::BoundingBox containing, const backend::Color color) const {
         backend::DrawRoundedRectangle(GetScreenCoordinates(containing), size, cornerRadius, 8, color);
     }
+
+    void RectangleRounded::RenderLines(const property::BoundingBox containing, const float lineWidth, const backend::Color color) const {
+        backend::DrawRoundedRectangleLines(GetScreenCoordinates(containing), size, cornerRadius, lineWidth, 8, color);
+    }
+
 }

@@ -29,12 +29,17 @@ namespace shape {
          * Get collision between shape and 2d point.
          * The shape is supposed to be anchored from top left.
          */
-        virtual bool GetPointCollision(const property::BoundingBox containing, const backend::ScreenCoordinate point) const  = 0;
+        virtual bool GetPointCollision(const property::BoundingBox containing, const backend::ScreenCoordinate point) const = 0;
 
         /**
-         * Render the shape on screen.
+         * Render the shape filled on screen.
          */
-        virtual void Render(const property::BoundingBox containing, const backend::Color color) const  = 0;
+        virtual void RenderFilled(const property::BoundingBox containing, const backend::Color color) const = 0;
+
+        /**
+         * Render the lines on the edges of the shapes.
+         */
+        virtual void RenderLines(const property::BoundingBox containing, const float lineWidth, const backend::Color color) const = 0;
 
         /**
          * Get the size of the shape.
