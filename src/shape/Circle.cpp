@@ -1,5 +1,7 @@
 #include "Circle.hpp"
 #include "Shape.hpp"
+#include "../backend/graphics.hpp"
+
 
 namespace shape {
     Circle::Circle(property::RelativeCoordinate position, float radius) : Shape(position), radius(radius) {

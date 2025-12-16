@@ -2,8 +2,6 @@
 #include "Widget.hpp"
 #include "../backend/inputs.hpp"
 #include "../backend/windows.hpp"
-#include "raylib.h"
-#include <iostream>
 
 namespace widget {
     Panel::Panel(property::Modifier modifier, shape::Shape* shape) : Widget(modifier, shape) {
