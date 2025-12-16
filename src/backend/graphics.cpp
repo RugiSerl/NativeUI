@@ -27,8 +27,10 @@ namespace backend {
         startAngle = std::fmod(startAngle, 2.0f*PI);
         endAngle = std::fmod(endAngle, 2.0f*PI);
         for (int i = 0; i < segments; i++) {
-            DrawLineEx(Vector2(center.x + radius * std::cos(float(i)/float(segments)*(2.0f*PI)), center.y + radius * std::sin(float(i)/float(segments)*(2.0*PI))),
-                       Vector2(center.x + radius * std::cos(float(i+1)/float(segments)*(2.0f*PI)), center.y + radius * std::sin(float(i+1)/float(segments)*(2.0*PI))),
+            float t = float(i)/float(segments);
+            float t2 = float(i+1)/float(segments);
+            DrawLineEx(Vector2(center.x + radius * std::cos(startAngle * (1 - t) + endAngle * t), center.y - radius * std::sin(startAngle * (1 - t) + endAngle * t)),
+                       Vector2(center.x + radius * std::cos(startAngle * (1 - t2) + endAngle * t2), center.y - radius * std::sin(startAngle * (1 - t2) + endAngle * t2)),
                        lineWidth,
                        color);
         }
@@ -62,7 +64,24 @@ namespace backend {
 
     }
     void DrawRoundedRectangleLines(const ScreenCoordinate position, const RectangleSize size, const float cornerRadius, const float lineWidth, const int segments, const Color color) {
-        DrawRectangleLines(position, size, lineWidth, color);
+        // Drawing edges
+        // Top
+        DrawLineEx((position+ScreenCoordinate(cornerRadius, 0)).ToVector2(), (position+ScreenCoordinate(size.GetX()-cornerRadius, 0)).ToVector2(), lineWidth, color);
+        // Bottom
+        DrawLineEx((position+ScreenCoordinate(cornerRadius, size.GetY())).ToVector2(), (position+ScreenCoordinate(size.GetX()-cornerRadius, size.GetY())).ToVector2(), lineWidth, color);
+        // Left
+        DrawLineEx((position+ScreenCoordinate(0, cornerRadius)).ToVector2(), (position+ScreenCoordinate(0, size.GetY()-cornerRadius)).ToVector2(), lineWidth, color);
+        // Right
+        DrawLineEx((position+ScreenCoordinate(size.GetX(), cornerRadius)).ToVector2(), (position+ScreenCoordinate(size.GetX(), size.GetY()-cornerRadius)).ToVector2(), lineWidth, color);
+
+        // Top left
+        DrawCircleArcLines(position+ScreenCoordinate(cornerRadius), cornerRadius, PI/2, PI, segments, lineWidth, color);
+        // Top right
+        DrawCircleArcLines(position+ScreenCoordinate(size.GetX() - cornerRadius, cornerRadius), cornerRadius, 0, PI/2, segments, lineWidth, color);
+        // Bottom left
+        DrawCircleArcLines(position+ScreenCoordinate(cornerRadius, size.GetY() - cornerRadius), cornerRadius, -PI/2, -PI, segments, lineWidth, color);
+        // Bottom right
+        DrawCircleArcLines(position+ScreenCoordinate(size.GetX() - cornerRadius, size.GetY() - cornerRadius), cornerRadius, 0, -PI/2, segments, lineWidth, color);
     }
 
 }
