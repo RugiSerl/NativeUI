@@ -1,7 +1,8 @@
 #include "RectangleRounded.hpp"
 #include "Rectangle.hpp"
 #include <algorithm>
-#include <iostream>
+#include "../backend/graphics.hpp"
+
 
 namespace shape {
     RectangleRounded::RectangleRounded(property::RelativeCoordinate position, backend::RectangleSize size, float cornerRadius) : Rectangle(position, size), cornerRadius(cornerRadius) {

@@ -1,5 +1,4 @@
 #include "Anchor.hpp"
-#include <stdexcept>
 
 namespace property {
     Anchor::Anchor() : verticalAnchor(AnchorType::LEFT), horizontalAnchor(AnchorType::TOP) {

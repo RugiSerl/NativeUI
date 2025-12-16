@@ -1,6 +1,5 @@
 #pragma once
-#include "../backend/vectors.hpp"
-#include "../backend/graphics.hpp"
+#include "../backend/colors.hpp"
 #include "../properties/Anchor.hpp"
 #include "../properties/BoundingBox.hpp"
 

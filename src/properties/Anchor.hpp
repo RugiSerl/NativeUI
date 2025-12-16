@@ -1,7 +1,4 @@
 #pragma once
-#include "../backend/vectors.hpp"
-#include "../backend/coordinates.hpp"
-#include "BoundingBox.hpp"
 
 namespace property {
     enum class AnchorType {

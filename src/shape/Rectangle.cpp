@@ -1,5 +1,7 @@
 #include "Rectangle.hpp"
 #include "Shape.hpp"
+#include "../backend/graphics.hpp"
+
 
 namespace shape {
     Rectangle::Rectangle(property::RelativeCoordinate position, backend::RectangleSize size) : Shape(position), size(size) {

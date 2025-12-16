@@ -1,5 +1,4 @@
 #pragma once
-#include "../backend/vectors.hpp"
 #include "../backend/coordinates.hpp"
 #include "../backend/rectangles.hpp"
 

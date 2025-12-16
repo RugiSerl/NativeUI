@@ -1,12 +1,8 @@
 #include "backend/rectangles.hpp"
 #include "backend/vectors.hpp"
 #include "raylib.h"
-#include "shape/Circle.hpp"
-#include "shape/Rectangle.hpp"
 #include "shape/RectangleRounded.hpp"
 #include "widgets/Panel.hpp"
-#include "widgets/Widget.hpp"
-#include <iostream>
 
 int main() {
     // Initialization
