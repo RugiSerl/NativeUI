@@ -8,11 +8,11 @@ namespace shape {
 
         Rectangle(property::RelativeCoordinate position, backend::RectangleSize size);
 
-        virtual bool GetPointCollision(const property::BoundingBox containing, backend::ScreenCoordinate point) const override;
+        virtual bool GetPointCollision(property::BoundingBox containing, backend::ScreenCoordinate point) const override;
 
-        virtual void RenderFilled(const property::BoundingBox containing, backend::Color color) const override;
+        virtual void RenderFilled(property::BoundingBox containing, backend::Color color) const override;
 
-        void RenderLines(const property::BoundingBox containing, const float lineWidth, const backend::Color color) const override;
+        void RenderLines(property::BoundingBox containing, float lineWidth, backend::Color color) const override;
 
         backend::RectangleSize GetSize() const override;
 

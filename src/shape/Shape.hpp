@@ -29,17 +29,17 @@ namespace shape {
          * Get collision between shape and 2d point.
          * The shape is supposed to be anchored from top left.
          */
-        virtual bool GetPointCollision(const property::BoundingBox containing, const backend::ScreenCoordinate point) const = 0;
+        virtual bool GetPointCollision(property::BoundingBox containing, backend::ScreenCoordinate point) const = 0;
 
         /**
          * Render the shape filled on screen.
          */
-        virtual void RenderFilled(const property::BoundingBox containing, const backend::Color color) const = 0;
+        virtual void RenderFilled(property::BoundingBox containing, backend::Color color) const = 0;
 
         /**
          * Render the lines on the edges of the shapes.
          */
-        virtual void RenderLines(const property::BoundingBox containing, const float lineWidth, const backend::Color color) const = 0;
+        virtual void RenderLines(property::BoundingBox containing, float lineWidth, backend::Color color) const = 0;
 
         /**
          * Get the size of the shape.
@@ -49,7 +49,7 @@ namespace shape {
         /**
          * Get the position of the shape after applying custom anchor. So now in screen coordinates.
          */
-        backend::ScreenCoordinate GetScreenCoordinates(const property::BoundingBox containing) const;
+        backend::ScreenCoordinate GetScreenCoordinates(property::BoundingBox containing) const;
     protected:
 
         property::RelativeCoordinate position;

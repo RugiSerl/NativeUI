@@ -6,7 +6,7 @@ namespace shape {
 
     }
 
-    backend::ScreenCoordinate Shape::GetScreenCoordinates(const property::BoundingBox containing) const {
+    backend::ScreenCoordinate Shape::GetScreenCoordinates(property::BoundingBox containing) const {
         float newX, newY;
 
         switch (position.origin.horizontalAnchor) {
