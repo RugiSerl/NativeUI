@@ -1,9 +1,10 @@
 #pragma once
 
+#include "ScreenCoordinate.hpp"
 #include "ScreenRectangle.hpp"
 #include "RelativeCoordinate.hpp"
 #include "../backend/rectangles.hpp"
-namespace property {
+namespace coordinates {
     class RelativeRectangle {
     public:
         RelativeCoordinate position;
@@ -24,6 +25,6 @@ namespace property {
         /**
          * Shortcut for GetScreenRectangle().position.
          */
-        backend::ScreenCoordinate GetScreenCoordinates(ScreenRectangle containing) const;
+        ScreenCoordinate GetScreenCoordinates(ScreenRectangle containing) const;
     };
 }

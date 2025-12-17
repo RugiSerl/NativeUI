@@ -2,8 +2,8 @@
 #include "raylib.h"
 
 namespace backend {
-    ScreenCoordinate GetMousePosition() {
+    coordinates::ScreenCoordinate GetMousePosition() {
         auto pos = ::GetMousePosition();
-        return ScreenCoordinate(pos.x, pos.y);
+        return coordinates::ScreenCoordinate(pos.x, pos.y);
     }
 }

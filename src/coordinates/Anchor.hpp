@@ -1,6 +1,6 @@
 #pragma once
 
-namespace property {
+namespace coordinates {
     enum class AnchorType {
         MIDDLE,
         LEFT,

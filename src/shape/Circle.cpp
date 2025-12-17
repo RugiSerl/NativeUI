@@ -4,20 +4,20 @@
 
 
 namespace shape {
-    Circle::Circle(property::RelativeCoordinate position, float radius) : Shape(position, backend::RectangleSize(radius, radius)), radius(radius) {
+    Circle::Circle(coordinates::RelativeCoordinate position, float radius) : Shape(position, backend::RectangleSize(radius, radius)), radius(radius) {
 
     }
 
-    bool Circle::GetPointCollision(property::ScreenRectangle containing, backend::ScreenCoordinate point) const {
-        return (backend::ScreenCoordinate(radius) - point + GetScreenCoordinates(containing)).Length() < radius;
+    bool Circle::GetPointCollision(coordinates::ScreenRectangle containing, coordinates::ScreenCoordinate point) const {
+        return (coordinates::ScreenCoordinate(radius) - point + GetScreenCoordinates(containing)).Length() < radius;
     }
 
-    void Circle::RenderFilled(property::ScreenRectangle containing, backend::Color color) const {
-        backend::DrawCircle(GetScreenCoordinates(containing)+backend::ScreenCoordinate(radius), radius, 32, color);
+    void Circle::RenderFilled(coordinates::ScreenRectangle containing, backend::Color color) const {
+        backend::DrawCircle(GetScreenCoordinates(containing)+coordinates::ScreenCoordinate(radius), radius, 32, color);
     }
 
-    void Circle::RenderLines(property::ScreenRectangle containing, float lineWidth, backend::Color color) const {
-        backend::DrawCircleLines(GetScreenCoordinates(containing)+backend::ScreenCoordinate(radius), radius, 32, lineWidth, color);
+    void Circle::RenderLines(coordinates::ScreenRectangle containing, float lineWidth, backend::Color color) const {
+        backend::DrawCircleLines(GetScreenCoordinates(containing)+coordinates::ScreenCoordinate(radius), radius, 32, lineWidth, color);
     }
 
     backend::RectangleSize Circle::GetSize() const {

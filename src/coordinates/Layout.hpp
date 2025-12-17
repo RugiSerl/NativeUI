@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Layout.hpp"
-namespace property {
+namespace coordinates {
     enum class LayoutType {
         NONE,
         ROW,

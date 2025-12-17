@@ -9,7 +9,7 @@ namespace widget {
     }
 
     void Panel::draw() {
-        property::ScreenRectangle bb(backend::ScreenCoordinate(0, 0), backend::GetWindowSize());
+        coordinates::ScreenRectangle bb(coordinates::ScreenCoordinate(0, 0), backend::GetWindowSize());
         shape->RenderFilled(bb, backend::Color(255, 0, 0, 255));
         if (shape->GetPointCollision(bb, backend::GetMousePosition())) {
             shape->RenderLines(bb, 5, backend::Color());

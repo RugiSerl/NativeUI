@@ -5,7 +5,7 @@
 
 
 namespace shape {
-    RectangleRounded::RectangleRounded(property::RelativeCoordinate position, backend::RectangleSize size, float cornerRadius) : Rectangle(position, size), cornerRadius(cornerRadius) {
+    RectangleRounded::RectangleRounded(coordinates::RelativeCoordinate position, backend::RectangleSize size, float cornerRadius) : Rectangle(position, size), cornerRadius(cornerRadius) {
 
     }
     /**
@@ -19,19 +19,19 @@ namespace shape {
      * \_|________|_/
      *  ^----------^--- corners
      */
-    bool RectangleRounded::GetPointCollision(property::ScreenRectangle containing, backend::ScreenCoordinate point) const {
+    bool RectangleRounded::GetPointCollision(coordinates::ScreenRectangle containing, coordinates::ScreenCoordinate point) const {
         float clampedCornerRadius = std::min(cornerRadius, std::min(size.GetX(), size.GetY())/2.0f); // Avoid having border radius larger than half of the smallest side.
-        backend::ScreenCoordinate screenPos = GetScreenCoordinates(containing);
+        coordinates::ScreenCoordinate screenPos = GetScreenCoordinates(containing);
         float clampedX = std::clamp(point.x, screenPos.x+clampedCornerRadius, screenPos.x+size.GetX()-clampedCornerRadius);
         float clampedY = std::clamp(point.y, screenPos.y+clampedCornerRadius, screenPos.y+size.GetY()-clampedCornerRadius);
-        return (backend::ScreenCoordinate(clampedX, clampedY) - point).Length() < clampedCornerRadius;
+        return (coordinates::ScreenCoordinate(clampedX, clampedY) - point).Length() < clampedCornerRadius;
     }
 
-    void RectangleRounded::RenderFilled(property::ScreenRectangle containing, backend::Color color) const {
+    void RectangleRounded::RenderFilled(coordinates::ScreenRectangle containing, backend::Color color) const {
         backend::DrawRoundedRectangle(GetScreenCoordinates(containing), size, cornerRadius, 8, color);
     }
 
-    void RectangleRounded::RenderLines(property::ScreenRectangle containing, float lineWidth, backend::Color color) const {
+    void RectangleRounded::RenderLines(coordinates::ScreenRectangle containing, float lineWidth, backend::Color color) const {
         backend::DrawRoundedRectangleLines(GetScreenCoordinates(containing), size, cornerRadius, lineWidth, 8, color);
     }
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Anchor.hpp"
-namespace property {
+namespace coordinates {
     /**
      * Represent a coordinate on screen, but with custom origin (anchor).
      */

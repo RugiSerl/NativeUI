@@ -1,6 +1,6 @@
 #include "Layout.hpp"
 
-namespace property {
+namespace coordinates {
     Layout::Layout() : layout(LayoutType::NONE) {
 
     }

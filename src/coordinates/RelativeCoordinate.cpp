@@ -1,6 +1,6 @@
 #include "RelativeCoordinate.hpp"
 
-namespace property {
+namespace coordinates {
     RelativeCoordinate::RelativeCoordinate(float x, float y, Anchor anchor) : x(x), y(y), origin(anchor){
 
     }

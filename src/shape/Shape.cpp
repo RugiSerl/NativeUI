@@ -1,7 +1,7 @@
 #include "Shape.hpp"
 
 namespace shape {
-    Shape::Shape(property::RelativeCoordinate position, backend::RectangleSize size) : property::RelativeRectangle(position, size) {
+    Shape::Shape(coordinates::RelativeCoordinate position, backend::RectangleSize size) : coordinates::RelativeRectangle(position, size) {
 
     }
 

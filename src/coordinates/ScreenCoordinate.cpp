@@ -1,8 +1,7 @@
-#include "coordinates.hpp"
-#include "vectors.hpp"
+#include "ScreenCoordinate.hpp"
 #include <cmath>
 
-namespace backend {
+namespace coordinates {
     ScreenCoordinate::ScreenCoordinate(float x, float y) : x(x), y(y) {
 
     }
@@ -15,8 +14,8 @@ namespace backend {
 
     }
 
-    Vector2 ScreenCoordinate::ToVector2() const {
-        return Vector2(x, y);
+    backend::Vector2 ScreenCoordinate::ToVector2() const {
+        return backend::Vector2(x, y);
     }
 
     ScreenCoordinate ScreenCoordinate::operator+(const ScreenCoordinate other) const {
@@ -28,6 +27,6 @@ namespace backend {
     }
 
     float ScreenCoordinate::Length() const {
-        return sqrt(x*x + y*y);
+        return std::sqrt(x*x + y*y);
     }
 }

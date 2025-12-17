@@ -1,14 +1,14 @@
 #pragma once
-#include "../backend/coordinates.hpp"
 #include "../backend/rectangles.hpp"
+#include "ScreenCoordinate.hpp"
 
-namespace property {
+namespace coordinates {
     class ScreenRectangle {
     public:
         ScreenRectangle(float x, float y, float width, float height);
-        ScreenRectangle(backend::ScreenCoordinate position, backend::RectangleSize size);
+        ScreenRectangle(ScreenCoordinate position, backend::RectangleSize size);
 
-        backend::ScreenCoordinate position;
+        ScreenCoordinate position;
         backend::RectangleSize size;
     };
 }

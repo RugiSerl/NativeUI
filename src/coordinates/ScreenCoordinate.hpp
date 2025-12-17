@@ -1,6 +1,7 @@
 #pragma once
-#include "vectors.hpp"
-namespace backend {
+#include "../backend/vectors.hpp"
+
+namespace coordinates {
     /**
      * Represent a position on screen.
      * The origin of that position is the top left corner.
@@ -13,7 +14,7 @@ namespace backend {
         ScreenCoordinate(float x, float y);
         ScreenCoordinate(float xy);
         ScreenCoordinate();
-        Vector2 ToVector2() const;
+        backend::Vector2 ToVector2() const;
 
         /**
          * Basic operations

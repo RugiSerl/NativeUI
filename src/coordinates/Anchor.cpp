@@ -1,6 +1,6 @@
 #include "Anchor.hpp"
 
-namespace property {
+namespace coordinates {
     Anchor::Anchor() : verticalAnchor(AnchorType::LEFT), horizontalAnchor(AnchorType::TOP) {
 
     }

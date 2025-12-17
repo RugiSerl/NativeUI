@@ -4,7 +4,7 @@
 #include "ScreenRectangle.hpp"
 #include <stdexcept>
 
-namespace property {
+namespace coordinates {
 
     RelativeRectangle::RelativeRectangle(float x, float y, float width, float height, Anchor anchor) : position(x, y, anchor), size(width, height) {
 
@@ -18,13 +18,13 @@ namespace property {
         float newX, newY;
 
         switch (position.origin.horizontalAnchor) {
-            case property::AnchorType::LEFT:
+            case coordinates::AnchorType::LEFT:
                 newX = containing.position.x + position.x;
                 break;
-            case property::AnchorType::RIGHT:
+            case coordinates::AnchorType::RIGHT:
                 newX = containing.position.x + containing.size.GetX() - position.x - size.GetX();
                 break;
-            case property::AnchorType::MIDDLE:
+            case coordinates::AnchorType::MIDDLE:
                 newX = containing.position.x + containing.size.GetX()/2.0f + position.x - size.GetX()/2.0f;
                 break;
             default:
@@ -32,23 +32,23 @@ namespace property {
         }
 
         switch (position.origin.verticalAnchor) {
-            case property::AnchorType::TOP:
+            case coordinates::AnchorType::TOP:
                 newY = containing.position.y + position.y;
                 break;
-            case property::AnchorType::BOTTOM:
+            case coordinates::AnchorType::BOTTOM:
                 newY = containing.position.y + containing.size.GetY() - position.y - size.GetY();
                 break;
-            case property::AnchorType::MIDDLE:
+            case coordinates::AnchorType::MIDDLE:
                 newY = containing.position.y + containing.size.GetY()/2.0f + position.y - size.GetY()/2.0f;
                 break;
             default:
                 throw std::invalid_argument("Invalid anchor used for relativePosition.");
         }
 
-        return ScreenRectangle(backend::ScreenCoordinate(newX, newY), size);
+        return ScreenRectangle(ScreenCoordinate(newX, newY), size);
     }
 
-    backend::ScreenCoordinate RelativeRectangle::GetScreenCoordinates(ScreenRectangle containing) const {
+    ScreenCoordinate RelativeRectangle::GetScreenCoordinates(ScreenRectangle containing) const {
         return GetScreenRectangle(containing).position;
     }
 }

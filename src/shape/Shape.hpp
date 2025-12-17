@@ -1,7 +1,7 @@
 #pragma once
 #include "../backend/colors.hpp"
-#include "../properties/RelativeRectangle.hpp"
-#include "../properties/ScreenRectangle.hpp"
+#include "../coordinates/RelativeRectangle.hpp"
+#include "../coordinates/ScreenRectangle.hpp"
 
 namespace shape {
 
@@ -18,9 +18,9 @@ namespace shape {
      * This also means that it needs a containing bounding box to be drawn.
      * (The custom origin will be place inside that bounding box).
      */
-    class Shape : public property::RelativeRectangle {
+    class Shape : public coordinates::RelativeRectangle {
     public:
-        Shape(property::RelativeCoordinate position, backend::RectangleSize size);
+        Shape(coordinates::RelativeCoordinate position, backend::RectangleSize size);
 
         virtual ~Shape() = default;
 
@@ -28,17 +28,17 @@ namespace shape {
          * Get collision between shape and 2d point.
          * The shape is supposed to be anchored from top left.
          */
-        virtual bool GetPointCollision(property::ScreenRectangle containing, backend::ScreenCoordinate point) const = 0;
+        virtual bool GetPointCollision(coordinates::ScreenRectangle containing, coordinates::ScreenCoordinate point) const = 0;
 
         /**
          * Render the shape filled on screen.
          */
-        virtual void RenderFilled(property::ScreenRectangle containing, backend::Color color) const = 0;
+        virtual void RenderFilled(coordinates::ScreenRectangle containing, backend::Color color) const = 0;
 
         /**
          * Render the lines on the edges of the shapes.
          */
-        virtual void RenderLines(property::ScreenRectangle containing, float lineWidth, backend::Color color) const = 0;
+        virtual void RenderLines(coordinates::ScreenRectangle containing, float lineWidth, backend::Color color) const = 0;
 
         /**
          * Get the size of the shape.
