@@ -4,13 +4,22 @@
 namespace backend {
     class Vector2 : public ::Vector2 {
     public:
+        /**
+         * Constructors
+         */
         Vector2(float x, float y);
         Vector2(float xy);
         Vector2();
 
+        /**
+         * Operators
+         */
         Vector2 operator+(const Vector2 other) const;
         Vector2 operator-(const Vector2 other) const;
 
+        /**
+         * Calculate the euclidian length of the vector.
+         */
         float Length() const;
     };
 

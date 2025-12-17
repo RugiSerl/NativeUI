@@ -1,12 +1,15 @@
 #pragma once
 
 namespace coordinates {
+    /**
+     * Different possibilities of anchors.
+     */
     enum class AnchorType {
-        MIDDLE,
-        LEFT,
-        RIGHT,
-        TOP,
-        BOTTOM,
+        MIDDLE,     // Origin in center of containing rect, works for horizontal and vertical anchor
+        LEFT,       // Origin at the left of containing rect
+        RIGHT,      // Origin at the right of containing rect
+        TOP,        // Origin at the top of containing rect
+        BOTTOM,     // Origin at the bottom of containing rect
     };
 
     /**

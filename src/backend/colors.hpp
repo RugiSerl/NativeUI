@@ -1,6 +1,9 @@
 #pragma once
 #include "raylib.h"
 namespace backend {
+    /**
+     * Wrapper for color object from raylib. Describes a color with RGBA, each ranging from 0 to 255.
+     */
     class Color : public ::Color {
     public:
         /**

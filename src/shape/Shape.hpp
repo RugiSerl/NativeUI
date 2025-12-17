@@ -4,14 +4,6 @@
 #include "../coordinates/ScreenRectangle.hpp"
 
 namespace shape {
-
-    enum class ShapeType {
-        RECTANGLE,
-        ROUNDED_RECTANGLE,
-        CIRCLE,
-        BEAN,
-    };
-
     /**
      * Abstract class defining graphical shape.
      * It includes a relative coordinate, a coordinate with a custom origin.
