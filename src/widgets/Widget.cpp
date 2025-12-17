@@ -1,7 +1,7 @@
 #include "Widget.hpp"
 
 namespace widget {
-    Widget::Widget(property::Modifier modifier, shape::Shape* shape) : modifier(modifier), shape(shape) {
+    Widget::Widget(shape::Shape* shape) : shape(shape) {
 
     }
 

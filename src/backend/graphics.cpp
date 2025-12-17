@@ -24,8 +24,6 @@ namespace backend {
     }
 
     void DrawCircleArcLines(ScreenCoordinate center, float radius, float startAngle, float endAngle, int segments, float lineWidth, Color color) {
-        startAngle = std::fmod(startAngle, 2.0f*PI);
-        endAngle = std::fmod(endAngle, 2.0f*PI);
         for (int i = 0; i < segments; i++) {
             float t = float(i)/float(segments);
             float t2 = float(i+1)/float(segments);

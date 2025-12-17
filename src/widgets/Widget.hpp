@@ -1,5 +1,4 @@
 #pragma once
-#include "../properties/Modifier.hpp"
 #include "../shape/Shape.hpp"
 #include <vector>
 namespace widget {
@@ -9,7 +8,7 @@ namespace widget {
      */
     class Widget {
     public:
-        Widget(property::Modifier modifier, shape::Shape* shape);
+        Widget(shape::Shape* shape);
         virtual ~Widget() {
             delete shape;
         };
@@ -52,11 +51,6 @@ namespace widget {
          * Draw on screen
          */
         virtual void draw();
-
-        /**
-         * Contains all the data passed to the component, like the size, the position, the anchor, ...
-         */
-        property::Modifier modifier;
 
         /**
          * Shape of the widget. Also defines its collision shape.

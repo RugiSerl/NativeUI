@@ -4,7 +4,7 @@
 #include "../backend/windows.hpp"
 
 namespace widget {
-    Panel::Panel(property::Modifier modifier, shape::Shape* shape) : Widget(modifier, shape) {
+    Panel::Panel(shape::Shape* shape) : Widget(shape) {
 
     }
 

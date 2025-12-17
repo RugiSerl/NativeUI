@@ -4,7 +4,7 @@
 namespace widget {
     class Panel : public Widget {
     public:
-        Panel(property::Modifier modifier, shape::Shape* shape);
+        Panel(shape::Shape* shape);
         ~Panel() override = default;
 
 
