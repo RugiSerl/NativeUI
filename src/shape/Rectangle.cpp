@@ -4,18 +4,18 @@
 
 
 namespace shape {
-    Rectangle::Rectangle(property::RelativeCoordinate position, backend::RectangleSize size) : Shape(position), size(size) {
+    Rectangle::Rectangle(property::RelativeCoordinate position, backend::RectangleSize size) : Shape(position, size) {
     }
 
-    void Rectangle::RenderFilled(property::BoundingBox containing, backend::Color color) const {
+    void Rectangle::RenderFilled(property::ScreenRectangle containing, backend::Color color) const {
         backend::DrawRectangle(GetScreenCoordinates(containing), size, color);
     }
 
-    void Rectangle::RenderLines(property::BoundingBox containing, float lineWidth, backend::Color color) const {
+    void Rectangle::RenderLines(property::ScreenRectangle containing, float lineWidth, backend::Color color) const {
         backend::DrawRectangleLines(GetScreenCoordinates(containing), GetSize(), lineWidth, color);
     }
 
-    bool Rectangle::GetPointCollision(property::BoundingBox containing, backend::ScreenCoordinate point) const {
+    bool Rectangle::GetPointCollision(property::ScreenRectangle containing, backend::ScreenCoordinate point) const {
         backend::ScreenCoordinate screenPos = GetScreenCoordinates(containing);
         return point.x > screenPos.x && point.x < screenPos.x + size.GetX() &&
                point.y > screenPos.y && point.y < screenPos.y + size.GetY();

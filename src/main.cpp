@@ -1,5 +1,4 @@
 #include "backend/rectangles.hpp"
-#include "backend/vectors.hpp"
 #include "properties/Anchor.hpp"
 #include "raylib.h"
 #include "shape/Circle.hpp"
@@ -32,7 +31,6 @@ int main() {
 
     root->AddChild(myWidget);
     root->AddChild(myWidget2);
-
 
     while (!WindowShouldClose()) {
         // Detect window close button or ESC key

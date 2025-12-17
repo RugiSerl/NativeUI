@@ -19,7 +19,7 @@ namespace shape {
      * \_|________|_/
      *  ^----------^--- corners
      */
-    bool RectangleRounded::GetPointCollision(property::BoundingBox containing, backend::ScreenCoordinate point) const {
+    bool RectangleRounded::GetPointCollision(property::ScreenRectangle containing, backend::ScreenCoordinate point) const {
         float clampedCornerRadius = std::min(cornerRadius, std::min(size.GetX(), size.GetY())/2.0f); // Avoid having border radius larger than half of the smallest side.
         backend::ScreenCoordinate screenPos = GetScreenCoordinates(containing);
         float clampedX = std::clamp(point.x, screenPos.x+clampedCornerRadius, screenPos.x+size.GetX()-clampedCornerRadius);
@@ -27,11 +27,11 @@ namespace shape {
         return (backend::ScreenCoordinate(clampedX, clampedY) - point).Length() < clampedCornerRadius;
     }
 
-    void RectangleRounded::RenderFilled(property::BoundingBox containing, backend::Color color) const {
+    void RectangleRounded::RenderFilled(property::ScreenRectangle containing, backend::Color color) const {
         backend::DrawRoundedRectangle(GetScreenCoordinates(containing), size, cornerRadius, 8, color);
     }
 
-    void RectangleRounded::RenderLines(property::BoundingBox containing, float lineWidth, backend::Color color) const {
+    void RectangleRounded::RenderLines(property::ScreenRectangle containing, float lineWidth, backend::Color color) const {
         backend::DrawRoundedRectangleLines(GetScreenCoordinates(containing), size, cornerRadius, lineWidth, 8, color);
     }
 

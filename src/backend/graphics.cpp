@@ -36,7 +36,6 @@ namespace backend {
 
     void DrawRoundedRectangle(ScreenCoordinate position, RectangleSize size, float cornerRadius, int segments, Color color) {
         cornerRadius = std::min(cornerRadius, std::min(size.GetX(), size.GetY())/2.0f); // Avoid having border radius larger than half of the smallest side.
-
         // Rectangle at the center.
         DrawRectangle(position+ScreenCoordinate(cornerRadius), size-RectangleSize(cornerRadius*2), color);
 

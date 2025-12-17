@@ -7,11 +7,11 @@ namespace shape {
 
         RectangleRounded(property::RelativeCoordinate position, backend::RectangleSize size, float cornerRadius);
 
-        virtual bool GetPointCollision(property::BoundingBox containing, backend::ScreenCoordinate point) const override;
+        virtual bool GetPointCollision(property::ScreenRectangle containing, backend::ScreenCoordinate point) const override;
 
-        virtual void RenderFilled(property::BoundingBox containing, backend::Color color) const override;
+        virtual void RenderFilled(property::ScreenRectangle containing, backend::Color color) const override;
 
-        void RenderLines(property::BoundingBox containing, float lineWidth, backend::Color color) const override;
+        void RenderLines(property::ScreenRectangle containing, float lineWidth, backend::Color color) const override;
 
     private:
         float cornerRadius;
