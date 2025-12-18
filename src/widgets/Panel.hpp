@@ -14,5 +14,6 @@ namespace widget {
 
         void draw() override;
 
+        bool selected;
     };
 }

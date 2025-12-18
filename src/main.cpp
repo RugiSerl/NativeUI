@@ -17,7 +17,7 @@ int main() {
     SetTargetFPS(60);
 
     auto* root = new widget::Widget(
-        new shape::Rectangle(coordinates::RelativeCoordinate(0, 0, coordinates::AnchorType::LEFT, coordinates::AnchorType::TOP), 30)
+        new shape::Rectangle(coordinates::RelativeCoordinate(0, 0, coordinates::AnchorType::FILL, coordinates::AnchorType::FILL), 30)
     );
 
 

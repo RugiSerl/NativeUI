@@ -1,7 +1,8 @@
 #include "Widget.hpp"
+#include "../backend/inputs.hpp"
 
 namespace widget {
-    Widget::Widget(shape::Shape* shape) : shape(shape) {
+    Widget::Widget(shape::Shape* shape) : shape(shape), parent(nullptr) {
 
     }
 
@@ -21,6 +22,7 @@ namespace widget {
             }
         }
         children.push_back(widget);
+        widget->SetParent(this);
 
         int childrenID = children.size()-1;
         orderOfDrawing.push_back(childrenID);
@@ -48,6 +50,18 @@ namespace widget {
 
     shape::Shape* Widget::GetShape() {
         return shape;
+    }
+
+    coordinates::ScreenRectangle Widget::GetContainingRectangle() {
+        return (parent == nullptr) ? backend::GetWindowRect() : parent->GetScreenRectangle();
+    }
+
+    coordinates::ScreenRectangle Widget::GetScreenRectangle() {
+        return shape->GetScreenRectangle(GetContainingRectangle());
+    }
+
+    bool Widget::IsHovered() {
+        return shape->GetPointCollision(GetContainingRectangle(), backend::GetMousePosition());
     }
 
     void Widget::update() {

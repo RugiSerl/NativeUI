@@ -4,7 +4,7 @@
 namespace shape {
     class Circle : public Shape {
     public:
-        Circle(coordinates::RelativeCoordinate, float radius);
+        Circle(coordinates::RelativeCoordinate position, float radius);
 
         bool GetPointCollision(coordinates::ScreenRectangle containing, coordinates::ScreenCoordinate point) const override;
 

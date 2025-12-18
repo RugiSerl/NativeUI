@@ -15,7 +15,7 @@ namespace coordinates {
     }
 
     ScreenRectangle RelativeRectangle::GetScreenRectangle(ScreenRectangle containing) const {
-        float newX, newY;
+        float newX, newY, newWidth = size.GetX(), newHeight = size.GetY();
 
         switch (position.origin.horizontalAnchor) {
             case coordinates::AnchorType::LEFT:
@@ -26,6 +26,10 @@ namespace coordinates {
                 break;
             case coordinates::AnchorType::MIDDLE:
                 newX = containing.position.x + containing.size.GetX()/2.0f + position.x - size.GetX()/2.0f;
+                break;
+            case coordinates::AnchorType::FILL:
+                newX = 0;
+                newWidth = containing.size.GetX();
                 break;
             default:
                 throw std::invalid_argument("Invalid anchor used for relativePosition.");
@@ -41,11 +45,15 @@ namespace coordinates {
             case coordinates::AnchorType::MIDDLE:
                 newY = containing.position.y + containing.size.GetY()/2.0f + position.y - size.GetY()/2.0f;
                 break;
+            case coordinates::AnchorType::FILL:
+                newY = 0;
+                newHeight = containing.size.GetY();
+                break;
             default:
                 throw std::invalid_argument("Invalid anchor used for relativePosition.");
         }
 
-        return ScreenRectangle(ScreenCoordinate(newX, newY), size);
+        return ScreenRectangle(ScreenCoordinate(newX, newY), backend::RectangleSize(newWidth, newHeight));
     }
 
     ScreenCoordinate RelativeRectangle::GetScreenCoordinates(ScreenRectangle containing) const {

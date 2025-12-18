@@ -1,5 +1,6 @@
 #pragma once
 #include "../shape/Shape.hpp"
+#include "../backend/windows.hpp"
 #include <vector>
 namespace widget {
     /**
@@ -31,7 +32,7 @@ namespace widget {
         bool RemoveChild(Widget* widget);
 
         /**
-         * Set widget as parent
+         * Set widget as parent.
          */
         bool SetParent(Widget* widget);
 
@@ -39,6 +40,21 @@ namespace widget {
          * Get widget's rectangle on screen with origin from the top left corner.
          */
         shape::Shape* GetShape();
+
+        /**
+         * Get rectangle with screen coordinates.
+         */
+        coordinates::ScreenRectangle GetScreenRectangle();
+
+        /**
+         * Get the rectangle in which the widget is drawn. Often the parent's rectangle.
+         */
+        coordinates::ScreenRectangle GetContainingRectangle();
+
+        /**
+         * Returns whether the widget is being hovered.
+         */
+        bool IsHovered();
 
     protected:
 
