@@ -7,7 +7,7 @@ namespace widget {
 
     }
 
-    void Panel::draw() {
+    void Panel::draw() const {
         shape->RenderFilled(GetContainingRectangle(), backend::Color(255, 0, 0, 255));
         if (selected) {
             shape->RenderLines(GetContainingRectangle(), 5, backend::Color());
@@ -16,7 +16,7 @@ namespace widget {
 
     void Panel::update() {
         if (backend::IsMousePressed(backend::MOUSE_BUTTON::LEFT)) {
-            selected = IsHovered();
+            selected = IsHovered(backend::GetMousePosition());
         }
     }
 

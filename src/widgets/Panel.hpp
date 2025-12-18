@@ -12,7 +12,7 @@ namespace widget {
 
         void update() override;
 
-        void draw() override;
+        void draw() const override;
 
         bool selected;
     };

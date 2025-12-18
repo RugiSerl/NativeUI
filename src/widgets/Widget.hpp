@@ -37,6 +37,16 @@ namespace widget {
         bool SetParent(Widget* widget);
 
         /**
+         * Get the parent of the widget.
+         */
+        Widget* GetParent();
+
+        /**
+         * Get recursively the root parent of the widget tree.
+         */
+        Widget* GetRoot();
+
+        /**
          * Get widget's rectangle on screen with origin from the top left corner.
          */
         shape::Shape* GetShape();
@@ -44,17 +54,23 @@ namespace widget {
         /**
          * Get rectangle with screen coordinates.
          */
-        coordinates::ScreenRectangle GetScreenRectangle();
+        coordinates::ScreenRectangle GetScreenRectangle() const;
 
         /**
          * Get the rectangle in which the widget is drawn. Often the parent's rectangle.
          */
-        coordinates::ScreenRectangle GetContainingRectangle();
+        coordinates::ScreenRectangle GetContainingRectangle() const;
 
         /**
          * Returns whether the widget is being hovered.
          */
-        bool IsHovered();
+        bool IsHovered(coordinates::ScreenCoordinate mousePosition);
+
+        /**
+         * Get all the children of the widget, including the children of the children, and so on.
+         * All of them are ordered by the order they are drawn.
+         */
+        std::vector<Widget *> GetChildrenRecursive();
 
     protected:
 
@@ -66,7 +82,7 @@ namespace widget {
         /**
          * Draw on screen
          */
-        virtual void draw();
+        virtual void draw() const;
 
         /**
          * Shape of the widget. Also defines its collision shape.

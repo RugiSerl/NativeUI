@@ -29,6 +29,11 @@ int main() {
         new shape::Circle(coordinates::RelativeCoordinate(0, 100, coordinates::AnchorType::LEFT, coordinates::AnchorType::TOP), 30)
     );
 
+    auto* myWidget3 = new widget::Panel(
+        new shape::Circle(coordinates::RelativeCoordinate(0, 100, coordinates::AnchorType::LEFT, coordinates::AnchorType::TOP), 20)
+    );
+
+    myWidget->AddChild(myWidget3);
     root->AddChild(myWidget);
     root->AddChild(myWidget2);
 
