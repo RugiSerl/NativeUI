@@ -1,6 +1,7 @@
 #include "RelativeRectangle.hpp"
 #include "Anchor.hpp"
 #include "RelativeCoordinate.hpp"
+#include "ScreenCoordinate.hpp"
 #include "ScreenRectangle.hpp"
 #include <stdexcept>
 
@@ -58,5 +59,33 @@ namespace coordinates {
 
     ScreenCoordinate RelativeRectangle::GetScreenCoordinates(ScreenRectangle containing) const {
         return GetScreenRectangle(containing).position;
+    }
+
+    void RelativeRectangle::Move(ScreenCoordinate delta) {
+        switch (position.origin.horizontalAnchor) {
+            case coordinates::AnchorType::LEFT: case coordinates::AnchorType::MIDDLE:
+                position.x += delta.x;
+                break;
+            case coordinates::AnchorType::RIGHT:
+                position.x -= delta.x;
+                break;
+            case coordinates::AnchorType::FILL:
+                break; // Do nothing.
+            default:
+                throw std::invalid_argument("Invalid anchor used for relativePosition.");
+        }
+
+        switch (position.origin.verticalAnchor) {
+            case coordinates::AnchorType::TOP: case coordinates::AnchorType::MIDDLE:
+                position.y += delta.y;
+                break;
+            case coordinates::AnchorType::BOTTOM:
+                position.y -= delta.y;
+                break;
+            case coordinates::AnchorType::FILL:
+                break; // Do nothing.
+            default:
+                throw std::invalid_argument("Invalid anchor used for relativePosition.");
+        }
     }
 }

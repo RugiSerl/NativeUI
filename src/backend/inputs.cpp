@@ -7,6 +7,11 @@ namespace backend {
         return coordinates::ScreenCoordinate(pos.x, pos.y);
     }
 
+    coordinates::ScreenCoordinate GetMouseDelta() {
+        auto delta = ::GetMouseDelta();
+        return coordinates::ScreenCoordinate(delta.x, delta.y);
+    }
+
     bool IsMousePressed(MOUSE_BUTTON button) {
         return IsMouseButtonPressed(static_cast<int>(button));
     }

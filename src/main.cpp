@@ -5,6 +5,7 @@
 #include "shape/Rectangle.hpp"
 #include "shape/RectangleRounded.hpp"
 #include "widgets/Panel.hpp"
+#include "widgets/PanelResizable.hpp"
 #include "widgets/Widget.hpp"
 
 int main() {
@@ -21,7 +22,7 @@ int main() {
     );
 
 
-    auto* myWidget = new widget::Panel(
+    auto* myWidget = new widget::PanelTransformable(
         new shape::RectangleRounded(coordinates::RelativeCoordinate(0, 0, coordinates::AnchorType::MIDDLE, coordinates::AnchorType::BOTTOM), backend::RectangleSize(500, 200), 50)
     );
 

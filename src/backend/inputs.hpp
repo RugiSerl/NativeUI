@@ -17,6 +17,11 @@ namespace backend {
      */
     coordinates::ScreenCoordinate GetMousePosition();
 
+    /**
+     * Get the position difference between the last frame and the current.
+     */
+    coordinates::ScreenCoordinate GetMouseDelta();
+
     bool IsMousePressed(MOUSE_BUTTON button);
     bool IsMouseDown(MOUSE_BUTTON button);
     bool IsMouseReleased(MOUSE_BUTTON button);

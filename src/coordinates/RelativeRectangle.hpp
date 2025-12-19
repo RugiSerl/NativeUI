@@ -26,5 +26,10 @@ namespace coordinates {
          * Shortcut for GetScreenRectangle().position.
          */
         ScreenCoordinate GetScreenCoordinates(ScreenRectangle containing) const;
+
+        /**
+         * Moves the rectangle. A bit more tricky than a vector addition, since we have to take care of different origins.
+         */
+        void Move(ScreenCoordinate delta);
     };
 }

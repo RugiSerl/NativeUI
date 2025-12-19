@@ -5,8 +5,8 @@ namespace widget {
     class Panel : public Widget {
     public:
         Panel(shape::Shape* shape);
-        ~Panel() override = default;
 
+        ~Panel() override = default;
 
     protected:
 
