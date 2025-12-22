@@ -12,7 +12,6 @@ namespace shape {
 
         void RenderLines(coordinates::ScreenRectangle containing, float lineWidth, backend::Color color) const override;
 
-        backend::RectangleSize GetSize() const override;
 
     private:
         float radius;

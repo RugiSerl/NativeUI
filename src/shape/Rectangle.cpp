@@ -12,16 +12,12 @@ namespace shape {
     }
 
     void Rectangle::RenderLines(coordinates::ScreenRectangle containing, float lineWidth, backend::Color color) const {
-        backend::DrawRectangleLines(GetScreenCoordinates(containing), GetSize(), lineWidth, color);
+        backend::DrawRectangleLines(GetScreenCoordinates(containing), size, lineWidth, color);
     }
 
     bool Rectangle::GetPointCollision(coordinates::ScreenRectangle containing, coordinates::ScreenCoordinate point) const {
         coordinates::ScreenCoordinate screenPos = GetScreenCoordinates(containing);
         return point.x > screenPos.x && point.x < screenPos.x + size.GetX() &&
                point.y > screenPos.y && point.y < screenPos.y + size.GetY();
-    }
-
-    backend::RectangleSize Rectangle::GetSize() const {
-        return size;
     }
 }

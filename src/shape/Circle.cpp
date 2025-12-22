@@ -4,7 +4,7 @@
 
 
 namespace shape {
-    Circle::Circle(coordinates::RelativeCoordinate position, float radius) : Shape(position, backend::RectangleSize(radius, radius)), radius(radius) {
+    Circle::Circle(coordinates::RelativeCoordinate position, float radius) : Shape(position, backend::RectangleSize(radius*2, radius*2)), radius(radius) {
 
     }
 
@@ -18,9 +18,5 @@ namespace shape {
 
     void Circle::RenderLines(coordinates::ScreenRectangle containing, float lineWidth, backend::Color color) const {
         backend::DrawCircleLines(GetScreenCoordinates(containing)+coordinates::ScreenCoordinate(radius), radius, 32, lineWidth, color);
-    }
-
-    backend::RectangleSize Circle::GetSize() const {
-        return backend::RectangleSize(radius*2);
     }
 }

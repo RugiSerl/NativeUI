@@ -32,9 +32,5 @@ namespace shape {
          */
         virtual void RenderLines(coordinates::ScreenRectangle containing, float lineWidth, backend::Color color) const = 0;
 
-        /**
-         * Get the size of the shape.
-         */
-        virtual backend::RectangleSize GetSize() const = 0;
     };
 }

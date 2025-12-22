@@ -102,7 +102,7 @@ namespace widget {
         std::vector<int> orderOfDrawing;
 
         /**
-         * nullptdr if root of the tree.
+         * nullptr if root of the tree.
          */
         Widget* parent;
 
