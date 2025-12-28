@@ -14,8 +14,4 @@ namespace unit {
     float DpiUnit::GetDPIValue() const {
         return value;
     }
-
-    float DpiUnit::GetValue() const {
-        return value;
-    }
 }

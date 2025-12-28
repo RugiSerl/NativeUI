@@ -15,8 +15,7 @@ namespace unit {
         /**
          * Accessors
          */
-        float GetPixelValue() const;
-        float GetDPIValue() const;
-        float GetValue() const;
+        float GetPixelValue() const override;
+        float GetDPIValue() const override;
     };
 }
