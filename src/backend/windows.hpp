@@ -12,4 +12,9 @@ namespace backend {
      * Get the window rectangle as a rectangle with screen coordinates.
      */
     coordinates::ScreenRectangle GetWindowRect();
+
+    /**
+     * Get the maximum of the vertical and horizontal dpi.
+     */
+    float GetWindowDPI();
 }
