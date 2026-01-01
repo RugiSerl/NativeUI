@@ -2,8 +2,7 @@
 
 namespace unit {
     /**
-     * Class representing a unit.
-     * Default (base class) is pixel unit.
+     * Abstract class representing a unit.
      */
     class Unit {
     public:
@@ -15,8 +14,8 @@ namespace unit {
         /**
          * Accessors
          */
-        virtual float GetPixelValue() const;
-        virtual float GetDPIValue() const;
+        virtual float GetPixelValue() const = 0;
+        virtual float GetDPIValue() const = 0;
     protected:
         float value;
     };

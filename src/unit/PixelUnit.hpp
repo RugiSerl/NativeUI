@@ -3,20 +3,20 @@
 #include "Unit.hpp"
 namespace unit {
     /**
-     * A unit that takes in account screen dpi.
+     * A unit that doesn't take in account screen dpi.
      */
-    class DpiUnit : public Unit {
+    class PixelUnit : public Unit {
     public:
         /**
          * Constructor
          */
-        DpiUnit(float value);
+        PixelUnit(float value);
 
         /**
          * Accessors
          */
-        float GetPixelValue() const;
-        float GetDPIValue() const;
+        float GetPixelValue() const override;
+        float GetDPIValue() const override;
         float GetValue() const;
     };
 }
